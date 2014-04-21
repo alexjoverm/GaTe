@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>/home/linuxero/NetBeansProjects/prueba_colisiones: Fichero Fuente /home/linuxero/NetBeansProjects/prueba_colisiones/Clases/Gun.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">/home/linuxero/NetBeansProjects/prueba_colisiones
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_195668f4c5db9f7d45ae9575393c9b1d.html">Clases</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Gun.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * File:   Gun.h</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Author: linuxero</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Created on March 16, 2014, 11:21 AM</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef GUN_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GUN_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;EntActive.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;Time.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classGun.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="classGun.html">Gun</a>: <span class="keyword">public</span> <a class="code" href="classEntActive.html">EntActive</a> {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classGun.html">Gun</a>(<span class="keyword">const</span> sf::Texture&amp; tex, <span class="keywordtype">bool</span> cen=<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classGun.html">Gun</a>(<span class="keyword">const</span> sf::Texture&amp; tex, <span class="keyword">const</span> <a class="code" href="classVector.html">Vector</a>&amp; pos, <span class="keyword">const</span> <a class="code" href="classVector.html">Vector</a>&amp; vel=<a class="code" href="classVector.html">Vector</a>(0.f, 0.f), <span class="keyword">const</span> <a class="code" href="classVector.html">Vector</a>&amp; maxvel=<a class="code" href="classVector.html">Vector</a>(600.f, 600.f), <span class="keywordtype">bool</span> cen=<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classGun.html">Gun</a>(<span class="keyword">const</span> <a class="code" href="classGun.html">Gun</a>&amp; orig);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classGun.html">Gun</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">virtual</span> <span class="keyword">const</span> std::string GetClassName() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Gun&quot;</span>; }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="comment">// Bucle de ciclo de vida</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classGun.html#a70271085b85f4cfa2cf8e74975e7fef9">Draw</a>(<a class="code" href="classRenderWindow.html">RenderWindow</a>&amp; window, <span class="keywordtype">float</span> inter);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classGun.html#a888633a4af0a2d136ef2c366794d1544">Update</a>(<span class="keyword">const</span> <a class="code" href="classTime.html">Time</a>&amp; elapsedTime);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGun.html#a888633a4af0a2d136ef2c366794d1544">Update</a>(<a class="code" href="classEntActive.html">EntActive</a>* ent);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> Shot(<span class="keyword">const</span> <a class="code" href="classVector.html">Vector</a>&amp; speed, <span class="keyword">const</span> <a class="code" href="classVector.html">Vector</a>&amp; pos);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> SetTimes(<span class="keywordtype">float</span> lifeT, <span class="keywordtype">float</span> reloadT){ lifeTime-&gt;SetSeconds(lifeT); reloadTime-&gt;SetSeconds(reloadT);}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> SetLifeTime(<span class="keywordtype">float</span> time){ lifeTime-&gt;SetSeconds(time); }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> SetReloadTime(<span class="keywordtype">float</span> time){ reloadTime-&gt;SetSeconds(time); }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classTime.html">Time</a>&amp; GetLifeTime()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> *lifeTime; }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classTime.html">Time</a>&amp; GetReloadTime()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> *reloadTime; }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classVector.html">Vector</a> GetRelativePos()<span class="keyword"> const</span>{ <span class="keywordflow">return</span> *relativePos; }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> SetRelativePos(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y){ relativePos-&gt;<a class="code" href="classVector.html#ad5d677f0ac46bb6675ab8ee113f4cd1c">Set</a>(x, y); }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classTime.html">Time</a>        *lifeTime, *reloadTime;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classVector.html">Vector</a>      *relativePos;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* GUN_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor"></span></div>
+<div class="ttc" id="classRenderWindow_html"><div class="ttname"><a href="classRenderWindow.html">RenderWindow</a></div><div class="ttdef"><b>Definition:</b> RenderWindow.h:15</div></div>
+<div class="ttc" id="classVector_html"><div class="ttname"><a href="classVector.html">Vector</a></div><div class="ttdef"><b>Definition:</b> Vector.h:14</div></div>
+<div class="ttc" id="classTime_html"><div class="ttname"><a href="classTime.html">Time</a></div><div class="ttdef"><b>Definition:</b> Time.h:14</div></div>
+<div class="ttc" id="classEntActive_html"><div class="ttname"><a href="classEntActive.html">EntActive</a></div><div class="ttdef"><b>Definition:</b> EntActive.h:15</div></div>
+<div class="ttc" id="classGun_html"><div class="ttname"><a href="classGun.html">Gun</a></div><div class="ttdef"><b>Definition:</b> Gun.h:14</div></div>
+<div class="ttc" id="classGun_html_a888633a4af0a2d136ef2c366794d1544"><div class="ttname"><a href="classGun.html#a888633a4af0a2d136ef2c366794d1544">Gun::Update</a></div><div class="ttdeci">virtual void Update(const Time &amp;elapsedTime)</div><div class="ttdoc">Realizará un Update de la física, además el propio en las clases hijas. </div><div class="ttdef"><b>Definition:</b> Gun.cpp:54</div></div>
+<div class="ttc" id="classVector_html_ad5d677f0ac46bb6675ab8ee113f4cd1c"><div class="ttname"><a href="classVector.html#ad5d677f0ac46bb6675ab8ee113f4cd1c">Vector::Set</a></div><div class="ttdeci">void Set(float x, float y)</div><div class="ttdoc">Setea X e Y. </div><div class="ttdef"><b>Definition:</b> Vector.h:28</div></div>
+<div class="ttc" id="classGun_html_a70271085b85f4cfa2cf8e74975e7fef9"><div class="ttname"><a href="classGun.html#a70271085b85f4cfa2cf8e74975e7fef9">Gun::Draw</a></div><div class="ttdeci">virtual void Draw(RenderWindow &amp;window, float inter)</div><div class="ttdoc">Realiza un Draw Interpolado. </div><div class="ttdef"><b>Definition:</b> Gun.cpp:49</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado el Martes, 1 de Abril de 2014 09:10:54 para /home/linuxero/NetBeansProjects/prueba_colisiones por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

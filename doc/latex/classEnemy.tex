@@ -1,0 +1,64 @@
+\hypertarget{classEnemy}{\section{Referencia de la Clase Enemy}
+\label{classEnemy}\index{Enemy@{Enemy}}
+}
+Diagrama de herencias de Enemy\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classEnemy}
+\end{center}
+\end{figure}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classEnemy_a61d6ab34a7c18bde3480468e98cf9ba4}{{\bfseries Enemy} (const sf\-::\-Texture \&tex, bool cen=true)}\label{classEnemy_a61d6ab34a7c18bde3480468e98cf9ba4}
+
+\item 
+\hypertarget{classEnemy_a59302df40922f5b0193c16b5650fb3c9}{{\bfseries Enemy} (const sf\-::\-Texture \&tex, const \hyperlink{classVector}{Vector} \&pos, const \hyperlink{classVector}{Vector} \&vel=\hyperlink{classVector}{Vector}(0.f, 0.f), const \hyperlink{classVector}{Vector} \&maxvel=\hyperlink{classVector}{Vector}(600.f, 600.f), bool cen=true)}\label{classEnemy_a59302df40922f5b0193c16b5650fb3c9}
+
+\item 
+\hypertarget{classEnemy_a9719f9eedddb5950fc1e522051a93d93}{{\bfseries Enemy} (const \hyperlink{classEnemy}{Enemy} \&orig)}\label{classEnemy_a9719f9eedddb5950fc1e522051a93d93}
+
+\item 
+\hypertarget{classEnemy_a6f34d90e9ef3b2e94b2093c0d7113f13}{virtual const std\-::string {\bfseries Get\-Class\-Name} ()}\label{classEnemy_a6f34d90e9ef3b2e94b2093c0d7113f13}
+
+\item 
+virtual void \hyperlink{classEnemy_a9a34d38fac00edea2f45a9084bdfe1f6}{Draw} (\hyperlink{classRenderWindow}{Render\-Window} \&window, float inter)
+\begin{DoxyCompactList}\small\item\em Realiza un Draw Interpolado. \end{DoxyCompactList}\item 
+\hypertarget{classEnemy_a7c26659cca9c7efdae3ffad6af20df5f}{virtual void \hyperlink{classEnemy_a7c26659cca9c7efdae3ffad6af20df5f}{Update} (const \hyperlink{classTime}{Time} \&elapsed\-Time)}\label{classEnemy_a7c26659cca9c7efdae3ffad6af20df5f}
+
+\begin{DoxyCompactList}\small\item\em Realizará un Update de la física, además el propio en las clases hijas. \end{DoxyCompactList}\item 
+\hypertarget{classEnemy_a754ebd8eb9db54ec38695a72dd6d801b}{void {\bfseries On\-Colision} (Colision\-::\-Type type, const \hyperlink{classRectangle}{Rectangle} \&rec)}\label{classEnemy_a754ebd8eb9db54ec38695a72dd6d801b}
+
+\end{DoxyCompactItemize}
+\subsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classEnemy_aee0e2aa489b58e73c849034893fa0d33}{float {\bfseries life} =100.f}\label{classEnemy_aee0e2aa489b58e73c849034893fa0d33}
+
+\end{DoxyCompactItemize}
+\subsection*{Otros miembros heredados}
+
+
+\subsection{Documentación de las funciones miembro}
+\hypertarget{classEnemy_a9a34d38fac00edea2f45a9084bdfe1f6}{\index{Enemy@{Enemy}!Draw@{Draw}}
+\index{Draw@{Draw}!Enemy@{Enemy}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}void Enemy\-::\-Draw (
+\begin{DoxyParamCaption}
+\item[{{\bf Render\-Window} \&}]{window, }
+\item[{float}]{inter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classEnemy_a9a34d38fac00edea2f45a9084bdfe1f6}
+
+
+Realiza un Draw Interpolado. 
+
+Dibujado con interpolacion. 
+
+Reimplementado de \hyperlink{classEntActive_a658baff215085c022d8a019269185a66}{Ent\-Active}.
+
+
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+/home/linuxero/\-Net\-Beans\-Projects/prueba\-\_\-colisiones/\-Clases/Enemy.\-h\item 
+/home/linuxero/\-Net\-Beans\-Projects/prueba\-\_\-colisiones/\-Clases/Enemy.\-cpp\end{DoxyCompactItemize}

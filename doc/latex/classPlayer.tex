@@ -1,0 +1,82 @@
+\hypertarget{classPlayer}{\section{Referencia de la Clase Player}
+\label{classPlayer}\index{Player@{Player}}
+}
+Diagrama de herencias de Player\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classPlayer}
+\end{center}
+\end{figure}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classPlayer_acddb2634188f14201f7eaa29d8f2611d}{{\bfseries Player} (const sf\-::\-Texture \&tex, bool cen=true)}\label{classPlayer_acddb2634188f14201f7eaa29d8f2611d}
+
+\item 
+\hypertarget{classPlayer_a0b67a0b2cbbf4880c35de511fa361dea}{{\bfseries Player} (const sf\-::\-Texture \&tex, const \hyperlink{classVector}{Vector} \&pos, const \hyperlink{classVector}{Vector} \&vel=\hyperlink{classVector}{Vector}(0.f, 0.f), const \hyperlink{classVector}{Vector} \&maxvel=\hyperlink{classVector}{Vector}(600.f, 600.f), bool cen=true)}\label{classPlayer_a0b67a0b2cbbf4880c35de511fa361dea}
+
+\item 
+\hypertarget{classPlayer_a3fda0565e6cb6d24c72160e6f88525f2}{{\bfseries Player} (const \hyperlink{classPlayer}{Player} \&orig)}\label{classPlayer_a3fda0565e6cb6d24c72160e6f88525f2}
+
+\item 
+\hypertarget{classPlayer_a089deaac2cdf0522d61ebe00647e9054}{virtual const std\-::string {\bfseries Get\-Class\-Name} ()}\label{classPlayer_a089deaac2cdf0522d61ebe00647e9054}
+
+\item 
+virtual void \hyperlink{classPlayer_a6fa2109456d203d45b0460fa53ff247b}{Draw} (\hyperlink{classRenderWindow}{Render\-Window} \&window, float inter)
+\begin{DoxyCompactList}\small\item\em Realiza un Draw Interpolado. \end{DoxyCompactList}\item 
+\hypertarget{classPlayer_ae080f22f3c126845623b043a794175c8}{virtual void \hyperlink{classPlayer_ae080f22f3c126845623b043a794175c8}{Update} (const \hyperlink{classTime}{Time} \&elapsed\-Time)}\label{classPlayer_ae080f22f3c126845623b043a794175c8}
+
+\begin{DoxyCompactList}\small\item\em Realizará un Update de la física, además el propio en las clases hijas. \end{DoxyCompactList}\item 
+\hypertarget{classPlayer_a332f6a6235d2cf5f60bd5e8ea11f2b96}{void {\bfseries Add\-Gun} (\hyperlink{classGun}{Gun} $\ast$g)}\label{classPlayer_a332f6a6235d2cf5f60bd5e8ea11f2b96}
+
+\item 
+\hypertarget{classPlayer_ade865da0a877ed80544a8980d5bfe6c3}{void {\bfseries Select\-Gun} (int i)}\label{classPlayer_ade865da0a877ed80544a8980d5bfe6c3}
+
+\item 
+\hypertarget{classPlayer_a00d075436bc7b9f0e7cfb8f61eadd42b}{\hyperlink{classGun}{Gun} $\ast$ {\bfseries Get\-Selected\-Gun} () const }\label{classPlayer_a00d075436bc7b9f0e7cfb8f61eadd42b}
+
+\item 
+\hypertarget{classPlayer_a38b8edc101cf42990dd1ed91c1ae02af}{void {\bfseries Shot} (float x, float y)}\label{classPlayer_a38b8edc101cf42990dd1ed91c1ae02af}
+
+\item 
+\hypertarget{classPlayer_adfd1228493c13be267e20fb06aaab45c}{void {\bfseries Do\-Event} (sf\-::\-Keyboard\-::\-Key key, bool is\-Pressed)}\label{classPlayer_adfd1228493c13be267e20fb06aaab45c}
+
+\item 
+\hypertarget{classPlayer_abf2ac31c8cd39d8c675d13edf736251f}{void {\bfseries On\-Colision} (Colision\-::\-Type type, const \hyperlink{classRectangle}{Rectangle} \&rec)}\label{classPlayer_abf2ac31c8cd39d8c675d13edf736251f}
+
+\end{DoxyCompactItemize}
+\subsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classPlayer_ac52a873571f7739cbc506253a3c72660}{std\-::vector$<$ \hyperlink{classGun}{Gun} $\ast$ $>$ $\ast$ {\bfseries guns}}\label{classPlayer_ac52a873571f7739cbc506253a3c72660}
+
+\item 
+\hypertarget{classPlayer_a263ff9a2e3d008f3d92013bf9aa3bbb1}{int {\bfseries selected\-Gun}}\label{classPlayer_a263ff9a2e3d008f3d92013bf9aa3bbb1}
+
+\end{DoxyCompactItemize}
+\subsection*{Otros miembros heredados}
+
+
+\subsection{Documentación de las funciones miembro}
+\hypertarget{classPlayer_a6fa2109456d203d45b0460fa53ff247b}{\index{Player@{Player}!Draw@{Draw}}
+\index{Draw@{Draw}!Player@{Player}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}void Player\-::\-Draw (
+\begin{DoxyParamCaption}
+\item[{{\bf Render\-Window} \&}]{window, }
+\item[{float}]{inter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classPlayer_a6fa2109456d203d45b0460fa53ff247b}
+
+
+Realiza un Draw Interpolado. 
+
+Dibujado con interpolacion. 
+
+Reimplementado de \hyperlink{classEntActive_a658baff215085c022d8a019269185a66}{Ent\-Active}.
+
+
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+/home/linuxero/\-Net\-Beans\-Projects/prueba\-\_\-colisiones/\-Clases/Player.\-h\item 
+/home/linuxero/\-Net\-Beans\-Projects/prueba\-\_\-colisiones/\-Clases/Player.\-cpp\end{DoxyCompactItemize}

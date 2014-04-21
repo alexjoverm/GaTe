@@ -1,0 +1,70 @@
+\hypertarget{classBullet}{\section{Referencia de la Clase Bullet}
+\label{classBullet}\index{Bullet@{Bullet}}
+}
+Diagrama de herencias de Bullet\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classBullet}
+\end{center}
+\end{figure}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classBullet_a28f66f8117c5db3ae465ef8722df9464}{{\bfseries Bullet} (const sf\-::\-Texture \&tex, bool cen)}\label{classBullet_a28f66f8117c5db3ae465ef8722df9464}
+
+\item 
+\hypertarget{classBullet_a66d17e68781cf0b136b4866f7591dc5a}{{\bfseries Bullet} (const sf\-::\-Texture \&tex, const \hyperlink{classVector}{Vector} \&pos, const \hyperlink{classVector}{Vector} \&vel=\hyperlink{classVector}{Vector}(0.f, 0.f), const \hyperlink{classVector}{Vector} \&maxvel=\hyperlink{classVector}{Vector}(600.f, 600.f), bool cen=true)}\label{classBullet_a66d17e68781cf0b136b4866f7591dc5a}
+
+\item 
+\hypertarget{classBullet_a22e572e4d102f86b68db3bfed3532b6d}{{\bfseries Bullet} (const \hyperlink{classBullet}{Bullet} \&orig)}\label{classBullet_a22e572e4d102f86b68db3bfed3532b6d}
+
+\item 
+virtual void \hyperlink{classBullet_af27d3a1699386dcd15bcb4a338b8b993}{Draw} (\hyperlink{classRenderWindow}{Render\-Window} \&window, float inter)
+\begin{DoxyCompactList}\small\item\em Realiza un Draw Interpolado. \end{DoxyCompactList}\item 
+\hypertarget{classBullet_a452c100efdd14343cb7e651477a4f7b5}{virtual void \hyperlink{classBullet_a452c100efdd14343cb7e651477a4f7b5}{Update} (const \hyperlink{classTime}{Time} \&elapsed\-Time)}\label{classBullet_a452c100efdd14343cb7e651477a4f7b5}
+
+\begin{DoxyCompactList}\small\item\em Realizará un Update de la física, además el propio en las clases hijas. \end{DoxyCompactList}\item 
+\hypertarget{classBullet_aff602c0a337b7a4290eb1dc0de729463}{void {\bfseries Add\-Time\-Elapsed} (const \hyperlink{classTime}{Time} \&time)}\label{classBullet_aff602c0a337b7a4290eb1dc0de729463}
+
+\item 
+\hypertarget{classBullet_ad68e706617b9e3f260329e767fd4cdb6}{\hyperlink{classTime}{Time} \& {\bfseries Get\-Time\-Elapsed} () const }\label{classBullet_ad68e706617b9e3f260329e767fd4cdb6}
+
+\item 
+\hypertarget{classBullet_aa1e5f892a1a175f04bc67e2fc993a619}{virtual void {\bfseries On\-Colision} (Colision\-::\-Type type, const \hyperlink{classRectangle}{Rectangle} \&rec)}\label{classBullet_aa1e5f892a1a175f04bc67e2fc993a619}
+
+\end{DoxyCompactItemize}
+\subsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classBullet_a5a392a85e958fe7dabebd1950bcf07aa}{bool {\bfseries affect\-Gravity} =false}\label{classBullet_a5a392a85e958fe7dabebd1950bcf07aa}
+
+\item 
+\hypertarget{classBullet_a1cad8c80e63d13da57b563b8e8e3f79e}{float {\bfseries damage} = 20.f}\label{classBullet_a1cad8c80e63d13da57b563b8e8e3f79e}
+
+\end{DoxyCompactItemize}
+\subsection*{Otros miembros heredados}
+
+
+\subsection{Documentación de las funciones miembro}
+\hypertarget{classBullet_af27d3a1699386dcd15bcb4a338b8b993}{\index{Bullet@{Bullet}!Draw@{Draw}}
+\index{Draw@{Draw}!Bullet@{Bullet}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}void Bullet\-::\-Draw (
+\begin{DoxyParamCaption}
+\item[{{\bf Render\-Window} \&}]{window, }
+\item[{float}]{inter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classBullet_af27d3a1699386dcd15bcb4a338b8b993}
+
+
+Realiza un Draw Interpolado. 
+
+Dibujado con interpolacion. 
+
+Reimplementado de \hyperlink{classEntActive_a658baff215085c022d8a019269185a66}{Ent\-Active}.
+
+
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+/home/linuxero/\-Net\-Beans\-Projects/prueba\-\_\-colisiones/\-Clases/Bullet.\-h\item 
+/home/linuxero/\-Net\-Beans\-Projects/prueba\-\_\-colisiones/\-Clases/Bullet.\-cpp\end{DoxyCompactItemize}

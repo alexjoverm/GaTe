@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>/home/linuxero/NetBeansProjects/prueba_colisiones: Fichero Fuente /home/linuxero/NetBeansProjects/prueba_colisiones/Clases/Enemy.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">/home/linuxero/NetBeansProjects/prueba_colisiones
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_195668f4c5db9f7d45ae9575393c9b1d.html">Clases</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Enemy.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * File:   Enemy.h</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Author: linuxero</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Created on March 11, 2014, 9:48 AM</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#ifndef ENEMY_H</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define ENEMY_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;EntActive.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;Colisionable.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classEnemy.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="classEnemy.html">Enemy</a>: <span class="keyword">public</span> <a class="code" href="classEntActive.html">EntActive</a>, <span class="keyword">public</span> <a class="code" href="classColisionable.html">Colisionable</a> {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classEnemy.html">Enemy</a>(<span class="keyword">const</span> sf::Texture&amp; tex, <span class="keywordtype">bool</span> cen=<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classEnemy.html">Enemy</a>(<span class="keyword">const</span> sf::Texture&amp; tex, <span class="keyword">const</span> <a class="code" href="classVector.html">Vector</a>&amp; pos, <span class="keyword">const</span> <a class="code" href="classVector.html">Vector</a>&amp; vel=<a class="code" href="classVector.html">Vector</a>(0.f, 0.f), <span class="keyword">const</span> <a class="code" href="classVector.html">Vector</a>&amp; maxvel=<a class="code" href="classVector.html">Vector</a>(600.f, 600.f), <span class="keywordtype">bool</span> cen=<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classEnemy.html">Enemy</a>(<span class="keyword">const</span> <a class="code" href="classEnemy.html">Enemy</a>&amp; orig);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classEnemy.html">Enemy</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">virtual</span> <span class="keyword">const</span> std::string GetClassName() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Enemy&quot;</span>;}</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="comment">// Bucle de ciclo de vida</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classEnemy.html#a9a34d38fac00edea2f45a9084bdfe1f6">Draw</a>(<a class="code" href="classRenderWindow.html">RenderWindow</a>&amp; window, <span class="keywordtype">float</span> inter);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classEnemy.html#a7c26659cca9c7efdae3ffad6af20df5f">Update</a>(<span class="keyword">const</span> <a class="code" href="classTime.html">Time</a>&amp; elapsedTime);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> OnColision(Colision::Type type, <span class="keyword">const</span> <a class="code" href="classRectangle.html">Rectangle</a>&amp; rec);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">float</span> life=100.f;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> Jump();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;};</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* ENEMY_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span></div>
+<div class="ttc" id="classRenderWindow_html"><div class="ttname"><a href="classRenderWindow.html">RenderWindow</a></div><div class="ttdef"><b>Definition:</b> RenderWindow.h:15</div></div>
+<div class="ttc" id="classEnemy_html"><div class="ttname"><a href="classEnemy.html">Enemy</a></div><div class="ttdef"><b>Definition:</b> Enemy.h:13</div></div>
+<div class="ttc" id="classVector_html"><div class="ttname"><a href="classVector.html">Vector</a></div><div class="ttdef"><b>Definition:</b> Vector.h:14</div></div>
+<div class="ttc" id="classTime_html"><div class="ttname"><a href="classTime.html">Time</a></div><div class="ttdef"><b>Definition:</b> Time.h:14</div></div>
+<div class="ttc" id="classEntActive_html"><div class="ttname"><a href="classEntActive.html">EntActive</a></div><div class="ttdef"><b>Definition:</b> EntActive.h:15</div></div>
+<div class="ttc" id="classEnemy_html_a9a34d38fac00edea2f45a9084bdfe1f6"><div class="ttname"><a href="classEnemy.html#a9a34d38fac00edea2f45a9084bdfe1f6">Enemy::Draw</a></div><div class="ttdeci">virtual void Draw(RenderWindow &amp;window, float inter)</div><div class="ttdoc">Realiza un Draw Interpolado. </div><div class="ttdef"><b>Definition:</b> Enemy.cpp:59</div></div>
+<div class="ttc" id="classRectangle_html"><div class="ttname"><a href="classRectangle.html">Rectangle</a></div><div class="ttdef"><b>Definition:</b> Rectangle.h:15</div></div>
+<div class="ttc" id="classColisionable_html"><div class="ttname"><a href="classColisionable.html">Colisionable</a></div><div class="ttdef"><b>Definition:</b> Colisionable.h:18</div></div>
+<div class="ttc" id="classEnemy_html_a7c26659cca9c7efdae3ffad6af20df5f"><div class="ttname"><a href="classEnemy.html#a7c26659cca9c7efdae3ffad6af20df5f">Enemy::Update</a></div><div class="ttdeci">virtual void Update(const Time &amp;elapsedTime)</div><div class="ttdoc">Realizará un Update de la física, además el propio en las clases hijas. </div><div class="ttdef"><b>Definition:</b> Enemy.cpp:64</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado el Martes, 1 de Abril de 2014 09:10:54 para /home/linuxero/NetBeansProjects/prueba_colisiones por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

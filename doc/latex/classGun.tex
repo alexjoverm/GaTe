@@ -1,0 +1,82 @@
+\hypertarget{classGun}{\section{Referencia de la Clase Gun}
+\label{classGun}\index{Gun@{Gun}}
+}
+Diagrama de herencias de Gun\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classGun}
+\end{center}
+\end{figure}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGun_add24df19b881b6944193889855490abf}{{\bfseries Gun} (const sf\-::\-Texture \&tex, bool cen=true)}\label{classGun_add24df19b881b6944193889855490abf}
+
+\item 
+\hypertarget{classGun_a17f769accaa9ad556047c628f00d9ad6}{{\bfseries Gun} (const sf\-::\-Texture \&tex, const \hyperlink{classVector}{Vector} \&pos, const \hyperlink{classVector}{Vector} \&vel=\hyperlink{classVector}{Vector}(0.f, 0.f), const \hyperlink{classVector}{Vector} \&maxvel=\hyperlink{classVector}{Vector}(600.f, 600.f), bool cen=true)}\label{classGun_a17f769accaa9ad556047c628f00d9ad6}
+
+\item 
+\hypertarget{classGun_a1e2c6e1776c3fe89592c012e020a6566}{{\bfseries Gun} (const \hyperlink{classGun}{Gun} \&orig)}\label{classGun_a1e2c6e1776c3fe89592c012e020a6566}
+
+\item 
+\hypertarget{classGun_a307c86c4feba903cd9672e17cb2d45f6}{virtual const std\-::string {\bfseries Get\-Class\-Name} ()}\label{classGun_a307c86c4feba903cd9672e17cb2d45f6}
+
+\item 
+virtual void \hyperlink{classGun_a70271085b85f4cfa2cf8e74975e7fef9}{Draw} (\hyperlink{classRenderWindow}{Render\-Window} \&window, float inter)
+\begin{DoxyCompactList}\small\item\em Realiza un Draw Interpolado. \end{DoxyCompactList}\item 
+\hypertarget{classGun_a888633a4af0a2d136ef2c366794d1544}{virtual void \hyperlink{classGun_a888633a4af0a2d136ef2c366794d1544}{Update} (const \hyperlink{classTime}{Time} \&elapsed\-Time)}\label{classGun_a888633a4af0a2d136ef2c366794d1544}
+
+\begin{DoxyCompactList}\small\item\em Realizará un Update de la física, además el propio en las clases hijas. \end{DoxyCompactList}\item 
+\hypertarget{classGun_af7bb838648ada8d4d730d3966264260f}{void {\bfseries Update} (\hyperlink{classEntActive}{Ent\-Active} $\ast$ent)}\label{classGun_af7bb838648ada8d4d730d3966264260f}
+
+\item 
+\hypertarget{classGun_a06d33bb4fc2d7937b05dd76caa7f3636}{virtual void {\bfseries Shot} (const \hyperlink{classVector}{Vector} \&speed, const \hyperlink{classVector}{Vector} \&pos)}\label{classGun_a06d33bb4fc2d7937b05dd76caa7f3636}
+
+\item 
+\hypertarget{classGun_a5d821a89ad458d1edd25fbf62d3f05fd}{void {\bfseries Set\-Times} (float life\-T, float reload\-T)}\label{classGun_a5d821a89ad458d1edd25fbf62d3f05fd}
+
+\item 
+\hypertarget{classGun_a4d7569f0a79398fd13cebf02ed859c06}{void {\bfseries Set\-Life\-Time} (float time)}\label{classGun_a4d7569f0a79398fd13cebf02ed859c06}
+
+\item 
+\hypertarget{classGun_ab3d0e69a52be0f11a38198d8a1d88536}{void {\bfseries Set\-Reload\-Time} (float time)}\label{classGun_ab3d0e69a52be0f11a38198d8a1d88536}
+
+\item 
+\hypertarget{classGun_a03bd2ed00d1fdb1767b78b0bec26ef05}{\hyperlink{classTime}{Time} \& {\bfseries Get\-Life\-Time} () const }\label{classGun_a03bd2ed00d1fdb1767b78b0bec26ef05}
+
+\item 
+\hypertarget{classGun_ad95a0db1e8df971a1eacefbff01f1b2c}{\hyperlink{classTime}{Time} \& {\bfseries Get\-Reload\-Time} () const }\label{classGun_ad95a0db1e8df971a1eacefbff01f1b2c}
+
+\item 
+\hypertarget{classGun_a033e18eb676db223a31a8c3a0371360e}{\hyperlink{classVector}{Vector} {\bfseries Get\-Relative\-Pos} () const }\label{classGun_a033e18eb676db223a31a8c3a0371360e}
+
+\item 
+\hypertarget{classGun_acd491acca640ffde2b1232ea381d1f77}{void {\bfseries Set\-Relative\-Pos} (float x, float y)}\label{classGun_acd491acca640ffde2b1232ea381d1f77}
+
+\end{DoxyCompactItemize}
+\subsection*{Otros miembros heredados}
+
+
+\subsection{Documentación de las funciones miembro}
+\hypertarget{classGun_a70271085b85f4cfa2cf8e74975e7fef9}{\index{Gun@{Gun}!Draw@{Draw}}
+\index{Draw@{Draw}!Gun@{Gun}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}void Gun\-::\-Draw (
+\begin{DoxyParamCaption}
+\item[{{\bf Render\-Window} \&}]{window, }
+\item[{float}]{inter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classGun_a70271085b85f4cfa2cf8e74975e7fef9}
+
+
+Realiza un Draw Interpolado. 
+
+Dibujado con interpolacion. 
+
+Reimplementado de \hyperlink{classEntActive_a658baff215085c022d8a019269185a66}{Ent\-Active}.
+
+
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+/home/linuxero/\-Net\-Beans\-Projects/prueba\-\_\-colisiones/\-Clases/Gun.\-h\item 
+/home/linuxero/\-Net\-Beans\-Projects/prueba\-\_\-colisiones/\-Clases/Gun.\-cpp\end{DoxyCompactItemize}

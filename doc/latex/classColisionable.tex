@@ -1,0 +1,87 @@
+\hypertarget{classColisionable}{\section{Referencia de la Clase Colisionable}
+\label{classColisionable}\index{Colisionable@{Colisionable}}
+}
+Diagrama de herencias de Colisionable\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classColisionable}
+\end{center}
+\end{figure}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classColisionable_a851878fb3a93420ca0cbec4605dbe2e1}{{\bfseries Colisionable} (\hyperlink{classEntity}{Entity} $\ast$ent)}\label{classColisionable_a851878fb3a93420ca0cbec4605dbe2e1}
+
+\item 
+\hypertarget{classColisionable_ac170a1b17950bb9f72b01261e474d65f}{{\bfseries Colisionable} (const \hyperlink{classColisionable}{Colisionable} \&orig)}\label{classColisionable_ac170a1b17950bb9f72b01261e474d65f}
+
+\item 
+\hypertarget{classColisionable_aecb15e3d0280c07f16fb12ee7c399b43}{virtual const std\-::string {\bfseries Get\-Class\-Name} ()}\label{classColisionable_aecb15e3d0280c07f16fb12ee7c399b43}
+
+\item 
+\hypertarget{classColisionable_a49c839ada10fd0b51ae3b04da9fc5831}{\hyperlink{classRectangle}{Rectangle} {\bfseries Get\-Previous\-Rect} (const \hyperlink{classTime}{Time} \&elapsed\-Time, \hyperlink{classEntActive}{Ent\-Active} $\ast$ent) const }\label{classColisionable_a49c839ada10fd0b51ae3b04da9fc5831}
+
+\item 
+\hypertarget{classColisionable_a8753bbdd0249f54cdd2b20177d40e55e}{int \hyperlink{classColisionable_a8753bbdd0249f54cdd2b20177d40e55e}{Create\-Rectangle} (float x, float y, float width, float height)}\label{classColisionable_a8753bbdd0249f54cdd2b20177d40e55e}
+
+\begin{DoxyCompactList}\small\item\em Creará un Rectángulo con los valores R\-E\-L\-A\-T\-I\-V\-O\-S de los parámetros (entre 0.\-f y 1.\-f) \end{DoxyCompactList}\item 
+\hypertarget{classColisionable_a2fd73529e7ac9eb9977c32dbed5825e9}{\hyperlink{classRectangle}{Rectangle} {\bfseries Get\-Absolute\-Rectangle} (const \hyperlink{classEntity}{Entity} \&ent, const \hyperlink{classRectangle}{Rectangle} \&rec\-Relative)}\label{classColisionable_a2fd73529e7ac9eb9977c32dbed5825e9}
+
+\item 
+\hypertarget{classColisionable_a7341c612181dcaedaa140f47bc4ddea4}{std\-::vector$<$ \hyperlink{classRectangle}{Rectangle} $>$ {\bfseries Get\-Absolute\-Rectangles} (const \hyperlink{classEntity}{Entity} \&ent)}\label{classColisionable_a7341c612181dcaedaa140f47bc4ddea4}
+
+\item 
+\hypertarget{classColisionable_ab4d827408fd136a4ccd1d188492d907e}{virtual bool {\bfseries Check\-Colision} (const \hyperlink{classColisionable}{Colisionable} \&ent)}\label{classColisionable_ab4d827408fd136a4ccd1d188492d907e}
+
+\item 
+\hypertarget{classColisionable_a568ec4a1fb2d412c19a1416309b967b5}{virtual bool {\bfseries Check\-Colision} (const \hyperlink{classRectangle}{Rectangle} \&rec)}\label{classColisionable_a568ec4a1fb2d412c19a1416309b967b5}
+
+\item 
+\hypertarget{classColisionable_a6d799e9995e2e635461e66d74bf8fd5c}{virtual std\-::vector$<$ \hyperlink{classVector}{Vector} $>$ {\bfseries Check\-Deep\-Colision} (const \hyperlink{classColisionable}{Colisionable} \&ent)}\label{classColisionable_a6d799e9995e2e635461e66d74bf8fd5c}
+
+\item 
+\hypertarget{classColisionable_ac2a8556867c95d6174965768dc7b7c2f}{virtual std\-::vector$<$ int $>$ {\bfseries Check\-Deep\-Colision} (const \hyperlink{classRectangle}{Rectangle} \&rec)}\label{classColisionable_ac2a8556867c95d6174965768dc7b7c2f}
+
+\item 
+\hypertarget{classColisionable_a1058ee9817cbce361a5af71a9b29d40a}{virtual Colision\-::\-Type {\bfseries Type\-Of\-Colision} (const \hyperlink{classColisionable}{Colisionable} \&ent, int index\-From, int index\-To, const \hyperlink{classTime}{Time} \&elapsed\-Time)}\label{classColisionable_a1058ee9817cbce361a5af71a9b29d40a}
+
+\item 
+\hypertarget{classColisionable_abf660cb4fb76c044424efbd06f7c1e97}{virtual Colision\-::\-Type {\bfseries Type\-Of\-Colision} (const \hyperlink{classRectangle}{Rectangle} \&rec, int index, const \hyperlink{classTime}{Time} \&elapsed\-Time)}\label{classColisionable_abf660cb4fb76c044424efbd06f7c1e97}
+
+\item 
+\hypertarget{classColisionable_a7863f7dfc211812f380547bcd73b7a41}{virtual Colision\-::\-Type {\bfseries Type\-Of\-Colision} (const \hyperlink{classColisionable}{Colisionable} \&ent, const \hyperlink{classTime}{Time} \&elapsed\-Time)}\label{classColisionable_a7863f7dfc211812f380547bcd73b7a41}
+
+\item 
+\hypertarget{classColisionable_abce19bbf1e92890ffc54abbc892adbc1}{virtual Colision\-::\-Type {\bfseries Type\-Of\-Colision} (const \hyperlink{classRectangle}{Rectangle} \&rec, const \hyperlink{classTime}{Time} \&elapsed\-Time)}\label{classColisionable_abce19bbf1e92890ffc54abbc892adbc1}
+
+\item 
+\hypertarget{classColisionable_a5aa4d9e35ede30c4cd1d68a0b946d72c}{virtual void {\bfseries On\-Colision} (Colision\-::\-Type type, const \hyperlink{classRectangle}{Rectangle} \&rec)=0}\label{classColisionable_a5aa4d9e35ede30c4cd1d68a0b946d72c}
+
+\item 
+\hypertarget{classColisionable_a5826db7bec1ff455bf5570097b3c96cd}{virtual void {\bfseries Reset\-Can} ()}\label{classColisionable_a5826db7bec1ff455bf5570097b3c96cd}
+
+\item 
+\hypertarget{classColisionable_a9dbbdaf66b24a1203e2e67fc8c6bd9e5}{virtual void {\bfseries Substract\-Distance} (Colision\-::\-Type type, \hyperlink{classEntActive}{Ent\-Active} $\ast$ent, const \hyperlink{classRectangle}{Rectangle} \&rec)}\label{classColisionable_a9dbbdaf66b24a1203e2e67fc8c6bd9e5}
+
+\end{DoxyCompactItemize}
+\subsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classColisionable_a07729cf3ff6ed199132dd336a87887a7}{float {\bfseries force\-Jump} = 500.f}\label{classColisionable_a07729cf3ff6ed199132dd336a87887a7}
+
+\item 
+\hypertarget{classColisionable_a7742961d8b1f1a22d930bd44da27b064}{bool {\bfseries can\-Left}}\label{classColisionable_a7742961d8b1f1a22d930bd44da27b064}
+
+\item 
+\hypertarget{classColisionable_ac2faafc0b6d7e8d30e1022ebc87c206f}{bool {\bfseries can\-Right}}\label{classColisionable_ac2faafc0b6d7e8d30e1022ebc87c206f}
+
+\item 
+\hypertarget{classColisionable_ad311d7e49f065e66d479be76722770ae}{bool {\bfseries can\-Jump}}\label{classColisionable_ad311d7e49f065e66d479be76722770ae}
+
+\end{DoxyCompactItemize}
+
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+/home/linuxero/\-Net\-Beans\-Projects/prueba\-\_\-colisiones/\-Clases/Colisionable.\-h\item 
+/home/linuxero/\-Net\-Beans\-Projects/prueba\-\_\-colisiones/\-Clases/Colisionable.\-cpp\end{DoxyCompactItemize}

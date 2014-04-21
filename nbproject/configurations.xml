@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="90">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>Includes/ResourceHolder.hpp</itemPath>
+      <itemPath>Includes/ResourceHolder.inl</itemPath>
+    </logicalFolder>
+    <logicalFolder name="Maps" displayName="Maps" projectFiles="true">
+      <itemPath>Maps/b2d.tmx</itemPath>
+      <itemPath>Maps/desert.tmx</itemPath>
+      <itemPath>Maps/desert.tsx</itemPath>
+      <itemPath>Maps/diffuse.png</itemPath>
+      <itemPath>Maps/forest_tileset.png</itemPath>
+      <itemPath>Maps/isometric_grass_and_water.png</itemPath>
+      <itemPath>Maps/isometric_grass_and_water.tmx</itemPath>
+      <itemPath>Maps/mapa1.tmx</itemPath>
+      <itemPath>Maps/sewer_tileset.png</itemPath>
+      <itemPath>Maps/shader_example.tmx</itemPath>
+      <itemPath>Maps/tilset.png</itemPath>
+      <itemPath>Maps/tmw_desert_spacing.png</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+      <itemPath>Recursos/Character.png</itemPath>
+      <itemPath>Recursos/Foe.png</itemPath>
+      <itemPath>Recursos/OpenSans-Regular.ttf</itemPath>
+      <itemPath>Recursos/pistola.jpg</itemPath>
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <logicalFolder name="Animations" displayName="Animations" projectFiles="true">
+        <itemPath>Clases/Animations/Animable.cpp</itemPath>
+        <itemPath>Clases/Animations/Animable.h</itemPath>
+        <itemPath>Clases/Animations/AnimatedSprite.cpp</itemPath>
+        <itemPath>Clases/Animations/AnimatedSprite.h</itemPath>
+        <itemPath>Clases/Animations/Animation.cpp</itemPath>
+        <itemPath>Clases/Animations/Animation.h</itemPath>
+        <itemPath>Clases/Animations/SpriteParticleSystem.cpp</itemPath>
+        <itemPath>Clases/Animations/SpriteParticleSystem.h</itemPath>
+        <itemPath>Clases/Animations/SpriteSheet.cpp</itemPath>
+        <itemPath>Clases/Animations/SpriteSheet.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Entities" displayName="Entities" projectFiles="true">
+        <itemPath>Clases/Entities/Bullet.cpp</itemPath>
+        <itemPath>Clases/Entities/Bullet.h</itemPath>
+        <itemPath>Clases/Entities/Enemy.cpp</itemPath>
+        <itemPath>Clases/Entities/Enemy.h</itemPath>
+        <itemPath>Clases/Entities/EntActive.cpp</itemPath>
+        <itemPath>Clases/Entities/EntActive.h</itemPath>
+        <itemPath>Clases/Entities/EntPassive.cpp</itemPath>
+        <itemPath>Clases/Entities/EntPassive.h</itemPath>
+        <itemPath>Clases/Entities/Entity.cpp</itemPath>
+        <itemPath>Clases/Entities/Entity.h</itemPath>
+        <itemPath>Clases/Entities/Gun.cpp</itemPath>
+        <itemPath>Clases/Entities/Gun.h</itemPath>
+        <itemPath>Clases/Entities/Player.cpp</itemPath>
+        <itemPath>Clases/Entities/Player.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Factories" displayName="Factories" projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="Managers" displayName="Managers" projectFiles="true">
+        <itemPath>Clases/Managers/InputManager.cpp</itemPath>
+        <itemPath>Clases/Managers/InputManager.h</itemPath>
+        <itemPath>Clases/Managers/ResourceManager.cpp</itemPath>
+        <itemPath>Clases/Managers/ResourceManager.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Motor2D" displayName="Motor2D" projectFiles="true">
+        <logicalFolder name="f1" displayName="MapLoader" projectFiles="true">
+          <itemPath>Clases/Motor2D/MapLoader/DebugShape.cpp</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/DebugShape.h</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/Helpers.h</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/MapLayer.cpp</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/MapLayer.h</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/MapLoader.h</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/MapLoaderPrivate.cpp</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/MapLoaderPublic.cpp</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/MapObject.cpp</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/MapObject.h</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/QuadTreeNode.cpp</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/QuadTreeNode.h</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/pugiconfig.hpp</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/pugixml.cpp</itemPath>
+          <itemPath>Clases/Motor2D/MapLoader/pugixml.hpp</itemPath>
+        </logicalFolder>
+        <itemPath>Clases/Motor2D/Level.cpp</itemPath>
+        <itemPath>Clases/Motor2D/Level.h</itemPath>
+        <itemPath>Clases/Motor2D/Mapa.cpp</itemPath>
+        <itemPath>Clases/Motor2D/Mapa.h</itemPath>
+        <itemPath>Clases/Motor2D/RenderState.cpp</itemPath>
+        <itemPath>Clases/Motor2D/RenderState.h</itemPath>
+        <itemPath>Clases/Motor2D/RenderWindow.cpp</itemPath>
+        <itemPath>Clases/Motor2D/RenderWindow.h</itemPath>
+        <itemPath>Clases/Motor2D/World.cpp</itemPath>
+        <itemPath>Clases/Motor2D/World.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="MotorPhysics"
+                     displayName="MotorPhysics"
+                     projectFiles="true">
+        <itemPath>Clases/MotorPhysics/Colisionable.cpp</itemPath>
+        <itemPath>Clases/MotorPhysics/Colisionable.h</itemPath>
+        <itemPath>Clases/MotorPhysics/Maths.cpp</itemPath>
+        <itemPath>Clases/MotorPhysics/Maths.h</itemPath>
+        <itemPath>Clases/MotorPhysics/PhysicsState.cpp</itemPath>
+        <itemPath>Clases/MotorPhysics/PhysicsState.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Otros" displayName="Otros" projectFiles="true">
+        <itemPath>Clases/Otros/Clock.cpp</itemPath>
+        <itemPath>Clases/Otros/Clock.h</itemPath>
+        <itemPath>Clases/Otros/Rectangle.cpp</itemPath>
+        <itemPath>Clases/Otros/Rectangle.h</itemPath>
+        <itemPath>Clases/Otros/Singleton.h</itemPath>
+        <itemPath>Clases/Otros/StringUtils.cpp</itemPath>
+        <itemPath>Clases/Otros/StringUtils.h</itemPath>
+        <itemPath>Clases/Otros/Time.cpp</itemPath>
+        <itemPath>Clases/Otros/Time.h</itemPath>
+        <itemPath>Clases/Otros/Vector.cpp</itemPath>
+        <itemPath>Clases/Otros/Vector.h</itemPath>
+      </logicalFolder>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>Clases</Elem>
+    <Elem>Clases</Elem>
+    <Elem>Maps</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <standard>8</standard>
+          <commandlineTool>g++</commandlineTool>
+          <incDir>
+            <pElem>/usr/local/SFML/include</pElem>
+            <pElem>Includes</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>/usr/local/SFML/lib</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibLibItem>sfml-audio</linkerLibLibItem>
+            <linkerLibLibItem>sfml-graphics</linkerLibLibItem>
+            <linkerLibLibItem>sfml-network</linkerLibLibItem>
+            <linkerLibLibItem>sfml-system</linkerLibLibItem>
+            <linkerLibLibItem>sfml-window</linkerLibLibItem>
+            <linkerLibLibItem>z</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="Clases/Animations/Animable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Animations/Animable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Animations/AnimatedSprite.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Animations/AnimatedSprite.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Animations/Animation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Animations/Animation.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Animations/SpriteParticleSystem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Animations/SpriteParticleSystem.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Animations/SpriteSheet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Animations/SpriteSheet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Bullet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Bullet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Enemy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Enemy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/EntActive.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/EntActive.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/EntPassive.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/EntPassive.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Entity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Entity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Gun.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Gun.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Managers/InputManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Managers/InputManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Managers/ResourceManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Managers/ResourceManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Level.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Level.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/DebugShape.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/DebugShape.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/Helpers.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapLayer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapLayer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapLoader.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapLoaderPrivate.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapLoaderPublic.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapObject.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapObject.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/QuadTreeNode.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/QuadTreeNode.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/pugiconfig.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/pugixml.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/pugixml.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Mapa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Mapa.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/RenderState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/RenderState.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/RenderWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/RenderWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/World.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/World.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/MotorPhysics/Colisionable.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/MotorPhysics/Colisionable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/MotorPhysics/Maths.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/MotorPhysics/Maths.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/MotorPhysics/PhysicsState.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/MotorPhysics/PhysicsState.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Clock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Clock.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Rectangle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Rectangle.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Singleton.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Otros/StringUtils.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Otros/StringUtils.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Time.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Time.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Vector.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Vector.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Includes/ResourceHolder.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Includes/ResourceHolder.inl" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/b2d.tmx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/desert.tmx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/desert.tsx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/diffuse.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/forest_tileset.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/isometric_grass_and_water.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/isometric_grass_and_water.tmx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/mapa1.tmx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/sewer_tileset.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/shader_example.tmx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/tilset.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/tmw_desert_spacing.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Character.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Foe.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/OpenSans-Regular.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pistola.jpg" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <standard>8</standard>
+          <incDir>
+            <pElem>/usr/local/SFML/include</pElem>
+            <pElem>Includes</pElem>
+          </incDir>
+          <commandLine>-lsfml-graphics -lsfml-window -lsfml-system</commandLine>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>/usr/local/SFML/lib</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibLibItem>sfml-audio</linkerLibLibItem>
+            <linkerLibLibItem>sfml-graphics</linkerLibLibItem>
+            <linkerLibLibItem>sfml-network</linkerLibLibItem>
+            <linkerLibLibItem>sfml-system</linkerLibLibItem>
+            <linkerLibLibItem>sfml-window</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="Clases/Animations/Animable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Animations/Animable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Animations/AnimatedSprite.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Animations/AnimatedSprite.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Animations/Animation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Animations/Animation.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Animations/SpriteParticleSystem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Animations/SpriteParticleSystem.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Animations/SpriteSheet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Animations/SpriteSheet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Bullet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Bullet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Enemy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Enemy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/EntActive.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/EntActive.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/EntPassive.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/EntPassive.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Entity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Entity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Gun.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Gun.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Managers/InputManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Managers/InputManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Managers/ResourceManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Managers/ResourceManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Level.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Level.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/DebugShape.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/DebugShape.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/Helpers.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapLayer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapLayer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapLoader.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapLoaderPrivate.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapLoaderPublic.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapObject.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/MapObject.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/QuadTreeNode.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/QuadTreeNode.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/pugiconfig.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/pugixml.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/MapLoader/pugixml.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Mapa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Mapa.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/RenderState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/RenderState.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/RenderWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/RenderWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/World.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/World.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/MotorPhysics/Colisionable.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/MotorPhysics/Colisionable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/MotorPhysics/Maths.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/MotorPhysics/Maths.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/MotorPhysics/PhysicsState.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/MotorPhysics/PhysicsState.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Clock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Clock.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Rectangle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Rectangle.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Singleton.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Otros/StringUtils.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Otros/StringUtils.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Time.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Time.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Vector.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Otros/Vector.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Includes/ResourceHolder.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Includes/ResourceHolder.inl" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/b2d.tmx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/desert.tmx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/desert.tsx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/diffuse.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/forest_tileset.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/isometric_grass_and_water.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/isometric_grass_and_water.tmx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/mapa1.tmx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/sewer_tileset.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/shader_example.tmx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/tilset.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Maps/tmw_desert_spacing.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Character.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Foe.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/OpenSans-Regular.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pistola.jpg" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
