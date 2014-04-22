@@ -14,10 +14,8 @@
 
 class RenderWindow {
 public:
-	RenderWindow(int width, int height, const std::string titulo, int color=24);
-	RenderWindow(const RenderWindow& orig);
-	virtual ~RenderWindow();
-	
+	static RenderWindow* Instance();
+    
   // Acciones
 	void Draw(SpriteSheet& sp);
 	void Draw(const sf::Text& t);
@@ -36,6 +34,13 @@ public:
 	
 	int width, height;
     sf::RenderWindow*	renderWindow;
+    
+private:
+    static RenderWindow*	instance;
+    
+    RenderWindow(int width, int height, const std::string titulo, int color=24);
+	RenderWindow(const RenderWindow& orig);
+	virtual ~RenderWindow();
 };
 
 #endif	/* WINDOW_H */

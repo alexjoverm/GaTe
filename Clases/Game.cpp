@@ -9,7 +9,8 @@
 
 Game::Game() {
     timeUpdate = new Time(1.f/30.f);
-    window = new RenderWindow(1280,768,"GaTe");
+    window = RenderWindow::Instance();
+    stateManager = new StateManager();
 }
 
 Game::Game(const Game& orig) {
@@ -17,7 +18,7 @@ Game::Game(const Game& orig) {
 
 Game::~Game() {
     delete timeUpdate;
-    delete window;
+    delete stateManager;
 }
 
 void Game::Run(){
@@ -50,15 +51,15 @@ void Game::Run(){
 
 
 void Game::Update(const Time& timeElapsed){
-    //stateManager.GetCurrentState().Update(timeElapsed);
+    stateManager->GetCurrentState()->Update(timeElapsed);
 }
 
 void Game::Render(float interp){
-    //stateManager.GetCurrentState().Render(interp);
+    stateManager->GetCurrentState()->Render(interp);
 }
 
 void Game::HandleEvents(){
-    //stateManager.GetCurrentState().HandleEvents();
+    stateManager->GetCurrentState()->HandleEvents();
 }
 
 

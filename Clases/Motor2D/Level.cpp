@@ -6,7 +6,7 @@
  */
 
 #include "Level.h"
-#include "World.h"
+#include "../States/WorldState.h"
 
 
 Level::Level() {
@@ -45,6 +45,6 @@ Level::~Level() {
 }
 
 void Level::LoadMap(std::string mapName){
-    map = new Mapa(World::Instance()->window->renderWindow, mapName);
+    map = new Mapa(WorldState::Instance()->window->renderWindow, mapName);
     map->init();
 }

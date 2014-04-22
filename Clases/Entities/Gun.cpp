@@ -6,7 +6,7 @@
  */
 
 #include "Gun.h"
-#include "../Motor2D/World.h"
+#include "../States/WorldState.h"
 #include "Player.h"
 #include "../Otros/StringUtils.h"
 #include <iostream>
@@ -40,7 +40,7 @@ Gun::~Gun() {
 
 
 void Gun::Shot(const Vector& speed, const Vector& pos){
-	World* w = World::Instance();
+	WorldState* w = WorldState::Instance();
 	Bullet* aux = new Bullet(ResourceManager::Instance()->GetTexture("texBullet"), pos, speed);
     aux->SetPosition(aux->GetPosition().GetX()+aux->GetSprite()->getGlobalBounds().GetWidth(), 
                      aux->GetPosition().GetY()-aux->GetSprite()->getGlobalBounds().GetHeight()*0.4);

@@ -6,7 +6,7 @@
  */
 
 #include "Mapa.h"
-#include "World.h"
+#include "../States/WorldState.h"
 
 
 

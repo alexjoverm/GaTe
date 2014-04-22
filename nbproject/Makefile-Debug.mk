@@ -63,7 +63,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/Motor2D/Mapa.o \
 	${OBJECTDIR}/Clases/Motor2D/RenderState.o \
 	${OBJECTDIR}/Clases/Motor2D/RenderWindow.o \
-	${OBJECTDIR}/Clases/Motor2D/World.o \
 	${OBJECTDIR}/Clases/MotorPhysics/Colisionable.o \
 	${OBJECTDIR}/Clases/MotorPhysics/Maths.o \
 	${OBJECTDIR}/Clases/MotorPhysics/PhysicsState.o \
@@ -72,7 +71,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/Otros/StringUtils.o \
 	${OBJECTDIR}/Clases/Otros/Time.o \
 	${OBJECTDIR}/Clases/Otros/Vector.o \
-	${OBJECTDIR}/Clases/States/State.o \
+	${OBJECTDIR}/Clases/States/MenuState.o \
+	${OBJECTDIR}/Clases/States/WorldState.o \
 	${OBJECTDIR}/main.o
 
 
@@ -240,11 +240,6 @@ ${OBJECTDIR}/Clases/Motor2D/RenderWindow.o: Clases/Motor2D/RenderWindow.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/RenderWindow.o Clases/Motor2D/RenderWindow.cpp
 
-${OBJECTDIR}/Clases/Motor2D/World.o: Clases/Motor2D/World.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D
-	${RM} $@.d
-	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/World.o Clases/Motor2D/World.cpp
-
 ${OBJECTDIR}/Clases/MotorPhysics/Colisionable.o: Clases/MotorPhysics/Colisionable.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/MotorPhysics
 	${RM} $@.d
@@ -285,10 +280,15 @@ ${OBJECTDIR}/Clases/Otros/Vector.o: Clases/Otros/Vector.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Otros/Vector.o Clases/Otros/Vector.cpp
 
-${OBJECTDIR}/Clases/States/State.o: Clases/States/State.cpp 
+${OBJECTDIR}/Clases/States/MenuState.o: Clases/States/MenuState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States
 	${RM} $@.d
-	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/State.o Clases/States/State.cpp
+	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/MenuState.o Clases/States/MenuState.cpp
+
+${OBJECTDIR}/Clases/States/WorldState.o: Clases/States/WorldState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/States
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/WorldState.o Clases/States/WorldState.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

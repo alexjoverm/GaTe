@@ -9,19 +9,22 @@
 #define	STATE_H
 
 #include "../Otros/Time.h"
+#include "../Motor2D/RenderWindow.h"
+#include "../Managers/ResourceManager.h"
+#include "../Managers/InputManager.h"
 
 class State {
 public:    
-    State();
-    State(const State& orig);
-    virtual ~State();
+    virtual void HandleEvents() = 0;
+	virtual void Update(const Time& timeElapsed) = 0;
+	virtual void Render(float interp) = 0;
     
- /*   void HandleEvents() = 0;
-	void Update(const Time& timeElapsed) = 0;
-	void Render(float interp) = 0;
+    virtual void Clean() = 0;
+    virtual void Init() = 0;
     
-    void Clean() = 0;
-    void Init() = 0;*/
+    RenderWindow* window = RenderWindow::Instance();
+    InputManager* inputManager = InputManager::Instance();
+    ResourceManager* resourceManager = ResourceManager::Instance();
 };
 
 #endif	/* STATE_H */

@@ -10,7 +10,10 @@
 
 StateManager::StateManager() {
     mapStates = new std::map<States::ID, State*>();
-    currentState = States::ID::MenuState;
+    currentState = States::ID::WorldState;
+    
+    CreateStates();
+    GetCurrentState()->Init();
 }
 
 StateManager::StateManager(const StateManager& orig) {
@@ -22,7 +25,7 @@ StateManager::~StateManager() {
 	delete mapStates;
 }
 
-void StateManager::CreateStates(States::ID id)
+void StateManager::CreateStates()
 {
     mapStates->insert(std::make_pair(States::ID::MenuState , StateFactory::CreateState(States::ID::MenuState)));
     //mapStates->insert(std::make_pair(States::ID::LevelSelectionState , StateFactory::CreateState(States::ID::LevelSelectionState)));

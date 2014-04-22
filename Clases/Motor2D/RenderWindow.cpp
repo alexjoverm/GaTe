@@ -8,6 +8,15 @@
 #include "RenderWindow.h"
 #include "../Entities/Entity.h"
 
+RenderWindow* RenderWindow::instance = 0;
+
+RenderWindow* RenderWindow::Instance() {
+	if(instance == 0)
+		instance = new RenderWindow(800,640, "Gate - hito 2");
+	
+	return instance;
+}
+
 RenderWindow::RenderWindow(int width, int height, const std::string titulo, int color) {
 	renderWindow = new sf::RenderWindow((sf::VideoMode(width, height, color)), titulo);
 	this->width = width;

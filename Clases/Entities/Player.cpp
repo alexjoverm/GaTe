@@ -7,7 +7,7 @@
 #include <iostream>
 #include "Player.h"
 #include "../Otros/StringUtils.h"
-#include "../Motor2D/World.h"
+#include "../States/WorldState.h"
 
 Player::Player(const sf::Texture& tex, const Vector& size): EntActive(tex), Colisionable((EntActive*)this), Animable(spriteSheet){
 	selectedGun = 0;
@@ -87,7 +87,7 @@ void Player::Shot(float x, float y){
 //******************** COLISIONES *****************
 
 void Player::DoRectangleColisions(const Time& elapsedTime){
-	World* world = World::Instance();
+	WorldState* world = WorldState::Instance();
 	
 	Colision::Type	type;
 	bool colisionado = false, isInFloor = false, changedNextPos = false;

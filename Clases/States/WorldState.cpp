@@ -5,7 +5,7 @@
  * Created on March 15, 2014, 10:40 AM
  */
 
-#include "World.h"
+#include "WorldState.h"
 #include "../Otros/StringUtils.h"
 #include <iostream>
 
@@ -15,24 +15,21 @@ Clock reloj = Clock();
 
 
 //**************** SINGLETON
-World* World::instance = 0;
+WorldState* WorldState::instance = 0;
 
-World* World::Instance() {
+WorldState* WorldState::Instance() {
 	if(instance == 0)
-		instance = new World();
+		instance = new WorldState();
 	
 	return instance;
 }
 
 
-World::World() : textColision(), textPlayerSpeed() {
+WorldState::WorldState() : textColision(), textPlayerSpeed() {
 	reloj.Restart();
 	
 	// Por realizar
 	level = new Level();
-	
-	// Graficos
-	window = new RenderWindow(1280,768,"Prueba Arquitectura");
     resourceManager = ResourceManager::Instance();
     
 	vEntityStatic = new std::deque<EntPassive*>();
@@ -41,24 +38,18 @@ World::World() : textColision(), textPlayerSpeed() {
 	vBullets = new std::vector<Bullet*>();
 	
 	
-	// Temporizadores
-	timeUpdate = new Time(1.f/30.f);
-	
 	// Eventos
 	inputManager = InputManager::Instance();
 	vNonRealEvents = new std::vector<sf::Event>();
 	vRealEvents = new std::vector<sf::Event>();
 }
 
-World::World(const World& orig) {
+WorldState::WorldState(const WorldState& orig) {
 }
 
-World::~World() {
-	delete window;
+WorldState::~WorldState() {
 	delete player;
 	delete level;
-	
-	delete timeUpdate;
 	
 	while(!vEntityColisionable->empty()) 
 		delete vEntityColisionable->back(), vEntityColisionable->pop_back();
@@ -85,13 +76,14 @@ World::~World() {
 	vEntityStatic = NULL;
 	player = NULL;
 	level = NULL;
-	timeUpdate = NULL;
 	vBullets = NULL;
 }
 
+
+
 //************************  FUNCIONES INICIALES
 // Cargamos las texturas del nivel, y las fuentes generales
-void World::LoadResources(){
+void WorldState::LoadResources(){
 	if(level == NULL){
 		std::cout << "Primero hay que cargar un nivel" << std::endl;
 		return;
@@ -120,8 +112,10 @@ void World::LoadResources(){
 }
 
 
-void World::Init() {
+void WorldState::Init() {
 	
+    AddLevelTexture("Recursos/Foe.png");
+    
 	LoadResources(); // Cargamos recursos
 	
 	window->SetFrameLimit(60);
@@ -134,6 +128,13 @@ void World::Init() {
     
     for(int i=0; i < vrec.size(); i++)
         this->AddLevelColision(vrec.at(i));
+    
+	
+	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"), Vector(530.f , 300.f), Vector(0.f, 0.f), Vector(500.f, 500.f));
+	enemy->SetSpeed(220.f, 0.f);
+	
+	AddColisionableEntity(enemy);// Añadimos al array de colisionables
+	AddActiveEntity(enemy);		// Añadimos al array de elementos activos, para que se pinte
     
 	// Inicializamos Player
 	player = new Player(resourceManager->GetTexture("texRobot"), Vector(108, 108), Vector(260.f, 350.f));
@@ -157,51 +158,26 @@ void World::Init() {
 	textPlayerSpeed.setColor(sf::Color::Black);
 	textPlayerSpeed.setString("PlayerSpeed: 0, 0");
         
-        /*ANIMACIONES*/
-        Animation* animationTest = new Animation("andar", player->GetSprite(), 3, 14, 0.05f, false, true);
-        Animation* animationTest2 = new Animation("andar2", player->GetSprite(), 15, 26, 0.05f, false, true);
+    /*ANIMACIONES*/
+    Animation* animationTest = new Animation("andar", player->GetSprite(), 3, 14, 0.05f, false, true);
+    Animation* animationTest2 = new Animation("andar2", player->GetSprite(), 15, 26, 0.05f, false, true);
 
-        player->AddAnimation(animationTest);
-        player->AddAnimation(animationTest2);
-        player->SetCurrentAnimation("andar", player->GetSprite());
-        player->PlayAnimation();
+    player->AddAnimation(animationTest);
+    player->AddAnimation(animationTest2);
+    player->SetCurrentAnimation("andar", player->GetSprite());
+    player->PlayAnimation();
 }
+
+
+void WorldState::Clean(){
+    
+}
+
 
 
 //**************** BUCLES PRINCIPALES **************************
 
-void World::Run(){
-	
-	Clock clock = Clock();
-	Time timeSinceLastUpdate = Time();  //Tiempo desde el ultimo cambio de frame
-	Time timeElapsed = Time();
-	float interpolation;
-	
-	while (window->IsOpen())
-	{		
-		timeElapsed = clock.Restart();
-		timeSinceLastUpdate += timeElapsed;
-		
-		HandleEvents();
-		
-        //Llevamos control en las actualizaciones por frame
-		while (timeSinceLastUpdate > *timeUpdate)   // 15 veces/segundo
-		{
-			
-			timeSinceLastUpdate -= *timeUpdate;
-			Update(*timeUpdate); // Realizamos actualizaciones
-		}
-		
-		// Render
-		interpolation = (float)std::min(1.f, timeSinceLastUpdate.AsSeconds() / timeUpdate->AsSeconds());
-		Render(interpolation);
-	}
-}
-
-
-
-
-void World::Update(const Time& timeElapsed)
+void WorldState::Update(const Time& timeElapsed)
 {
 	InputManager::Instance()->Update();
 	
@@ -254,7 +230,7 @@ void World::Update(const Time& timeElapsed)
 
 
 
-void World::Render(float interp)
+void WorldState::Render(float interp)
 {
     // Eventos de Tiempo Real
 	ProcessRealEvent();
@@ -290,7 +266,7 @@ void World::Render(float interp)
 
 // ***************************  EVENTOS ***************
 
-void World::HandleEvents()
+void WorldState::HandleEvents()
 {
 	sf::Event event = sf::Event();
 	
@@ -298,7 +274,7 @@ void World::HandleEvents()
 		InputManager::Instance()->Process(event);
 }
 
-void World::ProcessRealEvent(){
+void WorldState::ProcessRealEvent(){
 	bool buttonLeft , buttonRight;
 	buttonLeft = buttonRight = false;
 	

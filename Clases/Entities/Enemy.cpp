@@ -6,7 +6,7 @@
  */
 
 #include "Enemy.h"
-#include "../Motor2D/World.h"
+#include "../States/WorldState.h"
 
 Enemy::Enemy(const sf::Texture& tex): EntActive(tex), Colisionable((EntActive*)this) {
 	canLeft = canRight = true;
@@ -38,7 +38,7 @@ void Enemy::Jump(){
 // ******* COLISIONES
 
 void Enemy::DoRectangleColisions(const Time& elapsedTime){
-	World* world = World::Instance();
+	WorldState* world = WorldState::Instance();
 	
 	Colision::Type	type;
 	bool colisionado = false, isInFloor = false;

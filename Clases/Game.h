@@ -11,6 +11,7 @@
 #include "Otros/Time.h"
 #include "Otros/Clock.h"
 #include "Motor2D/RenderWindow.h"
+#include "Managers/StateManager.h"
 
 class Game {
 public:
@@ -28,7 +29,7 @@ private:
     Time*           timeUpdate;  //Será 1/15 (15 veces por segundo)
 	RenderWindow*	window;
     
-    //StateManager*   stateManager;
+    StateManager*   stateManager;
 };
 
 #endif	/* GAME_H */

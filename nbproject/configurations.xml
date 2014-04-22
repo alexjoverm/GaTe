@@ -98,8 +98,6 @@
         <itemPath>Clases/Motor2D/RenderState.h</itemPath>
         <itemPath>Clases/Motor2D/RenderWindow.cpp</itemPath>
         <itemPath>Clases/Motor2D/RenderWindow.h</itemPath>
-        <itemPath>Clases/Motor2D/World.cpp</itemPath>
-        <itemPath>Clases/Motor2D/World.h</itemPath>
       </logicalFolder>
       <logicalFolder name="MotorPhysics"
                      displayName="MotorPhysics"
@@ -125,8 +123,11 @@
         <itemPath>Clases/Otros/Vector.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="States" projectFiles="true">
-        <itemPath>Clases/States/State.cpp</itemPath>
+        <itemPath>Clases/States/MenuState.cpp</itemPath>
+        <itemPath>Clases/States/MenuState.h</itemPath>
         <itemPath>Clases/States/State.h</itemPath>
+        <itemPath>Clases/States/WorldState.cpp</itemPath>
+        <itemPath>Clases/States/WorldState.h</itemPath>
       </logicalFolder>
       <itemPath>Clases/Game.cpp</itemPath>
       <itemPath>Clases/Game.h</itemPath>
@@ -359,10 +360,6 @@
       </item>
       <item path="Clases/Motor2D/RenderWindow.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Clases/Motor2D/World.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Clases/Motor2D/World.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Clases/MotorPhysics/Colisionable.cpp"
             ex="false"
             tool="1"
@@ -403,9 +400,15 @@
       </item>
       <item path="Clases/Otros/Vector.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Clases/States/State.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Clases/States/MenuState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/States/MenuState.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/States/State.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/States/WorldState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/States/WorldState.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Includes/ResourceHolder.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -652,10 +655,6 @@
       </item>
       <item path="Clases/Motor2D/RenderWindow.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Clases/Motor2D/World.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Clases/Motor2D/World.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Clases/MotorPhysics/Colisionable.cpp"
             ex="false"
             tool="1"
@@ -696,9 +695,15 @@
       </item>
       <item path="Clases/Otros/Vector.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Clases/States/State.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Clases/States/MenuState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/States/MenuState.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/States/State.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/States/WorldState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/States/WorldState.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Includes/ResourceHolder.hpp" ex="false" tool="3" flavor2="0">
       </item>

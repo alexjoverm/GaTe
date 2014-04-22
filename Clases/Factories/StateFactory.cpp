@@ -6,16 +6,17 @@
  */
 
 #include "StateFactory.h"
-#include "../Motor2D/World.h"
+#include "../States/WorldState.h"
+#include "../States/MenuState.h"
 
 
 State* StateFactory::CreateState(States::ID id){
     
     
-    //if(id == States::ID::MenuState)
-      //  return new MenuState();
-    //else if(id == States::ID::WorldState)
-     //   return World::Instance();
+    if(id == States::ID::WorldState)
+        return WorldState::Instance();
+    else if(id == States::ID::MenuState)
+        return new MenuState();
     /*else if(id == States::ID::SettingsState)
         return new SettingsState();
     else if(id == States::ID::LevelSelectionState)

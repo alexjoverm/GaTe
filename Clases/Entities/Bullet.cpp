@@ -6,7 +6,7 @@
  */
 
 #include "Bullet.h"
-#include "../Motor2D/World.h"
+#include "../States/WorldState.h"
 #include "../Otros/StringUtils.h"
 
 Bullet::Bullet(const sf::Texture& tex): EntActive(tex), Colisionable((EntActive*)this) {
@@ -38,7 +38,7 @@ void Bullet::Update(const Time& elapsedTime){
 
 
 void Bullet::DoColisions(const Time& elapsedTime, int i){
-	World* world = World::Instance();
+	WorldState* world = WorldState::Instance();
 	
 	bool colisionado = false;
 	

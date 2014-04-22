@@ -5,17 +5,18 @@
  * Created on March 15, 2014, 10:40 AM
  */
 
-#ifndef WORLD_H
-#define	WORLD_H
+#ifndef WORLDSTATE_H
+#define	WORLDSTATE_H
 
-#include "Level.h"
+#include "../Motor2D/Level.h"
 #include "../Entities/Player.h"
 #include "../Entities/Bullet.h"
-#include "RenderWindow.h"
+#include "../Motor2D/RenderWindow.h"
 #include "../Otros/Clock.h"
 #include "../Entities/EntActive.h"
 #include "../Managers/InputManager.h"
 #include "../Managers/ResourceManager.h"
+#include "State.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -36,21 +37,18 @@ namespace Bullets{
 
 
 
-class World {
+class WorldState: public State {
 public:
-	static World* Instance(); // Singleton
+	static WorldState* Instance(); // Singleton
 
-// Inicialización
+// Inicialización y Liberación
 	void Init();
-    
-// Liberación
-	
+    void Clean();
     
 // 3 bucles principales
-	void Run();
 	void Update(const Time& timeElapsed);
 	void Render(float interp);
-	
+    
 // Eventos
 	void HandleEvents(); // Le pasa al InputManager los eventos
 	void AddNonRealEvent(sf::Event e){ vNonRealEvents->push_back(e); }
@@ -79,29 +77,20 @@ public:
 	std::deque<Colisionable*>	*vEntityColisionable;
 	sf::Text			textColision, textPlayerSpeed;
 	
-	// Graficos
-	RenderWindow*	window;
-	
 private:
 	
   // Singleton
-	World();
-	World(const World& orig);
-	virtual ~World();
-	static World*	instance;
+	WorldState();
+	WorldState(const WorldState& orig);
+	virtual ~WorldState();
+	static WorldState*	instance;
     
   // Funciones
 	void LoadResources();	// Carga recursos, se llama desde Init();
     
-//****** VARIABLES
-	Time*       timeUpdate;  //Será 1/15 (15 veces por segundo)
-
-	ResourceManager*    resourceManager;   
-    
 	//Eventos
 	std::vector<sf::Event>		*vNonRealEvents;
 	std::vector<sf::Event>		*vRealEvents;
-	InputManager*				inputManager;
 };
 
 #endif	/* WORLD_H */

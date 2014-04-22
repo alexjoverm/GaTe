@@ -6,7 +6,7 @@
  */
 
 #include "InputManager.h"
-#include "../Motor2D/World.h"
+#include "../States/WorldState.h"
 
 InputManager* InputManager::instance = 0;
 
@@ -103,13 +103,13 @@ void InputManager::Process(sf::Event event)
 			break;
 
 		case sf::Event::Closed:
-			World::Instance()->window->Close();
+			WorldState::Instance()->window->Close();
 			break;
 
 		// A tiempo real
 		case sf::Event::MouseButtonPressed:
 			// Habrá que comprobar el estado en el que está. De momento se lo damos al world
-			World::Instance()->AddRealEvent(event);
+			WorldState::Instance()->AddRealEvent(event);
 			break;
 	}
 }
