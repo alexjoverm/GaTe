@@ -47,8 +47,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/Entities/Entity.o \
 	${OBJECTDIR}/Clases/Entities/Gun.o \
 	${OBJECTDIR}/Clases/Entities/Player.o \
+	${OBJECTDIR}/Clases/Factories/StateFactory.o \
+	${OBJECTDIR}/Clases/Game.o \
 	${OBJECTDIR}/Clases/Managers/InputManager.o \
 	${OBJECTDIR}/Clases/Managers/ResourceManager.o \
+	${OBJECTDIR}/Clases/Managers/StateManager.o \
 	${OBJECTDIR}/Clases/Motor2D/Level.o \
 	${OBJECTDIR}/Clases/Motor2D/MapLoader/DebugShape.o \
 	${OBJECTDIR}/Clases/Motor2D/MapLoader/MapLayer.o \
@@ -69,6 +72,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/Otros/StringUtils.o \
 	${OBJECTDIR}/Clases/Otros/Time.o \
 	${OBJECTDIR}/Clases/Otros/Vector.o \
+	${OBJECTDIR}/Clases/States/State.o \
 	${OBJECTDIR}/main.o
 
 
@@ -156,6 +160,16 @@ ${OBJECTDIR}/Clases/Entities/Player.o: Clases/Entities/Player.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/Player.o Clases/Entities/Player.cpp
 
+${OBJECTDIR}/Clases/Factories/StateFactory.o: Clases/Factories/StateFactory.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/Factories
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Factories/StateFactory.o Clases/Factories/StateFactory.cpp
+
+${OBJECTDIR}/Clases/Game.o: Clases/Game.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Game.o Clases/Game.cpp
+
 ${OBJECTDIR}/Clases/Managers/InputManager.o: Clases/Managers/InputManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
 	${RM} $@.d
@@ -165,6 +179,11 @@ ${OBJECTDIR}/Clases/Managers/ResourceManager.o: Clases/Managers/ResourceManager.
 	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Managers/ResourceManager.o Clases/Managers/ResourceManager.cpp
+
+${OBJECTDIR}/Clases/Managers/StateManager.o: Clases/Managers/StateManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Managers/StateManager.o Clases/Managers/StateManager.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/Level.o: Clases/Motor2D/Level.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D
@@ -265,6 +284,11 @@ ${OBJECTDIR}/Clases/Otros/Vector.o: Clases/Otros/Vector.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/Otros
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Otros/Vector.o Clases/Otros/Vector.cpp
+
+${OBJECTDIR}/Clases/States/State.o: Clases/States/State.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/States
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/State.o Clases/States/State.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

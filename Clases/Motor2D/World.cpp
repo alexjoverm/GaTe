@@ -182,7 +182,7 @@ void World::Run(){
 		timeElapsed = clock.Restart();
 		timeSinceLastUpdate += timeElapsed;
 		
-		MoveEvents();
+		HandleEvents();
 		
         //Llevamos control en las actualizaciones por frame
 		while (timeSinceLastUpdate > *timeUpdate)   // 15 veces/segundo
@@ -290,7 +290,7 @@ void World::Render(float interp)
 
 // ***************************  EVENTOS ***************
 
-void World::MoveEvents()
+void World::HandleEvents()
 {
 	sf::Event event = sf::Event();
 	

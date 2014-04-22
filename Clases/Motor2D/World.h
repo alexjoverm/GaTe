@@ -52,7 +52,7 @@ public:
 	void Render(float interp);
 	
 // Eventos
-	void MoveEvents(); // Le pasa al InputManager los eventos
+	void HandleEvents(); // Le pasa al InputManager los eventos
 	void AddNonRealEvent(sf::Event e){ vNonRealEvents->push_back(e); }
 	void AddRealEvent(sf::Event e){ vRealEvents->push_back(e); }
 	void ProcessRealEvent();

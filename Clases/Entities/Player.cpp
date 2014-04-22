@@ -141,10 +141,7 @@ void Player::Update(const Time& elapsedTime){
 	InputManager* im = InputManager::Instance();
 	
          if(this->InitAnim())
-        {
-            //this->GetAnimatedSprite()->Play();
             this->GetAnimatedSprite()->Update(elapsedTime);
-        }
         
         this->spriteSheet->GetSprite()->setTextureRect(this->GetAnimatedSprite()->GetSpriteRect());
 
