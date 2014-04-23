@@ -14,25 +14,23 @@ Animable::Animable(SpriteSheet* spriteSheet)
 
 Animable::~Animable()
 {
+    while(!m_animaciones->empty()) 
+		delete m_animaciones->back(), m_animaciones->pop_back();
+	delete m_animaciones;  m_animaciones = NULL;
     
+    delete m_animatedSprite;  m_animatedSprite = NULL;
 }
 
 void Animable::AddAnimation(Animation* animation)
 {
     bool encontrado = false;
     for(unsigned int i = 0; i < m_animaciones->size(); i++)
-    {
         if(m_animaciones->at(i)->GetAnimationName() == animation->GetAnimationName())
-        {
             encontrado = true;
-        }
-    }
-    
+       
     if(!encontrado)
-    {
-        //Si añadimos la animacion, primero la inicializamos
          m_animaciones->push_back(animation);
-    }
+    
     else std::cout << "No se ha podido añadir la animacion: ya existe una animacion con ese nombre" << std::endl;
 }
 
@@ -44,14 +42,13 @@ void Animable::AddAnimation(std::vector<Animation*>* animations)
         
         for(unsigned int i = 0; i < animations->size(); i++)
         {
-            for(unsigned int j = 0; j < m_animaciones->size(); j++)
-            {
+            for(unsigned int j = 0; j < m_animaciones->size() && !encontrado; j++)
                 if(m_animaciones->at(j)->GetAnimationName() == animations->at(i)->GetAnimationName())
-                {
                     encontrado = true;
-                }
-            }
-            if(!encontrado) m_animaciones->push_back(animations->at(i));
+                
+            if(!encontrado) 
+                m_animaciones->push_back(animations->at(i));
+            
             encontrado = false;
         }
     }
@@ -92,7 +89,7 @@ void Animable::SetCurrentAnimation(std::string nombre, SpriteSheet* sp)
             if(m_animaciones->at(i)->GetAnimationName() == nombre)
             {
                 encontrado = true;
-                if(m_animaciones->at(i)->GetAnimationName() != this->GetCurrentAnimation()->GetAnimationName())
+                if(this->GetCurrentAnimation() != NULL && m_animaciones->at(i)->GetAnimationName() != this->GetCurrentAnimation()->GetAnimationName())
                 {
                    //Velocidad por defecto, falta añadir parametros
                     Animation* animation = this->GetAnimation(nombre);

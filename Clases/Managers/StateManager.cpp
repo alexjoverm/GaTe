@@ -56,10 +56,18 @@ State* StateManager::GetCurrentState() const
     return par->second;
 }
 
+State* StateManager::GetState(States::ID id) const
+{
+    std::map<States::ID, State*>::iterator par = mapStates->find(id);
+    return par->second;
+}
+
 
 void StateManager::SetCurrentState(States::ID id)
 {
-    GetCurrentState()->Clean();
+    if(id != States::ID::PauseState)
+        GetCurrentState()->Clean();
+    
     currentState = id;
     GetCurrentState()->Init();
 }

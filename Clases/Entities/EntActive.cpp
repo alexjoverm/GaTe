@@ -10,13 +10,11 @@
 EntActive::EntActive(const sf::Texture& tex): Entity(tex) {
 	renderState = new RenderState();
 	physicsState = new PhysicsState();
-	nextRect = new Rectangle(0,0,GetSprite()->getGlobalBounds().GetWidth(),GetSprite()->getGlobalBounds().GetHeight());
 }
 
 EntActive::EntActive(const sf::Texture& tex, const Vector& pos, const Vector& vel, const Vector& maxvel): Entity(tex) {
 	renderState = new RenderState();
 	physicsState = new PhysicsState(pos, vel, maxvel, Vector(0.f, factorGravity));
-	nextRect = new Rectangle(0,0,GetSprite()->getGlobalBounds().GetWidth(),GetSprite()->getGlobalBounds().GetHeight());
 }
 
 EntActive::EntActive(const EntActive& orig): Entity(orig) {
@@ -29,8 +27,6 @@ EntActive::~EntActive() {
 	delete physicsState;
 	physicsState = NULL;
 	
-	delete nextRect;
-	nextRect = NULL;
 }
 
 

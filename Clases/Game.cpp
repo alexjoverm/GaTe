@@ -57,6 +57,10 @@ void Game::Update(const Time& timeElapsed){
 }
 
 void Game::Render(float interp){
+    // Si es el de Pausa, renderizamos también el de WorldState
+    if(stateManager->GetCurrentState()->id == States::ID::PauseState)
+        stateManager->GetState(States::ID::WorldState)->Render(interp);
+    
     stateManager->GetCurrentState()->Render(interp);
 }
 

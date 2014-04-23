@@ -16,8 +16,10 @@ public:
     static StateManager* Instance();
 
     void   CreateStates();
+    State* GetState(States::ID id) const;
     State* GetCurrentState() const;
     void   SetCurrentState(States::ID id);
+    
     
     States::ID currentState;
     

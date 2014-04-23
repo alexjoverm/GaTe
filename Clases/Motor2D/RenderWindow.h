@@ -20,7 +20,7 @@ public:
 	void Draw(SpriteSheet& sp);
 	void Draw(const sf::Text& t);
 	void Draw(const sf::RectangleShape& r) { renderWindow->draw(r); }
-	void Clear(sf::Color cl){ renderWindow->clear(cl); }
+	void Clear(const sf::Color& cl){ renderWindow->clear(cl); }
 	void Display(){ renderWindow->display(); }
 	void Close(){ renderWindow->close(); }
 	

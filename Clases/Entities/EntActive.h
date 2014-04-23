@@ -69,9 +69,6 @@ public:
 protected:
 	PhysicsState*	physicsState;
 	RenderState*	renderState;
-	
-	
-	Rectangle*		nextRect; // Next rectangle, util para las colisiones
 
 };
 

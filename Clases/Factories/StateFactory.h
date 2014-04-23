@@ -9,15 +9,6 @@
 #define	STATEFACTORY_H
 #include "../States/State.h"
 
-namespace States{
-	enum ID{
-		MenuState, SettingsState, LevelSelectionState, WorldState, PauseState, 
-        CreditsState, TowerSelectionState
-	};
-}
-
-
-
 class StateFactory {
     
 public:

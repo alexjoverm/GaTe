@@ -114,7 +114,6 @@
         <itemPath>Clases/Otros/Clock.h</itemPath>
         <itemPath>Clases/Otros/Rectangle.cpp</itemPath>
         <itemPath>Clases/Otros/Rectangle.h</itemPath>
-        <itemPath>Clases/Otros/Singleton.h</itemPath>
         <itemPath>Clases/Otros/StringUtils.cpp</itemPath>
         <itemPath>Clases/Otros/StringUtils.h</itemPath>
         <itemPath>Clases/Otros/Time.cpp</itemPath>
@@ -385,8 +384,6 @@
       <item path="Clases/Otros/Rectangle.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Otros/Rectangle.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Clases/Otros/Singleton.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/Otros/StringUtils.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -680,8 +677,6 @@
       <item path="Clases/Otros/Rectangle.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Otros/Rectangle.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Clases/Otros/Singleton.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/Otros/StringUtils.cpp" ex="false" tool="1" flavor2="0">
       </item>

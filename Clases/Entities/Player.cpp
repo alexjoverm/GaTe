@@ -46,7 +46,9 @@ Player::Player(const Player& orig): EntActive(orig), Colisionable((EntActive*)th
 }
 
 Player::~Player() {
-	delete[] guns;
+	while(!guns->empty()) 
+		delete guns->back(), guns->pop_back();
+	delete guns;
 	guns = NULL;
 	
 	delete clockReloadGun;

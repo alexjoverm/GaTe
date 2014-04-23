@@ -29,7 +29,7 @@ public:
     
     
 private:
-    std::vector<sf::IntRect>* m_frames;                                  //Frames de la animacion
+    std::vector<sf::IntRect> *m_frames;                                  //Frames de la animacion
     SpriteSheet* m_spriteSheet;                                         //Spritesheet de la animacion
     int m_initAnim;                                                     //Frame de inicio de la animacion
     int m_endAnim;                                                      //Frame final de la animacion

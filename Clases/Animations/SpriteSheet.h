@@ -54,7 +54,7 @@ class SpriteSheet
         sf::Sprite* m_sprite;
 		
        Transform::Orientation orientation;              //Por defecto será Right
-	std::string idTexture;	
+        std::string idTexture;	
         int m_widthTile;                                //Anchura de los tiles del spritesheet
         int m_heightTile;                               //Altura de los tiles del spritesheet
         int m_numColumns;                               //Numero de columnas del spriteshhet

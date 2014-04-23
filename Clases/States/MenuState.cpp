@@ -32,6 +32,8 @@ MenuState::MenuState() : textColision() {
     
 	vNonRealEvents = new std::vector<sf::Event>();
 	vRealEvents = new std::vector<sf::Event>();
+    
+    id = States::ID::MenuState;
 }
 
 MenuState::MenuState(const MenuState& orig) {
@@ -74,7 +76,11 @@ void MenuState::Init() {
 
 
 void MenuState::Clean(){
+    // liberamos recursos
     resourceManager->CleanResources();
+    
+    vNonRealEvents->clear();
+    vRealEvents->clear();
 }
 
 
@@ -97,9 +103,7 @@ void MenuState::Render(float interp)
     // Eventos de Tiempo Real
 	ProcessRealEvent();
 
-    
 	window->Clear(sf::Color(255,255,255, 255)); // rgba
-
  // HUD
 	window->Draw(textColision);
 	window->Display();

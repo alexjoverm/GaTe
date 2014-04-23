@@ -27,23 +27,20 @@ WorldState* WorldState::Instance() {
 
 
 WorldState::WorldState() : textColision(), textPlayerSpeed() {
-	reloj.Restart();
-	
-	// Por realizar
-	level = new Level();
+	window = RenderWindow::Instance();
     resourceManager = ResourceManager::Instance();
+    inputManager = InputManager::Instance();
     
 	vEntityStatic = new std::deque<EntPassive*>();
 	vEntityColisionable = new std::deque<Colisionable*>();
 	vEntityActive = new std::deque<EntActive*>();
 	vBullets = new std::vector<Bullet*>();
 	
-    window = RenderWindow::Instance();
-	
 	// Eventos
-	inputManager = InputManager::Instance();
 	vNonRealEvents = new std::vector<sf::Event>();
 	vRealEvents = new std::vector<sf::Event>();
+    
+    id = States::ID::WorldState;
 }
 
 WorldState::WorldState(const WorldState& orig) {
@@ -52,10 +49,6 @@ WorldState::WorldState(const WorldState& orig) {
 WorldState::~WorldState() {
 	delete player;
 	delete level;
-	
-	while(!vEntityColisionable->empty()) 
-		delete vEntityColisionable->back(), vEntityColisionable->pop_back();
-	delete vEntityColisionable;
 
 	while(!vEntityActive->empty()) 
 		delete vEntityActive->back(), vEntityActive->pop_back();
@@ -65,8 +58,7 @@ WorldState::~WorldState() {
 		delete vEntityStatic->back(), vEntityStatic->pop_back();
 	delete vEntityStatic;
 	
-	while(!vBullets->empty()) 
-		delete vBullets->back(), vBullets->pop_back();
+	delete vEntityColisionable;
 	delete vBullets;
 	
 	vNonRealEvents->clear(); delete vNonRealEvents; // Como no contiene punteros, no habrá que eliminarlos
@@ -76,6 +68,7 @@ WorldState::~WorldState() {
 	vEntityColisionable=NULL;
 	vEntityActive = NULL;
 	vEntityStatic = NULL;
+    vBullets = NULL;
 	player = NULL;
 	level = NULL;
 	vBullets = NULL;
@@ -116,19 +109,28 @@ void WorldState::LoadResources(){
 
 void WorldState::Init() {
 	
-    AddLevelTexture("Recursos/Foe.png");
+//**************** Inicializaciones
+    reloj.Restart();
+	level = new Level();
     
+    
+//**************** Recursos
+    
+    AddLevelTexture("Recursos/Foe.png");
 	LoadResources(); // Cargamos recursos
 	
-	// Mapa
+    
+//**************** Mapa y Level
+    
     level->LoadMap("mapa1.tmx");
-	
     std::vector<Rectangle*> vrec = level->map->getLayerCollitions("Colision suelo");
     
     for(int i=0; i < vrec.size(); i++)
         this->AddLevelColision(vrec.at(i));
     
 	
+//***************** Entities
+    
 	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"), Vector(530.f , 300.f), Vector(0.f, 0.f), Vector(500.f, 500.f));
 	enemy->SetSpeed(220.f, 0.f);
 	
@@ -142,7 +144,15 @@ void WorldState::Init() {
     player->GetSelectedGun()->SetLifeTime(1.f);
 	player->GetSelectedGun()->SetReloadTime(0.25f);
     
-  // ******* Aquí se debería cargar la interfaz (HUD) ************
+
+//****************** ANIMACIONES
+    player->AddAnimation(new Animation("andar", player->GetSprite(), 3, 14, 0.05f, false, true));
+    player->AddAnimation(new Animation("andar2", player->GetSprite(), 15, 26, 0.05f, false, true));
+    player->SetCurrentAnimation("andar", player->GetSprite());
+    player->PlayAnimation();
+    
+    
+//******************* HUD
 	
 	// Inicializamos fuentes
 	textColision.setFont(resourceManager->GetFont("OpenSans"));
@@ -156,20 +166,37 @@ void WorldState::Init() {
 	textPlayerSpeed.setCharacterSize(13);
 	textPlayerSpeed.setColor(sf::Color::Black);
 	textPlayerSpeed.setString("PlayerSpeed: 0, 0");
-        
-    /*ANIMACIONES*/
-    Animation* animationTest = new Animation("andar", player->GetSprite(), 3, 14, 0.05f, false, true);
-    Animation* animationTest2 = new Animation("andar2", player->GetSprite(), 15, 26, 0.05f, false, true);
-
-    player->AddAnimation(animationTest);
-    player->AddAnimation(animationTest2);
-    player->SetCurrentAnimation("andar", player->GetSprite());
-    player->PlayAnimation();
 }
 
 
 void WorldState::Clean(){
+    
+//************* Recursos
     resourceManager->CleanResources();
+    
+//************* Variables
+	delete player;  player = NULL;
+	delete level;   level = NULL;
+    
+    
+//************* Vaciamos Contenedores
+    
+    // Liberamos memoria SOLO en estos dos vectores, ya que cada elemento
+    // estará en Activo o en Pasivo
+	while(!vEntityActive->empty()) 
+		delete vEntityActive->back(), vEntityActive->pop_back();
+
+	while(!vEntityStatic->empty()) 
+		delete vEntityStatic->back(), vEntityStatic->pop_back();
+    
+    
+    // Los demás vectores sólo los limpiamos, ya que la memoria ya la hemos liberado
+    // al liberar los vectores anteriores
+    vEntityColisionable->clear();
+    vBullets->clear();
+    
+    vNonRealEvents->clear();
+    vRealEvents->clear();
 }
 
 

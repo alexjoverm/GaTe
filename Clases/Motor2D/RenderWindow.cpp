@@ -12,7 +12,7 @@ RenderWindow* RenderWindow::instance = 0;
 
 RenderWindow* RenderWindow::Instance() {
 	if(instance == 0)
-		instance = new RenderWindow(800,640, "Gate - hito 2");
+		instance = new RenderWindow(1080,720, "Gate - hito 2");
 	
 	return instance;
 }

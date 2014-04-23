@@ -14,7 +14,7 @@ Animation::Animation(std::string nombre, SpriteSheet* spriteSheet, int initAnim,
     m_animationName = nombre;
     m_initAnim = initAnim;
     m_endAnim = endAnim;
-    m_frames = new std::vector<sf::IntRect>;
+    m_frames = new std::vector<sf::IntRect>();
     m_animSpeed = animSpeed;
     m_pause = pause;
     m_loop = loop;
@@ -53,13 +53,10 @@ void Animation::InitAnim()
 
 Animation::~Animation()
 {
-    m_frames->clear(); delete m_frames;
+    m_frames->clear();
+    delete m_frames;
+    m_frames = NULL;
 }
-
-/*void Animation::SetSpriteSheet(SpriteSheet& spriteSheet)
-{
-    m_spriteSheet = &spriteSheet;
-}*/
 
 void Animation::SetInitAnim(int initAnim)
 {

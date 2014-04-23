@@ -31,10 +31,6 @@ Mapa::Mapa(sf::RenderWindow* win, std::string fileName,const Mapa& orig)
 
 Mapa::~Mapa() {
 
-    delete window;
-    
-    window = NULL;
-
 }
 /************ METODOS GET*/
 

@@ -13,6 +13,14 @@
 #include "../Managers/ResourceManager.h"
 #include "../Managers/InputManager.h"
 
+namespace States{
+	enum ID{
+		MenuState, SettingsState, LevelSelectionState, WorldState, PauseState, 
+        CreditsState, TowerSelectionState
+	};
+}
+
+
 class State {
 public:    
     virtual void HandleEvents() = 0;
@@ -25,6 +33,8 @@ public:
     RenderWindow* window;
     InputManager* inputManager;
     ResourceManager* resourceManager;
+    
+    States::ID  id;
 };
 
 #endif	/* STATE_H */
