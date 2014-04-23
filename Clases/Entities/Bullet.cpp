@@ -58,7 +58,7 @@ void Bullet::DoColisions(const Time& elapsedTime, int i){
 			// Comprobamos con que ha chocado y realizamos acción
 			if(world->vEntityColisionable->at(j)->GetClassName() == "Enemy"){
 				((Enemy*)world->vEntityColisionable->at(j))->life -= this->damage;
-				world->textColision.setString("Enemy life: " + StringUtils::ConvertFloat(((Enemy*)world->vEntityColisionable->at(j))->life));
+                WorldState::Instance()->SubstractLife(this->damage);
 			}
 						
 			world->DeleteBullet(i);

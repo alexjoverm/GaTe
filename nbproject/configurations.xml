@@ -64,6 +64,14 @@
         <itemPath>Clases/Factories/StateFactory.cpp</itemPath>
         <itemPath>Clases/Factories/StateFactory.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="HUD" displayName="HUD" projectFiles="true">
+        <itemPath>Clases/HUD/Button.cpp</itemPath>
+        <itemPath>Clases/HUD/Button.h</itemPath>
+        <itemPath>Clases/HUD/HUD.cpp</itemPath>
+        <itemPath>Clases/HUD/HUD.h</itemPath>
+        <itemPath>Clases/HUD/Lifebar.cpp</itemPath>
+        <itemPath>Clases/HUD/Lifebar.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="Managers" displayName="Managers" projectFiles="true">
         <itemPath>Clases/Managers/InputManager.cpp</itemPath>
         <itemPath>Clases/Managers/InputManager.h</itemPath>
@@ -255,6 +263,18 @@
       <item path="Clases/Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Game.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/HUD/Button.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/HUD/Button.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/HUD/HUD.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/HUD/HUD.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/HUD/Lifebar.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/HUD/Lifebar.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/Managers/InputManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -548,6 +568,18 @@
       <item path="Clases/Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Game.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/HUD/Button.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/HUD/Button.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/HUD/HUD.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/HUD/HUD.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/HUD/Lifebar.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/HUD/Lifebar.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/Managers/InputManager.cpp" ex="false" tool="1" flavor2="0">
       </item>

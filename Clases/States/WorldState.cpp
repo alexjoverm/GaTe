@@ -26,7 +26,7 @@ WorldState* WorldState::Instance() {
 }
 
 
-WorldState::WorldState() : textColision(), textPlayerSpeed() {
+WorldState::WorldState() {
 	window = RenderWindow::Instance();
     resourceManager = ResourceManager::Instance();
     inputManager = InputManager::Instance();
@@ -41,6 +41,7 @@ WorldState::WorldState() : textColision(), textPlayerSpeed() {
 	vRealEvents = new std::vector<sf::Event>();
     
     id = States::ID::WorldState;
+    hud = NULL;
 }
 
 WorldState::WorldState(const WorldState& orig) {
@@ -96,6 +97,9 @@ void WorldState::LoadResources(){
 		resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
 		resourceManager->AddTexture("texGun", "Recursos/pistola.png");
 		resourceManager->AddTexture("texRobot", "Recursos/robot.png");
+        
+        //Texturas del HUD
+        resourceManager->AddTexture("texHUD", "Recursos/hud.png");
 		
 		// Fuente
 		resourceManager->AddFont("OpenSans", "Recursos/OpenSans-Regular.ttf");
@@ -138,7 +142,7 @@ void WorldState::Init() {
 	AddActiveEntity(enemy);		// Añadimos al array de elementos activos, para que se pinte
     
 	// Inicializamos Player
-	player = new Player(resourceManager->GetTexture("texRobot"), Vector(108, 108), Vector(260.f, 350.f));
+	player = new Player(resourceManager->GetTexture("texRobot"), Vector(108, 108), Vector(260.f, 150.f));
 	player->AddGun(new Gun(resourceManager->GetTexture("texGun"), Vector(300.f, 300.f)));
 	player->GetSelectedGun()->SetRelativePos(80.f, 50.f);
     player->GetSelectedGun()->SetLifeTime(1.f);
@@ -153,19 +157,7 @@ void WorldState::Init() {
     
     
 //******************* HUD
-	
-	// Inicializamos fuentes
-	textColision.setFont(resourceManager->GetFont("OpenSans"));
-	textColision.setPosition(25.f, 25.f);
-	textColision.setCharacterSize(13);
-	textColision.setColor(sf::Color::Black);
-	textColision.setString("Enemy life: 100" );
-	
-	textPlayerSpeed.setFont(resourceManager->GetFont("OpenSans"));
-	textPlayerSpeed.setPosition(25.f, 60.f);
-	textPlayerSpeed.setCharacterSize(13);
-	textPlayerSpeed.setColor(sf::Color::Black);
-	textPlayerSpeed.setString("PlayerSpeed: 0, 0");
+    hud = new HUD(50.f, "OpenSans");
 }
 
 
@@ -197,6 +189,11 @@ void WorldState::Clean(){
     
     vNonRealEvents->clear();
     vRealEvents->clear();
+    
+    
+ //**************** HUD
+    
+    delete hud; hud = NULL;
 }
 
 
@@ -244,12 +241,9 @@ void WorldState::Update(const Time& timeElapsed)
 	
 	
 //*************** HUD **
+    
+    hud->Update(timeElapsed);
 	
-	textPlayerSpeed.setString("Player\n\tSpeed: "+StringUtils::ConvertVector(player->GetSpeed()) 
-								+ "\n\tGravity: "+StringUtils::ConvertVector(player->GetGravity())
-								+ "\n\tMaxSpeed: "+StringUtils::ConvertVector(player->GetMaxSpeed())
-								+ "\n\tForceJump: "+StringUtils::ConvertFloat(player->forceJump)
-	);
 	
     
     if(InputManager::Instance()->keyR)
@@ -283,8 +277,7 @@ void WorldState::Render(float interp)
     player->Draw(*window, interp);
     
  // HUD
-	window->Draw(textColision);
-	window->Draw(textPlayerSpeed);
+    hud->Draw(*window);
 	
 	window->Display();
 }

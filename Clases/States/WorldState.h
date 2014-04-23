@@ -16,6 +16,7 @@
 #include "../Entities/EntActive.h"
 #include "../Managers/InputManager.h"
 #include "../Managers/ResourceManager.h"
+#include "../HUD/HUD.h"
 #include "State.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -53,6 +54,12 @@ public:
 	void AddBullet(Bullet* ent){ vBullets->push_back(ent); }
     
     void DeleteBullet(int i){ delete vBullets->at(i);  vBullets->erase(vBullets->begin()+i); }
+    
+
+ // HUD
+    void SubstractLife(float value){ hud->SubstractLife(value); }
+    
+    
 
 	Player*		player;
 	
@@ -60,7 +67,6 @@ public:
 	std::deque<EntPassive*>		*vEntityStatic;
 	std::deque<EntActive*>		*vEntityActive;
 	std::deque<Colisionable*>	*vEntityColisionable;
-	sf::Text			textColision, textPlayerSpeed;
 	
 private:
 	
@@ -76,6 +82,9 @@ private:
 	//Eventos
 	std::vector<sf::Event>		*vNonRealEvents;
 	std::vector<sf::Event>		*vRealEvents;
+    
+    // HUD
+    HUD*     hud;
 };
 
 #endif	/* WORLD_H */
