@@ -7,6 +7,7 @@
 
 #include "InputManager.h"
 #include "../States/WorldState.h"
+#include "StateManager.h"
 
 InputManager* InputManager::instance = 0;
 
@@ -106,13 +107,13 @@ void InputManager::Process(sf::Event event)
 			break;
 
 		case sf::Event::Closed:
-			WorldState::Instance()->window->Close();
+			RenderWindow::Instance()->Close();
 			break;
 
 		// A tiempo real
 		case sf::Event::MouseButtonPressed:
 			// Habrá que comprobar el estado en el que está. De momento se lo damos al world
-			WorldState::Instance()->AddRealEvent(event);
+			StateManager::Instance()->GetCurrentState()->AddRealEvent(event);
 			break;
 	}
 }

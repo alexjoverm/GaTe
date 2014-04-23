@@ -65,9 +65,12 @@ State* StateManager::GetState(States::ID id) const
 
 void StateManager::SetCurrentState(States::ID id)
 {
-    if(id != States::ID::PauseState)
-        GetCurrentState()->Clean();
-    
-    currentState = id;
-    GetCurrentState()->Init();
+    if(id != GetCurrentState()->id)
+    {
+        if(id != States::ID::PauseState)
+            GetCurrentState()->Clean();
+
+        currentState = id;
+        GetCurrentState()->Init();
+    }
 }

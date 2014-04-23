@@ -24,8 +24,9 @@ Button::Button(float width, float height, float x, float y, std::string contenid
     
     
     texto->setFont(ResourceManager::Instance()->GetFont(fuente));
-    texto->setCharacterSize(16);
+    texto->setCharacterSize(28);
     texto->setColor(sf::Color::White);
+    
     texto->setPosition(x+margen_h, y+margen_v);
     texto->setString(contenido);
     
@@ -41,35 +42,22 @@ Button::~Button() {
 
 
 
-  void Button::Draw(RenderWindow& window){
-    
-    window.Draw(*rectangulo);
-    window.Draw(*texto);
- 
-  
-  
-    
+void Button::Draw(float interp){
+
+  RenderWindow::Instance()->Draw(*rectangulo);
+  RenderWindow::Instance()->Draw(*texto);
 }
  
- 
 
- void Button::Update(RenderWindow& window){
+ void Button::Update(const Time& timeElapsed){
     
     sf::Event event;
-    sf::Vector2i MousePos=sf::Mouse::getPosition(*window.renderWindow);
+    sf::Vector2i MousePos=sf::Mouse::getPosition(*RenderWindow::Instance()->renderWindow);
 
-   if(rectangulo->getGlobalBounds().contains(sf::Vector2f((float)MousePos.x, (float)MousePos.y))){
+   if(texto->getGlobalBounds().contains(sf::Vector2f((float)MousePos.x, (float)MousePos.y)))
         texto->setStyle(sf::Text::Bold );
-        if(event.type==sf::Event::MouseButtonPressed){
-            if(event.mouseButton.button==sf::Mouse::Left)
-                texto->setStyle(sf::Text::Regular );
-            
-        }
-        
-    }
-    
-
-    
+   else
+       texto->setStyle(sf::Text::Regular);
 }
  
  
@@ -84,65 +72,45 @@ Button::~Button() {
     
  }
  
-  sf::Vector2f Button::GetSize(){
-      
-      return rectangulo->getSize();
- }
+Vector Button::GetSize() const{
+    return Vector(rectangulo->getSize().x, rectangulo->getSize().y);
+}
  
+Vector Button::GetPosition() const{ 
+      return Vector(rectangulo->getPosition().x, rectangulo->getPosition().y);
+}
   
- void Button::SetPosition(float x, float y){
-    float margen_v = (GetSize().y)*0.2;
-    float margen_h = (GetSize().x)*0.2-(((GetSize().x)/2)/2);;
-    
-    rectangulo->setPosition(sf::Vector2f(x, y));
-    texto->setPosition(rectangulo->getSize().x+margen_h, rectangulo->getSize().y+margen_v);
-    
- }
-   
-   
-  sf::Vector2f Button::GetPosition(){
-      
-      return rectangulo->getPosition();
-  }
-  
-  
-  
-  void Button::SetFont(std::string fuente){
-      
-      texto->setFont(ResourceManager::Instance()->GetFont(fuente));
-  }
-  
-  
-  void Button::SetText(std::string text){
-     
-      texto->setString(text);
-      
-  }
-  
-  
-  
-  void Button::SetTexture(){
-      
-      
-  }
-  
-  void Button::SetColor(sf::Color color){
-      
-      rectangulo->setFillColor(color);
-      
-  }
-  
-  
-  
-  void Button::SetBorderColor(sf::Color color){
-      
 
-    rectangulo->setOutlineColor(color);
-      
-  }
+void Button::SetPosition(float x, float y){
+   float margen_v = (GetSize().GetX())*0.2;
+   float margen_h = (GetSize().GetY())*0.2-(((GetSize().GetX())/2)/2);;
+
+   rectangulo->setPosition(sf::Vector2f(x, y));
+   texto->setPosition(rectangulo->getSize().x+margen_h, rectangulo->getSize().y+margen_v);
+}
   
+void Button::SetFont(std::string fuente){     
+    texto->setFont(ResourceManager::Instance()->GetFont(fuente));
+}
   
-  void Button::SetBorderThickness(int borde){
-      
-    rectangulo->setOutlineThickness(borde);
-  }
+void Button::SetText(std::string text){
+    texto->setString(text);
+}
+
+void Button::SetColor(sf::Color color){
+    rectangulo->setFillColor(color);
+}
+
+void Button::SetBorderColor(sf::Color color){
+  rectangulo->setOutlineColor(color);
+}
+
+void Button::SetBorderThickness(int borde){
+  rectangulo->setOutlineThickness(borde);
+}
+
+
+void Button::Center(){
+    texto->setOrigin(texto->getGlobalBounds().width/2, texto->getGlobalBounds().height/2);
+    texto->setPosition(texto->getPosition().x, texto->getPosition().y);
+}

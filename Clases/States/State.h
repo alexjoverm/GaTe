@@ -30,6 +30,9 @@ public:
     virtual void Clean() = 0;
     virtual void Init() = 0;
     
+    virtual void AddNonRealEvent(sf::Event e) = 0;
+	virtual void AddRealEvent(sf::Event e) = 0;
+    
     RenderWindow* window;
     InputManager* inputManager;
     ResourceManager* resourceManager;

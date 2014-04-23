@@ -22,11 +22,15 @@ MenuState* MenuState::Instance() {
 }
 
 
-MenuState::MenuState() : textColision() {
+MenuState::MenuState() {
 	
-	// Por realizar
+	
     resourceManager = ResourceManager::Instance();
     window = RenderWindow::Instance();
+    
+    vButtons = new std::vector<Button*>();
+    
+    
 	// Eventos
 	inputManager = InputManager::Instance();
     
@@ -51,10 +55,10 @@ MenuState::~MenuState() {
 void MenuState::LoadResources(){
 	try{
 		// Texturas
-		resourceManager->AddTexture("texMenuFondo", "Recursos/Foe.png");
+		resourceManager->AddTexture("texBackground", "Recursos/fondoMenu.jpg");
 		
 		// Fuente
-		resourceManager->AddFont("Juan", "Recursos/OpenSans-Regular.ttf");
+		resourceManager->AddFont("Urban", "Recursos/Urban_Stone.otf");
 	}
 	catch (std::runtime_error& e)	{
 		std::cout << "Exception: " << e.what() << std::endl;
@@ -67,17 +71,32 @@ void MenuState::Init() {
 	LoadResources(); // Cargamos recursos
 	
 	// Inicializamos fuentes
-	textColision.setFont(resourceManager->GetFont("Juan"));
-	textColision.setPosition(25.f, 25.f);
-	textColision.setCharacterSize(13);
-	textColision.setColor(sf::Color::Black);
-	textColision.setString("Enemy life: 100" );
+	background = new SpriteSheet(resourceManager->GetTexture("texBackground"));
+    
+    for(int i=0; i<6; i++)         //  w , h  ,  x   ,  y,            contenido
+        vButtons->push_back(new Button(0.f, 0.f, 512.f, 380.f + 50.f*i, ""));
+
+    
+    vButtons->at(0)->SetText("Nueva Partida");
+    vButtons->at(1)->SetText("Continuar");
+    vButtons->at(2)->SetText("Tutorial");
+    vButtons->at(3)->SetText("Opciones");
+    vButtons->at(4)->SetText("Acerca De");
+    vButtons->at(5)->SetText("Salir");
+    
+    for(int i=0; i<6; i++)         //  w , h  ,  x   ,  y,            contenido
+        vButtons->at(i)->Center();
 }
 
 
 void MenuState::Clean(){
     // liberamos recursos
     resourceManager->CleanResources();
+    
+    delete background; background=NULL;
+    
+    while(!vButtons->empty()) 
+		delete vButtons->back(), vButtons->pop_back();
     
     vNonRealEvents->clear();
     vRealEvents->clear();
@@ -89,10 +108,10 @@ void MenuState::Clean(){
 
 void MenuState::Update(const Time& timeElapsed)
 {
-	InputManager::Instance()->Update();
+    InputManager::Instance()->Update();
     
-    if(InputManager::Instance()->keyR)
-        StateManager::Instance()->SetCurrentState(States::ID::WorldState);
+    for(int i=0; i<vButtons->size(); i++)
+        vButtons->at(i)->Update(timeElapsed);
 }
 
 
@@ -100,13 +119,16 @@ void MenuState::Update(const Time& timeElapsed)
 
 void MenuState::Render(float interp)
 {
-    // Eventos de Tiempo Real
-	ProcessRealEvent();
-
 	window->Clear(sf::Color(255,255,255, 255)); // rgba
  // HUD
-	window->Draw(textColision);
+	window->Draw(*background);
+    for(int i=0; i<vButtons->size(); i++)
+        vButtons->at(i)->Draw(interp);
+    
 	window->Display();
+    
+    // Eventos de Tiempo Real
+    ProcessRealEvent();
 }
 
 
@@ -134,6 +156,10 @@ void MenuState::ProcessRealEvent(){
 		
 		if(ev.type == sf::Event::MouseButtonPressed)
 		{
+            if(ev.mouseButton.button == sf::Mouse::Left){
+                if(vButtons->at(0)->IsPressed(ev.mouseButton.x, ev.mouseButton.y))
+                    StateManager::Instance()->SetCurrentState(States::ID::WorldState);
+            }
 		}	
 	}
 	

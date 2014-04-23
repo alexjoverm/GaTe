@@ -8,14 +8,10 @@
 #ifndef MENUSTATE_H
 #define	MENUSTATE_H
 
-#include "../Motor2D/Level.h"
-#include "../Entities/Player.h"
-#include "../Entities/Bullet.h"
 #include "../Motor2D/RenderWindow.h"
-#include "../Otros/Clock.h"
-#include "../Entities/EntActive.h"
 #include "../Managers/InputManager.h"
 #include "../Managers/ResourceManager.h"
+#include "../HUD/Button.h"
 #include "State.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -43,7 +39,6 @@ public:
 	void ProcessRealEvent();
     //void ProcessNonRealEvent();
  
-    sf::Text			textColision;
 
 private:
 	
@@ -59,6 +54,9 @@ private:
 	//Eventos
 	std::vector<sf::Event>		*vNonRealEvents;
 	std::vector<sf::Event>		*vRealEvents;
+    
+    SpriteSheet*    background;
+    std::vector<Button*>    *vButtons;
 };
 
 #endif	/* WORLD_H */

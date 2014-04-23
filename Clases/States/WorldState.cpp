@@ -181,6 +181,9 @@ void WorldState::Clean(){
 	while(!vEntityStatic->empty()) 
 		delete vEntityStatic->back(), vEntityStatic->pop_back();
     
+    while(!vBullets->empty()) 
+		delete vBullets->back(), vBullets->pop_back();
+    
     
     // Los demás vectores sólo los limpiamos, ya que la memoria ya la hemos liberado
     // al liberar los vectores anteriores
@@ -256,8 +259,8 @@ void WorldState::Update(const Time& timeElapsed)
 void WorldState::Render(float interp)
 {
     // Eventos de Tiempo Real
-	ProcessRealEvent();
-    
+        ProcessRealEvent();
+        
     //level->map->update(player, interp);
     
 	window->Clear(sf::Color(255,255,255, 255)); // rgba

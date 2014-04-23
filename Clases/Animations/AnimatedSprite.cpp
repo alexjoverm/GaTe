@@ -7,7 +7,7 @@
 
 AnimatedSprite::AnimatedSprite(Time frameTime, SpriteSheet* spriteSheet, bool paused, bool looped)
 {
-    m_animation = new Animation("defAnim", spriteSheet, 0, 0, 0.0, false, false );
+    m_animation = new Animation("defAnim", spriteSheet, 0, 0, 0.0, false, false);
     m_currentFrame = 0;
     m_isPaused = paused;
     m_isLooped = looped;
