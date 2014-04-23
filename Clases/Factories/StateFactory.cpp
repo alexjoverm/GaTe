@@ -16,7 +16,7 @@ State* StateFactory::CreateState(States::ID id){
     if(id == States::ID::WorldState)
         return WorldState::Instance();
     else if(id == States::ID::MenuState)
-        return new MenuState();
+        return MenuState::Instance();
     /*else if(id == States::ID::SettingsState)
         return new SettingsState();
     else if(id == States::ID::LevelSelectionState)

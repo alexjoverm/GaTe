@@ -31,6 +31,8 @@ public:
 	void AddFont(std::string id, std::string filename);
 	void AddTexture(std::string id, std::string filename);
 	void AddSoundBuffer(std::string id, std::string filename);
+    
+    void CleanResources();
 	
 
 protected:

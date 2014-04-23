@@ -6,6 +6,7 @@
  */
 
 #include "WorldState.h"
+#include "../Managers/StateManager.h"
 #include "../Otros/StringUtils.h"
 #include <iostream>
 
@@ -37,6 +38,7 @@ WorldState::WorldState() : textColision(), textPlayerSpeed() {
 	vEntityActive = new std::deque<EntActive*>();
 	vBullets = new std::vector<Bullet*>();
 	
+    window = RenderWindow::Instance();
 	
 	// Eventos
 	inputManager = InputManager::Instance();
@@ -118,9 +120,6 @@ void WorldState::Init() {
     
 	LoadResources(); // Cargamos recursos
 	
-	window->SetFrameLimit(60);
-	window->SetVerticalSyncEnabled(true);
-	
 	// Mapa
     level->LoadMap("mapa1.tmx");
 	
@@ -170,7 +169,7 @@ void WorldState::Init() {
 
 
 void WorldState::Clean(){
-    
+    resourceManager->CleanResources();
 }
 
 
@@ -225,6 +224,9 @@ void WorldState::Update(const Time& timeElapsed)
 								+ "\n\tForceJump: "+StringUtils::ConvertFloat(player->forceJump)
 	);
 	
+    
+    if(InputManager::Instance()->keyR)
+        StateManager::Instance()->SetCurrentState(States::ID::MenuState);
 }
 
 

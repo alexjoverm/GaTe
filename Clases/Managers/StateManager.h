@@ -13,9 +13,7 @@
 
 class StateManager {
 public:
-    StateManager();
-    StateManager(const StateManager& orig);
-    virtual ~StateManager();
+    static StateManager* Instance();
 
     void   CreateStates();
     State* GetCurrentState() const;
@@ -24,6 +22,11 @@ public:
     States::ID currentState;
     
 private:
+    StateManager();
+    StateManager(const StateManager& orig);
+    virtual ~StateManager();
+    static StateManager* instance;
+    
     std::map<States::ID, State*> *mapStates;
     
     void OnChangeState();

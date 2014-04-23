@@ -74,3 +74,10 @@ void ResourceManager::AddTexture(std::string id, std::string filename) {
 void ResourceManager::AddSoundBuffer(std::string id, std::string filename) {
 	contSoundBuffers->load(id, filename);
 }
+
+
+void ResourceManager::CleanResources() {
+	contFonts->cleanResources();
+    contSoundBuffers->cleanResources();
+    contTextures->cleanResources();
+}

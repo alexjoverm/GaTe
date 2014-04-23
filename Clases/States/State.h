@@ -22,9 +22,9 @@ public:
     virtual void Clean() = 0;
     virtual void Init() = 0;
     
-    RenderWindow* window = RenderWindow::Instance();
-    InputManager* inputManager = InputManager::Instance();
-    ResourceManager* resourceManager = ResourceManager::Instance();
+    RenderWindow* window;
+    InputManager* inputManager;
+    ResourceManager* resourceManager;
 };
 
 #endif	/* STATE_H */

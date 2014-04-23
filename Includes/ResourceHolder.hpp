@@ -8,7 +8,6 @@
 #include <cassert>
 #include <stdio.h>
 
-
 template <typename Resource, typename Identifier>
 class ResourceHolder
 {
@@ -25,6 +24,8 @@ class ResourceHolder
 
 		Resource&			get(Identifier id);
 		const Resource&		get(Identifier id) const;
+        
+        void                cleanResources();
 
 
 	private:

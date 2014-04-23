@@ -7,14 +7,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/alejandrojovermorales/NetBeansProjects/hito2/Clases/Factories/StateFactory.cpp</file>
-            <file>file:/home/alejandrojovermorales/NetBeansProjects/hito2/Clases/Entities/Player.cpp</file>
-            <file>file:/home/alejandrojovermorales/NetBeansProjects/hito2/Clases/Managers/StateManager.h</file>
+            <file>file:/home/alejandrojovermorales/NetBeansProjects/hito2/main.cpp</file>
+            <file>file:/home/alejandrojovermorales/NetBeansProjects/hito2/Clases/Animations/SpriteSheet.h</file>
             <file>file:/home/alejandrojovermorales/NetBeansProjects/hito2/Clases/Managers/StateManager.cpp</file>
-            <file>file:/home/alejandrojovermorales/NetBeansProjects/hito2/Clases/States/WorldState.cpp</file>
             <file>file:/home/alejandrojovermorales/NetBeansProjects/hito2/Clases/Game.cpp</file>
+            <file>file:/home/alejandrojovermorales/NetBeansProjects/hito2/Clases/States/WorldState.cpp</file>
+            <file>file:/home/alejandrojovermorales/NetBeansProjects/hito2/Clases/States/MenuState.h</file>
             <file>file:/home/alejandrojovermorales/NetBeansProjects/hito2/Clases/States/WorldState.h</file>
-            <file>file:/home/alejandrojovermorales/NetBeansProjects/hito2/Clases/Game.h</file>
+            <file>file:/home/alejandrojovermorales/NetBeansProjects/hito2/Clases/States/MenuState.cpp</file>
         </group>
     </open-files>
 </project-private>

@@ -68,6 +68,9 @@ void InputManager::Update()
 
 			case sf::Keyboard::D:
 				keyD = vKeyboard->at(i).second;	break;
+            
+            case sf::Keyboard::R:
+				keyR = vKeyboard->at(i).second;	break;
 		}
 	}
 	

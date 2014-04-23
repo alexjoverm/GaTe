@@ -21,21 +21,6 @@
 #include <iostream>
 
 
-// ID's para cargar fuentes (usar con Fonts::ID)
-namespace Fonts{
-	enum ID{
-		OpenSans
-	};
-}
-
-
-namespace Bullets{
-	enum Type{
-		Default
-	};
-}
-
-
 
 class WorldState: public State {
 public:

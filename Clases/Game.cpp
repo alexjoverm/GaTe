@@ -10,7 +10,10 @@
 Game::Game() {
     timeUpdate = new Time(1.f/30.f);
     window = RenderWindow::Instance();
-    stateManager = new StateManager();
+    window->SetFrameLimit(60);
+	window->SetVerticalSyncEnabled(true);
+    
+    stateManager = StateManager::Instance();
 }
 
 Game::Game(const Game& orig) {
@@ -18,7 +21,6 @@ Game::Game(const Game& orig) {
 
 Game::~Game() {
     delete timeUpdate;
-    delete stateManager;
 }
 
 void Game::Run(){

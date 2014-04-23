@@ -7,10 +7,23 @@
 
 #include <map>
 #include "StateManager.h"
+#include "../States/MenuState.h"
+
+
+StateManager* StateManager::instance = 0;
+
+//*********** METODO CREADOR DEL OBJETO ****/
+StateManager* StateManager::Instance() {
+	if(instance == 0)
+		instance = new StateManager();
+	
+	return instance;
+}
+
 
 StateManager::StateManager() {
     mapStates = new std::map<States::ID, State*>();
-    currentState = States::ID::WorldState;
+    currentState = States::ID::MenuState;
     
     CreateStates();
     GetCurrentState()->Init();
@@ -41,4 +54,12 @@ State* StateManager::GetCurrentState() const
 {
     std::map<States::ID, State*>::iterator par = mapStates->find(currentState);
     return par->second;
+}
+
+
+void StateManager::SetCurrentState(States::ID id)
+{
+    GetCurrentState()->Clean();
+    currentState = id;
+    GetCurrentState()->Init();
 }

@@ -26,7 +26,7 @@ public:
 	void Update(); // Se encarga de actualizar las variables según lo que haya en los arrays
 	
 	// Booleanas a modo de "Propiedades"
-	bool	keyW, keyA, keyS, keyD;
+	bool	keyW, keyA, keyS, keyD, keyR;
 	bool	mouseLeft, mouseRight;
 	
 private:
