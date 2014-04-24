@@ -79,19 +79,21 @@ WorldState::~WorldState() {
 
 //************************  FUNCIONES INICIALES
 // Cargamos las texturas del nivel, y las fuentes generales
-void WorldState::LoadResources(){
-	if(level == NULL){
-		std::cout << "Primero hay que cargar un nivel" << std::endl;
-		return;
-	}
-	
+void WorldState::LoadResources()
+{
+
 	try{
+        //resourceManager = ResourceManager::Instance();
+        level = new Level();
+        AddLevelTexture("Recursos/Foe.png");
+        
 		// Texturas
 		for(int i = 0; i < level->vTextures->size(); i++)	// Del nivel
 		{
-			std::cout << "texLevel" + StringUtils::ConvertInt(i) << std::endl;
+			//std::cout << "texLevel" + StringUtils::ConvertInt(i) << std::endl;
 			resourceManager->AddTexture("texLevel" + StringUtils::ConvertInt(i) , level->vTextures->at(i));
 		}
+        level->LoadMap("mapa1.tmx");
 		
 		resourceManager->AddTexture("texCharacter", "Recursos/Character.png");	// Del personaje (le asignamos la 20 por ejemplo)
 		resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
@@ -115,18 +117,12 @@ void WorldState::Init() {
 	
 //**************** Inicializaciones
     reloj.Restart();
-	level = new Level();
-    
-    
-//**************** Recursos
-    
-    AddLevelTexture("Recursos/Foe.png");
-	LoadResources(); // Cargamos recursos
-	
+    //LoadResources();
+	firstUpdate=false;
     
 //**************** Mapa y Level
     
-    level->LoadMap("mapa1.tmx");
+    
     std::vector<Rectangle*> vrec = level->map->getLayerCollitions("Colision suelo");
     
     for(int i=0; i < vrec.size(); i++)
@@ -135,18 +131,20 @@ void WorldState::Init() {
 	
 //***************** Entities
     
-	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"), Vector(530.f , 300.f), Vector(0.f, 0.f), Vector(500.f, 500.f));
+	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"), Vector(100.f , 100.f), Vector(0.f, 0.f), Vector(500.f, 500.f));
 	enemy->SetSpeed(220.f, 0.f);
 	
 	AddColisionableEntity(enemy);// Añadimos al array de colisionables
 	AddActiveEntity(enemy);		// Añadimos al array de elementos activos, para que se pinte
     
 	// Inicializamos Player
-	player = new Player(resourceManager->GetTexture("texRobot"), Vector(108, 108), Vector(260.f, 150.f));
+	player = new Player(resourceManager->GetTexture("texRobot"), Vector(108, 108), Vector(100.f, 100.f));
 	player->AddGun(new Gun(resourceManager->GetTexture("texGun"), Vector(300.f, 300.f)));
 	player->GetSelectedGun()->SetRelativePos(80.f, 50.f);
     player->GetSelectedGun()->SetLifeTime(1.f);
 	player->GetSelectedGun()->SetReloadTime(0.25f);
+    
+    player->SetColor(sf::Color(255,255,255, 105));
     
 
 //****************** ANIMACIONES
@@ -205,52 +203,51 @@ void WorldState::Clean(){
 
 void WorldState::Update(const Time& timeElapsed)
 {
-	InputManager::Instance()->Update();
-	
- // BULLETS, hacemos las colisiones aquí
-	for(int i = 0; i < vBullets->size(); i++)
-		vBullets->at(i)->DoColisions(timeElapsed, i);
-	
-//******************************** UPDATE
-	// Player
-	player->Update(timeElapsed);
-	
-	// EntActive
-	for(int i = 0; i < vEntityActive->size(); i++)
-		vEntityActive->at(i)->Update(timeElapsed);
-	
-	// Bullets
-	for(int i = 0; i < vBullets->size(); i++)
-		vBullets->at(i)->Update(timeElapsed);
-	
+    if(firstUpdate)
+    {
+        InputManager::Instance()->Update();
 
-	
-	//********** MOVIMIENTO DEL ENEMIGO (¡¡¡¡ SOLO PARA ESTE EJECUTABLE !!!!)
-	if(reloj.GetElapsedTime().AsSeconds() >= 0.8f){
-		
-		reloj.Restart();
-		if(vEntityActive->at(0)->GetSpeed().GetX() > 0){
-			vEntityActive->at(0)->SetSpeed(-220.f, vEntityActive->at(0)->GetSpeed().GetY());
-			vEntityActive->at(0)->GetSprite()->SetOrientation(Transform::Orientation::Left);
-		}
-		else{
-			vEntityActive->at(0)->SetSpeed(220.f, vEntityActive->at(0)->GetSpeed().GetY());
-			vEntityActive->at(0)->GetSprite()->SetOrientation(Transform::Orientation::Right);
-		}
+     // BULLETS, hacemos las colisiones aquí
+        for(int i = 0; i < vBullets->size(); i++)
+            vBullets->at(i)->DoColisions(timeElapsed, i);
+
+    //******************************** UPDATE
+        // Player
+        player->Update(timeElapsed);
+
+        // EntActive
+        for(int i = 0; i < vEntityActive->size(); i++)
+            vEntityActive->at(i)->Update(timeElapsed);
+
+        // Bullets
+        for(int i = 0; i < vBullets->size(); i++)
+            vBullets->at(i)->Update(timeElapsed);
+
+
+
+        //********** MOVIMIENTO DEL ENEMIGO (¡¡¡¡ SOLO PARA ESTE EJECUTABLE !!!!)
+        if(reloj.GetElapsedTime().AsSeconds() >= 0.8f){
+
+            reloj.Restart();
+            if(vEntityActive->at(0)->GetSpeed().GetX() > 0){
+                vEntityActive->at(0)->SetSpeed(-220.f, vEntityActive->at(0)->GetSpeed().GetY());
+                vEntityActive->at(0)->GetSprite()->SetOrientation(Transform::Orientation::Left);
+            }
+            else{
+                vEntityActive->at(0)->SetSpeed(220.f, vEntityActive->at(0)->GetSpeed().GetY());
+                vEntityActive->at(0)->GetSprite()->SetOrientation(Transform::Orientation::Right);
+            }
+        }
+
+
+
+
+
+    //*************** HUD **
+
+        hud->Update(timeElapsed);
 	}
-    
-    
-    
-	
-	
-//*************** HUD **
-    
-    hud->Update(timeElapsed);
-	
-	
-    
-    if(InputManager::Instance()->keyR)
-        StateManager::Instance()->SetCurrentState(States::ID::MenuState);
+	   
 }
 
 
@@ -259,7 +256,7 @@ void WorldState::Update(const Time& timeElapsed)
 void WorldState::Render(float interp)
 {
     // Eventos de Tiempo Real
-        ProcessRealEvent();
+    ProcessRealEvent();
         
     //level->map->update(player, interp);
     
@@ -283,6 +280,11 @@ void WorldState::Render(float interp)
     hud->Draw(*window);
 	
 	window->Display();
+    
+    if(InputManager::Instance()->keyR)
+        StateManager::Instance()->SetCurrentState(States::ID::MenuState);
+    
+    firstUpdate=true; 
 }
 
 

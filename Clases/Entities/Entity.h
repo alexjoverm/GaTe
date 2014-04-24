@@ -30,6 +30,8 @@ public:
 	
 	virtual void SetPosition(const Vector& v) = 0;
 	virtual Vector& GetPosition() const= 0;
+    
+    void SetColor(const sf::Color& c){ spriteSheet->SetColor(c); }
 	
 protected:
 	SpriteSheet* spriteSheet;

@@ -120,6 +120,8 @@
       <logicalFolder name="Otros" displayName="Otros" projectFiles="true">
         <itemPath>Clases/Otros/Clock.cpp</itemPath>
         <itemPath>Clases/Otros/Clock.h</itemPath>
+        <itemPath>Clases/Otros/LoadingTask.cpp</itemPath>
+        <itemPath>Clases/Otros/LoadingTask.h</itemPath>
         <itemPath>Clases/Otros/Rectangle.cpp</itemPath>
         <itemPath>Clases/Otros/Rectangle.h</itemPath>
         <itemPath>Clases/Otros/StringUtils.cpp</itemPath>
@@ -130,6 +132,8 @@
         <itemPath>Clases/Otros/Vector.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="States" projectFiles="true">
+        <itemPath>Clases/States/LoadingState.cpp</itemPath>
+        <itemPath>Clases/States/LoadingState.h</itemPath>
         <itemPath>Clases/States/MenuState.cpp</itemPath>
         <itemPath>Clases/States/MenuState.h</itemPath>
         <itemPath>Clases/States/State.h</itemPath>
@@ -401,6 +405,10 @@
       </item>
       <item path="Clases/Otros/Clock.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Clases/Otros/LoadingTask.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Otros/LoadingTask.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Clases/Otros/Rectangle.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Otros/Rectangle.h" ex="false" tool="3" flavor2="0">
@@ -416,6 +424,10 @@
       <item path="Clases/Otros/Vector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Otros/Vector.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/States/LoadingState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/States/LoadingState.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/States/MenuState.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -706,6 +718,10 @@
       </item>
       <item path="Clases/Otros/Clock.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Clases/Otros/LoadingTask.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Otros/LoadingTask.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Clases/Otros/Rectangle.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Otros/Rectangle.h" ex="false" tool="3" flavor2="0">
@@ -721,6 +737,10 @@
       <item path="Clases/Otros/Vector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Otros/Vector.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/States/LoadingState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/States/LoadingState.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/States/MenuState.cpp" ex="false" tool="1" flavor2="0">
       </item>

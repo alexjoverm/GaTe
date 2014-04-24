@@ -40,7 +40,6 @@ void Game::Run(){
         //Llevamos control en las actualizaciones por frame
 		while (timeSinceLastUpdate > *timeUpdate)   // 15 veces/segundo
 		{
-			
 			timeSinceLastUpdate -= *timeUpdate;
 			Update(*timeUpdate); // Realizamos actualizaciones
 		}

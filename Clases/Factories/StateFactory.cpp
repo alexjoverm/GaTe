@@ -8,6 +8,7 @@
 #include "StateFactory.h"
 #include "../States/WorldState.h"
 #include "../States/MenuState.h"
+#include "../States/LoadingState.h"
 
 
 State* StateFactory::CreateState(States::ID id){
@@ -16,7 +17,9 @@ State* StateFactory::CreateState(States::ID id){
     if(id == States::ID::WorldState)
         return WorldState::Instance();
     else if(id == States::ID::MenuState)
-        return MenuState::Instance();
+        return new MenuState();
+    else if(id == States::ID::LoadingState)
+        return new LoadingState();
     /*else if(id == States::ID::SettingsState)
         return new SettingsState();
     else if(id == States::ID::LevelSelectionState)

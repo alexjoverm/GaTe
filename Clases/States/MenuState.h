@@ -22,7 +22,9 @@
 
 class MenuState: public State {
 public:
-	static MenuState* Instance(); // Singleton
+	MenuState();
+	MenuState(const MenuState& orig);
+	virtual ~MenuState();
 
 // Inicialización y Liberación
 	void Init();
@@ -41,12 +43,6 @@ public:
  
 
 private:
-	
-  // Singleton
-	MenuState();
-	MenuState(const MenuState& orig);
-	virtual ~MenuState();
-	static MenuState*	instance;
     
   // Funciones
 	void LoadResources();	// Carga recursos, se llama desde Init();
@@ -57,6 +53,8 @@ private:
     
     SpriteSheet*    background;
     std::vector<Button*>    *vButtons;
+    
+    bool requestStateChange;
 };
 
 #endif	/* WORLD_H */

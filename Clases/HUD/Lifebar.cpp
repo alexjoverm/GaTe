@@ -73,4 +73,13 @@ void Lifebar::Rellenar(float value){
         valor = vmax;
 }
 
+void Lifebar::SetPercent(float percent){ 
+    if(percent > 1.f)
+        percent = 1.f;
+    else if(percent < 0.f)
+        percent = 0.f;
+    
+    valor = vmax * percent;
+}
+
 

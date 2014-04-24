@@ -27,6 +27,8 @@ public:
     //Valor de la barra
     void Rellenar(float value);
     void Restar(float value);
+    void SetPercent(float percent);
+    
      
     float vmax;  
     float valor;    

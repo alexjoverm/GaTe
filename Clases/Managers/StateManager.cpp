@@ -47,7 +47,7 @@ void StateManager::CreateStates()
     //mapStates->insert(std::make_pair(States::ID::TowerSelectionState , StateFactory::CreateState(States::ID::TowerSelectionState)));
     //mapStates->insert(std::make_pair(States::ID::CreditsState , StateFactory::CreateState(States::ID::CreditsState)));
     //mapStates->insert(std::make_pair(States::ID::PauseState , StateFactory::CreateState(States::ID::PauseState)));
-    
+    mapStates->insert(std::make_pair(States::ID::LoadingState , StateFactory::CreateState(States::ID::LoadingState)));
 }
 
 State* StateManager::GetCurrentState() const
@@ -71,6 +71,7 @@ void StateManager::SetCurrentState(States::ID id)
             GetCurrentState()->Clean();
 
         currentState = id;
+        
         GetCurrentState()->Init();
     }
 }

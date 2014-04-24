@@ -10,20 +10,7 @@
 #include "../Managers/StateManager.h"
 #include <iostream>
 
-
-//**************** SINGLETON
-MenuState* MenuState::instance = 0;
-
-MenuState* MenuState::Instance() {
-	if(instance == 0)
-		instance = new MenuState();
-	
-	return instance;
-}
-
-
 MenuState::MenuState() {
-	
 	
     resourceManager = ResourceManager::Instance();
     window = RenderWindow::Instance();
@@ -86,6 +73,8 @@ void MenuState::Init() {
     
     for(int i=0; i<6; i++)         //  w , h  ,  x   ,  y,            contenido
         vButtons->at(i)->Center();
+    
+    requestStateChange = false;
 }
 
 
@@ -119,6 +108,9 @@ void MenuState::Update(const Time& timeElapsed)
 
 void MenuState::Render(float interp)
 {
+    // Eventos de Tiempo Real
+    ProcessRealEvent();
+    
 	window->Clear(sf::Color(255,255,255, 255)); // rgba
  // HUD
 	window->Draw(*background);
@@ -127,8 +119,8 @@ void MenuState::Render(float interp)
     
 	window->Display();
     
-    // Eventos de Tiempo Real
-    ProcessRealEvent();
+    if(requestStateChange)
+       StateManager::Instance()->SetCurrentState(States::ID::LoadingState); 
 }
 
 
@@ -158,7 +150,7 @@ void MenuState::ProcessRealEvent(){
 		{
             if(ev.mouseButton.button == sf::Mouse::Left){
                 if(vButtons->at(0)->IsPressed(ev.mouseButton.x, ev.mouseButton.y))
-                    StateManager::Instance()->SetCurrentState(States::ID::WorldState);
+                    requestStateChange = true;
             }
 		}	
 	}

@@ -36,12 +36,14 @@ class SpriteSheet
         sf::Sprite* GetSprite() const;
         
         // Transformaciones
-	void SetOrientation(const Transform::Orientation orient);
-	Transform::Orientation GetOrientation() const{ return orientation; }
-	
-	void Move(Vector& v){ m_sprite->move(v.GetX(), v.GetY()); }
-	void SetPosition(const Vector& v){ m_sprite->setPosition(v.GetX(), v.GetY()); }
-	Vector GetPosition() const{ return Vector(m_sprite->getPosition().x, m_sprite->getPosition().y); }
+        void SetOrientation(const Transform::Orientation orient);
+        Transform::Orientation GetOrientation() const{ return orientation; }
+
+        void Move(Vector& v){ m_sprite->move(v.GetX(), v.GetY()); }
+        void SetPosition(const Vector& v){ m_sprite->setPosition(v.GetX(), v.GetY()); }
+        Vector GetPosition() const{ return Vector(m_sprite->getPosition().x, m_sprite->getPosition().y); }
+        
+        void SetColor(const sf::Color& c){ m_sprite->setColor(c); }
         
         // Funciones de Bordes
         Rectangle getLocalBounds() const{ return Rectangle(m_sprite->getLocalBounds()); }

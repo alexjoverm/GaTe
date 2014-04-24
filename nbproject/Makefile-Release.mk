@@ -70,10 +70,12 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/MotorPhysics/Maths.o \
 	${OBJECTDIR}/Clases/MotorPhysics/PhysicsState.o \
 	${OBJECTDIR}/Clases/Otros/Clock.o \
+	${OBJECTDIR}/Clases/Otros/LoadingTask.o \
 	${OBJECTDIR}/Clases/Otros/Rectangle.o \
 	${OBJECTDIR}/Clases/Otros/StringUtils.o \
 	${OBJECTDIR}/Clases/Otros/Time.o \
 	${OBJECTDIR}/Clases/Otros/Vector.o \
+	${OBJECTDIR}/Clases/States/LoadingState.o \
 	${OBJECTDIR}/Clases/States/MenuState.o \
 	${OBJECTDIR}/Clases/States/WorldState.o \
 	${OBJECTDIR}/main.o
@@ -278,6 +280,11 @@ ${OBJECTDIR}/Clases/Otros/Clock.o: Clases/Otros/Clock.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Otros/Clock.o Clases/Otros/Clock.cpp
 
+${OBJECTDIR}/Clases/Otros/LoadingTask.o: Clases/Otros/LoadingTask.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/Otros
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Otros/LoadingTask.o Clases/Otros/LoadingTask.cpp
+
 ${OBJECTDIR}/Clases/Otros/Rectangle.o: Clases/Otros/Rectangle.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Otros
 	${RM} $@.d
@@ -297,6 +304,11 @@ ${OBJECTDIR}/Clases/Otros/Vector.o: Clases/Otros/Vector.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/Otros
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Otros/Vector.o Clases/Otros/Vector.cpp
+
+${OBJECTDIR}/Clases/States/LoadingState.o: Clases/States/LoadingState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/States
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/LoadingState.o Clases/States/LoadingState.cpp
 
 ${OBJECTDIR}/Clases/States/MenuState.o: Clases/States/MenuState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States

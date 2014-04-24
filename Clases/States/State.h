@@ -16,7 +16,7 @@
 namespace States{
 	enum ID{
 		MenuState, SettingsState, LevelSelectionState, WorldState, PauseState, 
-        CreditsState, TowerSelectionState
+        CreditsState, TowerSelectionState, LoadingState
 	};
 }
 

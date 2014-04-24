@@ -30,6 +30,7 @@ public:
 // Inicialización y Liberación
 	void Init();
     void Clean();
+    void LoadResources();
     
 // 3 bucles principales
 	void Update(const Time& timeElapsed);
@@ -75,16 +76,14 @@ private:
 	WorldState(const WorldState& orig);
 	virtual ~WorldState();
 	static WorldState*	instance;
-    
-  // Funciones
-	void LoadResources();	// Carga recursos, se llama desde Init();
-    
+
 	//Eventos
 	std::vector<sf::Event>		*vNonRealEvents;
 	std::vector<sf::Event>		*vRealEvents;
     
     // HUD
     HUD*     hud;
+    bool     firstUpdate;
 };
 
 #endif	/* WORLD_H */
