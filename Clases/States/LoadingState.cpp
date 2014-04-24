@@ -11,7 +11,7 @@
 #include "WorldState.h"
 #include <iostream>
 
-LoadingState::LoadingState() {
+LoadingState::LoadingState(){
 	
     resourceManager = ResourceManager::Instance();
     window = RenderWindow::Instance();
@@ -57,6 +57,9 @@ void LoadingState::Init() {
 	
 	// Inicializamos fuentes
 	background = new SpriteSheet(resourceManager->GetTexture("texBackground"));
+    
+    seconds = 0.f;
+    loaded = false;
 
     requestStateChange = false;
     //loadingTask = new LoadingTask();
@@ -81,8 +84,7 @@ void LoadingState::Clean(){
 
 void LoadingState::Update(const Time& timeElapsed)
 {
-    InputManager::Instance()->Update();
-    
+    seconds += timeElapsed.AsSeconds();    
 }
 
 
@@ -99,8 +101,14 @@ void LoadingState::Render(float interp)
     
 	window->Display();
     
-    WorldState::Instance()->LoadResources();
-    requestStateChange=true; 
+    if(!loaded){
+        WorldState::Instance()->LoadResources();
+        loaded = true;
+    }
+    
+    if(seconds > 1.5f)
+        requestStateChange=true; 
+    
     if(requestStateChange)
        StateManager::Instance()->SetCurrentState(States::ID::WorldState); 
 }

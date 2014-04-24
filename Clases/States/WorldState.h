@@ -81,6 +81,8 @@ private:
 	std::vector<sf::Event>		*vNonRealEvents;
 	std::vector<sf::Event>		*vRealEvents;
     
+    //sf::Mutex   mMutex;
+    
     // HUD
     HUD*     hud;
     bool     firstUpdate;

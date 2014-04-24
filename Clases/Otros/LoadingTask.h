@@ -14,7 +14,6 @@ public:
     LoadingTask();
     virtual ~LoadingTask();
     
-    
     void			Execute();
     bool			IsFinished();
     float			GetCompletion();
@@ -27,6 +26,7 @@ private:
     bool			mFinished;
     sf::Clock       mElapsedTime;
     sf::Mutex		mMutex;
+    
     bool            loading;
 };
 

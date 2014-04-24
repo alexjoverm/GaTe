@@ -83,28 +83,30 @@ void WorldState::LoadResources()
 {
 
 	try{
-        //resourceManager = ResourceManager::Instance();
+        
+        //sf::Lock lock(mMutex);
         level = new Level();
         AddLevelTexture("Recursos/Foe.png");
-        
-		// Texturas
-		for(int i = 0; i < level->vTextures->size(); i++)	// Del nivel
-		{
-			//std::cout << "texLevel" + StringUtils::ConvertInt(i) << std::endl;
-			resourceManager->AddTexture("texLevel" + StringUtils::ConvertInt(i) , level->vTextures->at(i));
-		}
+
+        // Texturas
+        for(int i = 0; i < level->vTextures->size(); i++)	// Del nivel
+        {
+            //std::cout << "texLevel" + StringUtils::ConvertInt(i) << std::endl;
+            resourceManager->AddTexture("texLevel" + StringUtils::ConvertInt(i) , level->vTextures->at(i));
+        }
         level->LoadMap("mapa1.tmx");
-		
-		resourceManager->AddTexture("texCharacter", "Recursos/Character.png");	// Del personaje (le asignamos la 20 por ejemplo)
-		resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
-		resourceManager->AddTexture("texGun", "Recursos/pistola.png");
-		resourceManager->AddTexture("texRobot", "Recursos/robot.png");
-        
+
+        resourceManager->AddTexture("texCharacter", "Recursos/Character.png");	// Del personaje (le asignamos la 20 por ejemplo)
+        resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
+        resourceManager->AddTexture("texGun", "Recursos/pistola.png");
+        resourceManager->AddTexture("texRobot", "Recursos/robot.png");
+
         //Texturas del HUD
         resourceManager->AddTexture("texHUD", "Recursos/hud.png");
-		
-		// Fuente
-		resourceManager->AddFont("OpenSans", "Recursos/OpenSans-Regular.ttf");
+
+        // Fuente
+        resourceManager->AddFont("OpenSans", "Recursos/OpenSans-Regular.ttf");
+        
 	}
 	catch (std::runtime_error& e)	{
 		std::cout << "Exception: " << e.what() << std::endl;

@@ -12,6 +12,7 @@
 #include "../Managers/InputManager.h"
 #include "../Managers/ResourceManager.h"
 #include "../Otros/LoadingTask.h"
+#include "../Otros/Clock.h"
 #include "State.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -52,6 +53,8 @@ private:
     
     bool requestStateChange;
     LoadingTask*    loadingTask;
+    float           seconds;
+    bool            loaded;
 };
 
 #endif	/* WORLD_H */
