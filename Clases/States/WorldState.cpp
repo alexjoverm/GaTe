@@ -283,7 +283,7 @@ void WorldState::Render(float interp)
 	
 	window->Display();
     
-    if(InputManager::Instance()->keyR)
+    if(InputManager::Instance()->keyT)
         StateManager::Instance()->SetCurrentState(States::ID::MenuState);
     
     firstUpdate=true; 

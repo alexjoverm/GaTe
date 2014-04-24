@@ -75,6 +75,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/Otros/StringUtils.o \
 	${OBJECTDIR}/Clases/Otros/Time.o \
 	${OBJECTDIR}/Clases/Otros/Vector.o \
+	${OBJECTDIR}/Clases/States/LevelSelectionState.o \
 	${OBJECTDIR}/Clases/States/LoadingState.o \
 	${OBJECTDIR}/Clases/States/MenuState.o \
 	${OBJECTDIR}/Clases/States/WorldState.o \
@@ -304,6 +305,11 @@ ${OBJECTDIR}/Clases/Otros/Vector.o: Clases/Otros/Vector.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/Otros
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Otros/Vector.o Clases/Otros/Vector.cpp
+
+${OBJECTDIR}/Clases/States/LevelSelectionState.o: Clases/States/LevelSelectionState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/States
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/LevelSelectionState.o Clases/States/LevelSelectionState.cpp
 
 ${OBJECTDIR}/Clases/States/LoadingState.o: Clases/States/LoadingState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States

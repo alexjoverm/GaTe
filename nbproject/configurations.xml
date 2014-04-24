@@ -132,6 +132,8 @@
         <itemPath>Clases/Otros/Vector.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="States" projectFiles="true">
+        <itemPath>Clases/States/LevelSelectionState.cpp</itemPath>
+        <itemPath>Clases/States/LevelSelectionState.h</itemPath>
         <itemPath>Clases/States/LoadingState.cpp</itemPath>
         <itemPath>Clases/States/LoadingState.h</itemPath>
         <itemPath>Clases/States/MenuState.cpp</itemPath>
@@ -424,6 +426,16 @@
       <item path="Clases/Otros/Vector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Otros/Vector.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/States/LevelSelectionState.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/States/LevelSelectionState.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="Clases/States/LoadingState.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -737,6 +749,16 @@
       <item path="Clases/Otros/Vector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Otros/Vector.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/States/LevelSelectionState.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/States/LevelSelectionState.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="Clases/States/LoadingState.cpp" ex="false" tool="1" flavor2="0">
       </item>

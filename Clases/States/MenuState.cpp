@@ -120,7 +120,7 @@ void MenuState::Render(float interp)
 	window->Display();
     
     if(requestStateChange)
-       StateManager::Instance()->SetCurrentState(States::ID::LoadingState); 
+       StateManager::Instance()->SetCurrentState(States::ID::LevelSelectionState); 
 }
 
 
