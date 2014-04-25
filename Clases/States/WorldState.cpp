@@ -100,6 +100,11 @@ void WorldState::LoadResources()
         resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
         resourceManager->AddTexture("texGun", "Recursos/pistola.png");
         resourceManager->AddTexture("texRobot", "Recursos/robot.png");
+        
+        resourceManager->AddTexture("texCoins", "Recursos/dolar.png");
+        resourceManager->AddTexture("texClock", "Recursos/time.png");
+        resourceManager->AddTexture("texSounds", "Recursos/sounds.png");
+        resourceManager->AddTexture("texMusic", "Recursos/music.png");
 
         //Texturas del HUD
         resourceManager->AddTexture("texHUD", "Recursos/hud.png");
@@ -307,19 +312,14 @@ void WorldState::ProcessRealEvent(){
 	bool buttonLeft , buttonRight;
 	buttonLeft = buttonRight = false;
 	
-	sf::Event ev;
+	//sf::Event ev;
 	
-	for (int i = 0; i < vRealEvents->size(); i++) {
-		ev = vRealEvents->at(i);
-		
-		if(ev.type == sf::Event::MouseButtonPressed)
-		{
-			if(ev.mouseButton.button == sf::Mouse::Left && !buttonLeft){
-				player->Shot(ev.mouseButton.x, ev.mouseButton.y);
-				buttonLeft = true;
-			}
-		}	
-	}
+	if(inputManager->IsPressedMouseLeft())
+    {
+        // Disparar
+        if(inputManager->GetMousePosition().GetY() > hud->GetHeight())
+            player->Shot(inputManager->GetMousePosition().GetX(), inputManager->GetMousePosition().GetY());
+    }
 	
-	vRealEvents->clear();
+	//vRealEvents->clear();
 }

@@ -51,6 +51,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/Game.o \
 	${OBJECTDIR}/Clases/HUD/Button.o \
 	${OBJECTDIR}/Clases/HUD/HUD.o \
+	${OBJECTDIR}/Clases/HUD/ImageButton.o \
 	${OBJECTDIR}/Clases/HUD/Lifebar.o \
 	${OBJECTDIR}/Clases/Managers/InputManager.o \
 	${OBJECTDIR}/Clases/Managers/ResourceManager.o \
@@ -185,6 +186,11 @@ ${OBJECTDIR}/Clases/HUD/HUD.o: Clases/HUD/HUD.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/HUD/HUD.o Clases/HUD/HUD.cpp
+
+${OBJECTDIR}/Clases/HUD/ImageButton.o: Clases/HUD/ImageButton.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/HUD/ImageButton.o Clases/HUD/ImageButton.cpp
 
 ${OBJECTDIR}/Clases/HUD/Lifebar.o: Clases/HUD/Lifebar.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/HUD

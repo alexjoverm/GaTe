@@ -8,6 +8,7 @@
 #ifndef INPUTMANAGER_H
 #define	INPUTMANAGER_H
 #include <SFML/Graphics.hpp>
+#include "../Otros/Vector.h"
 
 class InputManager {
 public:
@@ -24,13 +25,43 @@ public:
 	
 	void Process(sf::Event event); // Bucle de gestión de los eventos
 	void Update(); // Se encarga de actualizar las variables según lo que haya en los arrays
+    
+// Mouse
+    Vector GetMousePosition() const;
+    
+    
+// Getters
+    bool IsClickedKeyA(){ return (keyA && !lastKeyA); }
+    bool IsPressedKeyA(){ return keyA; }
+    
+    bool IsClickedKeyS(){ return (keyS && !lastKeyS); }
+    bool IsPressedKeyS(){ return keyS; }
+    
+    bool IsClickedKeyD(){ return (keyD && !lastKeyD); }
+    bool IsPressedKeyD(){ return keyD; }
+    
+    bool IsClickedKeyW(){ return (keyW && !lastKeyW); }
+    bool IsPressedKeyW(){ return keyW; }
+    
+    bool IsClickedMouseLeft(){ return (mouseLeft && !lastMouseLeft); }
+    bool IsPressedMouseLeft(){ return mouseLeft; }
+    
+    bool IsClickedMouseRight(){ return (mouseRight && !lastMouseRight); }
+    bool IsPressedMouseRight(){ return mouseRight; }
 	
-	// Booleanas a modo de "Propiedades"
-	bool	keyW, keyA, keyS, keyD, keyR, keyT;
-	bool	mouseLeft, mouseRight;
-	
+    bool keyR, keyT;
+    bool lastKeyR, lastKeyT;
+    
 private:
 	static InputManager* instance;
+    
+    	// Booleanas a modo de "Propiedades"
+	bool	keyW, keyA, keyS, keyD ;
+    bool	lastKeyW, lastKeyA, lastKeyS, lastKeyD;  //Para comprobar pulsacion por click
+	
+    bool	mouseLeft, mouseRight;
+    bool    lastMouseLeft, lastMouseRight;
+    float   mousePosX, mousePosY;
 
 	std::vector< std::pair<sf::Keyboard::Key , bool>>	*vKeyboard;
 	std::vector< std::pair<sf::Mouse::Button , bool>>	*vMouse;

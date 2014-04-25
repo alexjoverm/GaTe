@@ -60,8 +60,8 @@ void MenuState::Init() {
 	// Inicializamos fuentes
 	background = new SpriteSheet(resourceManager->GetTexture("texBackground"));
     
-    for(int i=0; i<6; i++)         //  w , h  ,  x   ,  y,            contenido
-        vButtons->push_back(new Button(0.f, 0.f, 512.f, 380.f + 50.f*i, ""));
+    for(int i=0; i<6; i++)         //  x   ,  y,            contenido
+        vButtons->push_back(new Button(512.f, 380.f + 50.f*i, ""));
 
     
     vButtons->at(0)->SetText("Nueva Partida");
@@ -101,6 +101,9 @@ void MenuState::Update(const Time& timeElapsed)
     
     for(int i=0; i<vButtons->size(); i++)
         vButtons->at(i)->Update(timeElapsed);
+    
+    if(requestStateChange)
+       StateManager::Instance()->SetCurrentState(States::ID::LevelSelectionState);
 }
 
 
@@ -119,8 +122,7 @@ void MenuState::Render(float interp)
     
 	window->Display();
     
-    if(requestStateChange)
-       StateManager::Instance()->SetCurrentState(States::ID::LevelSelectionState); 
+     
 }
 
 
@@ -141,19 +143,16 @@ void MenuState::ProcessRealEvent(){
 	bool buttonLeft , buttonRight;
 	buttonLeft = buttonRight = false;
 	
-	sf::Event ev;
+	//sf::Event ev;
 	
-	for (int i = 0; i < vRealEvents->size(); i++) {
-		ev = vRealEvents->at(i);
-		
-		if(ev.type == sf::Event::MouseButtonPressed)
-		{
-            if(ev.mouseButton.button == sf::Mouse::Left){
-                if(vButtons->at(0)->IsPressed(ev.mouseButton.x, ev.mouseButton.y))
-                    requestStateChange = true;
-            }
-		}	
-	}
+    if(inputManager->IsPressedMouseLeft())
+    {
+        Vector posMouse = inputManager->GetMousePosition();
+        
+        if(vButtons->at(0)->IsPressed(posMouse.GetX(), posMouse.GetY()))
+           requestStateChange = true;
+    }
+    
 	
-	vRealEvents->clear();
+	//vRealEvents->clear();
 }

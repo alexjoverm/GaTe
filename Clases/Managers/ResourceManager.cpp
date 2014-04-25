@@ -81,3 +81,15 @@ void ResourceManager::CleanResources() {
     contSoundBuffers->cleanResources();
     contTextures->cleanResources();
 }
+
+void ResourceManager::EraseFont(std::string id) {
+	contFonts->remove(id);
+}
+
+void ResourceManager::EraseTexture(std::string id) {
+	contTextures->remove(id);
+}
+
+void ResourceManager::EraseSoundBuffer(std::string id) {
+	contSoundBuffers->remove(id);
+}

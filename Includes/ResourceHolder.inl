@@ -77,3 +77,11 @@ void ResourceHolder<Resource, Identifier>::cleanResources()
 {
 	mResourceMap->clear();
 }
+
+
+template <typename Resource, typename Identifier>
+void ResourceHolder<Resource, Identifier>::remove(Identifier id) 
+{
+	auto found = mResourceMap->find(id);
+    mResourceMap->erase(found);
+}

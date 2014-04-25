@@ -17,7 +17,7 @@
 
 class Button {
 public:
-    Button(float width, float height, float x, float y, std::string contenido, std::string fuente="Urban");
+    Button(float x, float y, std::string contenido, std::string fuente="Urban");
     Button(const Button& orig);
     virtual ~Button();
     
@@ -42,8 +42,6 @@ public:
     
     
 private:
-    
-    sf::RectangleShape* rectangulo;  //Rectangulo no hará falta en un principio
     sf::Text*           texto;
     
     

@@ -25,6 +25,8 @@ class ResourceHolder
 		Resource&			get(Identifier id);
 		const Resource&		get(Identifier id) const;
         
+        void                remove(Identifier id);
+        
         void                cleanResources();
 
 

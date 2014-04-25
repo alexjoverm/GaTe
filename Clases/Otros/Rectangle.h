@@ -40,7 +40,7 @@ public:
 	
 // Intersecciones
 	bool Intersects(const Rectangle& rec){ return rectangle->intersects(*(rec.GetRectangle())); }
-	bool IsInside(Vector& vec){ return rectangle->contains(vec.GetX(), vec.GetY()); }
+	bool IsInside(const Vector& vec){ return rectangle->contains(vec.GetX(), vec.GetY()); }
 	
 	sf::FloatRect* GetRectangle() const{ return rectangle; }
 	

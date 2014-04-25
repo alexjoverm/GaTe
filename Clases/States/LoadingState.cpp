@@ -70,7 +70,8 @@ void LoadingState::Init() {
 
 void LoadingState::Clean(){
     // liberamos recursos
-    //resourceManager->CleanResources();
+    resourceManager->EraseFont("Urban");
+    resourceManager->EraseTexture("texBackground");
     
     delete background; background=NULL;
     

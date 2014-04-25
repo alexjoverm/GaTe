@@ -25,6 +25,7 @@ InputManager::InputManager() {
 	vMouse		= new std::vector<std::pair<sf::Mouse::Button , bool>>();
 	
 	keyW = keyA = keyS = keyD = mouseLeft = mouseRight = false;	
+    keyR = keyT = false;
 }
 
 InputManager::InputManager(const InputManager& orig) {
@@ -53,6 +54,15 @@ void InputManager::AddMouseKey(sf::Mouse::Button key,    bool pressed){
 // Actualiza las teclas pulsadas
 void InputManager::Update()
 {
+    lastKeyW = keyW;
+    lastKeyA = keyA;
+    lastKeyS = keyS;
+    lastKeyD = keyD;
+    
+    lastKeyR = keyR;
+    lastKeyT = keyT;
+        
+        
 	// Teclado
 	for (int i=0; i < vKeyboard->size(); i++)
 	{
@@ -75,20 +85,24 @@ void InputManager::Update()
                 
             case sf::Keyboard::T:
 				keyT = vKeyboard->at(i).second;	break;
+                
 		}
 	}
 	
 	vKeyboard->clear();
 	
+    lastMouseLeft = mouseLeft;
+    lastMouseRight = mouseRight;
+    
 	// Raton
 	for (int i=0; i < vMouse->size(); i++)
 	{
 		switch(vMouse->at(i).first)
 		{
 			case sf::Mouse::Left:
-				mouseLeft = vKeyboard->at(i).second;	break;
+				mouseLeft = vMouse->at(i).second;	break;
 			case sf::Mouse::Right:
-				mouseRight = vKeyboard->at(i).second;	break;
+				mouseRight = vMouse->at(i).second;	break;
 		}
 	}
 	
@@ -114,9 +128,23 @@ void InputManager::Process(sf::Event event)
 			break;
 
 		// A tiempo real
+        case sf::Event::MouseMoved:
+            mousePosX = event.mouseMove.x;
+            mousePosY = event.mouseMove.y;
+            break;
+            
 		case sf::Event::MouseButtonPressed:
-			// Habrá que comprobar el estado en el que está. De momento se lo damos al world
-			StateManager::Instance()->GetCurrentState()->AddRealEvent(event);
+            AddMouseKey(event.mouseButton.button, true);
+			break;
+            
+        case sf::Event::MouseButtonReleased:
+            AddMouseKey(event.mouseButton.button, false);
 			break;
 	}
+}
+
+
+
+Vector InputManager::GetMousePosition() const{
+    return Vector(mousePosX, mousePosY);
 }

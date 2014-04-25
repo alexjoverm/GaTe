@@ -148,15 +148,15 @@ void Player::Update(const Time& elapsedTime){
         this->spriteSheet->GetSprite()->setTextureRect(this->GetAnimatedSprite()->GetSpriteRect());
 
 	// Verticales
-	if(im->keyS){
+	if(im->IsPressedKeyS()){
 		// GetDown()
 	}
-	else if(im->keyW){
+	if(im->IsClickedKeyW()){
 		Jump();
 	}
 	
 	// Horizontales
-	if(im->keyA){
+	if(im->IsPressedKeyA()){
             //Iniciamos animacion y fijamos animacion izquierda
                 this->PlayAnimation();
                 
@@ -168,7 +168,7 @@ void Player::Update(const Time& elapsedTime){
 		
 		this->GetSprite()->SetOrientation(Transform::Orientation::Left);
 	}
-	else if(im->keyD){
+	else if(im->IsPressedKeyD()){
              this->PlayAnimation();
             this->SetCurrentAnimation("andar2", this->GetSprite());
 		if(canRight)
@@ -178,11 +178,11 @@ void Player::Update(const Time& elapsedTime){
 		
 		this->GetSprite()->SetOrientation(Transform::Orientation::Right);
 	}
-	else if(!im->keyA || !im->keyD)
-        {
-           this->StopAnimation();
-           SetSpeed(0.f, GetSpeed().GetY());
-        }	
+	else if(!im->IsPressedKeyA() || !im->IsPressedKeyD())
+    {
+       this->StopAnimation();
+       SetSpeed(0.f, GetSpeed().GetY());
+    }	
 	
 // COLISIONES
 	ResetCan();

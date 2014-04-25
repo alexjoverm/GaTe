@@ -12,7 +12,7 @@
 #include "../Otros/Time.h"
 #include "../HUD/Lifebar.h"
 #include "../Motor2D/RenderWindow.h"
-
+#include "../HUD/ImageButton.h"
 
 class HUD {
 public:
@@ -24,15 +24,26 @@ public:
     virtual void Draw(RenderWindow& window);
     virtual void Update(const Time& elapsedTime);
     
+    float GetHeight() const{ return menuHUD->getLocalBounds().GetHeight(); }
+    
+    //Lifebar
     void SubstractLife(float value){ barravida->Restar(value); }
+    
+    //ImageButton
+    void SetFrameSoundButton(int frame){ soundButton->SetFrame(frame); }
+    void SetFrameMusicButton(int frame){ musicButton->SetFrame(frame); }
     
 private:
     
 
-    SpriteSheet*         menuHUD;
+    SpriteSheet*        menuHUD;
+    SpriteSheet*        coins;
+    SpriteSheet*        clock;
+    
     sf::Text*           nivel;
     Lifebar*            barravida;
-    
+    ImageButton*        soundButton;
+    ImageButton*        musicButton;
     
     
     float alto;

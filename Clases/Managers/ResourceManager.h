@@ -32,6 +32,10 @@ public:
 	void AddTexture(std::string id, std::string filename);
 	void AddSoundBuffer(std::string id, std::string filename);
     
+    void EraseFont(std::string id);
+	void EraseTexture(std::string id);
+	void EraseSoundBuffer(std::string id);
+    
     void CleanResources();
 	
 
