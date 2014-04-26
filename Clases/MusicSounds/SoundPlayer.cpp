@@ -27,15 +27,18 @@ SoundPlayer::SoundPlayer()
 {
     mSounds = new std::list<sf::Sound>();
     loaded = false;
+    active = true;
     rm = ResourceManager::Instance();
     
 	// Listener apunta hacia afuera de la pantalla
 	sf::Listener::setDirection(0.f, 0.f, -1.f);
+    
 }
 
 void SoundPlayer::Play(std::string so)
 {
-	Play(so, GetListenerPosition());
+    if(active)
+        Play(so, GetListenerPosition());
 }
 
 void SoundPlayer::Play(std::string so, sf::Vector2f position)

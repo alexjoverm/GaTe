@@ -220,7 +220,7 @@ void Mapa::initMiniMap(){
 	fixed = window->getView();  // Esta nunca cambia
 	standard = fixed;          // 'standard' sera la que se muestre siempre
     
-    standard.setCenter(1000.f, 600.f);
+    standard.move(100.f, 100.f);
  //** MINI-MAPA (seguirá a la vista 'standard')  *************
     
 	unsigned int sizex = map.GetMapSize().x/6;

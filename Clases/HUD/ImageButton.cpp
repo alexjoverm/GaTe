@@ -41,11 +41,19 @@ ImageButton::~ImageButton() {
     window.Draw(*imageButton);
 }
 
+bool ImageButton::IsHover(){
+    InputManager* im = InputManager::Instance();
+    Vector mousePos = im->GetMousePosition();
+    
+    return imageButton->getGlobalBounds().IsInside(Vector(mousePos.GetX(), mousePos.GetY()));
+}
 
-
+bool ImageButton::IsClicked(){
+    return (IsHover() && InputManager::Instance()->IsClickedMouseLeft());
+}
 
 void ImageButton::Update(const Time& timeElapsed){
-    
+  /*  
     InputManager* im = InputManager::Instance();
     Vector mousePos = im->GetMousePosition();
 
@@ -70,7 +78,7 @@ void ImageButton::Update(const Time& timeElapsed){
                 SetFrame(0);
         }
             
-    }
+    }*/
 }
     
 

@@ -133,10 +133,9 @@ void WorldState::Init() {
     //LoadResources();
 	firstUpdate=false;
     
-    musicPlayer->Play();
+    
     
 //**************** Mapa y Level
-    
     
     std::vector<Rectangle*> vrec = level->map->getLayerCollitions("Colision suelo");
     
@@ -164,13 +163,16 @@ void WorldState::Init() {
 
 //****************** ANIMACIONES
     player->AddAnimation(new Animation("andar", player->GetSprite(), 3, 14, 0.05f, false, true));
-    player->AddAnimation(new Animation("andar2", player->GetSprite(), 15, 26, 0.05f, false, true));
     player->SetCurrentAnimation("andar", player->GetSprite());
     player->PlayAnimation();
     
     
 //******************* HUD
     hud = new HUD(50.f, "OpenSans");
+    hud->SetFrameMusicButton(1);
+    hud->SetFrameSoundButton(1);
+    
+    musicPlayer->Play();
 }
 
 
@@ -256,11 +258,7 @@ void WorldState::Update(const Time& timeElapsed)
         }
 
 
-
-
-
     //*************** HUD **
-
         hud->Update(timeElapsed);
         soundPlayer->RemoveStoppedSounds();
 	}

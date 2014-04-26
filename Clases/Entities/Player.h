@@ -34,12 +34,15 @@ public:
 	Gun* GetSelectedGun() const{ return guns->at(selectedGun); }
 	void Shot(float x, float y);
 	
-	// Eventos
-	//void DoEvent(sf::Keyboard::Key key, bool isPressed);
-	
 	// Colisiones
 	void DoRectangleColisions(const Time& elapsedTime);
 	void OnColision(Colision::Type type, const Rectangle& rec, const Time& elapsedTime);
+    
+    // Movimientos
+    void MovementLeft();
+    void MovementRight();
+    void MovementIdle();
+    void Jump();
 
 	virtual void ResetCan(){ canLeft = canRight = true; }
 	
@@ -47,11 +50,6 @@ public:
 	int selectedGun;
 	float forceJump = 800.f;
 	bool canLeft, canRight, canJump;
-	
-private:
-	void Jump();
-	//GetDown();
-	
 	
 private:
 	Clock	*clockReloadGun;

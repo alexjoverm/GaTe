@@ -71,6 +71,49 @@ HUD::~HUD() {
 
 void HUD::Update(const Time& elapsedTime){
     barravida->Update(elapsedTime);
-    musicButton->Update(elapsedTime);
-    soundButton->Update(elapsedTime);
+    
+    if(musicButton->IsClicked())
+        ToogleMusicButton();
+    
+    if(soundButton->IsClicked())
+        ToogleSoundButton();
+    
+        
+    //musicButton->Update(elapsedTime);
+    //soundButton->Update(elapsedTime);
+}
+
+
+
+void HUD::ToogleSoundButton(){
+    if(soundButton->currentFrame==0)
+        SetFrameSoundButton(1);
+    else
+        SetFrameSoundButton(0);
+}
+
+void HUD::ToogleMusicButton(){
+    if(musicButton->currentFrame==0)
+        SetFrameMusicButton(1);
+    else
+        SetFrameMusicButton(0);
+}
+
+
+void HUD::SetFrameSoundButton(int frame){
+    if(frame==0)
+        SoundPlayer::Instance()->active=false;
+    else if(frame==1)
+        SoundPlayer::Instance()->active=true;
+        
+    soundButton->SetFrame(frame);
+}
+
+void HUD::SetFrameMusicButton(int frame){
+    if(frame==0)
+        MusicPlayer::Instance()->DeActivate();
+    else if(frame==1)
+        MusicPlayer::Instance()->Activate();
+        
+    musicButton->SetFrame(frame);
 }

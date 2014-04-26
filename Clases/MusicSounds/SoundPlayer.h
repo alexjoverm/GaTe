@@ -29,6 +29,7 @@ public:
     sf::Vector2f	GetListenerPosition() const;
 
     bool                       loaded;
+    bool                       active;
     
 private:
     SoundPlayer();
@@ -36,7 +37,7 @@ private:
     static SoundPlayer*	instance;
     
     std::list<sf::Sound>    *mSounds;
-    ResourceManager           *rm;
+    ResourceManager         *rm;
 };
 
 #endif	/* SOUNDPLAYER_H */

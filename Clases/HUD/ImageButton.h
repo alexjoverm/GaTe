@@ -31,6 +31,9 @@ public:
 
     void SetFrame(int frame);
     void SetPosition(float x, float y);
+    
+    bool IsHover();
+    bool IsClicked();
  
     //Nº de tiles en el SpriteSheet
     int   maxFrames;

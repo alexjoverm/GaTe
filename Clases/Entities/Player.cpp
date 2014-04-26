@@ -55,6 +55,7 @@ Player::~Player() {
 	clockReloadGun = NULL;
 }
 
+/*****************************   MOVIMIENTOS   ****************/
 
 void Player::Jump(){
 	
@@ -66,10 +67,46 @@ void Player::Jump(){
 	}
 }
 
+void Player::MovementLeft(){
+    // Animacion de Andar sólo cuando está en el suelo
+    if(canJump){
+        this->PlayAnimation();
+        this->SetCurrentAnimation("andar", this->GetSprite());
+    }
+        
+    
+    if(canLeft)
+        SetSpeed(-factorSpeed, GetSpeed().GetY());
+    else
+        SetSpeed(0.f, GetSpeed().GetY());
+
+    this->GetSprite()->SetOrientation(Transform::Orientation::Left);
+}
+
+void Player::MovementRight(){
+    if(canJump){
+        this->PlayAnimation();
+        this->SetCurrentAnimation("andar", this->GetSprite());
+    }
+    
+    if(canRight)
+        SetSpeed(factorSpeed, GetSpeed().GetY());
+    else
+        SetSpeed(0.f, GetSpeed().GetY());
+
+    this->GetSprite()->SetOrientation(Transform::Orientation::Right);
+}
+
+
+void Player::MovementIdle(){
+    this->StopAnimation();
+    SetSpeed(0.f, GetSpeed().GetY());
+}
+
 
 void Player::Shot(float x, float y){
-	
     
+    // Si se ha pasado el tiempo de carga de la pistola
 	if(clockReloadGun->GetElapsedTime().AsSeconds() >= guns->at(selectedGun)->GetReloadTime().AsSeconds()){
 		
         // Reproducimos sonido
@@ -145,7 +182,6 @@ void Player::OnColision(Colision::Type type, const Rectangle& rec, const Time& e
 
 //************************* BUCLES PRINCIPALES *************************
 
-
 void Player::Draw(RenderWindow& window, float inter){
 	renderState->Draw(window, physicsState->GetPreviousPosition(), physicsState->GetPosition(), inter, *this->spriteSheet);
 	GetSelectedGun()->Draw(window, inter);
@@ -155,47 +191,29 @@ void Player::Draw(RenderWindow& window, float inter){
 void Player::Update(const Time& elapsedTime){
 	InputManager* im = InputManager::Instance();
 	
-         if(this->InitAnim())
-            this->GetAnimatedSprite()->Update(elapsedTime);
-        
-        this->spriteSheet->GetSprite()->setTextureRect(this->GetAnimatedSprite()->GetSpriteRect());
+// Animaciones
+    if(this->InitAnim())
+       this->GetAnimatedSprite()->Update(elapsedTime);
 
-	// Verticales
-	if(im->IsPressedKeyS()){
-		// GetDown()
-	}
-	if(im->IsClickedKeyW()){
+    this->spriteSheet->GetSprite()->setTextureRect(this->GetAnimatedSprite()->GetSpriteRect());
+
+// Movimientos
+    if(im->IsPressedKeyW())
 		Jump();
-	}
+	//else if(im->IsPressedKeyS())
+		// GetDown()
 	
-	// Horizontales
-	if(im->IsPressedKeyA()){
-            //Iniciamos animacion y fijamos animacion izquierda
-                this->PlayAnimation();
-                
-                this->SetCurrentAnimation("andar", this->GetSprite());
-		if(canLeft)
-			SetSpeed(-factorSpeed, GetSpeed().GetY());
-		else
-			SetSpeed(0.f, GetSpeed().GetY());
-		
-		this->GetSprite()->SetOrientation(Transform::Orientation::Left);
-	}
-	else if(im->IsPressedKeyD()){
-             this->PlayAnimation();
-            this->SetCurrentAnimation("andar2", this->GetSprite());
-		if(canRight)
-			SetSpeed(factorSpeed, GetSpeed().GetY());
-		else
-			SetSpeed(0.f, GetSpeed().GetY());
-		
-		this->GetSprite()->SetOrientation(Transform::Orientation::Right);
-	}
-	else if(!im->IsPressedKeyA() || !im->IsPressedKeyD())
-    {
-       this->StopAnimation();
-       SetSpeed(0.f, GetSpeed().GetY());
-    }	
+	if(im->IsPressedKeyA())
+        MovementLeft();
+	else if(im->IsPressedKeyD())
+        MovementRight();
+    
+    if(im->IsReleasedKeyA() || im->IsReleasedKeyD())
+        SetSpeed(0.f, GetSpeed().GetY());
+	
+	if(!im->IsPressedKeyA() && !im->IsPressedKeyD() && canJump)
+        MovementIdle();
+    
 	
 // COLISIONES
 	ResetCan();

@@ -36,9 +36,12 @@ public:
         
         void SetVolume(float volume);
         float GetVolume() const{ mMusic->getVolume(); }
-
+        
         Music::ID      currentTheme;
         bool           isPlaying;   
+        
+        bool Activate(){ SetVolume(90.f); }
+        bool DeActivate(){ SetVolume(0.f); }
 
 private:
     MusicPlayer();

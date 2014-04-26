@@ -30,8 +30,12 @@ public:
     void SubstractLife(float value){ barravida->Restar(value); }
     
     //ImageButton
-    void SetFrameSoundButton(int frame){ soundButton->SetFrame(frame); }
-    void SetFrameMusicButton(int frame){ musicButton->SetFrame(frame); }
+    void SetFrameSoundButton(int frame);
+    void SetFrameMusicButton(int frame);
+    
+    void ToogleSoundButton();
+    void ToogleMusicButton();
+    
     
 private:
     
