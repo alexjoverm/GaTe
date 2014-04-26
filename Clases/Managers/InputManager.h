@@ -33,21 +33,27 @@ public:
 // Getters
     bool IsClickedKeyA(){ return (keyA && !lastKeyA); }
     bool IsPressedKeyA(){ return keyA; }
+    bool IsReleasedKeyA(){ return (!keyA && lastKeyA); }
     
     bool IsClickedKeyS(){ return (keyS && !lastKeyS); }
     bool IsPressedKeyS(){ return keyS; }
+    bool IsReleasedKeyS(){ return (!keyS && lastKeyS); }
     
     bool IsClickedKeyD(){ return (keyD && !lastKeyD); }
     bool IsPressedKeyD(){ return keyD; }
+    bool IsReleasedKeyD(){ return (!keyD && lastKeyD); }
     
     bool IsClickedKeyW(){ return (keyW && !lastKeyW); }
     bool IsPressedKeyW(){ return keyW; }
+    bool IsReleasedKeyW(){ return (!keyW && lastKeyW); }
     
     bool IsClickedMouseLeft(){ return (mouseLeft && !lastMouseLeft); }
     bool IsPressedMouseLeft(){ return mouseLeft; }
+    bool IsReleasedMouseLeft(){ return (!mouseLeft && lastMouseLeft); }
     
     bool IsClickedMouseRight(){ return (mouseRight && !lastMouseRight); }
     bool IsPressedMouseRight(){ return mouseRight; }
+    bool IsReleasedMouseRight(){ return (!mouseRight && lastMouseRight); }
 	
     bool keyR, keyT;
     bool lastKeyR, lastKeyT;

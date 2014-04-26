@@ -24,10 +24,35 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <logicalFolder name="Music" displayName="Music" projectFiles="true">
+        <itemPath>Recursos/Music/Deeper.ogg</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Sounds" displayName="Sounds" projectFiles="true">
+        <itemPath>Recursos/Sounds/aliendeath.wav</itemPath>
+        <itemPath>Recursos/Sounds/disparo.wav</itemPath>
+        <itemPath>Recursos/Sounds/explosion.wav</itemPath>
+        <itemPath>Recursos/Sounds/laser.wav</itemPath>
+        <itemPath>Recursos/Sounds/lasergun.wav</itemPath>
+        <itemPath>Recursos/Sounds/smash.wav</itemPath>
+      </logicalFolder>
+      <itemPath>Recursos/Bullet.png</itemPath>
       <itemPath>Recursos/Character.png</itemPath>
       <itemPath>Recursos/Foe.png</itemPath>
       <itemPath>Recursos/OpenSans-Regular.ttf</itemPath>
-      <itemPath>Recursos/pistola.jpg</itemPath>
+      <itemPath>Recursos/SeleccionNivel.jpg</itemPath>
+      <itemPath>Recursos/Urban_Stone.otf</itemPath>
+      <itemPath>Recursos/dolar.png</itemPath>
+      <itemPath>Recursos/esferas1.png</itemPath>
+      <itemPath>Recursos/esferas2.png</itemPath>
+      <itemPath>Recursos/esferas3.png</itemPath>
+      <itemPath>Recursos/fondoMenu.jpg</itemPath>
+      <itemPath>Recursos/hud.png</itemPath>
+      <itemPath>Recursos/loading.jpg</itemPath>
+      <itemPath>Recursos/music.png</itemPath>
+      <itemPath>Recursos/pistola.png</itemPath>
+      <itemPath>Recursos/robot.png</itemPath>
+      <itemPath>Recursos/sounds.png</itemPath>
+      <itemPath>Recursos/time.png</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -119,6 +144,12 @@
         <itemPath>Clases/MotorPhysics/PhysicsState.cpp</itemPath>
         <itemPath>Clases/MotorPhysics/PhysicsState.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="MusicSounds" displayName="MusicSounds" projectFiles="true">
+        <itemPath>Clases/MusicSounds/MusicPlayer.cpp</itemPath>
+        <itemPath>Clases/MusicSounds/MusicPlayer.h</itemPath>
+        <itemPath>Clases/MusicSounds/SoundPlayer.cpp</itemPath>
+        <itemPath>Clases/MusicSounds/SoundPlayer.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="Otros" displayName="Otros" projectFiles="true">
         <itemPath>Clases/Otros/Clock.cpp</itemPath>
         <itemPath>Clases/Otros/Clock.h</itemPath>
@@ -175,6 +206,7 @@
     <Elem>Clases</Elem>
     <Elem>Clases</Elem>
     <Elem>Maps</Elem>
+    <Elem>Recursos</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -409,6 +441,14 @@
       </item>
       <item path="Clases/MotorPhysics/PhysicsState.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Clases/MusicSounds/MusicPlayer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/MusicSounds/MusicPlayer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/MusicSounds/SoundPlayer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/MusicSounds/SoundPlayer.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Clases/Otros/Clock.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Otros/Clock.h" ex="false" tool="3" flavor2="0">
@@ -485,13 +525,55 @@
       </item>
       <item path="Maps/tmw_desert_spacing.png" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Recursos/Bullet.png" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Recursos/Character.png" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Recursos/Foe.png" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Recursos/Music/Deeper.ogg" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Recursos/OpenSans-Regular.ttf" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Recursos/pistola.jpg" ex="false" tool="3" flavor2="0">
+      <item path="Recursos/SeleccionNivel.jpg" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Sounds/aliendeath.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Sounds/disparo.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Sounds/explosion.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Sounds/laser.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Sounds/lasergun.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Sounds/smash.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Urban_Stone.otf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/dolar.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/esferas1.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/esferas2.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/esferas3.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/fondoMenu.jpg" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/hud.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/loading.jpg" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/music.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pistola.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/robot.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/sounds.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/time.png" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -736,6 +818,14 @@
       </item>
       <item path="Clases/MotorPhysics/PhysicsState.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Clases/MusicSounds/MusicPlayer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/MusicSounds/MusicPlayer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/MusicSounds/SoundPlayer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/MusicSounds/SoundPlayer.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Clases/Otros/Clock.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Otros/Clock.h" ex="false" tool="3" flavor2="0">
@@ -812,13 +902,55 @@
       </item>
       <item path="Maps/tmw_desert_spacing.png" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Recursos/Bullet.png" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Recursos/Character.png" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Recursos/Foe.png" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Recursos/Music/Deeper.ogg" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Recursos/OpenSans-Regular.ttf" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Recursos/pistola.jpg" ex="false" tool="3" flavor2="0">
+      <item path="Recursos/SeleccionNivel.jpg" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Sounds/aliendeath.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Sounds/disparo.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Sounds/explosion.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Sounds/laser.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Sounds/lasergun.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Sounds/smash.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/Urban_Stone.otf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/dolar.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/esferas1.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/esferas2.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/esferas3.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/fondoMenu.jpg" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/hud.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/loading.jpg" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/music.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pistola.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/robot.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/sounds.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/time.png" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

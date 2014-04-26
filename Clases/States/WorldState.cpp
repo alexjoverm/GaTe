@@ -42,6 +42,9 @@ WorldState::WorldState() {
     
     id = States::ID::WorldState;
     hud = NULL;
+    
+    // Players
+    musicPlayer = MusicPlayer::Instance();
 }
 
 WorldState::WorldState(const WorldState& orig) {
@@ -112,6 +115,8 @@ void WorldState::LoadResources()
         // Fuente
         resourceManager->AddFont("OpenSans", "Recursos/OpenSans-Regular.ttf");
         
+        musicPlayer->Load(Music::ID::Level1Theme);
+        
 	}
 	catch (std::runtime_error& e)	{
 		std::cout << "Exception: " << e.what() << std::endl;
@@ -126,6 +131,8 @@ void WorldState::Init() {
     reloj.Restart();
     //LoadResources();
 	firstUpdate=false;
+    
+    musicPlayer->Play();
     
 //**************** Mapa y Level
     
@@ -200,8 +207,8 @@ void WorldState::Clean(){
     
     
  //**************** HUD
-    
     delete hud; hud = NULL;
+    musicPlayer->Stop();
 }
 
 
@@ -269,7 +276,9 @@ void WorldState::Render(float interp)
     
 	window->Clear(sf::Color(255,255,255, 255)); // rgba
 	
+    window->renderWindow->setView(level->map->standard);
     level->map->render(true);
+    
 	
 	// Renderizamos entidades	
 	for(int i = 0; i < vEntityStatic->size(); i++)
@@ -284,9 +293,11 @@ void WorldState::Render(float interp)
     player->Draw(*window, interp);
     
  // HUD
+    window->renderWindow->setView(level->map->fixed);
     hud->Draw(*window);
 	
 	window->Display();
+    
     
     if(InputManager::Instance()->keyT)
         StateManager::Instance()->SetCurrentState(States::ID::MenuState);

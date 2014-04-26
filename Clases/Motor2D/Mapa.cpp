@@ -220,6 +220,7 @@ void Mapa::initMiniMap(){
 	fixed = window->getView();  // Esta nunca cambia
 	standard = fixed;          // 'standard' sera la que se muestre siempre
     
+    standard.setCenter(1000.f, 600.f);
  //** MINI-MAPA (seguirá a la vista 'standard')  *************
     
 	unsigned int sizex = map.GetMapSize().x/6;
@@ -236,7 +237,7 @@ void Mapa::initMiniMap(){
         proporcion.x,                 //Ancho
         proporcion.y                  //Alto
     )); //Lo situamos Abajo-Derecha
-    minimap.zoom(5.0f); //Zoom funciona a la inversa
+    minimap.zoom(6.0f); //Zoom funciona a la inversa
     
     //Dibujamos un rectangulo alrededor del minimapa
         miniback.setSize( sf::Vector2f( static_cast<float>(sizex)+6,static_cast<float>(window->getSize().y*sizey/window->getSize().x+6) ) );
@@ -269,13 +270,14 @@ void Mapa::render(bool miniMapEnable){
 void Mapa::renderMiniMap(){ 
     
     
-    fixed = window->getView();
+    //fixed = window->getView();
+    window->setView(fixed);
        window->draw(miniback);
     
     window->setView(minimap);    // Mini-Mapa
         window->draw(map);       
 
-    window->setView(fixed);      // Zelda y Controles (elementos de ultima capa
+    window->setView(standard); 
     
 }
 

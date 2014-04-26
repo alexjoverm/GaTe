@@ -12,6 +12,7 @@
 #include "../Managers/InputManager.h"
 #include "../Managers/ResourceManager.h"
 #include "../HUD/Button.h"
+#include "../MusicSounds/MusicPlayer.h"
 #include "State.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -53,6 +54,9 @@ private:
     
     SpriteSheet*    background;
     std::vector<Button*>    *vButtons;
+    
+    //Players
+    MusicPlayer*         musicPlayer;
     
     bool requestStateChange;
 };

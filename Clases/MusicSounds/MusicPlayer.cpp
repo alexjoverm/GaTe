@@ -1,44 +1,83 @@
-/*#include "MusicPlayer.h"
+/* 
+ * File:   MusicPlayer.cpp
+ * Author: aba
+ * 
+ * Created on April 25, 2014, 8:40 AM
+ */
+
+#include "MusicPlayer.h"
+
+MusicPlayer* MusicPlayer::instance = 0;
+
+MusicPlayer* MusicPlayer::Instance() {
+	if(instance == 0)
+		instance = new MusicPlayer();
+	
+	return instance;
+}
 
 
 MusicPlayer::MusicPlayer()
-: mMusic()
-, mFilenames()
-, mVolume(100.f)
 {
-	mFilenames[Music::MenuTheme]    = "../Recursos/Music/Deeper.ogg";
-	
+    mMusic = new sf::Music();
+    mFilenames = new std::map<Music::ID, std::string>();
+    
+    mFilenames->insert(std::make_pair(Music::MenuTheme , "Recursos/Music/menu.ogg"));
+    mFilenames->insert(std::make_pair(Music::Level1Theme , "Recursos/Music/Deeper.ogg"));
+    
+    mMusic->setVolume(90.f);
+    currentTheme = Music::MenuTheme;
+    isPlaying = false;
 }
 
-void MusicPlayer::play(Music::ID theme)
+MusicPlayer::~MusicPlayer()
 {
-	std::string filename = mFilenames[theme];
-
-	if (!mMusic.openFromFile(filename))
-		throw std::runtime_error("Music " + filename + " could not be loaded.");
-
-	mMusic.setVolume(mVolume);
-	mMusic.setLoop(true);
-	mMusic.play();
+    delete mMusic; mMusic=NULL;
+    delete mFilenames; mFilenames=NULL;
 }
 
-void MusicPlayer::stop()
-{
-	mMusic.stop();
+void MusicPlayer::Load(Music::ID theme){
+    currentTheme = theme;
+    std::string filename = mFilenames->find(theme)->second;
+
+	if (!mMusic->openFromFile(filename))
+		throw std::string("Music " + filename + " could not be loaded.");
 }
 
-void MusicPlayer::setVolume(float volume)
+void MusicPlayer::Play()
 {
-	mVolume = volume;
-        mMusic.setVolume(mVolume);
+    if(!isPlaying)
+    {
+        mMusic->setLoop(true);
+        mMusic->play();
+        isPlaying = true;
+    }
 }
 
-void MusicPlayer::setPaused(bool paused)
+void MusicPlayer::Stop()
 {
-	if (paused)
-		mMusic.pause();
-	else
-		mMusic.play();
+	mMusic->stop();
+    isPlaying = false;
 }
 
-*/
+void MusicPlayer::SetVolume(float volume)
+{
+    if(volume < 0.f || volume > 100.f)
+        throw std::string("Debes introducir un valor entre 0 y 100");
+    
+    mMusic->setVolume(volume);
+}
+
+void MusicPlayer::SetPaused(bool paused)
+{
+	if (paused){
+		mMusic->pause();
+        isPlaying = false;
+    }
+	else{
+		mMusic->play();
+        isPlaying = true;
+    }
+}
+
+

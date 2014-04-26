@@ -25,6 +25,9 @@ MenuState::MenuState() {
 	vRealEvents = new std::vector<sf::Event>();
     
     id = States::ID::MenuState;
+    
+    //Players
+    musicPlayer = MusicPlayer::Instance();
 }
 
 MenuState::MenuState(const MenuState& orig) {
@@ -46,6 +49,9 @@ void MenuState::LoadResources(){
 		
 		// Fuente
 		resourceManager->AddFont("Urban", "Recursos/Urban_Stone.otf");
+        
+        if(!musicPlayer->isPlaying)
+            musicPlayer->Load(Music::MenuTheme);
 	}
 	catch (std::runtime_error& e)	{
 		std::cout << "Exception: " << e.what() << std::endl;
@@ -56,6 +62,8 @@ void MenuState::LoadResources(){
 
 void MenuState::Init() {
 	LoadResources(); // Cargamos recursos
+    
+    musicPlayer->Play();
 	
 	// Inicializamos fuentes
 	background = new SpriteSheet(resourceManager->GetTexture("texBackground"));

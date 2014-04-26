@@ -1,7 +1,5 @@
-/*#ifndef BOOK_SOUNDPLAYER_HPP
-#define BOOK_SOUNDPLAYER_HPP
-
-
+#ifndef SOUNDPLAYER_H
+#define	SOUNDPLAYER_H
 
 #include <SFML/System/Vector2.hpp>
 #include <SFML/System/NonCopyable.hpp>
@@ -14,35 +12,34 @@
 
 namespace SoundEffect
 {
-        enum ID
-        {
-                Disparo,
-                Disparo2,
-                Explosion,
-                MuerteEnemigo,
-        };
+    enum ID
+    {
+        Shot, Laser, 
+        Explosion, EnemyDeath,
+    };
 }
 
-typedef ResourceHolder<sf::SoundBuffer, SoundEffect::ID>
-SoundBufferHolder;
+typedef ResourceHolder<sf::SoundBuffer, SoundEffect::ID> SoundBufferHolder;
 
 class SoundPlayer : private sf::NonCopyable
 {
-	public:
+public:
 									SoundPlayer();
 
-		void						play(SoundEffect::ID effect);
-		void						play(SoundEffect::ID effect, sf::Vector2f position);
+                void Play(SoundEffect::ID effect);
+                void Play(SoundEffect::ID effect, sf::Vector2f position);
 
-		void						removeStoppedSounds();
-		void						setListenerPosition(sf::Vector2f position);
-		sf::Vector2f				getListenerPosition() const;
+                void RemoveStoppedSounds();
+                void SetListenerPosition(sf::Vector2f position);
 
 
-	private:
-		SoundBufferHolder			mSoundBuffers;
-		std::list<sf::Sound>                    mSounds;
+                sf::Vector2f	GetListenerPosition() const;
+
+
+private:
+		SoundBufferHolder	mSoundBuffers;
+		std::list<sf::Sound>    mSounds;
 };
 
-#endif // BOOK_SOUNDPLAYER_HPP
-*/
+#endif	/* SOUNDPLAYER_H */
+

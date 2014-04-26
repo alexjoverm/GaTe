@@ -69,12 +69,22 @@ void Player::Jump(){
 
 void Player::Shot(float x, float y){
 	
+    
 	if(clockReloadGun->GetElapsedTime().AsSeconds() >= guns->at(selectedGun)->GetReloadTime().AsSeconds()){
 		
-		//************ ACABAR ESTO
+		Vector posPistola = Vector();
+        posPistola = guns->at(selectedGun)->GetPosition();
+        sf::Vector2i aux = RenderWindow::Instance()->renderWindow->mapCoordsToPixel(sf::Vector2f(posPistola.GetX(), posPistola.GetY()) 
+            , WorldState::Instance()->level->map->standard);
+        
+        posPistola.Set(aux.x , aux.y);
+            
 		Vector sp = Vector(0.f, 0.f);
-		sp = Vector(x, y);
-		sp -= guns->at(selectedGun)->GetPosition();
+        
+        
+		sp = Vector(x, y);        
+		sp -= posPistola;
+        
 		
 		Vector norm = sp.GetNormalize();
 		norm *= 800.f;

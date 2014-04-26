@@ -22,6 +22,9 @@ LevelSelectionState::LevelSelectionState() {
 	vRealEvents = new std::vector<sf::Event>();
     
     id = States::ID::LevelSelectionState;
+    
+    //Players
+    musicPlayer = MusicPlayer::Instance();
 }
 
 LevelSelectionState::LevelSelectionState(const LevelSelectionState& orig) {
@@ -43,6 +46,9 @@ void LevelSelectionState::LoadResources(){
 		
 		// Fuente
 		resourceManager->AddFont("OpenSans", "Recursos/OpenSans-Regular.ttf");
+        
+        if(!musicPlayer->isPlaying)
+            musicPlayer->Load(Music::MenuTheme);
 	}
 	catch (std::runtime_error& e)	{
 		std::cout << "Exception: " << e.what() << std::endl;
@@ -53,6 +59,8 @@ void LevelSelectionState::LoadResources(){
 
 void LevelSelectionState::Init() {
 	LoadResources(); // Cargamos recursos
+    
+    musicPlayer->Play();
 	
 	// Inicializamos
     fondo= new SpriteSheet(resourceManager->GetTexture("texMenuLevelSelection"));
@@ -66,6 +74,7 @@ void LevelSelectionState::Clean(){
     
     vNonRealEvents->clear();
     vRealEvents->clear();
+    musicPlayer->Stop();
 }
 
 

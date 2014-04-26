@@ -12,6 +12,7 @@
 #include "../Motor2D/RenderWindow.h"
 #include "../Managers/InputManager.h"
 #include "../Managers/ResourceManager.h"
+#include "../MusicSounds/MusicPlayer.h"
 #include "State.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -46,6 +47,9 @@ private:
 	std::vector<sf::Event>		*vNonRealEvents;
 	std::vector<sf::Event>		*vRealEvents;
     SpriteSheet*                    fondo;
+    
+    //Players
+    MusicPlayer*         musicPlayer;
 };
 
 #endif	/* LEVELSELECTIONSTATE_H */

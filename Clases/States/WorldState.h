@@ -16,6 +16,7 @@
 #include "../Entities/EntActive.h"
 #include "../Managers/InputManager.h"
 #include "../Managers/ResourceManager.h"
+#include "../MusicSounds/MusicPlayer.h"
 #include "../HUD/HUD.h"
 #include "State.h"
 #include <SFML/Graphics.hpp>
@@ -81,7 +82,8 @@ private:
 	std::vector<sf::Event>		*vNonRealEvents;
 	std::vector<sf::Event>		*vRealEvents;
     
-    //sf::Mutex   mMutex;
+    //Players
+    MusicPlayer*         musicPlayer;
     
     // HUD
     HUD*     hud;

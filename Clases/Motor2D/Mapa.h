@@ -39,15 +39,17 @@ public:
     void                                renderMiniMap();    
     
     
+    sf::View                    fixed;
+    sf::View                    standard;
+    sf::View                    minimap;
+    
 private:
     
     sf::RenderWindow*           window;
     
     tmx::MapLoader              map;
     
-    sf::View                    fixed;
-    sf::View                    standard;
-    sf::View                    minimap;
+
     
     sf::RectangleShape          miniback;
     

@@ -70,6 +70,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/MotorPhysics/Colisionable.o \
 	${OBJECTDIR}/Clases/MotorPhysics/Maths.o \
 	${OBJECTDIR}/Clases/MotorPhysics/PhysicsState.o \
+	${OBJECTDIR}/Clases/MusicSounds/MusicPlayer.o \
+	${OBJECTDIR}/Clases/MusicSounds/SoundPlayer.o \
 	${OBJECTDIR}/Clases/Otros/Clock.o \
 	${OBJECTDIR}/Clases/Otros/LoadingTask.o \
 	${OBJECTDIR}/Clases/Otros/Rectangle.o \
@@ -281,6 +283,16 @@ ${OBJECTDIR}/Clases/MotorPhysics/PhysicsState.o: Clases/MotorPhysics/PhysicsStat
 	${MKDIR} -p ${OBJECTDIR}/Clases/MotorPhysics
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/MotorPhysics/PhysicsState.o Clases/MotorPhysics/PhysicsState.cpp
+
+${OBJECTDIR}/Clases/MusicSounds/MusicPlayer.o: Clases/MusicSounds/MusicPlayer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/MusicSounds
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/MusicSounds/MusicPlayer.o Clases/MusicSounds/MusicPlayer.cpp
+
+${OBJECTDIR}/Clases/MusicSounds/SoundPlayer.o: Clases/MusicSounds/SoundPlayer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/MusicSounds
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/MusicSounds/SoundPlayer.o Clases/MusicSounds/SoundPlayer.cpp
 
 ${OBJECTDIR}/Clases/Otros/Clock.o: Clases/Otros/Clock.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Otros

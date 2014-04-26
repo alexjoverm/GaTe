@@ -1,5 +1,5 @@
-/*#ifndef BOOK_MUSICPLAYER_HPP
-#define BOOK_MUSICPLAYER_HPP
+#ifndef MUSICPLAYER_H
+#define	MUSICPLAYER_H
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -17,27 +17,37 @@ namespace Music
 {
         enum ID
         {
-                MenuTheme,
+                MenuTheme, Level1Theme, Level2Theme, Level3Theme
         };
 }
 
 //template <typename Resource, typename Identifier>
 class MusicPlayer : private sf::NonCopyable
 {
-	public:
-									MusicPlayer();
+public:
+        static MusicPlayer* Instance(); // Singleton
 
-		void						play(Music::ID theme);
-		void						stop();
-		void						setPaused(bool paused);
-		void						setVolume(float volume);
+        void Load(Music::ID theme);
+        void Play();
+        void Stop();
+        void SetPaused(bool paused);
+        
+        bool IsPaused(){ bool a =mMusic->Playing; return !mMusic->Playing; }
+        
+        void SetVolume(float volume);
+        float GetVolume() const{ mMusic->getVolume(); }
 
+        Music::ID      currentTheme;
+        bool           isPlaying;   
 
-	private:
-		sf::Music							mMusic;
-		std::map<Music::ID, std::string>	                        mFilenames;
-		float								mVolume;
+private:
+    MusicPlayer();
+    ~MusicPlayer();
+    static MusicPlayer*	instance;
+    
+	sf::Music*			   mMusic;
+	std::map<Music::ID, std::string>*   mFilenames;
 };
 
-#endif // BOOK_MUSICPLAYER_HPP
-*/
+
+#endif	/* MUSICPLAYER_H */
