@@ -84,6 +84,7 @@ private:
     
     //Players
     MusicPlayer*         musicPlayer;
+    SoundPlayer*         soundPlayer;
     
     // HUD
     HUD*     hud;

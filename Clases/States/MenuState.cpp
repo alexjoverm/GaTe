@@ -50,6 +50,9 @@ void MenuState::LoadResources(){
 		// Fuente
 		resourceManager->AddFont("Urban", "Recursos/Urban_Stone.otf");
         
+        if(!SoundPlayer::Instance()->loaded)
+            SoundPlayer::Instance()->LoadMenuSounds();
+        
         if(!musicPlayer->isPlaying)
             musicPlayer->Load(Music::MenuTheme);
 	}
@@ -112,6 +115,8 @@ void MenuState::Update(const Time& timeElapsed)
     
     if(requestStateChange)
        StateManager::Instance()->SetCurrentState(States::ID::LevelSelectionState);
+    
+    SoundPlayer::Instance()->RemoveStoppedSounds();
 }
 
 

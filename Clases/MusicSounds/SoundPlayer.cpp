@@ -6,41 +6,44 @@
 #include <cmath>
 
 
-namespace
-{
-	// Sistema de coordenadas para el player
-	const float ListenerZ = 300.f;
-	const float Attenuation = 8.f;
-	const float MinDistance2D = 200.f;
-	const float MinDistance3D = std::sqrt(MinDistance2D*MinDistance2D + ListenerZ*ListenerZ);
+
+// Sistema de coordenadas para el listener del player
+const float ListenerZ = 300.f;
+const float Attenuation = 8.f;
+const float MinDistance2D = 200.f;
+const float MinDistance3D = std::sqrt(MinDistance2D*MinDistance2D + ListenerZ*ListenerZ);
+
+
+SoundPlayer* SoundPlayer::instance = 0;
+
+SoundPlayer* SoundPlayer::Instance() {
+	if(instance == 0)
+		instance = new SoundPlayer();
+	
+	return instance;
 }
 
 SoundPlayer::SoundPlayer()
-: mSoundBuffers()
-, mSounds()
 {
-
+    mSounds = new std::list<sf::Sound>();
+    loaded = false;
+    rm = ResourceManager::Instance();
     
-	mSoundBuffers.load(SoundEffect::Shot,			"Recursos/Sounds/smash.wav");
-    mSoundBuffers.load(SoundEffect::Laser,			"Recursos/Sounds/laser.wav");
-    mSoundBuffers.load(SoundEffect::Explosion,		"Recursos/Sounds/explosion.wav");
-    mSoundBuffers.load(SoundEffect::EnemyDeath,		"Recursos/Sounds/aliendeath.wav");
-
 	// Listener apunta hacia afuera de la pantalla
 	sf::Listener::setDirection(0.f, 0.f, -1.f);
 }
 
-void SoundPlayer::Play(SoundEffect::ID effect)
+void SoundPlayer::Play(std::string so)
 {
-	Play(effect, GetListenerPosition());
+	Play(so, GetListenerPosition());
 }
 
-void SoundPlayer::Play(SoundEffect::ID effect, sf::Vector2f position)
+void SoundPlayer::Play(std::string so, sf::Vector2f position)
 {
-	mSounds.push_back(sf::Sound());
-	sf::Sound& sound = mSounds.back();
+	mSounds->push_back(sf::Sound());
+	sf::Sound& sound = mSounds->back();
 
-	sound.setBuffer(mSoundBuffers.get(effect));
+	sound.setBuffer(rm->GetSoundBuffer(so));
 	sound.setPosition(position.x, -position.y, 0.f);
 	sound.setAttenuation(Attenuation);
 	sound.setMinDistance(MinDistance3D);
@@ -48,9 +51,26 @@ void SoundPlayer::Play(SoundEffect::ID effect, sf::Vector2f position)
 	sound.play();
 }
 
+void SoundPlayer::LoadMenuSounds()
+{
+    // FALTA AÑADIR MENU SOUNDS 
+    
+	loaded = true;
+}
+
+void SoundPlayer::LoadGameSounds()
+{
+	rm->AddSoundBuffer("shot",			"Recursos/Sounds/smash.wav");
+    rm->AddSoundBuffer("laser",			"Recursos/Sounds/laser.wav");
+    rm->AddSoundBuffer("explosion",		"Recursos/Sounds/explosion.wav");
+    rm->AddSoundBuffer("enemyDeath",    "Recursos/Sounds/aliendeath.wav");
+}
+
+
+
 void SoundPlayer::RemoveStoppedSounds()
 {
-	mSounds.remove_if([] (const sf::Sound& s)
+	mSounds->remove_if([] (const sf::Sound& s)
 	{
 		return s.getStatus() == sf::Sound::Stopped;
 	});

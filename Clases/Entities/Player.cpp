@@ -72,23 +72,26 @@ void Player::Shot(float x, float y){
     
 	if(clockReloadGun->GetElapsedTime().AsSeconds() >= guns->at(selectedGun)->GetReloadTime().AsSeconds()){
 		
+        // Reproducimos sonido
+        SoundPlayer::Instance()->Play("shot");
+        
+        // Calculamos posicion mapeada de la pistola
 		Vector posPistola = Vector();
         posPistola = guns->at(selectedGun)->GetPosition();
         sf::Vector2i aux = RenderWindow::Instance()->renderWindow->mapCoordsToPixel(sf::Vector2f(posPistola.GetX(), posPistola.GetY()) 
             , WorldState::Instance()->level->map->standard);
         
         posPistola.Set(aux.x , aux.y);
-            
-		Vector sp = Vector(0.f, 0.f);
-        
-        
-		sp = Vector(x, y);        
+          
+        // Calculamos vector "pistola-raton"
+		Vector sp = Vector(x, y); 
 		sp -= posPistola;
         
-		
+		// Normalizamos y multiplicamos por velocidad de la bala
 		Vector norm = sp.GetNormalize();
 		norm *= 800.f;
 		
+        //  Disparamos
 		guns->at(selectedGun)->Shot(norm, guns->at(selectedGun)->GetPosition());
 		clockReloadGun->Restart();
 	}

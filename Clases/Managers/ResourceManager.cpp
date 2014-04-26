@@ -78,8 +78,11 @@ void ResourceManager::AddSoundBuffer(std::string id, std::string filename) {
 
 void ResourceManager::CleanResources() {
 	contFonts->cleanResources();
-    contSoundBuffers->cleanResources();
     contTextures->cleanResources();
+}
+
+void ResourceManager::CleanGameSounds() {
+	contSoundBuffers->cleanResources();
 }
 
 void ResourceManager::EraseFont(std::string id) {

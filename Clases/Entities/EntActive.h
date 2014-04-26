@@ -12,6 +12,7 @@
 #include "../Motor2D/RenderState.h"
 #include "../MotorPhysics/PhysicsState.h"
 
+
 class EntActive: public Entity {
 public:
 	EntActive(const sf::Texture& tex);

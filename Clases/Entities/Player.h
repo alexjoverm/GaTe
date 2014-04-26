@@ -13,7 +13,7 @@
 #include "../Animations/Animable.h"
 #include "Gun.h"
 #include "../Otros/Clock.h"
-
+#include "../MusicSounds/SoundPlayer.h"
 
 class Player: public EntActive, public Colisionable, public Animable {
 public:

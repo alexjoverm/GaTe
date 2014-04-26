@@ -37,6 +37,7 @@ public:
 	void EraseSoundBuffer(std::string id);
     
     void CleanResources();
+    void CleanGameSounds();
 	
 
 protected:

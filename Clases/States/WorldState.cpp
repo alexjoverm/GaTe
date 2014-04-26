@@ -45,6 +45,7 @@ WorldState::WorldState() {
     
     // Players
     musicPlayer = MusicPlayer::Instance();
+    soundPlayer = SoundPlayer::Instance();
 }
 
 WorldState::WorldState(const WorldState& orig) {
@@ -93,10 +94,8 @@ void WorldState::LoadResources()
 
         // Texturas
         for(int i = 0; i < level->vTextures->size(); i++)	// Del nivel
-        {
-            //std::cout << "texLevel" + StringUtils::ConvertInt(i) << std::endl;
             resourceManager->AddTexture("texLevel" + StringUtils::ConvertInt(i) , level->vTextures->at(i));
-        }
+        
         level->LoadMap("mapa1.tmx");
 
         resourceManager->AddTexture("texCharacter", "Recursos/Character.png");	// Del personaje (le asignamos la 20 por ejemplo)
@@ -116,6 +115,8 @@ void WorldState::LoadResources()
         resourceManager->AddFont("OpenSans", "Recursos/OpenSans-Regular.ttf");
         
         musicPlayer->Load(Music::ID::Level1Theme);
+        soundPlayer->LoadGameSounds();
+        
         
 	}
 	catch (std::runtime_error& e)	{
@@ -177,6 +178,7 @@ void WorldState::Clean(){
     
 //************* Recursos
     resourceManager->CleanResources();
+    resourceManager->CleanGameSounds();
     
 //************* Variables
 	delete player;  player = NULL;
@@ -260,6 +262,7 @@ void WorldState::Update(const Time& timeElapsed)
     //*************** HUD **
 
         hud->Update(timeElapsed);
+        soundPlayer->RemoveStoppedSounds();
 	}
 	   
 }

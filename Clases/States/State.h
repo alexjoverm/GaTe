@@ -12,6 +12,7 @@
 #include "../Motor2D/RenderWindow.h"
 #include "../Managers/ResourceManager.h"
 #include "../Managers/InputManager.h"
+#include "../MusicSounds/SoundPlayer.h"
 
 namespace States{
 	enum ID{

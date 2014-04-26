@@ -5,40 +5,38 @@
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
 #include <SFML/Audio/Sound.hpp>
-#include "../Includes/ResourceHolder.hpp"
+#include "../Managers/ResourceManager.h"
 
 #include <list>
 
 
-namespace SoundEffect
-{
-    enum ID
-    {
-        Shot, Laser, 
-        Explosion, EnemyDeath,
-    };
-}
-
-typedef ResourceHolder<sf::SoundBuffer, SoundEffect::ID> SoundBufferHolder;
-
-class SoundPlayer : private sf::NonCopyable
+class SoundPlayer
 {
 public:
-									SoundPlayer();
+    static SoundPlayer* Instance(); // Singleton
 
-                void Play(SoundEffect::ID effect);
-                void Play(SoundEffect::ID effect, sf::Vector2f position);
+    void Play(std::string so);
+    void Play(std::string so, sf::Vector2f position);
+    
+    void LoadGameSounds();
+    void LoadMenuSounds();
+    
+    void Clean();
 
-                void RemoveStoppedSounds();
-                void SetListenerPosition(sf::Vector2f position);
+    void RemoveStoppedSounds();
 
+    void SetListenerPosition(sf::Vector2f position);
+    sf::Vector2f	GetListenerPosition() const;
 
-                sf::Vector2f	GetListenerPosition() const;
-
-
+    bool                       loaded;
+    
 private:
-		SoundBufferHolder	mSoundBuffers;
-		std::list<sf::Sound>    mSounds;
+    SoundPlayer();
+    ~SoundPlayer();
+    static SoundPlayer*	instance;
+    
+    std::list<sf::Sound>    *mSounds;
+    ResourceManager           *rm;
 };
 
 #endif	/* SOUNDPLAYER_H */

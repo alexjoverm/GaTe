@@ -48,6 +48,7 @@ void Bullet::DoColisions(const Time& elapsedTime, int i){
 	for(int j=0; j < world->level->vRectColision->size() && !colisionado; j++){
 		if(CheckColision(*world->level->vRectColision->at(j))){
 			world->DeleteBullet(i);
+            SoundPlayer::Instance()->Play("explosion");
 			colisionado = true;
 		}
 	}
@@ -58,10 +59,13 @@ void Bullet::DoColisions(const Time& elapsedTime, int i){
 			// Comprobamos con que ha chocado y realizamos acción
 			if(world->vEntityColisionable->at(j)->GetClassName() == "Enemy"){
 				((Enemy*)world->vEntityColisionable->at(j))->life -= this->damage;
+                
+// AHORA MISMO ESTO ES DE PRUEBA, TENDRÍA QUE SER A UN ENEMIGO
                 WorldState::Instance()->SubstractLife(this->damage);
 			}
 						
 			world->DeleteBullet(i);
+            SoundPlayer::Instance()->Play("explosion");
 			colisionado = true;
 		}
 	}
@@ -70,6 +74,7 @@ void Bullet::DoColisions(const Time& elapsedTime, int i){
 	// Si se acaba su tiempo de vida, destruimos la bala
 	if(!colisionado){
 		if(GetTimeElapsed().AsSeconds() >= world->player->GetSelectedGun()->GetLifeTime().AsSeconds()){
+            SoundPlayer::Instance()->Play("explosion");
 			delete world->vBullets->at(i);
 			world->vBullets->erase(world->vBullets->begin()+i);
 		}

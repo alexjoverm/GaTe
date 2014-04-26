@@ -87,6 +87,8 @@ void LevelSelectionState::Update(const Time& timeElapsed)
     
     if(InputManager::Instance()->keyR)
         StateManager::Instance()->SetCurrentState(States::ID::LoadingState);
+    
+    SoundPlayer::Instance()->RemoveStoppedSounds();
 }
 
 

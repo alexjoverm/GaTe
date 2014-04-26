@@ -11,6 +11,7 @@
 #include "../Otros/Time.h"
 #include "EntActive.h"
 #include "../MotorPhysics/Colisionable.h"
+#include "../MusicSounds/SoundPlayer.h"
 
 class Bullet: public EntActive, public Colisionable {
 public:
