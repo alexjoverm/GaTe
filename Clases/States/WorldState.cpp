@@ -121,6 +121,8 @@ void WorldState::LoadResources()
         resourceManager->AddTexture("texGun", "Recursos/pistola.png");
         resourceManager->AddTexture("texRobot", "Recursos/robot.png");
         resourceManager->AddTexture("texTower", "Recursos/tower.png");
+        resourceManager->AddTexture("texPj", "Recursos/pj_final_200_148.png");
+        
         
         
         resourceManager->AddTexture("texCoins", "Recursos/dolar.png");
@@ -170,18 +172,24 @@ void WorldState::Init() {
 	AddEnemy(enemy);		// Añadimos al array de elementos activos, para que se pinte
     
 	// Inicializamos Player
-	player = new Player(resourceManager->GetTexture("texRobot"), Vector(108, 108), Vector(1800.f, 320.f));
+	player = new Player(resourceManager->GetTexture("texPj"), Vector(200, 148), Vector(1700.f, 220.f));
 	player->AddGun(new Gun(resourceManager->GetTexture("texGun"), Vector(300.f, 300.f)));
 	player->GetSelectedGun()->SetRelativePos(80.f, 50.f);
     player->GetSelectedGun()->SetLifeTime(1.f);
 	player->GetSelectedGun()->SetReloadTime(0.25f);
     
-    player->SetColor(sf::Color(255,255,255, 105));
+    //player->SetColor(sf::Color(255,255,255, 105));
     
 
 //****************** ANIMACIONES
-    player->AddAnimation(new Animation("andar", player->GetSprite(), 3, 14, 0.05f, false, true));
-    player->SetCurrentAnimation("andar", player->GetSprite());
+        //Animaciones del personaje principal
+    player->AddAnimation(new Animation("idle", player->GetSprite(), 1, 29, 0.05f, false, true));
+    player->AddAnimation(new Animation("andar", player->GetSprite(), 30, 53, 0.05f, false, true));
+    player->AddAnimation(new Animation("disparoCorrer", player->GetSprite(), 54, 77, 0.05f, false, true));
+    player->AddAnimation(new Animation("disparoIdle", player->GetSprite(), 78, 78, 0.05f, false, true));
+    player->AddAnimation(new Animation("saltar", player->GetSprite(), 79, 88, 0.05f, false, false ));
+    player->AddAnimation(new Animation("disparoSaltar", player->GetSprite(), 89, 89, 0.05f, false, true));
+    player->SetCurrentAnimation("idle", player->GetSprite());
     player->PlayAnimation();
     
     vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(150.0,325.0),50.0) );

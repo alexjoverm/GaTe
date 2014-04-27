@@ -13,6 +13,7 @@ class Animation
 public:
     //initANim, tilesAnim, reverse
     Animation(std::string nombre, SpriteSheet* spriteSheet, int initAnim, int endAnim, float animSpeed, bool pause, bool loop);
+    Animation();
     ~Animation();
     
     //void SetSpriteSheet(SpriteSheet& spriteSheet);                      //Fijamos el spritesheet de la animacion
@@ -21,15 +22,21 @@ public:
     sf::IntRect GetFrame(std::size_t n) const;                  //Devuelve un frame n de la animacion
     std::size_t GetNumFrames() const;                                   //Devuelve el numero de frames de la animacion                                                 //Devuelve si la animacion se reproduce al reves o no
     void InitAnim();
+    void InitAnim(std::vector<sf::Vector3i>);
     void SetAnimationName(std::string nombre);
     std::string GetAnimationName() const;
     float GetAnimSpeed() const;
     bool GetPause() const;
     bool GetLoop() const;
+    int GetInitAnim() const { return m_initAnim; }
+    int GetEndAnim() const { return m_endAnim; } 
+    void AddSizeTile(int numTile, int width, int height);
+    
     
     
 private:
     std::vector<sf::IntRect> *m_frames;                                  //Frames de la animacion
+    std::vector<sf::Vector3i> *m_variableSizeTiles;
     SpriteSheet* m_spriteSheet;                                         //Spritesheet de la animacion
     int m_initAnim;                                                     //Frame de inicio de la animacion
     int m_endAnim;                                                      //Frame final de la animacion

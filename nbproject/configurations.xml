@@ -50,6 +50,12 @@
       <itemPath>Recursos/loading.jpg</itemPath>
       <itemPath>Recursos/music.png</itemPath>
       <itemPath>Recursos/pistola.png</itemPath>
+      <itemPath>Recursos/pj_final_150_111.png</itemPath>
+      <itemPath>Recursos/pj_final_200_148.png</itemPath>
+      <itemPath>Recursos/pj_final_250_185.png</itemPath>
+      <itemPath>Recursos/pj_final_300_222.png</itemPath>
+      <itemPath>Recursos/pj_final_350_258.png</itemPath>
+      <itemPath>Recursos/pj_final_400_295.png</itemPath>
       <itemPath>Recursos/robot.png</itemPath>
       <itemPath>Recursos/sounds.png</itemPath>
       <itemPath>Recursos/time.png</itemPath>
@@ -605,6 +611,18 @@
       </item>
       <item path="Recursos/pistola.png" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Recursos/pj_final_150_111.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pj_final_200_148.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pj_final_250_185.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pj_final_300_222.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pj_final_350_258.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pj_final_400_295.png" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Recursos/robot.png" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Recursos/sounds.png" ex="false" tool="3" flavor2="0">
@@ -1007,6 +1025,18 @@
       <item path="Recursos/music.png" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Recursos/pistola.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pj_final_150_111.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pj_final_200_148.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pj_final_250_185.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pj_final_300_222.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pj_final_350_258.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Recursos/pj_final_400_295.png" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Recursos/robot.png" ex="false" tool="3" flavor2="0">
       </item>

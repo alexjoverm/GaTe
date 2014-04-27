@@ -22,6 +22,7 @@ Player::Player(const sf::Texture& tex, const Vector& size): EntActive(tex), Coli
 	pressA = pressS = pressD = false;
 	canLeft = canRight = true;
 	canJump = false;
+        isShooting = isMoving = false;
 }
 
 Player::Player(const sf::Texture& tex, const Vector& size, const Vector& pos, const Vector& vel, const Vector& maxvel): EntActive(tex, pos, vel, maxvel), Colisionable((EntActive*)this), Animable(spriteSheet){
@@ -39,6 +40,7 @@ Player::Player(const sf::Texture& tex, const Vector& size, const Vector& pos, co
 	pressA = pressS = pressD = false;
 	canLeft = canRight = true;
 	canJump = false;
+        isShooting = isMoving = false;
 }
 
 
@@ -59,7 +61,18 @@ Player::~Player() {
 
 void Player::Jump(){
 	
-	if(canJump){
+	if(canJump)
+        {
+            if(isShooting)
+            {
+                this->PlayAnimation();
+                this->SetCurrentAnimation("disparoSaltar", this->GetSprite());
+            }
+            else
+            {
+                this->PlayAnimation();
+                this->SetCurrentAnimation("saltar", this->GetSprite());
+            }
 		this->SetSpeed(this->GetSpeed().GetX(), -forceJump);
 
 		canJump=false;
@@ -68,10 +81,19 @@ void Player::Jump(){
 }
 
 void Player::MovementLeft(){
+    isMoving = true;
     // Animacion de Andar sólo cuando está en el suelo
     if(canJump){
-        this->PlayAnimation();
-        this->SetCurrentAnimation("andar", this->GetSprite());
+        if(isShooting)
+        {
+            this->PlayAnimation();
+            this->SetCurrentAnimation("disparoCorrer", this->GetSprite());
+        }
+        else
+        {
+                this->PlayAnimation();
+                this->SetCurrentAnimation("andar", this->GetSprite());
+        }
     }
         
     
@@ -84,9 +106,18 @@ void Player::MovementLeft(){
 }
 
 void Player::MovementRight(){
+    isMoving = true;
     if(canJump){
-        this->PlayAnimation();
-        this->SetCurrentAnimation("andar", this->GetSprite());
+        if(isShooting)
+        {
+            this->PlayAnimation();
+            this->SetCurrentAnimation("disparoCorrer", this->GetSprite());
+        }
+        else
+        {
+                this->PlayAnimation();
+                this->SetCurrentAnimation("andar", this->GetSprite());
+        }
     }
     
     if(canRight)
@@ -99,17 +130,29 @@ void Player::MovementRight(){
 
 
 void Player::MovementIdle(){
-    this->StopAnimation();
-    SetSpeed(0.f, GetSpeed().GetY());
+    isMoving = false;
+    if(isShooting && !isMoving)
+    {
+        //this->SetCurrentAnimation("disparoIdle", this->GetSprite());
+    }
+    else
+    {
+        this->PlayAnimation();
+        this->SetCurrentAnimation("idle", this->GetSprite());
+        SetSpeed(0.f, GetSpeed().GetY());
+    }
 }
 
 
 void Player::Shot(float x, float y){
-    
     // Si se ha pasado el tiempo de carga de la pistola
 	if(clockReloadGun->GetElapsedTime().AsSeconds() >= guns->at(selectedGun)->GetReloadTime().AsSeconds()){
-		
-        // Reproducimos sonido
+            if(canJump && !isMoving)
+            {
+                this->PlayAnimation();
+                this->SetCurrentAnimation("disparoIdle", this->GetSprite());
+            }
+                // Reproducimos sonido
         SoundPlayer::Instance()->Play("shot");
         
         // Calculamos posicion mapeada de la pistola
@@ -133,8 +176,6 @@ void Player::Shot(float x, float y){
 		clockReloadGun->Restart();
 	}
 }
-
-
 
 //******************** COLISIONES *****************
 
@@ -194,10 +235,29 @@ void Player::Update(const Time& elapsedTime){
 // Animaciones
     if(this->InitAnim())
        this->GetAnimatedSprite()->Update(elapsedTime);
+        
+    //Cuando caemos ponemos la animacion de salto
+    if(!canJump && !im->IsPressedKeyW() && !isShooting)
+    {
+        this->PlayAnimation();
+        this->SetCurrentAnimation("saltar", this->GetSprite());
+    }
+    if(!canJump && isShooting)
+    {
+        this->SetCurrentAnimation("disparoSaltar", this->GetSprite());
+    }
+        if(canJump && isShooting && isMoving)
+        {
+            this->SetCurrentAnimation("disparoCorrer", this->GetSprite());
+        }
+        
 
     this->spriteSheet->GetSprite()->setTextureRect(this->GetAnimatedSprite()->GetSpriteRect());
 
 // Movimientos
+    if(im->IsClickedMouseLeft()) isShooting = true;
+    if(im->IsPressedMouseLeft()) isShooting = true;
+    else isShooting = false;
     if(im->IsPressedKeyW())
 		Jump();
 	//else if(im->IsPressedKeyS())

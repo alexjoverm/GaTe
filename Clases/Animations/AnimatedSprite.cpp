@@ -7,7 +7,7 @@
 
 AnimatedSprite::AnimatedSprite(Time frameTime, SpriteSheet* spriteSheet, bool paused, bool looped)
 {
-    m_animation = new Animation("defAnim", spriteSheet, 0, 0, 0.0, false, false);
+    m_animation = new Animation("",spriteSheet,0,0,0.f,false,false);
     m_currentFrame = 0;
     m_isPaused = paused;
     m_isLooped = looped;
@@ -19,6 +19,7 @@ AnimatedSprite::AnimatedSprite(Time frameTime, SpriteSheet* spriteSheet, bool pa
 
 AnimatedSprite::~AnimatedSprite()
 {
+    delete m_animation;
     delete m_frameTime;
     delete m_currentTime;
     delete rect;
@@ -26,7 +27,8 @@ AnimatedSprite::~AnimatedSprite()
 
 void AnimatedSprite::SetAnimation(Animation* animation)
 {
-    m_animation = animation;
+    //m_animation = animation;
+    m_animation = new Animation(animation->GetAnimationName(), animation->GetSpriteSheet(), animation->GetInitAnim(), animation->GetEndAnim(), animation->GetAnimSpeed(), animation->GetPause(), animation->GetLoop());
     m_texture = m_animation->GetSpriteSheetTexture();
     m_currentFrame = 0;
     SetFrame(m_currentFrame);
@@ -116,12 +118,13 @@ void AnimatedSprite::Update(const Time& deltaTime)
             else
             {
                 //Si la animacion ha finalizado reseteamos la animacion y la pausamos
-                m_currentFrame = 0;
+                //m_currentFrame = 0;
 
                 if (!m_isLooped)
                 {
                     m_isPaused = true;
                 }
+                else m_currentFrame = 0;
 
             }
 
