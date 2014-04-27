@@ -5,14 +5,16 @@
  * Created on March 15, 2014, 10:40 AM
  */
 
-#ifndef MENUSTATE_H
-#define	MENUSTATE_H
+#ifndef SETTINGSSTATE_H
+#define	SETTINGSSTATE_H
 
 #include "../Motor2D/RenderWindow.h"
 #include "../Managers/InputManager.h"
 #include "../Managers/ResourceManager.h"
-#include "../HUD/Button.h"
+#include "../HUD/ImageButton.h"
+#include "../Otros/Time.h"
 #include "../MusicSounds/MusicPlayer.h"
+#include "../MusicSounds/SoundPlayer.h"
 #include "State.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -21,11 +23,11 @@
 
 
 
-class MenuState: public State {
+class SettingsState: public State {
 public:
-	MenuState();
-	MenuState(const MenuState& orig);
-	virtual ~MenuState();
+	SettingsState();
+	SettingsState(const SettingsState& orig);
+	virtual ~SettingsState();
 
 // Inicialización y Liberación
 	void Init();
@@ -48,17 +50,25 @@ private:
   // Funciones
 	void LoadResources();	// Carga recursos, se llama desde Init();
     
+    void SetFrameMusicButton(int frame);
+    void SetFrameSoundButton(int frame);
+    
+    void ToogleSoundButton();
+    void ToogleMusicButton();
+    
 	//Eventos
 	std::vector<sf::Event>		*vNonRealEvents;
 	std::vector<sf::Event>		*vRealEvents;
     
     SpriteSheet*    background;
-    std::vector<Button*>    *vButtons;
+    std::vector<sf::Text*>   *vTexts;
+    
+    ImageButton         *soundEffects, *music, *returnButton; //*shotAng;
     
     //Players
     MusicPlayer*         musicPlayer;
+    SoundPlayer*         soundPlayer;
     
-    std::pair<States::ID , bool> requestStateChange;
 };
 
 #endif	/* WORLD_H */

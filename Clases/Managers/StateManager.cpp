@@ -42,7 +42,7 @@ void StateManager::CreateStates()
 {
     mapStates->insert(std::make_pair(States::ID::MenuState , StateFactory::CreateState(States::ID::MenuState)));
     mapStates->insert(std::make_pair(States::ID::LevelSelectionState , StateFactory::CreateState(States::ID::LevelSelectionState)));
-    //mapStates->insert(std::make_pair(States::ID::SettingsState , StateFactory::CreateState(States::ID::SettingsState)));
+    mapStates->insert(std::make_pair(States::ID::SettingsState , StateFactory::CreateState(States::ID::SettingsState)));
     mapStates->insert(std::make_pair(States::ID::WorldState , StateFactory::CreateState(States::ID::WorldState)));
     //mapStates->insert(std::make_pair(States::ID::TowerSelectionState , StateFactory::CreateState(States::ID::TowerSelectionState)));
     //mapStates->insert(std::make_pair(States::ID::CreditsState , StateFactory::CreateState(States::ID::CreditsState)));

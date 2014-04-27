@@ -81,6 +81,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/States/LevelSelectionState.o \
 	${OBJECTDIR}/Clases/States/LoadingState.o \
 	${OBJECTDIR}/Clases/States/MenuState.o \
+	${OBJECTDIR}/Clases/States/SettingsState.o \
 	${OBJECTDIR}/Clases/States/WorldState.o \
 	${OBJECTDIR}/main.o
 
@@ -338,6 +339,11 @@ ${OBJECTDIR}/Clases/States/MenuState.o: Clases/States/MenuState.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/States
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/MenuState.o Clases/States/MenuState.cpp
+
+${OBJECTDIR}/Clases/States/SettingsState.o: Clases/States/SettingsState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/States
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/SettingsState.o Clases/States/SettingsState.cpp
 
 ${OBJECTDIR}/Clases/States/WorldState.o: Clases/States/WorldState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States

@@ -85,7 +85,7 @@ void MenuState::Init() {
     for(int i=0; i<6; i++)         //  w , h  ,  x   ,  y,            contenido
         vButtons->at(i)->Center();
     
-    requestStateChange = false;
+    requestStateChange = std::make_pair(States::ID::LoadingState,false);
 }
 
 
@@ -113,8 +113,8 @@ void MenuState::Update(const Time& timeElapsed)
     for(int i=0; i<vButtons->size(); i++)
         vButtons->at(i)->Update(timeElapsed);
     
-    if(requestStateChange)
-       StateManager::Instance()->SetCurrentState(States::ID::LevelSelectionState);
+    if(requestStateChange.second)
+       StateManager::Instance()->SetCurrentState(requestStateChange.first);
     
     SoundPlayer::Instance()->RemoveStoppedSounds();
 }
@@ -163,7 +163,17 @@ void MenuState::ProcessRealEvent(){
         Vector posMouse = inputManager->GetMousePosition();
         
         if(vButtons->at(0)->IsPressed(posMouse.GetX(), posMouse.GetY()))
-           requestStateChange = true;
+           requestStateChange = std::make_pair(States::ID::LevelSelectionState, true);  // Nueva Partida
+        if(vButtons->at(1)->IsPressed(posMouse.GetX(), posMouse.GetY()))
+           requestStateChange = std::make_pair(States::ID::LevelSelectionState, true);  // Continuar
+        if(vButtons->at(2)->IsPressed(posMouse.GetX(), posMouse.GetY()))
+           requestStateChange = std::make_pair(States::ID::LevelSelectionState, true);  // Tutorial
+        if(vButtons->at(3)->IsPressed(posMouse.GetX(), posMouse.GetY()))
+           requestStateChange = std::make_pair(States::ID::SettingsState, true);  // Opciones
+        if(vButtons->at(4)->IsPressed(posMouse.GetX(), posMouse.GetY()))
+           requestStateChange = std::make_pair(States::ID::SettingsState, true);  // Acerca De
+        if(vButtons->at(5)->IsPressed(posMouse.GetX(), posMouse.GetY()))
+           window->Close();                                                             // Salir
     }
     
 	

@@ -171,6 +171,8 @@
         <itemPath>Clases/States/LoadingState.h</itemPath>
         <itemPath>Clases/States/MenuState.cpp</itemPath>
         <itemPath>Clases/States/MenuState.h</itemPath>
+        <itemPath>Clases/States/SettingsState.cpp</itemPath>
+        <itemPath>Clases/States/SettingsState.h</itemPath>
         <itemPath>Clases/States/State.h</itemPath>
         <itemPath>Clases/States/WorldState.cpp</itemPath>
         <itemPath>Clases/States/WorldState.h</itemPath>
@@ -490,6 +492,10 @@
       <item path="Clases/States/MenuState.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/States/MenuState.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/States/SettingsState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/States/SettingsState.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/States/State.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -867,6 +873,10 @@
       <item path="Clases/States/MenuState.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/States/MenuState.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/States/SettingsState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/States/SettingsState.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/States/State.h" ex="false" tool="3" flavor2="0">
       </item>

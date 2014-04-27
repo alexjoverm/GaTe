@@ -10,6 +10,7 @@
 #include "../States/MenuState.h"
 #include "../States/LoadingState.h"
 #include "../States/LevelSelectionState.h"
+#include "../States/SettingsState.h"
 
 State* StateFactory::CreateState(States::ID id){
     
@@ -22,9 +23,9 @@ State* StateFactory::CreateState(States::ID id){
         return new LoadingState();
     else if(id == States::ID::LevelSelectionState)
         return new LevelSelectionState();
-    /*else if(id == States::ID::SettingsState)
+    else if(id == States::ID::SettingsState)
         return new SettingsState();
-    
+    /*
     else if(id == States::ID::PauseState)
         return new PauseState();
     else if(id == States::ID::CreditsState)

@@ -35,7 +35,7 @@ public:
         bool IsPaused(){ bool a =mMusic->Playing; return !mMusic->Playing; }
         
         void SetVolume(float volume);
-        float GetVolume() const{ mMusic->getVolume(); }
+        float GetVolume() const{ return mMusic->getVolume(); }
         
         Music::ID      currentTheme;
         bool           isPlaying;   

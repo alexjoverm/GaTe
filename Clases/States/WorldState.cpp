@@ -169,8 +169,16 @@ void WorldState::Init() {
     
 //******************* HUD
     hud = new HUD(50.f, "OpenSans");
-    hud->SetFrameMusicButton(1);
-    hud->SetFrameSoundButton(1);
+    
+    if(musicPlayer->GetVolume()==0.f)
+        hud->SetFrameMusicButton(0);
+    else
+        hud->SetFrameMusicButton(1);
+    
+    if(soundPlayer->active)
+        hud->SetFrameSoundButton(1);
+    else
+        hud->SetFrameSoundButton(0);
     
     musicPlayer->Play();
 }

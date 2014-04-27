@@ -1,4 +1,5 @@
 #include "SoundPlayer.h"
+#include "MusicPlayer.h"
 
 
 #include <SFML/Audio/Listener.hpp>
@@ -12,6 +13,8 @@ const float ListenerZ = 300.f;
 const float Attenuation = 8.f;
 const float MinDistance2D = 200.f;
 const float MinDistance3D = std::sqrt(MinDistance2D*MinDistance2D + ListenerZ*ListenerZ);
+
+const float volumeLess = 0.15f;
 
 
 SoundPlayer* SoundPlayer::instance = 0;
@@ -50,6 +53,9 @@ void SoundPlayer::Play(std::string so, sf::Vector2f position)
 	sound.setPosition(position.x, -position.y, 0.f);
 	sound.setAttenuation(Attenuation);
 	sound.setMinDistance(MinDistance3D);
+    
+    // El volumen será un 15% menos que el de la música
+    sound.setVolume(MusicPlayer::Instance()->GetVolume() - MusicPlayer::Instance()->GetVolume()*volumeLess);
 
 	sound.play();
 }
