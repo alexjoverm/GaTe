@@ -53,6 +53,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/HUD/HUD.o \
 	${OBJECTDIR}/Clases/HUD/ImageButton.o \
 	${OBJECTDIR}/Clases/HUD/Lifebar.o \
+	${OBJECTDIR}/Clases/Managers/ConfigurationManager.o \
 	${OBJECTDIR}/Clases/Managers/InputManager.o \
 	${OBJECTDIR}/Clases/Managers/ResourceManager.o \
 	${OBJECTDIR}/Clases/Managers/StateManager.o \
@@ -199,6 +200,11 @@ ${OBJECTDIR}/Clases/HUD/Lifebar.o: Clases/HUD/Lifebar.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/HUD/Lifebar.o Clases/HUD/Lifebar.cpp
+
+${OBJECTDIR}/Clases/Managers/ConfigurationManager.o: Clases/Managers/ConfigurationManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Managers/ConfigurationManager.o Clases/Managers/ConfigurationManager.cpp
 
 ${OBJECTDIR}/Clases/Managers/InputManager.o: Clases/Managers/InputManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Managers

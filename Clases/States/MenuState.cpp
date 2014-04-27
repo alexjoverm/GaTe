@@ -8,6 +8,7 @@
 #include "MenuState.h"
 #include "../Otros/StringUtils.h"
 #include "../Managers/StateManager.h"
+#include "../Managers/ConfigurationManager.h"
 #include <iostream>
 
 MenuState::MenuState() {
@@ -65,6 +66,8 @@ void MenuState::LoadResources(){
 
 void MenuState::Init() {
 	LoadResources(); // Cargamos recursos
+    
+    ConfigurationManager::Instance()->LoadConfigurations();
     
     musicPlayer->Play();
 	

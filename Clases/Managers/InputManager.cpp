@@ -8,6 +8,7 @@
 #include "InputManager.h"
 #include "../States/WorldState.h"
 #include "StateManager.h"
+#include "ConfigurationManager.h"
 
 InputManager* InputManager::instance = 0;
 
@@ -124,6 +125,7 @@ void InputManager::Process(sf::Event event)
 			break;
 
 		case sf::Event::Closed:
+            ConfigurationManager::Instance()->SaveConfigurations();
 			RenderWindow::Instance()->Close();
 			break;
 

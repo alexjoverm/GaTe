@@ -8,6 +8,7 @@
 #include "SettingsState.h"
 #include "../Otros/StringUtils.h"
 #include "../Managers/StateManager.h"
+#include "../Managers/ConfigurationManager.h"
 #include <iostream>
 
 
@@ -69,8 +70,6 @@ void SettingsState::LoadResources(){
 
 void SettingsState::Init() {
 	LoadResources(); // Cargamos recursos
-    
-    
 	
 	// Inicializamos
 	background = new SpriteSheet(resourceManager->GetTexture("texBackground"));

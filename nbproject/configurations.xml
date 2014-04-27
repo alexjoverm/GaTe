@@ -100,6 +100,8 @@
         <itemPath>Clases/HUD/Lifebar.h</itemPath>
       </logicalFolder>
       <logicalFolder name="Managers" displayName="Managers" projectFiles="true">
+        <itemPath>Clases/Managers/ConfigurationManager.cpp</itemPath>
+        <itemPath>Clases/Managers/ConfigurationManager.h</itemPath>
         <itemPath>Clases/Managers/InputManager.cpp</itemPath>
         <itemPath>Clases/Managers/InputManager.h</itemPath>
         <itemPath>Clases/Managers/ResourceManager.cpp</itemPath>
@@ -321,6 +323,16 @@
       <item path="Clases/HUD/Lifebar.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/HUD/Lifebar.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Managers/ConfigurationManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Managers/ConfigurationManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="Clases/Managers/InputManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -702,6 +714,16 @@
       <item path="Clases/HUD/Lifebar.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/HUD/Lifebar.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Managers/ConfigurationManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Clases/Managers/ConfigurationManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="Clases/Managers/InputManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
