@@ -84,6 +84,8 @@
         <itemPath>Clases/Entities/Gun.h</itemPath>
         <itemPath>Clases/Entities/Player.cpp</itemPath>
         <itemPath>Clases/Entities/Player.h</itemPath>
+        <itemPath>Clases/Entities/Tower.cpp</itemPath>
+        <itemPath>Clases/Entities/Tower.h</itemPath>
       </logicalFolder>
       <logicalFolder name="Factories" displayName="Factories" projectFiles="true">
         <itemPath>Clases/Factories/StateFactory.cpp</itemPath>
@@ -127,6 +129,8 @@
           <itemPath>Clases/Motor2D/MapLoader/pugixml.cpp</itemPath>
           <itemPath>Clases/Motor2D/MapLoader/pugixml.hpp</itemPath>
         </logicalFolder>
+        <itemPath>Clases/Motor2D/Camera.cpp</itemPath>
+        <itemPath>Clases/Motor2D/Camera.h</itemPath>
         <itemPath>Clases/Motor2D/Level.cpp</itemPath>
         <itemPath>Clases/Motor2D/Level.h</itemPath>
         <itemPath>Clases/Motor2D/Mapa.cpp</itemPath>
@@ -173,6 +177,8 @@
         <itemPath>Clases/States/LoadingState.h</itemPath>
         <itemPath>Clases/States/MenuState.cpp</itemPath>
         <itemPath>Clases/States/MenuState.h</itemPath>
+        <itemPath>Clases/States/NewTowerState.cpp</itemPath>
+        <itemPath>Clases/States/NewTowerState.h</itemPath>
         <itemPath>Clases/States/SettingsState.cpp</itemPath>
         <itemPath>Clases/States/SettingsState.h</itemPath>
         <itemPath>Clases/States/State.h</itemPath>
@@ -300,6 +306,10 @@
       </item>
       <item path="Clases/Entities/Player.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Clases/Entities/Tower.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Tower.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Clases/Factories/StateFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Factories/StateFactory.h" ex="false" tool="3" flavor2="0">
@@ -348,6 +358,10 @@
       <item path="Clases/Managers/StateManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Managers/StateManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Camera.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Camera.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/Motor2D/Level.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -504,6 +518,10 @@
       <item path="Clases/States/MenuState.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/States/MenuState.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/States/NewTowerState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/States/NewTowerState.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/States/SettingsState.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -691,6 +709,10 @@
       </item>
       <item path="Clases/Entities/Player.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Clases/Entities/Tower.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/Tower.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Clases/Factories/StateFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Factories/StateFactory.h" ex="false" tool="3" flavor2="0">
@@ -739,6 +761,10 @@
       <item path="Clases/Managers/StateManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Managers/StateManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Camera.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Camera.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/Motor2D/Level.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -895,6 +921,10 @@
       <item path="Clases/States/MenuState.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/States/MenuState.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/States/NewTowerState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/States/NewTowerState.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/States/SettingsState.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -116,7 +116,7 @@ void Player::Shot(float x, float y){
 		Vector posPistola = Vector();
         posPistola = guns->at(selectedGun)->GetPosition();
         sf::Vector2i aux = RenderWindow::Instance()->renderWindow->mapCoordsToPixel(sf::Vector2f(posPistola.GetX(), posPistola.GetY()) 
-            , WorldState::Instance()->level->map->standard);
+            , WorldState::Instance()->GetCamera()->standard);
         
         posPistola.Set(aux.x , aux.y);
           

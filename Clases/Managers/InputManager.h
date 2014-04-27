@@ -47,6 +47,22 @@ public:
     bool IsPressedKeyW(){ return keyW; }
     bool IsReleasedKeyW(){ return (!keyW && lastKeyW); }
     
+    bool IsClickedKeyM(){ return (keyM && !lastKeyM); }
+    bool IsPressedKeyM(){ return keyM; }
+    bool IsReleasedKeyM(){ return (!keyM && lastKeyM); }
+    
+    bool IsClickedKeyR(){ return (keyR && !lastKeyR); }
+    bool IsPressedKeyR(){ return keyR; }
+    bool IsReleasedKeyR(){ return (!keyR && lastKeyR); }
+    
+    bool IsClickedKeyT(){ return (keyT && !lastKeyT); }
+    bool IsPressedKeyT(){ return keyT; }
+    bool IsTeleasedKeyT(){ return (!keyT && lastKeyT); }
+    
+    bool IsClickedKeySpace(){ return (keySpace && !lastKeySpace); }
+    bool IsPressedKeySpace(){ return keySpace; }
+    bool IsReleasedKeySpace(){ return (!keySpace && lastKeySpace); }
+    
     bool IsClickedMouseLeft(){ return (mouseLeft && !lastMouseLeft); }
     bool IsPressedMouseLeft(){ return mouseLeft; }
     bool IsReleasedMouseLeft(){ return (!mouseLeft && lastMouseLeft); }
@@ -55,15 +71,13 @@ public:
     bool IsPressedMouseRight(){ return mouseRight; }
     bool IsReleasedMouseRight(){ return (!mouseRight && lastMouseRight); }
 	
-    bool keyR, keyT;
-    bool lastKeyR, lastKeyT;
     
 private:
 	static InputManager* instance;
     
     	// Booleanas a modo de "Propiedades"
-	bool	keyW, keyA, keyS, keyD ;
-    bool	lastKeyW, lastKeyA, lastKeyS, lastKeyD;  //Para comprobar pulsacion por click
+	bool	keyW, keyA, keyS, keyD, keyM, keyT, keyR, keySpace ;
+    bool	lastKeyW, lastKeyA, lastKeyS, lastKeyD, lastKeyM, lastKeyT, lastKeyR, lastKeySpace;  //Para comprobar pulsacion por click
 	
     bool	mouseLeft, mouseRight;
     bool    lastMouseLeft, lastMouseRight;

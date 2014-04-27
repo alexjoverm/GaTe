@@ -25,7 +25,7 @@ InputManager::InputManager() {
 	vKeyboard	= new std::vector<std::pair<sf::Keyboard::Key , bool>>();
 	vMouse		= new std::vector<std::pair<sf::Mouse::Button , bool>>();
 	
-	keyW = keyA = keyS = keyD = mouseLeft = mouseRight = false;	
+	keyW = keyA = keyS = keyD = keyM = keySpace = mouseLeft = mouseRight = false;	
     keyR = keyT = false;
 }
 
@@ -62,6 +62,8 @@ void InputManager::Update()
     
     lastKeyR = keyR;
     lastKeyT = keyT;
+    lastKeyM = keyM;
+    lastKeySpace = keySpace;
         
         
 	// Teclado
@@ -86,6 +88,12 @@ void InputManager::Update()
                 
             case sf::Keyboard::T:
 				keyT = vKeyboard->at(i).second;	break;
+                
+            case sf::Keyboard::M:
+				keyM = vKeyboard->at(i).second;	break;
+                
+            case sf::Keyboard::Space:
+				keySpace = vKeyboard->at(i).second;	break;
                 
 		}
 	}

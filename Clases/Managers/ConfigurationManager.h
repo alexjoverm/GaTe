@@ -26,6 +26,7 @@ public:
     void SaveConfigurations();
     void LoadConfigurations();
     
+    bool loaded = false;
     
 private:
 	static ConfigurationManager* instance;

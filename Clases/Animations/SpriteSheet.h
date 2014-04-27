@@ -41,7 +41,10 @@ class SpriteSheet
 
         void Move(Vector& v){ m_sprite->move(v.GetX(), v.GetY()); }
         void SetPosition(const Vector& v){ m_sprite->setPosition(v.GetX(), v.GetY()); }
-        Vector GetPosition() const{ return Vector(m_sprite->getPosition().x, m_sprite->getPosition().y); }
+        Vector& GetPosition(){ 
+            pos = Vector(m_sprite->getPosition().x, m_sprite->getPosition().y); 
+            return pos;
+        }
         
         void SetColor(const sf::Color& c){ m_sprite->setColor(c); }
         
@@ -57,6 +60,9 @@ class SpriteSheet
 		
        Transform::Orientation orientation;              //Por defecto será Right
         std::string idTexture;	
+        
+        Vector  pos;
+        
         int m_widthTile;                                //Anchura de los tiles del spritesheet
         int m_heightTile;                               //Altura de los tiles del spritesheet
         int m_numColumns;                               //Numero de columnas del spriteshhet

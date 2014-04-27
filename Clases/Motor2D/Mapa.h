@@ -12,6 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include "MapLoader/MapLoader.h"
 #include "../Otros/Rectangle.h"
+#include "../Otros/Vector.h"
 #include "../Entities/Player.h"
 
 class Mapa {
@@ -26,37 +27,22 @@ public:
     std::vector<tmx::MapObject>         getLayerObjects(std::string layerName);
     std::vector<Rectangle*>             getLayerCollitions(std::string layerName);
     
-    void                                move(float x , float y , float charx , float chary);
-    void                                move(sf::Vector2f vf , float charx , float chary);
-    void                                moveMiniMap(float x , float y , float charx , float chary);
-    
     void                                init();
-    void                                initMiniMap(); 
-    
-    void                                update(Player* pl, float interpolation);
-    
-    void                                render(bool miniMapEnable = false);
-    void                                renderMiniMap();    
     
     
-    sf::View                    fixed;
-    sf::View                    standard;
-    sf::View                    minimap;
+    void                                render();
+    void                                renderMiniMap();  
+    
+    Vector                              getMapSize(){ return Vector(map.GetMapSize().x,map.GetMapSize().y);}
+    
     
 private:
+    
     
     sf::RenderWindow*           window;
     
     tmx::MapLoader              map;
     
-
-    
-    sf::RectangleShape          miniback;
-    
-    sf::FloatRect               topRect;
-    sf::FloatRect               leftRect;
-    sf::FloatRect               bottomRect;
-    sf::FloatRect               rightRect;
     
 };
 

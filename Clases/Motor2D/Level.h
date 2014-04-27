@@ -26,13 +26,18 @@ public:
 	void AddTextureFile(const std::string& tex){ vTextures->push_back(tex); };
 	void AddEntPassive(EntPassive* ent){ vEntPassive->push_back(ent); };
     
-    void LoadMap(std::string mapName);
+        void LoadMap(std::string mapName);
+        
+        void renderMap() { map->render(); }
+        void renderMinimap() { map->renderMiniMap(); }
+        
+        Vector          getMapSize() {return map->getMapSize(); }; 
 	
 //Variables public para que sean accesibles
 public:
 	// metodos para deque : at(i), pop/push_back() , pop/push_front(), size(), clear(), empty()
 	std::deque<Rectangle*>		*vRectColision;
-	std::deque<Enemy*>			*vEnemies;
+	std::deque<Enemy*>              *vEnemies;
 	std::deque<EntPassive*>		*vEntPassive;
 	std::deque<std::string>		*vTextures;
     Mapa                        *map;

@@ -76,6 +76,8 @@ void ConfigurationManager::LoadConfigurations()
       // Cargamos configuraciones del map
         MusicPlayer::Instance()->SetVolume( StringUtils::ParseFloat(mapConf.find("music")->second) );
         SoundPlayer::Instance()->active = StringUtils::ParseInt(mapConf.find("sound")->second);
+        
+        loaded = true;
     }
 }
 

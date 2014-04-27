@@ -11,9 +11,6 @@
 #include <iostream>
 
 
-//*************************  BORRAR ESTO, Y EN EL UPDATE y CONSTRUCTOR TAMBIÉN
-Clock reloj = Clock();
-
 
 //**************** SINGLETON
 WorldState* WorldState::instance = 0;
@@ -31,10 +28,15 @@ WorldState::WorldState() {
     resourceManager = ResourceManager::Instance();
     inputManager = InputManager::Instance();
     
+    // NO SE DEBE ELIMINAR COLISIONABLE, ya se elimina en los demás vectores
 	vEntityStatic = new std::deque<EntPassive*>();
 	vEntityColisionable = new std::deque<Colisionable*>();
 	vEntityActive = new std::deque<EntActive*>();
-	vBullets = new std::vector<Bullet*>();
+	
+    vBullets = new std::vector<Bullet*>();
+    vTowers = new std::vector<Tower*>();
+    vPath = new std::vector<Vector*>();
+    vEnemies = new std::deque<Enemy*>();
 	
 	// Eventos
 	vNonRealEvents = new std::vector<sf::Event>();
@@ -42,10 +44,14 @@ WorldState::WorldState() {
     
     id = States::ID::WorldState;
     hud = NULL;
+    showTowerRange = false;
     
     // Players
     musicPlayer = MusicPlayer::Instance();
     soundPlayer = SoundPlayer::Instance();
+    
+    // Camera
+    cam = new Camera(window->renderWindow);
 }
 
 WorldState::WorldState(const WorldState& orig) {
@@ -62,6 +68,18 @@ WorldState::~WorldState() {
 	while(!vEntityStatic->empty()) 
 		delete vEntityStatic->back(), vEntityStatic->pop_back();
 	delete vEntityStatic;
+    
+    while(!vPath->empty()) 
+		delete vPath->back(), vPath->pop_back();
+	delete vPath;
+    
+    while(!vTowers->empty()) 
+		delete vTowers->back(), vTowers->pop_back();
+	delete vTowers;
+    
+    while(!vEnemies->empty()) 
+		delete vEnemies->back(), vEnemies->pop_back();
+	delete vEnemies;
 	
 	delete vEntityColisionable;
 	delete vBullets;
@@ -77,6 +95,7 @@ WorldState::~WorldState() {
 	player = NULL;
 	level = NULL;
 	vBullets = NULL;
+    delete cam; cam = NULL;
 }
 
 
@@ -98,10 +117,11 @@ void WorldState::LoadResources()
         
         level->LoadMap("mapa1.tmx");
 
-        resourceManager->AddTexture("texCharacter", "Recursos/Character.png");	// Del personaje (le asignamos la 20 por ejemplo)
         resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
         resourceManager->AddTexture("texGun", "Recursos/pistola.png");
         resourceManager->AddTexture("texRobot", "Recursos/robot.png");
+        resourceManager->AddTexture("texTower", "Recursos/tower.png");
+        
         
         resourceManager->AddTexture("texCoins", "Recursos/dolar.png");
         resourceManager->AddTexture("texClock", "Recursos/time.png");
@@ -129,8 +149,6 @@ void WorldState::LoadResources()
 void WorldState::Init() {
 	
 //**************** Inicializaciones
-    reloj.Restart();
-    //LoadResources();
 	firstUpdate=false;
     
     
@@ -145,14 +163,14 @@ void WorldState::Init() {
 	
 //***************** Entities
     
-	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"), Vector(100.f , 100.f), Vector(0.f, 0.f), Vector(500.f, 500.f));
-	enemy->SetSpeed(220.f, 0.f);
+	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),Vector(1600.0f,320.0f), Vector(0.f, 0.f), Vector(500.f, 500.f) );
+    enemy->SetSpeed(220.f, 0.f);
 	
 	AddColisionableEntity(enemy);// Añadimos al array de colisionables
-	AddActiveEntity(enemy);		// Añadimos al array de elementos activos, para que se pinte
+	AddEnemy(enemy);		// Añadimos al array de elementos activos, para que se pinte
     
 	// Inicializamos Player
-	player = new Player(resourceManager->GetTexture("texRobot"), Vector(108, 108), Vector(100.f, 100.f));
+	player = new Player(resourceManager->GetTexture("texRobot"), Vector(108, 108), Vector(1800.f, 320.f));
 	player->AddGun(new Gun(resourceManager->GetTexture("texGun"), Vector(300.f, 300.f)));
 	player->GetSelectedGun()->SetRelativePos(80.f, 50.f);
     player->GetSelectedGun()->SetLifeTime(1.f);
@@ -166,8 +184,13 @@ void WorldState::Init() {
     player->SetCurrentAnimation("andar", player->GetSprite());
     player->PlayAnimation();
     
-    
-//******************* HUD
+    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(150.0,325.0),50.0) );
+    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(550.0,325.0),100.0) );
+    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(275.0,600.0),150.0) );
+
+
+//******************* HUD Y  CAMARA
+    cam->Init(player);
     hud = new HUD(50.f, "OpenSans");
     
     if(musicPlayer->GetVolume()==0.f)
@@ -208,6 +231,15 @@ void WorldState::Clean(){
     while(!vBullets->empty()) 
 		delete vBullets->back(), vBullets->pop_back();
     
+    while(!vPath->empty()) 
+		delete vPath->back(), vPath->pop_back();
+    
+    while(!vTowers->empty()) 
+		delete vTowers->back(), vTowers->pop_back();
+
+    while(!vEnemies->empty()) 
+		delete vEnemies->back(), vEnemies->pop_back();
+
     
     // Los demás vectores sólo los limpiamos, ya que la memoria ya la hemos liberado
     // al liberar los vectores anteriores
@@ -221,6 +253,8 @@ void WorldState::Clean(){
  //**************** HUD
     delete hud; hud = NULL;
     musicPlayer->Stop();
+  
+    delete cam; cam = NULL;
 }
 
 
@@ -244,31 +278,35 @@ void WorldState::Update(const Time& timeElapsed)
         // EntActive
         for(int i = 0; i < vEntityActive->size(); i++)
             vEntityActive->at(i)->Update(timeElapsed);
+        
+        for(int i = 0; i < vEnemies->size(); i++)
+            vEnemies->at(i)->Update(timeElapsed);
+	
+        // Towers
+        for(int i = 0; i < vTowers->size(); i++)
+            vTowers->at(i)->Update(timeElapsed);
 
         // Bullets
         for(int i = 0; i < vBullets->size(); i++)
             vBullets->at(i)->Update(timeElapsed);
 
-
-
-        //********** MOVIMIENTO DEL ENEMIGO (¡¡¡¡ SOLO PARA ESTE EJECUTABLE !!!!)
-        if(reloj.GetElapsedTime().AsSeconds() >= 0.8f){
-
-            reloj.Restart();
-            if(vEntityActive->at(0)->GetSpeed().GetX() > 0){
-                vEntityActive->at(0)->SetSpeed(-220.f, vEntityActive->at(0)->GetSpeed().GetY());
-                vEntityActive->at(0)->GetSprite()->SetOrientation(Transform::Orientation::Left);
-            }
-            else{
-                vEntityActive->at(0)->SetSpeed(220.f, vEntityActive->at(0)->GetSpeed().GetY());
-                vEntityActive->at(0)->GetSprite()->SetOrientation(Transform::Orientation::Right);
-            }
-        }
-
+        
 
     //*************** HUD **
         hud->Update(timeElapsed);
         soundPlayer->RemoveStoppedSounds();
+        
+        
+        //************** MOSTRAR RANGO TORRETAS
+        if(inputManager->IsClickedKeyR())
+            showTowerRange = !showTowerRange;
+        
+        if(inputManager->IsClickedKeyM())
+            cam->minimapActive = !cam->minimapActive;
+
+        if(inputManager->IsPressedKeySpace())
+            StateManager::Instance()->SetCurrentState(States::ID::TowerSelectionState);
+    
 	}
 	   
 }
@@ -281,34 +319,45 @@ void WorldState::Render(float interp)
     // Eventos de Tiempo Real
     ProcessRealEvent();
         
-    //level->map->update(player, interp);
     
 	window->Clear(sf::Color(255,255,255, 255)); // rgba
 	
-    window->renderWindow->setView(level->map->standard);
-    level->map->render(true);
+    cam->SetCurrentView(Views::Type::Standard);
     
+    level->renderMap();
 	
 	// Renderizamos entidades	
-	for(int i = 0; i < vEntityStatic->size(); i++)
+    for(int i = 0; i < vEntityStatic->size(); i++)
 		vEntityStatic->at(i)->Draw(*window);
     
     for(int i = 0; i < vEntityActive->size(); i++)
 		vEntityActive->at(i)->Draw(*window, interp);
-	
-	for(int i = 0; i < vBullets->size(); i++)
+    
+    for(int i = 0; i < vTowers->size(); i++)
+		vTowers->at(i)->Draw(*window);
+    
+    for(int i = 0; i < vEnemies->size(); i++)
+		vEnemies->at(i)->Draw(*window, interp);
+    
+    for(int i = 0; i < vBullets->size(); i++)
 		vBullets->at(i)->Draw(*window, interp);
-	
+    
+
+
     player->Draw(*window, interp);
+    cam->Update();
     
  // HUD
-    window->renderWindow->setView(level->map->fixed);
+    cam->SetCurrentView(Views::Type::Fixed);
     hud->Draw(*window);
+    
+    if(cam->minimapActive)
+        level->renderMinimap();
 	
 	window->Display();
     
     
-    if(InputManager::Instance()->keyT)
+    if(inputManager->IsClickedKeyT())
         StateManager::Instance()->SetCurrentState(States::ID::MenuState);
     
     firstUpdate=true; 

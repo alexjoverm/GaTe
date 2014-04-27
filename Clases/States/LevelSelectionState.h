@@ -13,6 +13,7 @@
 #include "../Managers/InputManager.h"
 #include "../Managers/ResourceManager.h"
 #include "../MusicSounds/MusicPlayer.h"
+#include "../HUD/ImageButton.h"
 #include "State.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -46,7 +47,10 @@ private:
 	//Eventos
 	std::vector<sf::Event>		*vNonRealEvents;
 	std::vector<sf::Event>		*vRealEvents;
-    SpriteSheet*                    fondo;
+    
+    SpriteSheet*        fondo;
+    
+    ImageButton*        returnButton;
     
     //Players
     MusicPlayer*         musicPlayer;

@@ -67,7 +67,8 @@ void MenuState::LoadResources(){
 void MenuState::Init() {
 	LoadResources(); // Cargamos recursos
     
-    ConfigurationManager::Instance()->LoadConfigurations();
+    if(!ConfigurationManager::Instance()->loaded)
+        ConfigurationManager::Instance()->LoadConfigurations();
     
     musicPlayer->Play();
 	
@@ -175,8 +176,11 @@ void MenuState::ProcessRealEvent(){
            requestStateChange = std::make_pair(States::ID::SettingsState, true);  // Opciones
         if(vButtons->at(4)->IsPressed(posMouse.GetX(), posMouse.GetY()))
            requestStateChange = std::make_pair(States::ID::SettingsState, true);  // Acerca De
-        if(vButtons->at(5)->IsPressed(posMouse.GetX(), posMouse.GetY()))
-           window->Close();                                                             // Salir
+        if(vButtons->at(5)->IsPressed(posMouse.GetX(), posMouse.GetY())){
+            ConfigurationManager::Instance()->SaveConfigurations();                 // Salir
+            window->Close(); 
+        }
+                                                                       
     }
     
 	

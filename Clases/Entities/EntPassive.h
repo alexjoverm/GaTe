@@ -22,7 +22,7 @@ public:
 	virtual void Update(const Time& elapsedTime); ///< De momento no hará nada el update
 	
 	void SetPosition(const Vector& v){ spriteSheet->SetPosition(v); }
-	Vector GetPosition(){ return spriteSheet->GetPosition(); }
+	virtual Vector& GetPosition() const{ return spriteSheet->GetPosition(); }
 	void Move(Vector v){ spriteSheet->Move(v); }
 
 };

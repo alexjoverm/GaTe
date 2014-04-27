@@ -10,7 +10,9 @@
 
 #include "../Motor2D/Level.h"
 #include "../Entities/Player.h"
+#include "../Motor2D/Camera.h"
 #include "../Entities/Bullet.h"
+#include "../Entities/Tower.h"
 #include "../Motor2D/RenderWindow.h"
 #include "../Otros/Clock.h"
 #include "../Entities/EntActive.h"
@@ -47,7 +49,8 @@ public:
 // Level y Map	
     void AddLevelColision(Rectangle* rec){ level->AddColision(rec); }
     void AddLevelTexture(const std::string tex){ level->AddTextureFile(tex); }
-    Level*		level;
+    void AddTrace(Vector* ent){ vPath->push_back(ent); }
+   Level*		level;
  
 // Entities
 	void AddStaticEntity(EntPassive* ent){ vEntityStatic->push_back(ent); }
@@ -55,21 +58,31 @@ public:
 	void AddColisionableEntity(Colisionable* ent){ vEntityColisionable->push_back(ent); }
 	void AddBullet(Bullet* ent){ vBullets->push_back(ent); }
     
+    void AddTower(Tower* ent){ vTowers->push_back(ent); }
+    void AddEnemy(Enemy* ent){ vEnemies->push_back(ent); }
+        
+    void DeleteEnemy(int i){ delete vEnemies->at(i);  vEnemies->erase(vEnemies->begin()+i); }
     void DeleteBullet(int i){ delete vBullets->at(i);  vBullets->erase(vBullets->begin()+i); }
     
 
  // HUD
     void SubstractLife(float value){ hud->SubstractLife(value); }
-    
+    Camera* GetCamera(){ return cam;}
     
 
 	Player*		player;
 	
+    std::vector<Vector*>		*vPath;
+    std::vector<Tower*>         *vTowers;
+    std::deque<Enemy*>          *vEnemies;
 	std::vector<Bullet*>		*vBullets;
 	std::deque<EntPassive*>		*vEntityStatic;
 	std::deque<EntActive*>		*vEntityActive;
 	std::deque<Colisionable*>	*vEntityColisionable;
 	
+    bool      showTowerRange;
+	
+    
 private:
 	
   // Singleton
@@ -89,6 +102,9 @@ private:
     // HUD
     HUD*     hud;
     bool     firstUpdate;
+    
+    // Camera
+    Camera*  cam;
 };
 
 #endif	/* WORLD_H */

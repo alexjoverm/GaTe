@@ -47,6 +47,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/Entities/Entity.o \
 	${OBJECTDIR}/Clases/Entities/Gun.o \
 	${OBJECTDIR}/Clases/Entities/Player.o \
+	${OBJECTDIR}/Clases/Entities/Tower.o \
 	${OBJECTDIR}/Clases/Factories/StateFactory.o \
 	${OBJECTDIR}/Clases/Game.o \
 	${OBJECTDIR}/Clases/HUD/Button.o \
@@ -57,6 +58,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/Managers/InputManager.o \
 	${OBJECTDIR}/Clases/Managers/ResourceManager.o \
 	${OBJECTDIR}/Clases/Managers/StateManager.o \
+	${OBJECTDIR}/Clases/Motor2D/Camera.o \
 	${OBJECTDIR}/Clases/Motor2D/Level.o \
 	${OBJECTDIR}/Clases/Motor2D/MapLoader/DebugShape.o \
 	${OBJECTDIR}/Clases/Motor2D/MapLoader/MapLayer.o \
@@ -82,6 +84,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/States/LevelSelectionState.o \
 	${OBJECTDIR}/Clases/States/LoadingState.o \
 	${OBJECTDIR}/Clases/States/MenuState.o \
+	${OBJECTDIR}/Clases/States/NewTowerState.o \
 	${OBJECTDIR}/Clases/States/SettingsState.o \
 	${OBJECTDIR}/Clases/States/WorldState.o \
 	${OBJECTDIR}/main.o
@@ -171,6 +174,11 @@ ${OBJECTDIR}/Clases/Entities/Player.o: Clases/Entities/Player.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/Player.o Clases/Entities/Player.cpp
 
+${OBJECTDIR}/Clases/Entities/Tower.o: Clases/Entities/Tower.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/Tower.o Clases/Entities/Tower.cpp
+
 ${OBJECTDIR}/Clases/Factories/StateFactory.o: Clases/Factories/StateFactory.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Factories
 	${RM} $@.d
@@ -220,6 +228,11 @@ ${OBJECTDIR}/Clases/Managers/StateManager.o: Clases/Managers/StateManager.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Managers/StateManager.o Clases/Managers/StateManager.cpp
+
+${OBJECTDIR}/Clases/Motor2D/Camera.o: Clases/Motor2D/Camera.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/Camera.o Clases/Motor2D/Camera.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/Level.o: Clases/Motor2D/Level.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D
@@ -345,6 +358,11 @@ ${OBJECTDIR}/Clases/States/MenuState.o: Clases/States/MenuState.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/States
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/MenuState.o Clases/States/MenuState.cpp
+
+${OBJECTDIR}/Clases/States/NewTowerState.o: Clases/States/NewTowerState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/States
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/NewTowerState.o Clases/States/NewTowerState.cpp
 
 ${OBJECTDIR}/Clases/States/SettingsState.o: Clases/States/SettingsState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States

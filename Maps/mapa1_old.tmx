@@ -14383,16 +14383,17 @@
   </data>
  </layer>
  <objectgroup name="Camino" width="64" height="32">
-  <object x="1" y="1">
-   <polyline points="0,0 2047,-1 2047,351 447,351 447,639 1311,639 1311,927 31,927 -1,1023 2047,1023"/>
+  <object x="2040" y="334">
+   <polyline points="0,0 -1574,-2 -1576,284 -746,282 -744,566 -2032,566"/>
   </object>
  </objectgroup>
  <objectgroup name="Colision suelo" width="64" height="32">
   <object x="1573" y="397" width="483" height="49"/>
   <object x="961" y="396" width="441" height="52"/>
-  <object x="517" y="395" width="1513" height="51"/>
+  <object x="517" y="395" width="247" height="50"/>
   <object x="-3" y="395" width="250" height="51"/>
-  <object x="-4" y="682" width="1249" height="55"/>
+  <object x="-4" y="682" width="831" height="50"/>
+  <object x="997" y="682" width="246" height="51"/>
   <object x="1548" y="777" width="368" height="53"/>
   <object x="1" y="969" width="2048" height="56"/>
   <object x="747" y="202" width="364" height="51"/>

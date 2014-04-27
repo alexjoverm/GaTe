@@ -43,6 +43,7 @@ void LevelSelectionState::LoadResources(){
 	try{
 		// Texturas
 		resourceManager->AddTexture("texMenuLevelSelection", "Recursos/SeleccionNivel.jpg");
+        resourceManager->AddTexture("texReturn", "Recursos/return.png");
 		
 		// Fuente
 		resourceManager->AddFont("OpenSans", "Recursos/OpenSans-Regular.ttf");
@@ -61,6 +62,8 @@ void LevelSelectionState::Init() {
 	LoadResources(); // Cargamos recursos
     
     musicPlayer->Play();
+    
+    returnButton   = new ImageButton(15.f, 15.f, 1, resourceManager->GetTexture("texReturn"));
 	
 	// Inicializamos
     fondo= new SpriteSheet(resourceManager->GetTexture("texMenuLevelSelection"));
@@ -85,10 +88,13 @@ void LevelSelectionState::Update(const Time& timeElapsed)
 {
 	InputManager::Instance()->Update();
     
-    if(InputManager::Instance()->keyR)
+    if(InputManager::Instance()->IsClickedKeyR())
         StateManager::Instance()->SetCurrentState(States::ID::LoadingState);
     
     SoundPlayer::Instance()->RemoveStoppedSounds();
+    
+    if(returnButton->IsClicked())
+       StateManager::Instance()->SetCurrentState(States::ID::MenuState);
 }
 
 
@@ -102,6 +108,7 @@ void LevelSelectionState::Render(float interp)
 	window->Clear(sf::Color(255,255,255, 255)); // rgba
         
     window->Draw(*fondo); 
+    returnButton->Draw(*window);
         
 	window->Display();
 }

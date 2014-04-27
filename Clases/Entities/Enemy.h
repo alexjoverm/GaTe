@@ -31,13 +31,18 @@ public:
 		
 	
 	virtual void ResetCan(){ canLeft = canRight = true; }
+        
+        void routeMove();
 	
 	float life=100.f;
 	float forceJump = 500.f;
 	bool canLeft, canRight, canJump;
+        int route;
 	
 private:
 	void Jump();
+        
+        
 };
 
 #endif	/* ENEMY_H */
