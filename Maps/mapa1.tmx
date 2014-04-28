@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="64" height="32" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="tilset" tilewidth="32" tileheight="32">
-  <image source="../../../../../NetBeansProjects/hito2/Maps/tilset.png" width="500" height="500"/>
+  <image source="tilset.png" width="500" height="500"/>
  </tileset>
  <tileset firstgid="226" name="plataforma" tilewidth="32" tileheight="32">
-  <image source="../../../../../NetBeansProjects/hito2/Maps/plataforma2.png" width="386" height="64"/>
+  <image source="plataforma2.png" width="386" height="64"/>
  </tileset>
  <tileset firstgid="250" name="plataforma3" tilewidth="32" tileheight="32">
-  <image source="../../../../../NetBeansProjects/hito2/Maps/plataforma3.png" width="225" height="35"/>
+  <image source="plataforma3.png" width="225" height="35"/>
  </tileset>
  <tileset firstgid="257" name="portal1" tilewidth="32" tileheight="32">
-  <image source="../../../../../NetBeansProjects/hito2/Maps/portal1.png" width="32" height="128"/>
+  <image source="portal1.png" width="32" height="128"/>
  </tileset>
  <tileset firstgid="261" name="portal2" tilewidth="32" tileheight="32">
-  <image source="../../../../../NetBeansProjects/hito2/Maps/portal2.png" width="32" height="128"/>
+  <image source="portal2.png" width="32" height="128"/>
  </tileset>
  <tileset firstgid="265" name="paisaje" tilewidth="32" tileheight="32">
-  <image source="../../../../../NetBeansProjects/hito2/Maps/paisaje2.png" width="2480" height="3508"/>
+  <image source="paisaje2.png" width="2480" height="3508"/>
  </tileset>
  <layer name="Fondo" width="64" height="32">
   <data>
@@ -14384,7 +14384,7 @@
  </layer>
  <objectgroup name="Camino" width="64" height="32">
   <object x="1" y="1">
-   <polyline points="0,0 2047,-1 2047,351 447,351 447,639 1311,639 1311,927 31,927 -1,1023 2047,1023"/>
+   <polyline points="0,0 2047,-1 2047,351 447,351 639,639 1311,639 1151,927 31,927 -1,1023 2047,1023"/>
   </object>
  </objectgroup>
  <objectgroup name="Colision suelo" width="64" height="32">

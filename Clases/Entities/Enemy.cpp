@@ -14,6 +14,12 @@ Enemy::Enemy(const sf::Texture& tex): EntActive(tex), Colisionable((EntActive*)t
     route = 1;
 
     factorSpeed = 300.f;
+    
+    lifebarAddWi = 20.f;
+    lifebarAddHe = 20.f;
+    
+    intersects = prevIntersects = win = die = false;
+    changeX = changeY = 1;
 }
 
 
@@ -23,12 +29,19 @@ Enemy::Enemy(const sf::Texture& tex, const Vector& pos, const Vector& vel, const
     route = 1;
 
     factorSpeed = 300.f;
+    
+    lifebarAddWi = 20.f;
+    lifebarAddHe = 20.f;
+    
+    intersects = prevIntersects = win = die = false;
+    changeX = changeY = 1;
 }
 
 Enemy::Enemy(const Enemy& orig): EntActive(orig), Colisionable((EntActive*)this) {
 }
 
 Enemy::~Enemy() {
+    delete life; life=NULL;
 }
 
 
@@ -86,11 +99,8 @@ void Enemy::OnColision(Colision::Type type, const Rectangle& rec, const Time& el
 
 void Enemy::routeMove(){
 
-    
-    
     // Comprobamos su direccion, si va a la derecha o arriba
     bool right = true, top = true;
-    int changeX = 1 , changeY = 1;
     
     //Sacamos direccion en X
     if( this->GetSpeed().GetX() < 0)
@@ -99,13 +109,25 @@ void Enemy::routeMove(){
     if(this->GetSpeed().GetY() > 0)
         top = false;
     
-    std::cout <<right<<" , " << top << " , " << route <<std::endl;
     
     Vector* auxRoute = WorldState::Instance()->vPath->at(route);
     
-    // Si va a la derecha y tiene que ir a la izquierda cambiamos de direccion en X
-    if(auxRoute->GetX() < this->GetPosition().GetX() || (auxRoute->GetX() - this->GetPosition().GetX()) > this->spriteSheet->getGlobalBounds().GetWidth() + 25.f ) 
-        changeX = -1;
+    prevIntersects = intersects;
+    
+    if(GetRectangleColisionAbsolute().IsInside(*auxRoute))
+        intersects = true;
+    else
+        intersects = false;
+    
+    
+    if(!intersects)
+    {
+        if(auxRoute->GetX() < GetPosition().GetX())
+            changeX = -1;
+        else
+            changeX = 1;
+    }
+    
     
    if(canJump)
        this->SetSpeed( factorSpeed*changeX , GetSpeed().GetY() );
@@ -115,13 +137,11 @@ void Enemy::routeMove(){
     
     
     // Comprobamos la posicion y si se intersecta con el punto.
-    if( this->spriteSheet->getGlobalBounds().IsInside( *auxRoute ) && route < WorldState::Instance()->vPath->size() ) {
+    if( !intersects && prevIntersects ) {
         route++;
         // Si el punto es el ultimo
         if(route >= WorldState::Instance()->vPath->size()){
-           // Lo eliminamos 
-            route--;
-            std::cout << " Hemos eliminado este Enemigo por llegar al final, Falta por implementar" << std::endl;
+            win=true;
         }
     }
 
@@ -131,20 +151,43 @@ void Enemy::routeMove(){
 
 void Enemy::Draw(RenderWindow& window, float inter){
 	renderState->Draw(window, physicsState->GetPreviousPosition(), physicsState->GetPosition(), inter, *this->spriteSheet);
+    
+    float x = renderState->GetRenderPosition().GetX() - lifebarAddWi/2;
+    float y = renderState->GetRenderPosition().GetY() - lifebarHe - lifebarAddWi;
+    
+    life->SetPosition(x,y);
+    life->Draw(window, inter);
 }
 
 
 void Enemy::Update(const Time& elapsedTime){
-	
-
-        
-        // COLISIONES
+    // COLISIONES
 	ResetCan();
-        ResetLimits();
+    ResetLimits();
 	DoRectangleColisions(elapsedTime);
 	
-        // Movimiento en el path
-        routeMove();
+    // Movimiento en el path
+    routeMove();
 	physicsState->Update(elapsedTime, affectGravity); // Si puede saltar, no se le aplica gravedad (por eso se pone negado)
 	//UpdateRectangle(elapsedTime);
+    
+    life->Update(elapsedTime);
+}
+
+
+
+void Enemy::InitLifebar()
+{
+    float wi = GetRectangleColisionAbsolute().GetWidth() + lifebarAddWi;
+    lifebarHe = 10.f;
+    float x = GetRectangleColisionAbsolute().GetTopLeft().GetX() - lifebarAddWi/2;
+    float y = GetRectangleColisionAbsolute().GetTopLeft().GetY() - lifebarHe - 20.f;
+    
+    life = new Lifebar(x, y, wi, lifebarHe, 1);
+}
+
+void Enemy::RestarLife(float value){
+    life->Restar(value);
+    if(life->valor == 0.f)
+        die=true;
 }

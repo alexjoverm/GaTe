@@ -27,7 +27,7 @@ HUD::HUD(float alto, std::string fuente) {
     
     
     nivel   = new sf::Text();
-    barravida = new Lifebar(280.f, 20.f, 450.f, 30.f,  5.f);
+    barravida = new Lifebar( 450.f, 30.f, 280.f, 20.f, 5.f);
     
     
     soundButton = new ImageButton(950, 13, 2, ResourceManager::Instance()->GetTexture("texSounds"));

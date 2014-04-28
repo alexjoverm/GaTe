@@ -61,8 +61,11 @@ public:
     void AddTower(Tower* ent){ vTowers->push_back(ent); }
     void AddEnemy(Enemy* ent){ vEnemies->push_back(ent); }
         
-    void DeleteEnemy(int i){ delete vEnemies->at(i);  vEnemies->erase(vEnemies->begin()+i); }
-    void DeleteBullet(int i){ delete vBullets->at(i);  vBullets->erase(vBullets->begin()+i); }
+    void DeleteEnemy(int i){ delete vEnemies->at(i); vEnemies->at(i)=NULL; vEnemies->erase(vEnemies->begin()+i); }
+    void DeleteBullet(int i){ delete vBullets->at(i); vBullets->at(i)=NULL; vBullets->erase(vBullets->begin()+i); }
+    
+    
+    void CleanArrays(Enemy* en);
     
 
  // HUD

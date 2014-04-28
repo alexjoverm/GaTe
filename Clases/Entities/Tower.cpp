@@ -57,7 +57,7 @@ Tower::~Tower() {
 
 void Tower::Shot(){
 	
-    if(!vEnemies->empty()){
+    if(!vEnemies->empty() && vEnemies->front() != NULL){
         if(clockReloadTower->GetElapsedTime().AsSeconds() >= reloadTime->AsSeconds()){
             WorldState* w = WorldState::Instance();
             int dirX = 1,dirY = 1;
@@ -67,6 +67,7 @@ void Tower::Shot(){
                 dirX = -1;
             if(vEnemies->front()->GetPosition().GetY() <= this->GetPosition().GetY() )
                 dirY = -1;
+            
             
             // Sacamos el vector velocidad para donde tiene que ir la bala
             Vector vecAux = Vector (
@@ -81,6 +82,8 @@ void Tower::Shot(){
 
             w->AddBullet(aux);
             clockReloadTower->Restart();
+            
+            SoundPlayer::Instance()->Play("shot_torreta");
         }
     }
 }
@@ -105,13 +108,14 @@ int Tower::SearchEnemy(Enemy* toSearch){
 
     for(int i = 0 ; i < vEnemies->size() ; i++){
 
-        if(vEnemies->at(i) == toSearch){
+        if(vEnemies->at(i) != NULL && vEnemies->at(i) == toSearch){
             return i;
         }
     }
     
     return res;
 }
+
 void Tower::CheckEnemies (){
     
     vGlobalEnemies = WorldState::Instance()->vEnemies;
@@ -119,24 +123,34 @@ void Tower::CheckEnemies (){
         int in = 0 , encontrado = 0;
 
         for(int i= 0; i < vGlobalEnemies->size(); i++){
+            
+            if(i<vGlobalEnemies->size() && vGlobalEnemies->at(i) != NULL)
+            {
+                if(OnRange( vGlobalEnemies->at(i)->GetPosition().GetX() , vGlobalEnemies->at(i)->GetPosition().GetY() )
+                   || OnRange( vGlobalEnemies->at(i)->GetPosition().GetX() + vGlobalEnemies->at(i)->GetRectangleColisionAbsolute().GetWidth(), vGlobalEnemies->at(i)->GetPosition().GetY() )
+                   || OnRange( vGlobalEnemies->at(i)->GetPosition().GetX() , vGlobalEnemies->at(i)->GetPosition().GetY() + vGlobalEnemies->at(i)->GetRectangleColisionAbsolute().GetHeight())
+                   || OnRange( vGlobalEnemies->at(i)->GetPosition().GetX() + vGlobalEnemies->at(i)->GetRectangleColisionAbsolute().GetWidth(), vGlobalEnemies->at(i)->GetPosition().GetY() + vGlobalEnemies->at(i)->GetRectangleColisionAbsolute().GetHeight())
+                )
+                    in = true;
 
-            in = OnRange( vGlobalEnemies->at(i)->GetPosition().GetX() , vGlobalEnemies->at(i)->GetPosition().GetY() );
-
-            encontrado = SearchEnemy(vGlobalEnemies->at(i));
-           // Si esta dentro de rango
-            if(in){
-                // Buscamos si ya esta en el vector
-            // si no se encuentra, se añade
-                if(encontrado == -1){
-                    vEnemies->push_back(vGlobalEnemies->at(i));  
+                if(i<vGlobalEnemies->size() && vGlobalEnemies->at(i) != NULL)
+                    encontrado = SearchEnemy(vGlobalEnemies->at(i));
+                
+               // Si esta dentro de rango
+                if(in){
+                    // Buscamos si ya esta en el vector
+                // si no se encuentra, se añade
+                    if(encontrado == -1 && i<vGlobalEnemies->size() && vGlobalEnemies->at(i) != NULL){
+                        vEnemies->push_back(vGlobalEnemies->at(i));  
+                    }
                 }
+                else{
+                    // Si se encuentra se quita
+                    if(encontrado != -1){
+                        vEnemies->erase(vEnemies->begin()+encontrado);
+                    }
+                } 
             }
-            else{
-                // Si se encuentra se quita
-                if(encontrado != -1){
-                    vEnemies->erase(vEnemies->begin()+encontrado);
-                }
-            } 
         }
 
         if( !vEnemies->empty() ){
@@ -157,8 +171,9 @@ void Tower::CheckEnemies (){
     window.Draw(*(this->spriteSheet));
 }
 
-void Tower::Update(const Time& elapsedTime){
 
+
+void Tower::Update(const Time& elapsedTime){
     CheckEnemies();
     Shot();
         

@@ -43,14 +43,13 @@ public:
         void AddEnemy(Enemy* ene){ vEnemies->push_back(ene); }
 	
 	
-	
+    std::deque<Enemy*>      *vEnemies;
 private:
     
         float                   range;
         
         sf::CircleShape         range_area;
         
-        std::deque<Enemy*>	*vEnemies;
         std::deque<Enemy*>      *vGlobalEnemies;
         
 	Time                    *lifeTime, *reloadTime;

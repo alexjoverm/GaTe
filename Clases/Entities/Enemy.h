@@ -10,7 +10,6 @@
 #include "EntActive.h"
 #include "../MotorPhysics/Colisionable.h"
 
-
 class Enemy: public EntActive, public Colisionable {
 public:
 	Enemy(const sf::Texture& tex);
@@ -20,6 +19,9 @@ public:
 	virtual ~Enemy();
 	
 	virtual const std::string GetClassName() { return "Enemy";}
+    
+    void InitLifebar();
+    void RestarLife(float value);
 	
 	// Bucle de ciclo de vida
 	virtual void Draw(RenderWindow& window, float inter);
@@ -30,17 +32,27 @@ public:
 	void OnColision(Colision::Type type, const Rectangle& rec, const Time& elapsedTime);
 		
 	
+    
 	virtual void ResetCan(){ canLeft = canRight = true; }
         
-        void routeMove();
+    void routeMove();
 	
-	float life=100.f;
+	
 	float forceJump = 500.f;
+    float attack = 10.f;
+    
 	bool canLeft, canRight, canJump;
-        int route;
+    int route, changeX, changeY;
+    bool intersects, prevIntersects, die, win;
+    
+    Lifebar*    life;
 	
 private:
 	void Jump();
+    
+    
+    float lifebarAddWi, lifebarAddHe, lifebarHe, lifebarLessY;
+    
         
         
 };

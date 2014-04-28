@@ -50,8 +50,8 @@ public:
 	int selectedGun;
 	float forceJump = 800.f;
 	bool canLeft, canRight, canJump;
-        bool isShooting;
-        bool isMoving;
+    bool isShooting;
+    bool isMoving;
 	
 private:
 	Clock	*clockReloadGun;

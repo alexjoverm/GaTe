@@ -8,7 +8,7 @@
 #include "Lifebar.h"
 #include <iostream>
 
-Lifebar::Lifebar(float width, float height, float x, float y,  int brd) {
+Lifebar::Lifebar(float x, float y, float width, float height,  int brd) {
     vmax = 120.f;
     valor =vmax;
     
@@ -80,6 +80,12 @@ void Lifebar::SetPercent(float percent){
         percent = 0.f;
     
     valor = vmax * percent;
+}
+
+
+void Lifebar::SetPosition(float x, float y){ 
+    lifebar->setPosition(x,y);
+    borde->setPosition(x,y);
 }
 
 

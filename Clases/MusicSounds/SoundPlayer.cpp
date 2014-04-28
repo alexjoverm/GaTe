@@ -69,7 +69,8 @@ void SoundPlayer::LoadMenuSounds()
 
 void SoundPlayer::LoadGameSounds()
 {
-	rm->AddSoundBuffer("shot",			"Recursos/Sounds/smash.wav");
+	rm->AddSoundBuffer("shot",			"Recursos/Sounds/disparo_player.wav");
+    rm->AddSoundBuffer("shot_torreta",	"Recursos/Sounds/disparo_torreta.wav");
     rm->AddSoundBuffer("laser",			"Recursos/Sounds/laser.wav");
     rm->AddSoundBuffer("explosion",		"Recursos/Sounds/explosion.wav");
     rm->AddSoundBuffer("enemyDeath",    "Recursos/Sounds/aliendeath.wav");

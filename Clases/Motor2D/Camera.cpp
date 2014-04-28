@@ -74,7 +74,23 @@ void Camera::Init(Player* player){
         // Asignamos el player
         pl = player;
         
-        standard.setCenter(pl->GetPosition().GetX() , pl->GetPosition().GetY());
+        // Posicion controlada de la view standard
+        float posIniXCam = pl->GetPosition().GetX();
+        float posIniYCam = pl->GetPosition().GetY();
+        
+        // Reajuste en X
+        if( ((pl->GetPosition().GetX() + standard.getSize().x / 2) - mapSize->GetX()) > 0 )
+            posIniXCam -=  ( (pl->GetPosition().GetX() + standard.getSize().x / 2) - mapSize->GetX() ) ;
+        else if( (pl->GetPosition().GetX() - standard.getSize().x / 2) < 0 )
+            posIniXCam += std::abs(pl->GetPosition().GetX() - standard.getSize().x / 2)+pl->GetRectangleColisionAbsolute().GetWidth()/2 ;
+        
+        // Reajuste en Y
+        if( (pl->GetPosition().GetY() - standard.getSize().y / 2) < 0 )
+            posIniYCam +=  std::abs( pl->GetPosition().GetY() - standard.getSize().y / 2 ) ;
+        else if( (pl->GetPosition().GetY() + standard.getSize().y / 2) > mapSize->GetY() )
+            posIniYCam -= std::abs((pl->GetPosition().GetY() + standard.getSize().y / 2) - mapSize->GetY() ) ;
+        
+        standard.setCenter(posIniXCam , posIniYCam);
         minimap.setCenter(pl->GetPosition().GetX() , pl->GetPosition().GetY()); 
         prevPosPlayer->Set(pl->GetPosition());
         

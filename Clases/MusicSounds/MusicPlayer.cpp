@@ -22,7 +22,7 @@ MusicPlayer::MusicPlayer()
     mMusic = new sf::Music();
     mFilenames = new std::map<Music::ID, std::string>();
     
-    mFilenames->insert(std::make_pair(Music::MenuTheme , "Recursos/Music/menu.flac"));
+    mFilenames->insert(std::make_pair(Music::MenuTheme , "Recursos/Music/MenuTheme.ogg"));
     mFilenames->insert(std::make_pair(Music::Level1Theme , "Recursos/Music/Deeper.ogg"));
     
     mMusic->setVolume(90.f);

@@ -164,9 +164,10 @@ void WorldState::Init() {
 	
 //***************** Entities
     
-	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),Vector(1600.0f,220.0f), Vector(0.f, 0.f), Vector(500.f, 500.f) );
+	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),Vector(1650.0f,220.0f), Vector(0.f, 0.f), Vector(500.f, 500.f) );
     enemy->SetSpeed(220.f, 0.f);
-    enemy->SetRectangleColision(0, 0, 40, 90);
+    enemy->SetRectangleColision(0, 0, 84, 95);
+    enemy->InitLifebar();
 	
 	AddColisionableEntity(enemy);// Añadimos al array de colisionables
 	AddEnemy(enemy);		// Añadimos al array de elementos activos, para que se pinte
@@ -290,16 +291,37 @@ void WorldState::Update(const Time& timeElapsed)
         for(int i = 0; i < vEntityActive->size(); i++)
             vEntityActive->at(i)->Update(timeElapsed);
         
-        for(int i = 0; i < vEnemies->size(); i++)
-            vEnemies->at(i)->Update(timeElapsed);
-	
         // Towers
         for(int i = 0; i < vTowers->size(); i++)
             vTowers->at(i)->Update(timeElapsed);
-
-        // Bullets
+        
+                // Bullets
         for(int i = 0; i < vBullets->size(); i++)
             vBullets->at(i)->Update(timeElapsed);
+        
+        for(int i = 0; i < vEnemies->size(); i++)
+        {
+            if(vEnemies->at(i)->die)
+            {
+                CleanArrays(vEnemies->at(i));
+                DeleteEnemy(i);
+                i--;
+            }
+            else if(i<vEnemies->size() && vEnemies->at(i)->win)
+            {
+                hud->SubstractLife(vEnemies->at(i)->attack);
+                CleanArrays(vEnemies->at(i));
+                DeleteEnemy(i);
+                i--;
+            }
+                
+            if(i<vEnemies->size() && vEnemies->at(i) != NULL)
+                vEnemies->at(i)->Update(timeElapsed);
+        }
+	
+        
+
+
 
         
 
@@ -411,4 +433,22 @@ void WorldState::ProcessRealEvent(){
     }
 	
 	//vRealEvents->clear();
+}
+
+
+
+void WorldState::CleanArrays(Enemy* en)
+{
+    for(int i=0; i<vEntityColisionable->size(); i++)
+        if(en == vEntityColisionable->at(i)){
+            vEntityColisionable->erase(vEntityColisionable->begin()+i);
+            break;
+        }
+    
+    for(int i=0; i<vTowers->size(); i++)
+        for(int j=0; j<vTowers->at(i)->vEnemies->size(); j++)
+            if(en == vTowers->at(i)->vEnemies->at(j)){
+                vTowers->at(i)->vEnemies->erase(vTowers->at(i)->vEnemies->begin()+j);
+                break;
+            }
 }

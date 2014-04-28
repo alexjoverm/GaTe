@@ -15,7 +15,7 @@
 
 class Lifebar {
 public:
-    Lifebar(float width, float height, float x, float y,  int borde);
+    Lifebar(float x, float y, float width, float height,  int borde);
     Lifebar(const Lifebar& orig);
     virtual ~Lifebar();
     
@@ -28,6 +28,8 @@ public:
     void Rellenar(float value);
     void Restar(float value);
     void SetPercent(float percent);
+    
+    void SetPosition(float x, float y);
     
      
     float vmax;  

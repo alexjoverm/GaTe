@@ -11,7 +11,7 @@
 #include "Entity.h"
 #include "../Motor2D/RenderState.h"
 #include "../MotorPhysics/PhysicsState.h"
-
+#include "../HUD/Lifebar.h"
 
 class EntActive: public Entity {
 public:
