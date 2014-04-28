@@ -12,7 +12,8 @@
 
 
 Colisionable::Colisionable(EntActive* ent) {
-	rectColision = new std::vector<Rectangle*>();
+	vRectColision = new std::vector<Rectangle*>();
+    rectColision = new Rectangle(0,0, 20, 20);
 	entity = ent;
 }
 
@@ -21,10 +22,10 @@ Colisionable::Colisionable(const Colisionable& orig) {
 
 Colisionable::~Colisionable() {
 		
-	while(!rectColision->empty()) 
-		delete rectColision->back(), rectColision->pop_back();
+	while(!vRectColision->empty()) 
+		delete vRectColision->back(), vRectColision->pop_back();
 	
-	rectColision = NULL;
+	vRectColision = NULL;
 }
 
 
@@ -33,14 +34,14 @@ Colisionable::~Colisionable() {
 
 // Devuelven la posicion en la que se ha insertado
 int Colisionable::CreateRectangle(float x, float y, float width, float height){
-	rectColision->push_back(new Rectangle(x,y,width,height));
-	return rectColision->size()-1;
+	vRectColision->push_back(new Rectangle(x,y,width,height));
+	return vRectColision->size()-1;
 }
 
 
 Rectangle Colisionable::GetAbsoluteRectangle(const EntActive& ent, const Rectangle& recRelative)
 {
-	Rectangle rec = ent.GetSprite()->getGlobalBounds();
+	Rectangle rec = GetRectangleColisionAbsolute();
 	
 	float xRel = recRelative.GetTopLeft().GetX();
 	float yRel = recRelative.GetTopLeft().GetY();
@@ -64,16 +65,31 @@ Rectangle Colisionable::GetAbsoluteRectangle(const EntActive& ent, const Rectang
 std::vector<Rectangle> Colisionable::GetAbsoluteRectangles(const EntActive& ent){
 	std::vector<Rectangle> vec;
 	
-	for(int i=0; i < rectColision->size() ; i++)
-		vec.push_back(*rectColision->at(i));
+	for(int i=0; i < vRectColision->size() ; i++)
+		vec.push_back(*vRectColision->at(i));
 	
 	return vec;
 }
 
 
+
+Rectangle Colisionable::GetRectangleColisionAbsolute() const
+{
+    return Rectangle(
+        this->entity->GetPosition().GetX() + rectColision->GetTopLeft().GetX(),
+        this->entity->GetPosition().GetY() + rectColision->GetTopLeft().GetY(),
+        rectColision->GetWidth(),
+        rectColision->GetHeight()
+    );
+}
+
+
+
+
+
 Rectangle Colisionable::CalculateNextRect(const Time& elapsedTime, float factor){
 	
-	Rectangle auxRect = entity->GetSprite()->getGlobalBounds();
+	Rectangle auxRect = GetRectangleColisionAbsolute();
 	
 	auxRect.SetX(auxRect.GetTopLeft().GetX() + entity->GetSpeed().GetX() * elapsedTime.AsSeconds() * factor);
 	auxRect.SetY(auxRect.GetTopLeft().GetY() + entity->GetSpeed().GetY() * elapsedTime.AsSeconds() * factor);
@@ -87,15 +103,17 @@ Rectangle Colisionable::CalculateNextRect(const Time& elapsedTime, float factor)
 // ********************************************************************************
 
 bool Colisionable::CheckColision(const Colisionable& ent){
-	return entity->GetSprite()->getGlobalBounds().Intersects(ent.entity->GetSprite()->getGlobalBounds());	
+	return GetRectangleColisionAbsolute().Intersects(ent.GetRectangleColisionAbsolute());	
 }
 
 bool Colisionable::CheckColision(const Rectangle& rec){
-	return entity->GetSprite()->getGlobalBounds().Intersects(rec);
+	return GetRectangleColisionAbsolute().Intersects(rec);
 }
 
+
+
 bool Colisionable::CheckColision(const Colisionable& ent, const Time& elapsedTime){
-	return CalculateNextRect(elapsedTime, nextRectFactor).Intersects(ent.entity->GetSprite()->getGlobalBounds());	
+	return CalculateNextRect(elapsedTime, nextRectFactor).Intersects(ent.GetRectangleColisionAbsolute());	
 }
 
 bool Colisionable::CheckColision(const Rectangle& rec, const Time& elapsedTime){
@@ -154,7 +172,7 @@ Colision::Type Colisionable::TypeOfColision(const Rectangle& rec, const Time& el
 	//***** COLISION 2 EJES: comprobación estadística respecto a la posición anterior
 	else
 	{
-		Rectangle rectPrev = entity->GetSprite()->getGlobalBounds();
+		Rectangle rectPrev = GetRectangleColisionAbsolute();
 		Vector posAux = Vector();
 		
 		// Si es la esquina TOP-LEFT, comprobamos con la BOTTOM-RIGHT del Sprite, pero primero miramos la VELOCIDAD
@@ -206,15 +224,18 @@ void Colisionable::MoveToEdge(Colision::Type type, const Rectangle& rec, const T
 	
 	if(type == Colision::Type::BOTTOM){
         nextPos = CalculateNextRect(elapsedTime, nextRectFactor).GetBottomLeft();
-        currentPos = entity->GetSprite()->getGlobalBounds().GetBottomLeft();
+        currentPos = GetRectangleColisionAbsolute().GetBottomLeft();
         float distY = nextPos.GetY() - rec.GetTopLeft().GetY();
 
         // Calculamos el limite de abajo, pero RESTAMOS la altura
         value = nextPos.GetY() - distY + offset;
+        
         while (value <= rec.GetTopLeft().GetY())
             value += offset;
-        
-        value -= entity->GetSprite()->getGlobalBounds().GetHeight();
+
+       
+        value -= GetRectangleColisionAbsolute().GetHeight() + (GetRectangleColisionAbsolute().GetTopLeft().GetY() - entity->GetSprite()->getGlobalBounds().GetTopLeft().GetY());
+            
         std::cout << "Limit Bottom: " << value << std::endl;
         entity->SetBottomLimitValue(value);
         entity->SetBottomLimited(true);
@@ -222,12 +243,14 @@ void Colisionable::MoveToEdge(Colision::Type type, const Rectangle& rec, const T
 	
 	else if(type == Colision::Type::RIGHT){
 		nextPos = CalculateNextRect(elapsedTime, nextRectFactor).GetTopLeft();
-		currentPos = entity->GetSprite()->getGlobalBounds().GetTopLeft();
+		currentPos = GetRectangleColisionAbsolute().GetTopLeft();
 		float distX = nextPos.GetX() - rec.GetTopRight().GetX();
 		
         value = nextPos.GetX() - distX + offset;
         while (value <= rec.GetTopRight().GetX())
             value += offset;
+        
+        value += entity->GetPosition().GetX() - currentPos.GetX();
         
         entity->SetLeftLimitValue(value);
         entity->SetLeftLimited(true);
@@ -235,7 +258,7 @@ void Colisionable::MoveToEdge(Colision::Type type, const Rectangle& rec, const T
 	
 	else if(type == Colision::Type::LEFT){
 		nextPos = CalculateNextRect(elapsedTime, nextRectFactor).GetTopRight();
-		currentPos = entity->GetSprite()->getGlobalBounds().GetTopRight();
+		currentPos = GetRectangleColisionAbsolute().GetTopRight();
 		float distX = nextPos.GetX() - rec.GetTopLeft().GetX();
 		
         value = nextPos.GetX() - distX - offset;
@@ -243,19 +266,22 @@ void Colisionable::MoveToEdge(Colision::Type type, const Rectangle& rec, const T
             value -= offset;
         
         value -= entity->GetSprite()->getGlobalBounds().GetWidth();
+        value += (entity->GetPosition().GetX()+entity->GetSprite()->getGlobalBounds().GetWidth()) - currentPos.GetX();
         
         entity->SetRightLimitValue(value);
         entity->SetRightLimited(true);
 	}
 	
-	else if(type == Colision::Type::TOP){
+	else if(type == Colision::Type::TOP && entity->GetSpeed().GetY() < 0.f){
 		nextPos = CalculateNextRect(elapsedTime, nextRectFactor).GetTopLeft();
-		currentPos = entity->GetSprite()->getGlobalBounds().GetTopLeft();
+		currentPos = GetRectangleColisionAbsolute().GetTopLeft();
 		float distY = nextPos.GetY() - rec.GetBottomLeft().GetY();
 			
         value = nextPos.GetY() - distY + offset;
         while (value <= rec.GetBottomLeft().GetY())
             value += offset;
+        
+        value += entity->GetPosition().GetY() - currentPos.GetY();
         
         entity->SetTopLimitValue(value);
         entity->SetTopLimited(true);

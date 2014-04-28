@@ -33,6 +33,10 @@ public:
 	std::vector<Rectangle> GetAbsoluteRectangles(const EntActive& ent);
 	
     
+    // Rectángulo de Colision
+    void SetRectangleColision(float x, float y, float w, float h){ rectColision->Set(x,y,w,h); }
+    Rectangle GetRectangleColisionAbsolute() const;
+    
     
 	// Calcula siguiente rectángulo. Se podrá usar factor para calcular rectángulos intermedios
 	Rectangle CalculateNextRect(const Time& elapsedTime, float factor=1.f);
@@ -43,8 +47,10 @@ public:
 	
 
 protected:
-	std::vector<Rectangle*>		*rectColision; // Rectangulos con coordenadas RELATIVAS (ENTRE 0.f y 1.f)
-	EntActive*					entity;
+	std::vector<Rectangle*>		*vRectColision; 
+    Rectangle*                  rectColision;
+    
+    EntActive*					entity;
 	float		nextRectFactor = 1.0f;
 	
 	

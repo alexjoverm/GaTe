@@ -37,6 +37,9 @@ public:
 		rectangle->width= w;	rectangle->height = h;
 	}
 	
+    
+    Rectangle& operator=(const Rectangle& v);
+    
 	
 // Intersecciones
 	bool Intersects(const Rectangle& rec){ return rectangle->intersects(*(rec.GetRectangle())); }

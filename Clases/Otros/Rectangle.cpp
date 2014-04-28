@@ -26,3 +26,12 @@ Rectangle::~Rectangle() {
 	delete rectangle;
 	rectangle = NULL;
 }
+
+Rectangle& Rectangle::operator=(const Rectangle& v)
+{	
+    rectangle->left = v.GetTopLeft().GetX();
+    rectangle->top = v.GetTopLeft().GetY();
+    rectangle->width = v.GetWidth();
+    rectangle->height = v.GetHeight();
+    return *this;
+}

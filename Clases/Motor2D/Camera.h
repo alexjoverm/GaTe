@@ -59,14 +59,14 @@ private:
     Views::Type                 currentView;
     sf::RenderWindow*           window;
    
-    Vector                      mapSize;
+    Vector*                      mapSize;
     
     sf::RectangleShape*         miniback;
     
-    sf::FloatRect               topRect;
-    sf::FloatRect               leftRect;
-    sf::FloatRect               bottomRect;
-    sf::FloatRect               rightRect;
+    Rectangle*                topRect;
+    Rectangle*                leftRect;
+    Rectangle*                bottomRect;
+    Rectangle*                rightRect;
     
 };
 

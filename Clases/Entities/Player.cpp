@@ -62,21 +62,22 @@ Player::~Player() {
 void Player::Jump(){
 	
 	if(canJump)
+    {
+        if(isShooting)
         {
-            if(isShooting)
-            {
-                this->PlayAnimation();
-                this->SetCurrentAnimation("disparoSaltar", this->GetSprite());
-            }
-            else
-            {
-                this->PlayAnimation();
-                this->SetCurrentAnimation("saltar", this->GetSprite());
-            }
-		this->SetSpeed(this->GetSpeed().GetX(), -forceJump);
+            this->PlayAnimation();
+            this->SetCurrentAnimation("disparoSaltar", this->GetSprite());
+        }
+        else
+        {
+            this->PlayAnimation();
+            this->SetCurrentAnimation("saltar", this->GetSprite());
+        }
+        
+        this->SetSpeed(this->GetSpeed().GetX(), -forceJump);
 
-		canJump=false;
-		affectGravity = !canJump;
+        canJump=false;
+        affectGravity = !canJump;
 	}
 }
 
@@ -184,11 +185,12 @@ void Player::DoRectangleColisions(const Time& elapsedTime){
 	
 	Colision::Type	type;
 	bool colisionado = false, isInFloor = false, changedNextPos = false;
+    
+    std::cout << "Position:  " << StringUtils::ConvertVector(GetPosition()) << std::endl;
+    std::cout << "Rectangle:  " << StringUtils::ConvertVector(GetRectangleColisionAbsolute().GetTopLeft()) << std::endl;
 	
 	for(int i=0; i < world->level->vRectColision->size(); i++){
 		if(CheckColision(*world->level->vRectColision->at(i), elapsedTime)){
-            if(GetPosition().GetX() >= 350 && GetPosition().GetY() >= 380)
-                std::cout << "a" << std::endl;
             
 			// Comprobamos tipo de colision, y hacemos lo que debamos
 			type = TypeOfColision(*world->level->vRectColision->at(i), elapsedTime);
@@ -246,10 +248,10 @@ void Player::Update(const Time& elapsedTime){
     {
         this->SetCurrentAnimation("disparoSaltar", this->GetSprite());
     }
-        if(canJump && isShooting && isMoving)
-        {
-            this->SetCurrentAnimation("disparoCorrer", this->GetSprite());
-        }
+    if(canJump && isShooting && isMoving)
+    {
+        this->SetCurrentAnimation("disparoCorrer", this->GetSprite());
+    }
         
 
     this->spriteSheet->GetSprite()->setTextureRect(this->GetAnimatedSprite()->GetSpriteRect());

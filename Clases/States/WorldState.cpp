@@ -50,8 +50,7 @@ WorldState::WorldState() {
     musicPlayer = MusicPlayer::Instance();
     soundPlayer = SoundPlayer::Instance();
     
-    // Camera
-    cam = new Camera(window->renderWindow);
+    
 }
 
 WorldState::WorldState(const WorldState& orig) {
@@ -165,8 +164,9 @@ void WorldState::Init() {
 	
 //***************** Entities
     
-	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),Vector(1600.0f,320.0f), Vector(0.f, 0.f), Vector(500.f, 500.f) );
+	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),Vector(1600.0f,220.0f), Vector(0.f, 0.f), Vector(500.f, 500.f) );
     enemy->SetSpeed(220.f, 0.f);
+    enemy->SetRectangleColision(0, 0, 40, 90);
 	
 	AddColisionableEntity(enemy);// Añadimos al array de colisionables
 	AddEnemy(enemy);		// Añadimos al array de elementos activos, para que se pinte
@@ -177,6 +177,7 @@ void WorldState::Init() {
 	player->GetSelectedGun()->SetRelativePos(80.f, 50.f);
     player->GetSelectedGun()->SetLifeTime(1.f);
 	player->GetSelectedGun()->SetReloadTime(0.25f);
+    player->SetRectangleColision(70, 25, 70, 120);
     
     //player->SetColor(sf::Color(255,255,255, 105));
     
@@ -198,6 +199,8 @@ void WorldState::Init() {
 
 
 //******************* HUD Y  CAMARA
+    // Camera
+    cam = new Camera(window->renderWindow);
     cam->Init(player);
     hud = new HUD(50.f, "OpenSans");
     
@@ -327,6 +330,13 @@ void WorldState::Render(float interp)
     // Eventos de Tiempo Real
     ProcessRealEvent();
         
+    sf::RectangleShape aux = sf::RectangleShape();
+    aux.setFillColor(sf::Color(200, 0, 0, 150));
+    aux.setPosition(player->GetRectangleColisionAbsolute().GetTopLeft().GetX(),
+        player->GetRectangleColisionAbsolute().GetTopLeft().GetY());
+    
+    aux.setSize(sf::Vector2f(player->GetRectangleColisionAbsolute().GetWidth(), 
+        player->GetRectangleColisionAbsolute().GetHeight()));
     
 	window->Clear(sf::Color(255,255,255, 255)); // rgba
 	
@@ -351,8 +361,9 @@ void WorldState::Render(float interp)
 		vBullets->at(i)->Draw(*window, interp);
     
 
-
+    window->Draw(aux);
     player->Draw(*window, interp);
+    
     cam->Update();
     
  // HUD
@@ -362,6 +373,7 @@ void WorldState::Render(float interp)
     if(cam->minimapActive)
         level->renderMinimap();
 	
+    cam->SetCurrentView(Views::Type::Fixed);
 	window->Display();
     
     

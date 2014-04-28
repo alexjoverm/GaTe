@@ -16,14 +16,22 @@ Camera::Camera(sf::RenderWindow* win) {
     miniback = new  sf::RectangleShape();
     prevPosPlayer = new Vector();
     
+    mapSize = new Vector();
 }
 
 Camera::Camera(const Camera& orig) {
 }
 
 Camera::~Camera() {
+    delete miniback; miniback=NULL;
+    delete prevPosPlayer; prevPosPlayer=NULL;
     
+    delete mapSize; mapSize=NULL;
     
+    delete topRect; topRect=NULL;
+    delete bottomRect; bottomRect=NULL;
+    delete rightRect; rightRect=NULL;
+    delete leftRect; leftRect=NULL;
 }
 
 
@@ -32,29 +40,29 @@ void Camera::Init(Player* player){
         mapSize = WorldState::Instance()->level->getMapSize();
         
         // Rectangulos de colision borde de mapa
-        topRect = sf::FloatRect(0,0,mapSize.GetX(),0.01);
-        bottomRect = sf::FloatRect(0,mapSize.GetY(),mapSize.GetX(),0.01);
-        leftRect = sf::FloatRect(0,0,0.01,mapSize.GetY());
-        rightRect = sf::FloatRect(mapSize.GetX(),0,0.01,mapSize.GetY());
+        topRect = new Rectangle(0,0,mapSize->GetX(),0.01);
+        bottomRect = new Rectangle(0,mapSize->GetY(),mapSize->GetX(),0.01);
+        leftRect = new Rectangle(0,0,0.01,mapSize->GetY());
+        rightRect = new Rectangle(mapSize->GetX(),0,0.01,mapSize->GetY());
     
         fixed = window->getView();  // Esta nunca cambia
-	standard = fixed;          // 'standard' sera la que se muestre siempre
+        standard = fixed;          // 'standard' sera la que se muestre siempre
     
         //** MINI-MAPA (seguirá a la vista 'standard')  *************
     
-	unsigned int sizex = mapSize.GetX()/6;
-        unsigned int sizey = mapSize.GetY()/3;
-	minimap = sf::View(sf::FloatRect(standard.getCenter().x,standard.getCenter().y,static_cast<float>(sizex),static_cast<float>(window->getSize().y*sizey/window->getSize().x)));
+        unsigned int sizex = mapSize->GetX()/6;
+        unsigned int sizey = mapSize->GetY()/3;
+        minimap = sf::View(sf::FloatRect(standard.getCenter().x,standard.getCenter().y,static_cast<float>(sizex),static_cast<float>(window->getSize().y*sizey/window->getSize().x)));
     
         //Calculamos proporcion entre MiniMap y Pantalla. Asi podremos definir el tamaño con porcentajes
         sf::Vector2f proporcion(static_cast<float>(minimap.getSize().x)/window->getSize().x , static_cast<float>(minimap.getSize().y)/window->getSize().y);
     
         //El "Viewport" funciona con porcentajes representado con floats (0.0f = inicio , 1.0f = fin pantalla)
         minimap.setViewport(sf::FloatRect(
-        1.f- proporcion.x -0.01f,     //InicioX
-        1.f- proporcion.y -0.01f,     //InicioY
-        proporcion.x,                 //Ancho
-        proporcion.y                  //Alto
+            1.f- proporcion.x -0.01f,     //InicioX
+            1.f- proporcion.y -0.01f,     //InicioY
+            proporcion.x,                 //Ancho
+            proporcion.y                  //Alto
         )); //Lo situamos Abajo-Derecha
         minimap.zoom(5.0f); //Zoom funciona a la inversa
     
@@ -162,15 +170,15 @@ void Camera::Move(float velX, float velY, float posCharX, float posCharY){
     else
         top = 1;
     
-    sf::FloatRect visibleScreen = sf::FloatRect(standard.getCenter().x-(standard.getSize().x/2.0),standard.getCenter().y-(standard.getSize().y/2.0),standard.getSize().x,standard.getSize().y);
+    Rectangle visibleScreen = Rectangle(standard.getCenter().x-(standard.getSize().x/2.0),standard.getCenter().y-(standard.getSize().y/2.0),standard.getSize().x,standard.getSize().y);
     
     // Comprobamos colisiones en el eje X
-    if( ( left && leftRect.intersects(visibleScreen) ) || ( right && rightRect.intersects(visibleScreen) )  ){
+    if( ( left && leftRect->Intersects(visibleScreen) ) || ( right && rightRect->Intersects(visibleScreen) )  ){
         rightx = 0;
     }
     
     // Comprobamos colisiones en el eje Y
-    if( ( top && topRect.intersects(visibleScreen) ) || (bottom && bottomRect.intersects(visibleScreen) )  ){
+    if( ( top && topRect->Intersects(visibleScreen) ) || (bottom && bottomRect->Intersects(visibleScreen) )  ){
         righty = 0;
     }
     
@@ -231,15 +239,15 @@ void Camera::MoveMinimap(float x, float y, float charx, float chary){
     else
         top = 1;
     
-    sf::FloatRect visibleScreen = sf::FloatRect(minimap.getCenter().x-(minimap.getSize().x/2.0),minimap.getCenter().y-(minimap.getSize().y/2.0),minimap.getSize().x,minimap.getSize().y);
+    Rectangle visibleScreen = Rectangle(minimap.getCenter().x-(minimap.getSize().x/2.0),minimap.getCenter().y-(minimap.getSize().y/2.0),minimap.getSize().x,minimap.getSize().y);
     
     // Comprobamos colisiones en el eje X
-    if( ( left && leftRect.intersects(visibleScreen) ) || ( right && rightRect.intersects(visibleScreen) )  ){
+    if( ( left && leftRect->Intersects(visibleScreen) ) || ( right && rightRect->Intersects(visibleScreen) )  ){
         rightx = 0;
     }
     
     // Comprobamos colisiones en el eje Y
-    if( ( top && topRect.intersects(visibleScreen) ) || (bottom && bottomRect.intersects(visibleScreen) )  ){
+    if( ( top && topRect->Intersects(visibleScreen) ) || (bottom && bottomRect->Intersects(visibleScreen) )  ){
         righty = 0;
     }
     

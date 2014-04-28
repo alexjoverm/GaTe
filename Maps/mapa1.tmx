@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="64" height="32" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="tilset" tilewidth="32" tileheight="32">
-  <image source="tilset.png" width="500" height="500"/>
+  <image source="../../../../../NetBeansProjects/hito2/Maps/tilset.png" width="500" height="500"/>
  </tileset>
  <tileset firstgid="226" name="plataforma" tilewidth="32" tileheight="32">
-  <image source="plataforma2.png" width="386" height="64"/>
+  <image source="../../../../../NetBeansProjects/hito2/Maps/plataforma2.png" width="386" height="64"/>
  </tileset>
  <tileset firstgid="250" name="plataforma3" tilewidth="32" tileheight="32">
-  <image source="plataforma3.png" width="225" height="35"/>
+  <image source="../../../../../NetBeansProjects/hito2/Maps/plataforma3.png" width="225" height="35"/>
  </tileset>
  <tileset firstgid="257" name="portal1" tilewidth="32" tileheight="32">
-  <image source="portal1.png" width="32" height="128"/>
+  <image source="../../../../../NetBeansProjects/hito2/Maps/portal1.png" width="32" height="128"/>
  </tileset>
  <tileset firstgid="261" name="portal2" tilewidth="32" tileheight="32">
-  <image source="portal2.png" width="32" height="128"/>
+  <image source="../../../../../NetBeansProjects/hito2/Maps/portal2.png" width="32" height="128"/>
  </tileset>
  <tileset firstgid="265" name="paisaje" tilewidth="32" tileheight="32">
-  <image source="paisaje2.png" width="2480" height="3508"/>
+  <image source="../../../../../NetBeansProjects/hito2/Maps/paisaje2.png" width="2480" height="3508"/>
  </tileset>
  <layer name="Fondo" width="64" height="32">
   <data>
@@ -14390,7 +14390,7 @@
  <objectgroup name="Colision suelo" width="64" height="32">
   <object x="1573" y="397" width="483" height="49"/>
   <object x="961" y="396" width="441" height="52"/>
-  <object x="517" y="395" width="1513" height="51"/>
+  <object x="517" y="395" width="1570" height="48"/>
   <object x="-3" y="395" width="250" height="51"/>
   <object x="-4" y="682" width="1249" height="55"/>
   <object x="1548" y="777" width="368" height="53"/>

@@ -34,7 +34,6 @@ Tower::Tower(const sf::Texture& tex,const Vector pos, const float ran): EntPassi
     clockReloadTower->Restart();
     
     vEnemies = new std::deque<Enemy*>();
-    vGlobalEnemies = new std::deque<Enemy*>();
 
 }
 
@@ -51,6 +50,9 @@ Tower::~Tower() {
     
     delete clockReloadTower;
     clockReloadTower = NULL;
+    
+    vEnemies->clear();
+    delete vEnemies; vEnemies=NULL;
 }
 
 void Tower::Shot(){

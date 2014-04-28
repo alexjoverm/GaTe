@@ -33,7 +33,7 @@ public:
     void                                render();
     void                                renderMiniMap();  
     
-    Vector                              getMapSize(){ return Vector(map.GetMapSize().x,map.GetMapSize().y);}
+    Vector*                              getMapSize(){ return new Vector(map.GetMapSize().x,map.GetMapSize().y);}
     
     
 private:

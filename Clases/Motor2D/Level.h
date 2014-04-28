@@ -26,12 +26,12 @@ public:
 	void AddTextureFile(const std::string& tex){ vTextures->push_back(tex); };
 	void AddEntPassive(EntPassive* ent){ vEntPassive->push_back(ent); };
     
-        void LoadMap(std::string mapName);
-        
-        void renderMap() { map->render(); }
-        void renderMinimap() { map->renderMiniMap(); }
-        
-        Vector          getMapSize() {return map->getMapSize(); }; 
+    void LoadMap(std::string mapName);
+
+    void renderMap() { map->render(); }
+    void renderMinimap() { map->renderMiniMap(); }
+
+    Vector*   getMapSize() { return map->getMapSize(); }; 
 	
 //Variables public para que sean accesibles
 public:

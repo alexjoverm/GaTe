@@ -54,6 +54,7 @@ void NewTowerState::Clean(){
     // liberamos recursos
     resourceManager->CleanResources();
     
+    delete tower; tower=NULL;
 }
 
 
