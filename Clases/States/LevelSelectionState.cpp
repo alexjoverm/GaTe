@@ -49,7 +49,7 @@ void LevelSelectionState::LoadResources(){
                 resourceManager->AddTexture("texEsferas3", "Recursos/esferas3.png");
 		
 		// Fuente
-		resourceManager->AddFont("OpenSans", "Recursos/OpenSans-Regular.ttf");
+		resourceManager->AddFont("Urban", "Recursos/Urban_Stone.otf");
         
         if(!musicPlayer->isPlaying)
             musicPlayer->Load(Music::MenuTheme);
@@ -71,6 +71,24 @@ void LevelSelectionState::Init() {
     levelTwoButton   = new ImageButton(580.f, 445.f, 2, resourceManager->GetTexture("texEsferas2"));
     levelThreeButton   = new ImageButton(525.f, 120.f, 2, resourceManager->GetTexture("texEsferas3"));
 	
+    txtlevelOne = new sf::Text();
+    txtlevelOne->setPosition(190.f, 240.f);
+    txtlevelOne->setFont(resourceManager->GetFont("Urban"));
+    txtlevelOne->setCharacterSize(28);
+    txtlevelOne->setString("Nivel 1");
+    
+    txtlevelTwo = new sf::Text();
+    txtlevelTwo->setPosition(550.f, 540.f);
+    txtlevelTwo->setFont(resourceManager->GetFont("Urban"));
+    txtlevelTwo->setCharacterSize(28);
+    txtlevelTwo->setString("Nivel 2");
+    
+    txtlevelThree = new sf::Text();
+    txtlevelThree->setPosition(480.f, 80.f);
+    txtlevelThree->setFont(resourceManager->GetFont("Urban"));
+    txtlevelThree->setCharacterSize(28);
+    txtlevelThree->setString("Nivel 3");
+        
 	// Inicializamos
     fondo= new SpriteSheet(resourceManager->GetTexture("texMenuLevelSelection"));
 }
@@ -81,6 +99,17 @@ void LevelSelectionState::Clean(){
     resourceManager->CleanResources();
     delete fondo; fondo=NULL;
     
+  /*
+    delete txtlevelOne; txtlevelOne=NULL;
+    delete txtlevelTwo; txtlevelTwo=NULL;
+    delete txtlevelThree; txtlevelThree=NULL;
+    
+    delete returnButton; returnButton=NULL;
+    delete levelOneButton; levelOneButton=NULL;
+    delete levelTwoButton; levelTwoButton=NULL;
+    delete levelThreeButton; levelThreeButton=NULL;
+    
+   */ 
     vNonRealEvents->clear();
     vRealEvents->clear();
     musicPlayer->Stop();
@@ -143,8 +172,11 @@ void LevelSelectionState::Render(float interp)
         levelOneButton->Draw(*window);
         levelTwoButton->Draw(*window);
         levelThreeButton->Draw(*window);
-    
         
+        window->Draw(*txtlevelOne);
+     window->Draw(*txtlevelThree);
+      window->Draw(*txtlevelTwo);
+     
 	window->Display();
 }
 

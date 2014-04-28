@@ -57,9 +57,14 @@ private:
     SpriteSheet* fondo;
 
     ImageButton* returnButton;
+    
     ImageButton* levelOneButton;
     ImageButton* levelTwoButton;
     ImageButton* levelThreeButton;
+    
+    sf::Text*    txtlevelOne;
+    sf::Text*    txtlevelTwo;
+    sf::Text*    txtlevelThree;
 
     //Players
     MusicPlayer* musicPlayer;
