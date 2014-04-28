@@ -121,25 +121,35 @@ void Mapa::render(){
 }
 
 // Metodo para renderizar el minimapa
-void Mapa::renderMiniMap(){ 
-
-    WorldState::Instance()->GetCamera()->SetCurrentView(Views::Type::Fixed);
-        window->draw(*WorldState::Instance()->GetCamera()->GetMiniback());
-    WorldState::Instance()->GetCamera()->SetCurrentView(Views::Type::Minimap);    // Mini-Mapa
-        window->draw(map);     
-        
-        
-    for(int i = 0; i < WorldState::Instance()->vTowers->size(); i++)
-        window->draw(*WorldState::Instance()->vTowers->at(i)->GetSprite()->GetSprite());
-        
-    for(int i = 0; i < WorldState::Instance()->vEnemies->size(); i++)
-        window->draw(*WorldState::Instance()->vEnemies->at(i)->GetSprite()->GetSprite());
+void Mapa::renderMiniMap(){
     
-
-    window->draw(*WorldState::Instance()->player->GetSprite()->GetSprite());
-        
-
-    WorldState::Instance()->GetCamera()->SetCurrentView(Views::Type::Standard);      // Zelda y Controles (elementos de ultima capa
+    Rectangle aux = WorldState::Instance()->player->GetRectangleColisionAbsolute();
+    Vector vecAbs = aux.GetTopLeft();
+    sf::Vector2i vecRel = RenderWindow::Instance()->renderWindow->mapCoordsToPixel(sf::Vector2f(vecAbs.GetX(), vecAbs.GetY()) 
+            , WorldState::Instance()->GetCamera()->standard);
     
+    aux.SetX(vecRel.x - 10.f);
+    aux.SetY(vecRel.y - 25.f);
+
+    if(!aux.Intersects( Rectangle( WorldState::Instance()->GetCamera()->GetMiniback()->getGlobalBounds() ) ) ){
+        
+        WorldState::Instance()->GetCamera()->SetCurrentView(Views::Type::Fixed);
+            window->draw(*WorldState::Instance()->GetCamera()->GetMiniback());
+        WorldState::Instance()->GetCamera()->SetCurrentView(Views::Type::Minimap);    // Mini-Mapa
+            window->draw(map);     
+
+
+        for(int i = 0; i < WorldState::Instance()->vTowers->size(); i++)
+            window->draw(*WorldState::Instance()->vTowers->at(i)->GetSprite()->GetSprite());
+
+        for(int i = 0; i < WorldState::Instance()->vEnemies->size(); i++)
+            window->draw(*WorldState::Instance()->vEnemies->at(i)->GetSprite()->GetSprite());
+
+
+        window->draw(*WorldState::Instance()->player->GetSprite()->GetSprite());
+
+
+        WorldState::Instance()->GetCamera()->SetCurrentView(Views::Type::Standard);      // Zelda y Controles (elementos de ultima capa
+    }
 }
 

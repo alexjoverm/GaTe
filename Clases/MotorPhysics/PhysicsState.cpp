@@ -7,6 +7,7 @@
 #include "PhysicsState.h"
 #include "../Otros/Vector.h"
 #include "../Otros/StringUtils.h"
+
 #include <iostream>
 
 PhysicsState::PhysicsState() 
@@ -21,7 +22,7 @@ PhysicsState::PhysicsState()
 
 }
 
-PhysicsState::PhysicsState(const Vector& pos, const Vector& vel, const Vector& maxvel, const Vector& grav){
+PhysicsState::PhysicsState( const Vector& pos, const Vector& vel, const Vector& maxvel, const Vector& grav){
 	
 	posNext = new Vector(pos.GetX(), pos.GetY());
 	posPrev = new Vector(pos.GetX(), pos.GetY());
@@ -99,6 +100,8 @@ void PhysicsState::Update(const Time& elapsedTime, bool affectGravity)
 			speed->SetY(maxSpeed->GetY());
 		
 	}
+    
+        
     
     *posPrev = *posNext;
     posNext->SetX(posNext->GetX() + ((speed->GetX() + speedPrev->GetX()) * 0.5f * elapsedTime.AsSeconds()));

@@ -10,8 +10,9 @@
 
 #include "Entity.h"
 #include "../Motor2D/RenderState.h"
-#include "../MotorPhysics/PhysicsState.h"
+
 #include "../HUD/Lifebar.h"
+#include "../MotorPhysics/PhysicsState.h"
 
 class EntActive: public Entity {
 public:
@@ -66,6 +67,7 @@ public:
 	float	factorSpeedIni = factorSpeed;
 	float	factorGravity = 1000.f;
 	bool	affectGravity = true;
+    bool    isReverse = false, isPrevReverse=false;
 	
 protected:
 	PhysicsState*	physicsState;

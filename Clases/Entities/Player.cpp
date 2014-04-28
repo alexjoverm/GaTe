@@ -22,7 +22,7 @@ Player::Player(const sf::Texture& tex, const Vector& size): EntActive(tex), Coli
 	pressA = pressS = pressD = false;
 	canLeft = canRight = true;
 	canJump = false;
-        isShooting = isMoving = false;
+    isShooting = isMoving = isReverse = false;
 }
 
 Player::Player(const sf::Texture& tex, const Vector& size, const Vector& pos, const Vector& vel, const Vector& maxvel): EntActive(tex, pos, vel, maxvel), Colisionable((EntActive*)this), Animable(spriteSheet){
@@ -40,7 +40,7 @@ Player::Player(const sf::Texture& tex, const Vector& size, const Vector& pos, co
 	pressA = pressS = pressD = false;
 	canLeft = canRight = true;
 	canJump = false;
-        isShooting = isMoving = false;
+    isShooting = isMoving = isReverse = false;
 }
 
 
@@ -73,11 +73,10 @@ void Player::Jump(){
             this->PlayAnimation();
             this->SetCurrentAnimation("saltar", this->GetSprite());
         }
-        
-        this->SetSpeed(this->GetSpeed().GetX(), -forceJump);
+		this->SetSpeed(this->GetSpeed().GetX(), -forceJump);
 
-        canJump=false;
-        affectGravity = !canJump;
+		canJump=false;
+		affectGravity = !canJump;
 	}
 }
 
@@ -102,8 +101,6 @@ void Player::MovementLeft(){
         SetSpeed(-factorSpeed, GetSpeed().GetY());
     else
         SetSpeed(0.f, GetSpeed().GetY());
-
-    this->GetSprite()->SetOrientation(Transform::Orientation::Left);
 }
 
 void Player::MovementRight(){
@@ -126,7 +123,6 @@ void Player::MovementRight(){
     else
         SetSpeed(0.f, GetSpeed().GetY());
 
-    this->GetSprite()->SetOrientation(Transform::Orientation::Right);
 }
 
 
@@ -232,12 +228,29 @@ void Player::Draw(RenderWindow& window, float inter){
 
 
 void Player::Update(const Time& elapsedTime){
+    
+    isPrevReverse = isReverse;
+    
 	InputManager* im = InputManager::Instance();
 	
 // Animaciones
     if(this->InitAnim())
        this->GetAnimatedSprite()->Update(elapsedTime);
-        
+    
+    if(im->IsPressedKeyA())
+    {
+        isReverse = true;
+        //this->GetSprite()->GetSprite()->setScale(-1.0f, 1.0f);
+    }
+
+    if(im->IsPressedKeyD())
+    {
+        isReverse = false;
+        //this->GetSprite()->GetSprite()->setScale(1.0f, 1.0f);
+    }
+
+    
+
     //Cuando caemos ponemos la animacion de salto
     if(!canJump && !im->IsPressedKeyW() && !isShooting)
     {
@@ -284,6 +297,7 @@ void Player::Update(const Time& elapsedTime){
 	
 	
 // UPDATE 
-	physicsState->Update(elapsedTime, affectGravity); // Si puede saltar, no se le aplica gravedad (por eso se pone negado)
-	GetSelectedGun()->Update((EntActive*)this);
+    physicsState->Update(elapsedTime, affectGravity);
+    
+    GetSelectedGun()->Update((EntActive*)this);
 }

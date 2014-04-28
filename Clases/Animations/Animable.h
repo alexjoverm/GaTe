@@ -3,10 +3,14 @@
 /******************************************/
 
 #ifndef ANIMABLE_H
+#define ANIMABLE_H
+
 
 #include "SpriteSheet.h"
 #include "AnimatedSprite.h"
 #include <vector>
+
+
 
 class Animable
 {
@@ -21,11 +25,14 @@ public:
     void SetCurrentAnimation(std::string nombre, SpriteSheet* sp);
     Animation* GetCurrentAnimation() const;
     AnimatedSprite* GetAnimatedSprite() const { return m_animatedSprite; }
+    
     void SetWidthTile(int widthTile) { m_spriteSheet->SetWidthTile(widthTile); }
     void SetHeightTile(int heightTile) { m_spriteSheet->SetHeightTile(heightTile); }
+    
     void SetSizeTile(int widthTile, int heightTile) { m_spriteSheet->SetWidthTile(widthTile); m_spriteSheet->SetHeightTile(heightTile); }
     int GetWidthTile() const{ return m_spriteSheet->GetSizeTile().GetX(); }
     int GetHeightTile() const{ return m_spriteSheet->GetSizeTile().GetY(); }
+    
     void PlayAnimation();
     void StopAnimation();
     bool InitAnim();

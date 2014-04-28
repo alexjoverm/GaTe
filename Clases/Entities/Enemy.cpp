@@ -8,36 +8,39 @@
 #include "Enemy.h"
 #include "../States/WorldState.h"
 
-Enemy::Enemy(const sf::Texture& tex): EntActive(tex), Colisionable((EntActive*)this) {
+Enemy::Enemy(const sf::Texture& tex, const Vector& size): EntActive(tex), Colisionable((EntActive*)this), Animable(spriteSheet) {
 	canLeft = canRight = true;
 	canJump = false;
     route = 1;
-
     factorSpeed = 300.f;
-    
     lifebarAddWi = 20.f;
     lifebarAddHe = 20.f;
-    
     intersects = prevIntersects = win = die = false;
     changeX = changeY = 1;
+    
+    this->SetSizeTile((int)size.GetX(), (int)size.GetY());
+    this->GetSprite()->SetNumRowsColumns();
+    
+    isMoving = isReverse = false;
 }
 
-
-Enemy::Enemy(const sf::Texture& tex, const Vector& pos, const Vector& vel, const Vector& maxvel): EntActive(tex, pos, vel, maxvel), Colisionable(this){
+Enemy::Enemy(const sf::Texture& tex, const Vector& size, const Vector& pos, const Vector& vel, const Vector& maxvel): EntActive(tex, pos, vel, maxvel), Colisionable(this), Animable(spriteSheet){
 	canLeft = canRight = true;
 	canJump = false;
     route = 1;
-
     factorSpeed = 300.f;
-    
     lifebarAddWi = 20.f;
     lifebarAddHe = 20.f;
-    
     intersects = prevIntersects = win = die = false;
     changeX = changeY = 1;
+    
+    this->SetSizeTile((int)size.GetX(), (int)size.GetY());
+    this->GetSprite()->SetNumRowsColumns();
+    
+    isMoving = isReverse = false;
 }
 
-Enemy::Enemy(const Enemy& orig): EntActive(orig), Colisionable((EntActive*)this) {
+Enemy::Enemy(const Enemy& orig): EntActive(orig), Colisionable((EntActive*)this), Animable(spriteSheet) {
 }
 
 Enemy::~Enemy() {
@@ -136,18 +139,16 @@ void Enemy::routeMove(){
     
     
     
-    // Comprobamos la posicion y si se intersecta con el punto.
-    if( !intersects && prevIntersects ) {
+    // Comprobamos la posicion y si se deja de intersectar
+    if( !intersects && prevIntersects )
         route++;
-        // Si el punto es el ultimo
-        if(route >= WorldState::Instance()->vPath->size()){
+    
+    
+    if(intersects)
+        if(route >= WorldState::Instance()->vPath->size() - 1)
             win=true;
-        }
-    }
-
+        
 }
-
-
 
 void Enemy::Draw(RenderWindow& window, float inter){
 	renderState->Draw(window, physicsState->GetPreviousPosition(), physicsState->GetPosition(), inter, *this->spriteSheet);
@@ -159,8 +160,18 @@ void Enemy::Draw(RenderWindow& window, float inter){
     life->Draw(window, inter);
 }
 
-
-void Enemy::Update(const Time& elapsedTime){
+void Enemy::Update(const Time& elapsedTime)
+{
+    if(this->InitAnim()) this->GetAnimatedSprite()->Update(elapsedTime);
+    
+    if(this->GetSpeed().GetX() > 1) 
+    {
+        this->SetCurrentAnimation("andar2Enemigo", this->GetSprite());
+    }
+    else this->SetCurrentAnimation("andarEnemigo", this->GetSprite());
+    
+    this->spriteSheet->GetSprite()->setTextureRect(this->GetAnimatedSprite()->GetSpriteRect());
+    
     // COLISIONES
 	ResetCan();
     ResetLimits();
@@ -173,8 +184,6 @@ void Enemy::Update(const Time& elapsedTime){
     
     life->Update(elapsedTime);
 }
-
-
 
 void Enemy::InitLifebar()
 {

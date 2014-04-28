@@ -35,6 +35,9 @@ public:
     
     // Rectángulo de Colision
     void SetRectangleColision(float x, float y, float w, float h){ rectColision->Set(x,y,w,h); }
+    void SetRectangleColisionPosition(float x, float y){ rectColision->SetX(x); rectColision->SetY(y); }
+    
+    
     Rectangle GetRectangleColisionAbsolute() const;
     
     

@@ -28,6 +28,7 @@ public:
 	virtual void Draw(RenderWindow& window, float inter);
 	virtual void Update(const Time& elapsedTime);
 	
+    
 	// Pistola
 	void AddGun(Gun* g){ guns->push_back(g); }
 	void SelectGun(int i){ selectedGun = i; }
@@ -50,8 +51,7 @@ public:
 	int selectedGun;
 	float forceJump = 800.f;
 	bool canLeft, canRight, canJump;
-    bool isShooting;
-    bool isMoving;
+    bool isShooting, isMoving;
 	
 private:
 	Clock	*clockReloadGun;

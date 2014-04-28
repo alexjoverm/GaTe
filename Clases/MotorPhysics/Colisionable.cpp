@@ -75,12 +75,14 @@ std::vector<Rectangle> Colisionable::GetAbsoluteRectangles(const EntActive& ent)
 
 Rectangle Colisionable::GetRectangleColisionAbsolute() const
 {
+
     return Rectangle(
-        this->entity->GetPosition().GetX() + rectColision->GetTopLeft().GetX(),
+        this->entity->GetPosition().GetX() + rectColision->GetTopLeft().GetX()  ,
         this->entity->GetPosition().GetY() + rectColision->GetTopLeft().GetY(),
         rectColision->GetWidth(),
         rectColision->GetHeight()
     );
+     
 }
 
 

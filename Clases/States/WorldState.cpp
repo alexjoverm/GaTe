@@ -108,7 +108,7 @@ void WorldState::LoadResources()
         
         //sf::Lock lock(mMutex);
         level = new Level();
-        AddLevelTexture("Recursos/Foe.png");
+        AddLevelTexture("Recursos/robot.png");
 
         // Texturas
         for(int i = 0; i < level->vTextures->size(); i++)	// Del nivel
@@ -118,7 +118,7 @@ void WorldState::LoadResources()
 
         resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
         resourceManager->AddTexture("texGun", "Recursos/pistola.png");
-        resourceManager->AddTexture("texRobot", "Recursos/robot.png");
+        
         resourceManager->AddTexture("texTower", "Recursos/tower.png");
         resourceManager->AddTexture("texPj", "Recursos/pj_final_200_148.png");
         
@@ -164,10 +164,15 @@ void WorldState::Init() {
 	
 //***************** Entities
     
-	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),Vector(1650.0f,220.0f), Vector(0.f, 0.f), Vector(500.f, 500.f) );
+	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),Vector(108.0f, 108.0f), Vector(1650.0f,220.0f), Vector(0.f, 0.f), Vector(500.f, 500.f) );
     enemy->SetSpeed(220.f, 0.f);
     enemy->SetRectangleColision(0, 0, 84, 95);
     enemy->InitLifebar();
+    
+    enemy->AddAnimation(new Animation("andarEnemigo", enemy->GetSprite(), 3, 14, 0.05, false, true));
+    enemy->AddAnimation(new Animation("andar2Enemigo", enemy->GetSprite(), 15, 26, 0.05, false, true));
+    enemy->SetCurrentAnimation("andarEnemigo", enemy->GetSprite());
+    enemy->PlayAnimation();
 	
 	AddColisionableEntity(enemy);// Añadimos al array de colisionables
 	AddEnemy(enemy);		// Añadimos al array de elementos activos, para que se pinte
@@ -179,7 +184,6 @@ void WorldState::Init() {
     player->GetSelectedGun()->SetLifeTime(1.f);
 	player->GetSelectedGun()->SetReloadTime(0.25f);
     player->SetRectangleColision(70, 25, 70, 120);
-    
     //player->SetColor(sf::Color(255,255,255, 105));
     
 
@@ -321,10 +325,6 @@ void WorldState::Update(const Time& timeElapsed)
 	
         
 
-
-
-        
-
     //*************** HUD **
         hud->Update(timeElapsed);
         soundPlayer->RemoveStoppedSounds();
@@ -352,13 +352,6 @@ void WorldState::Render(float interp)
     // Eventos de Tiempo Real
     ProcessRealEvent();
         
-    sf::RectangleShape aux = sf::RectangleShape();
-    aux.setFillColor(sf::Color(200, 0, 0, 150));
-    aux.setPosition(player->GetRectangleColisionAbsolute().GetTopLeft().GetX(),
-        player->GetRectangleColisionAbsolute().GetTopLeft().GetY());
-    
-    aux.setSize(sf::Vector2f(player->GetRectangleColisionAbsolute().GetWidth(), 
-        player->GetRectangleColisionAbsolute().GetHeight()));
     
 	window->Clear(sf::Color(255,255,255, 255)); // rgba
 	
@@ -376,6 +369,7 @@ void WorldState::Render(float interp)
     for(int i = 0; i < vTowers->size(); i++)
 		vTowers->at(i)->Draw(*window);
     
+
     for(int i = 0; i < vEnemies->size(); i++)
 		vEnemies->at(i)->Draw(*window, interp);
     
@@ -383,7 +377,7 @@ void WorldState::Render(float interp)
 		vBullets->at(i)->Draw(*window, interp);
     
 
-    window->Draw(aux);
+    
     player->Draw(*window, interp);
     
     cam->Update();
