@@ -171,11 +171,11 @@ void MenuState::ProcessRealEvent(){
         if(vButtons->at(1)->IsPressed(posMouse.GetX(), posMouse.GetY()))
            requestStateChange = std::make_pair(States::ID::LevelSelectionState, true);  // Continuar
         if(vButtons->at(2)->IsPressed(posMouse.GetX(), posMouse.GetY()))
-           requestStateChange = std::make_pair(States::ID::LevelSelectionState, true);  // Tutorial
+           requestStateChange = std::make_pair(States::ID::TutorialState, true);  // Tutorial
         if(vButtons->at(3)->IsPressed(posMouse.GetX(), posMouse.GetY()))
            requestStateChange = std::make_pair(States::ID::SettingsState, true);  // Opciones
         if(vButtons->at(4)->IsPressed(posMouse.GetX(), posMouse.GetY()))
-           requestStateChange = std::make_pair(States::ID::SettingsState, true);  // Acerca De
+           requestStateChange = std::make_pair(States::ID::CreditsState, true);  // Acerca De
         if(vButtons->at(5)->IsPressed(posMouse.GetX(), posMouse.GetY())){
             ConfigurationManager::Instance()->SaveConfigurations();                 // Salir
             window->Close(); 

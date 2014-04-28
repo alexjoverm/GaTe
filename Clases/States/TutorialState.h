@@ -1,12 +1,12 @@
 /* 
- * File:   LevelSelectionState.h
+ * File:   TutorialState.h
  * Author: jc
  *
- * Created on 24 de abril de 2014, 12:05
+ * Created on 28 de abril de 2014, 12:30
  */
 
-#ifndef LEVELSELECTIONSTATE_H
-#define	LEVELSELECTIONSTATE_H
+#ifndef TUTORIALSTATE_H
+#define	TUTORIALSTATE_H
 
 #include "../Motor2D/Level.h"
 #include "../Motor2D/RenderWindow.h"
@@ -18,11 +18,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-class LevelSelectionState : public State {
+class TutorialState : public State {
 public:
-    LevelSelectionState();
-    LevelSelectionState(const LevelSelectionState& orig);
-    virtual ~LevelSelectionState();
+    TutorialState();
+    TutorialState(const TutorialState& orig);
+    virtual ~TutorialState();
 
     // Inicialización y Liberación
     void Init();
@@ -57,13 +57,11 @@ private:
     SpriteSheet* fondo;
 
     ImageButton* returnButton;
-    ImageButton* levelOneButton;
-    ImageButton* levelTwoButton;
-    ImageButton* levelThreeButton;
 
     //Players
     MusicPlayer* musicPlayer;
 };
 
-#endif	/* LEVELSELECTIONSTATE_H */
+
+#endif	/* TUTORIALSTATE_H */
 

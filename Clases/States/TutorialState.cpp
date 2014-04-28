@@ -1,16 +1,17 @@
 /* 
- * File:   LevelSelectionState.cpp
+ * File:   TutorialState.cpp
  * Author: jc
  * 
- * Created on 24 de abril de 2014, 12:05
+ * Created on 28 de abril de 2014, 12:30
  */
 
-#include "LevelSelectionState.h"
+#include "TutorialState.h"
+
 #include "../Otros/StringUtils.h"
 #include "../Managers/StateManager.h"
 #include <iostream>
 
-LevelSelectionState::LevelSelectionState() {
+TutorialState::TutorialState() {
 	
 	// Por realizar
     resourceManager = ResourceManager::Instance();
@@ -21,16 +22,16 @@ LevelSelectionState::LevelSelectionState() {
 	vNonRealEvents = new std::vector<sf::Event>();
 	vRealEvents = new std::vector<sf::Event>();
     
-    id = States::ID::LevelSelectionState;
+    id = States::ID::CreditsState;
     
     //Players
     musicPlayer = MusicPlayer::Instance();
 }
 
-LevelSelectionState::LevelSelectionState(const LevelSelectionState& orig) {
+TutorialState::TutorialState(const TutorialState& orig) {
 }
 
-LevelSelectionState::~LevelSelectionState() {
+TutorialState::~TutorialState() {
 	vNonRealEvents->clear(); delete vNonRealEvents; // Como no contiene punteros, no habrá que eliminarlos
 	vRealEvents->clear(); delete vRealEvents;
 }
@@ -39,14 +40,11 @@ LevelSelectionState::~LevelSelectionState() {
 
 //************************  FUNCIONES INICIALES
 // Cargamos las texturas del nivel, y las fuentes generales
-void LevelSelectionState::LoadResources(){
+void TutorialState::LoadResources(){
 	try{
 		// Texturas
-		resourceManager->AddTexture("texMenuLevelSelection", "Recursos/SeleccionNivel.jpg");
-                resourceManager->AddTexture("texReturn", "Recursos/return.png");
-                resourceManager->AddTexture("texEsferas1", "Recursos/esferas1.png");
-                resourceManager->AddTexture("texEsferas2", "Recursos/esferas2.png");
-                resourceManager->AddTexture("texEsferas3", "Recursos/esferas3.png");
+		resourceManager->AddTexture("texTutorial", "Recursos/fondoTutorial.jpg");
+        resourceManager->AddTexture("texReturn", "Recursos/return.png");
 		
 		// Fuente
 		resourceManager->AddFont("OpenSans", "Recursos/OpenSans-Regular.ttf");
@@ -61,22 +59,19 @@ void LevelSelectionState::LoadResources(){
 }
 
 
-void LevelSelectionState::Init() {
+void TutorialState::Init() {
 	LoadResources(); // Cargamos recursos
     
     musicPlayer->Play();
     
     returnButton   = new ImageButton(15.f, 15.f, 1, resourceManager->GetTexture("texReturn"));
-    levelOneButton   = new ImageButton(230.f, 290.f, 2, resourceManager->GetTexture("texEsferas1"));
-    levelTwoButton   = new ImageButton(580.f, 445.f, 2, resourceManager->GetTexture("texEsferas2"));
-    levelThreeButton   = new ImageButton(525.f, 120.f, 2, resourceManager->GetTexture("texEsferas3"));
 	
 	// Inicializamos
-    fondo= new SpriteSheet(resourceManager->GetTexture("texMenuLevelSelection"));
+    fondo= new SpriteSheet(resourceManager->GetTexture("texTutorial"));
 }
 
 
-void LevelSelectionState::Clean(){
+void TutorialState::Clean(){
     // liberamos recursos
     resourceManager->CleanResources();
     delete fondo; fondo=NULL;
@@ -90,7 +85,7 @@ void LevelSelectionState::Clean(){
 
 //**************** BUCLES PRINCIPALES **************************
 
-void LevelSelectionState::Update(const Time& timeElapsed)
+void TutorialState::Update(const Time& timeElapsed)
 {
 	InputManager::Instance()->Update();
     
@@ -101,49 +96,20 @@ void LevelSelectionState::Update(const Time& timeElapsed)
     
     if(returnButton->IsClicked())
        StateManager::Instance()->SetCurrentState(States::ID::MenuState);
-    
-    //Boton Level 1
-    if(levelOneButton->IsHover()){
-        levelOneButton->SetFrame(1);
-    }else{
-        levelOneButton->SetFrame(0);
-    }
-    
-    if(levelOneButton->IsClicked())
-        StateManager::Instance()->SetCurrentState(States::ID::LoadingState);
-        
-    
-    //Boton Level 2
-    if(levelTwoButton->IsHover()){
-        levelTwoButton->SetFrame(0);
-    }else{
-        levelTwoButton->SetFrame(0);
-    }
-    
-    //Boton Level 3
-    if(levelThreeButton->IsHover()){
-        levelThreeButton->SetFrame(0);
-    }else{
-        levelThreeButton->SetFrame(0);
-    }
 }
 
 
 
 
-void LevelSelectionState::Render(float interp)
+void TutorialState::Render(float interp)
 {
     // Eventos de Tiempo Real
 	ProcessRealEvent();
 
 	window->Clear(sf::Color(255,255,255, 255)); // rgba
         
-        window->Draw(*fondo); 
-        returnButton->Draw(*window);
-        levelOneButton->Draw(*window);
-        levelTwoButton->Draw(*window);
-        levelThreeButton->Draw(*window);
-    
+    window->Draw(*fondo); 
+    returnButton->Draw(*window);
         
 	window->Display();
 }
@@ -154,7 +120,7 @@ void LevelSelectionState::Render(float interp)
 
 // ***************************  EVENTOS ***************
 
-void LevelSelectionState::HandleEvents()
+void TutorialState::HandleEvents()
 {
 	sf::Event event = sf::Event();
 	
@@ -163,7 +129,7 @@ void LevelSelectionState::HandleEvents()
 }
 
 
-void LevelSelectionState::ProcessRealEvent(){
+void TutorialState::ProcessRealEvent(){
 	bool buttonLeft , buttonRight;
 	buttonLeft = buttonRight = false;
 	
@@ -179,3 +145,4 @@ void LevelSelectionState::ProcessRealEvent(){
 	
 	vRealEvents->clear();
 }
+

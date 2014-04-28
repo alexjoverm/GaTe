@@ -11,6 +11,8 @@
 #include "../States/LoadingState.h"
 #include "../States/LevelSelectionState.h"
 #include "../States/SettingsState.h"
+#include "../States/CreditsState.h"
+#include "../States/TutorialState.h"
 
 State* StateFactory::CreateState(States::ID id){
     
@@ -25,11 +27,14 @@ State* StateFactory::CreateState(States::ID id){
         return new LevelSelectionState();
     else if(id == States::ID::SettingsState)
         return new SettingsState();
+    else if(id == States::ID::CreditsState)
+        return new CreditsState();
+    else if(id == States::ID::TutorialState)
+        return new TutorialState();
     /*
     else if(id == States::ID::PauseState)
         return new PauseState();
-    else if(id == States::ID::CreditsState)
-        return new CreditsState();
+    
     else if(id == States::ID::TowerSelectionState)
         return new CreditsState();
     */ 

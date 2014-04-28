@@ -1,12 +1,12 @@
 /* 
- * File:   LevelSelectionState.h
+ * File:   CreditsState.h
  * Author: jc
  *
- * Created on 24 de abril de 2014, 12:05
+ * Created on 28 de abril de 2014, 11:11
  */
 
-#ifndef LEVELSELECTIONSTATE_H
-#define	LEVELSELECTIONSTATE_H
+#ifndef CREDITSSTATE_H
+#define	CREDITSSTATE_H
 
 #include "../Motor2D/Level.h"
 #include "../Motor2D/RenderWindow.h"
@@ -18,11 +18,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-class LevelSelectionState : public State {
+class CreditsState : public State {
 public:
-    LevelSelectionState();
-    LevelSelectionState(const LevelSelectionState& orig);
-    virtual ~LevelSelectionState();
+    CreditsState();
+    CreditsState(const CreditsState& orig);
+    virtual ~CreditsState();
 
     // Inicialización y Liberación
     void Init();
@@ -57,13 +57,10 @@ private:
     SpriteSheet* fondo;
 
     ImageButton* returnButton;
-    ImageButton* levelOneButton;
-    ImageButton* levelTwoButton;
-    ImageButton* levelThreeButton;
 
     //Players
     MusicPlayer* musicPlayer;
 };
 
-#endif	/* LEVELSELECTIONSTATE_H */
+#endif	/* CREDITSSTATE_H */
 

@@ -15,7 +15,7 @@ Tower::Tower(const sf::Texture& tex,const Vector pos, const float ran): EntPassi
     
     this->SetPosition(pos);
     
-    if(ran > 0)        
+    if(ran > 0)         
         range = ran;
     else
         range = 50.0;
