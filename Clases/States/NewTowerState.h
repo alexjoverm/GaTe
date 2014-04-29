@@ -31,12 +31,15 @@ public:
 private:
 
     void LoadResources();
+    void AddTower();
         
     bool        rightPlace;
     
     Vector*      posPlace;
     Tower*      tower;
     sf::RectangleShape*  overlay;
+    
+    float posY;
         
 };
 

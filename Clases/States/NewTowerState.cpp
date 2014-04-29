@@ -27,6 +27,21 @@ NewTowerState::NewTowerState(const NewTowerState& orig) {
 NewTowerState::~NewTowerState() {
 }
 
+void NewTowerState::AddTower(){
+
+    Vector posAux = Vector();
+    posAux = tower->GetPosition();
+    
+    tower->SetPosition( Vector(tower->GetPosition().GetX(), posY-tower->GetSprite()->getGlobalBounds().GetHeight()) );
+    tower->SetColor(sf::Color(255,255,255,255));
+    
+    WorldState::Instance()->AddTower(tower);
+    
+    tower = NULL;
+    tower = new Tower(resourceManager->GetTexture("texTower"), Vector(posAux.GetX(), posAux.GetY()) ,50.0 );
+    
+}
+
 // Cargamos las texturas del nivel, y las fuentes generales
 void NewTowerState::LoadResources(){
 	try{
@@ -75,13 +90,7 @@ void NewTowerState::Update(const Time& timeElapsed)
 {
     
     inputManager->Update();
-        
-
-    if(inputManager->IsClickedMouseLeft() && rightPlace)
-        WorldState::Instance()->AddTower(tower);        
-            
-    
-    
+              
     
     rightPlace = true;
     
@@ -91,7 +100,7 @@ void NewTowerState::Update(const Time& timeElapsed)
             rightPlace=false;
         
     
-    float y_aux = -1.f;
+    posY = -1.f;
     
     // Que esté entre los límites en X de los suelos
     // Que el BottomLeft.Y sea mayor o igual a cualquier Rectángulo de colision (hasta un límite de Factor)
@@ -105,16 +114,23 @@ void NewTowerState::Update(const Time& timeElapsed)
              && tower->GetSprite()->getGlobalBounds().GetBottomLeft().GetX() >= WorldState::Instance()->level->vRectColision->at(i)->GetTopLeft().GetX() - 10.f
              && tower->GetSprite()->getGlobalBounds().GetBottomRight().GetX() <= WorldState::Instance()->level->vRectColision->at(i)->GetTopRight().GetX() + 10.f
             )
-            y_aux = WorldState::Instance()->level->vRectColision->at(i)->GetTopLeft().GetY();
+            posY = WorldState::Instance()->level->vRectColision->at(i)->GetTopLeft().GetY();
     }
     
-    rightPlace = (rightPlace && y_aux != -1.f);
+    rightPlace = (rightPlace && posY != -1.f);
     
     if(rightPlace)
         tower->SetRangeColor(sf::Color(0,255,0, 100));
-    else
+    else{
         tower->SetRangeColor(sf::Color(255,0,0, 100));
+        posY = -1.f;
+    }
     
+
+    if(inputManager->IsClickedMouseLeft() && rightPlace)
+        AddTower();
+
+        
     
     if(inputManager->IsReleasedKeySpace())
         StateManager::Instance()->SetCurrentState(States::ID::WorldState);

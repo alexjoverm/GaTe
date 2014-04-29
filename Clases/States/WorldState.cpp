@@ -350,7 +350,8 @@ void WorldState::Update(const Time& timeElapsed)
 void WorldState::Render(float interp)
 {
     // Eventos de Tiempo Real
-    ProcessRealEvent();
+    if(StateManager::Instance()->currentState == States::ID::WorldState)
+        ProcessRealEvent();
         
     
 	window->Clear(sf::Color(255,255,255, 255)); // rgba
