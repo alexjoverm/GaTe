@@ -15,7 +15,7 @@ public:
     explicit AnimatedSprite(Time frameTime, SpriteSheet* spriteSheet, bool paused, bool looped);
     ~AnimatedSprite();
 
-    void Update(const Time& deltaTime);                                                    //Acutualizamos la animacion
+    void Update(const Time& deltaTime, bool reverse);                                                    //Acutualizamos la animacion
     void SetAnimation(Animation* animation);                                      //Fijamos la animacion
     void SetFrameTime(const Time& time);                                                   //Fijamos el tiempo de cada frame
     void Play();                                                                        //Reproducimos
@@ -29,7 +29,7 @@ public:
     sf::IntRect SetFrame(std::size_t newFrame, bool resetTime = true);                         //Fijamos el frame de animacion actual
     sf::IntRect GetSpriteRect();
     void SetPaused(bool paused) { m_isPaused = paused; };
-    void SetRect(const sf::IntRect& rectAux);
+    void SetRect(const sf::IntRect& rectAux, bool reverses);
     
 private:
     Animation* m_animation;                                                       //Animacion del sprite

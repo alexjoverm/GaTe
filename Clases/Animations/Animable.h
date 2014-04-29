@@ -37,6 +37,8 @@ public:
     void StopAnimation();
     bool InitAnim();
     
+    bool    isReverse = true, isPrevReverse=false;
+    
 private:
     SpriteSheet* m_spriteSheet;                                         //Spritesheet de la animacion   
     std::vector<Animation*> *m_animaciones;

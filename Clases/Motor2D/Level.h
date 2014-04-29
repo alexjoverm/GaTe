@@ -22,6 +22,8 @@ public:
 	virtual ~Level();
 	
 	void AddColision(Rectangle* rec){ vRectColision->push_back(rec); };
+    void AddPlatform(Rectangle* rec){ vPlatforms->push_back(rec); };
+    
 	void AddEnemy(Enemy* ene){ vEnemies->push_back(ene); };
 	void AddTextureFile(const std::string& tex){ vTextures->push_back(tex); };
 	void AddEntPassive(EntPassive* ent){ vEntPassive->push_back(ent); };
@@ -37,9 +39,12 @@ public:
 public:
 	// metodos para deque : at(i), pop/push_back() , pop/push_front(), size(), clear(), empty()
 	std::deque<Rectangle*>		*vRectColision;
-	std::deque<Enemy*>              *vEnemies;
+    std::deque<Rectangle*>		*vPlatforms;
+    
+	std::deque<Enemy*>          *vEnemies;
 	std::deque<EntPassive*>		*vEntPassive;
 	std::deque<std::string>		*vTextures;
+    
     Mapa                        *map;
 };
 

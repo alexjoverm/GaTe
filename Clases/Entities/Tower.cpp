@@ -76,23 +76,23 @@ void Tower::Shot(){
             int dirX = 1,dirY = 1;
             
             //POR MEJORAR
-            if(vEnemies->front()->GetPosition().GetX() <= this->GetPosition().GetX() )
-                dirX = -1;
-            if(vEnemies->front()->GetPosition().GetY() <= this->GetPosition().GetY() )
-                dirY = -1;
             
+            // Dirección de bala
+            Rectangle rect = vEnemies->front()->GetRectangleColisionAbsolute();
             
-            // Sacamos el vector velocidad para donde tiene que ir la bala
-            Vector vecAux = Vector (
-                    vEnemies->front()->GetMaxSpeed().GetX()*dirX
-                    ,vEnemies->front()->GetSpeed().GetY()*dirY
-                    );
+            // Posicion del enemido
+            Vector posEnem = Vector();
+            posEnem = rect.GetTopLeft();
+            posEnem.SetY(posEnem.GetY() + rect.GetHeight()/2);
+            
+            // Dirección del vector, normalizado y multiplicado por velocidad
+            posEnem -= this->GetPosition();
+            posEnem = posEnem.GetNormalize();
+            posEnem *= 800.f;
 
-            Bullet* aux = new Bullet(ResourceManager::Instance()->GetTexture("texBullet"), this->GetPosition(), vecAux);
+            Bullet* aux = new Bullet(ResourceManager::Instance()->GetTexture("texBullet"), this->GetPosition(), posEnem);
 
-            aux->SetPosition(aux->GetPosition().GetX()+aux->GetSprite()->getGlobalBounds().GetWidth(), 
-                         aux->GetPosition().GetY()-aux->GetSprite()->getGlobalBounds().GetHeight()*0.4);
-
+            
             w->AddBullet(aux);
             clockReloadTower->Restart();
             

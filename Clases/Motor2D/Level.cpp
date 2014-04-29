@@ -11,6 +11,7 @@
 
 Level::Level() {
 	vRectColision = new std::deque<Rectangle*>();
+    vPlatforms = new std::deque<Rectangle*>();
 	vEnemies = new std::deque<Enemy*>();
 	vEntPassive = new std::deque<EntPassive*>();
 	vTextures = new std::deque<std::string>();
@@ -23,6 +24,10 @@ Level::~Level() {
     while(!vRectColision->empty()) 
 		delete vRectColision->back(), vRectColision->pop_back();
 	delete vRectColision;
+    
+    while(!vPlatforms->empty()) 
+		delete vPlatforms->back(), vPlatforms->pop_back();
+	delete vPlatforms;
     
     while(!vEnemies->empty()) 
 		delete vEnemies->back(), vEnemies->pop_back();
@@ -38,6 +43,7 @@ Level::~Level() {
     delete map;
 	
 	vRectColision = NULL;
+    vPlatforms = NULL;
 	vEnemies = NULL;
 	vEntPassive = NULL;
 	vTextures = NULL;

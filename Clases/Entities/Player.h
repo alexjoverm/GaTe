@@ -50,7 +50,7 @@ public:
 	
 	std::vector<Gun*>	*guns;
 	int selectedGun;
-	float forceJump = 800.f;
+	float forceJump = 650.f;
 	bool canLeft, canRight, canJump;
     bool isShooting, isMoving;
 	

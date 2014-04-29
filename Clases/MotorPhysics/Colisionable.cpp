@@ -180,8 +180,10 @@ Colision::Type Colisionable::TypeOfColision(const Rectangle& rec, const Time& el
 		// Si es la esquina TOP-LEFT, comprobamos con la BOTTOM-RIGHT del Sprite, pero primero miramos la VELOCIDAD
 		if(colisions.at(0) == Colision::Type::LEFT  &&  colisions.at(1) == Colision::Type::BOTTOM){
 			posAux = rectPrev.GetBottomRight();
-			
+            
 			if(posAux.GetX() > rec.GetTopLeft().GetX() && posAux.GetY() < rec.GetTopLeft().GetY() + 1.3f)
+                return Colision::Type::BOTTOM;
+            else if( !entity->affectGravity && posAux.GetY() < rec.GetTopLeft().GetY() + 8.f)
 				return Colision::Type::BOTTOM;
 			else 
                 return Colision::Type::LEFT;
@@ -192,6 +194,8 @@ Colision::Type Colisionable::TypeOfColision(const Rectangle& rec, const Time& el
 			posAux = rectPrev.GetBottomLeft();
 			
 			if(posAux.GetX() < rec.GetTopRight().GetX() && posAux.GetY() < rec.GetTopLeft().GetY() + 1.3f)
+                return Colision::Type::BOTTOM;
+            else if( !entity->affectGravity && posAux.GetY() < rec.GetTopLeft().GetY() + 8.f)
 				return Colision::Type::BOTTOM;
 			else 
                 return Colision::Type::RIGHT;
@@ -231,14 +235,15 @@ void Colisionable::MoveToEdge(Colision::Type type, const Rectangle& rec, const T
 
         // Calculamos el limite de abajo, pero RESTAMOS la altura
         value = nextPos.GetY() - distY + offset;
-        
-        while (value <= rec.GetTopLeft().GetY())
-            value += offset;
-
        
-        value -= GetRectangleColisionAbsolute().GetHeight() + (GetRectangleColisionAbsolute().GetTopLeft().GetY() - entity->GetSprite()->getGlobalBounds().GetTopLeft().GetY());
-            
-        std::cout << "Limit Bottom: " << value << std::endl;
+        float resta = GetRectangleColisionAbsolute().GetHeight() + (GetRectangleColisionAbsolute().GetTopLeft().GetY() - entity->GetPosition().GetY());
+           
+        value -= resta;
+        
+        while (value <= rec.GetTopLeft().GetY()-resta)
+            value += offset;
+        
+        
         entity->SetBottomLimitValue(value);
         entity->SetBottomLimited(true);
 	}

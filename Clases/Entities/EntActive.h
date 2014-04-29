@@ -66,9 +66,9 @@ public:
     
 	float	factorSpeed = 400.f;
 	float	factorSpeedIni = factorSpeed;
-	float	factorGravity = 1000.f;
+	float	factorGravity = 1300.f;
 	bool	affectGravity = true;
-    bool    isReverse = false, isPrevReverse=false;
+    
 	
 protected:
 	PhysicsState*	physicsState;

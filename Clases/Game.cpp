@@ -8,7 +8,7 @@
 #include "Game.h"
 
 Game::Game() {
-    timeUpdate = new Time(1.f/30.f);
+    timeUpdate = new Time(1.f/15.f);
     window = RenderWindow::Instance();
     window->SetFrameLimit(60);
 	window->SetVerticalSyncEnabled(true);

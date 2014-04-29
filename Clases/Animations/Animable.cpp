@@ -100,7 +100,7 @@ void Animable::SetCurrentAnimation(std::string nombre, SpriteSheet* sp)
                     m_animatedSprite->SetAnimation(animation);
 
                     sf::IntRect rect = m_animatedSprite->SetFrame(0, false);
-                    m_animatedSprite->SetRect(rect);
+                    m_animatedSprite->SetRect(rect, isReverse);
                     sp->GetSprite()->setTextureRect(rect);
                 }
             }

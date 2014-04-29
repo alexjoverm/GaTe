@@ -159,7 +159,12 @@ void WorldState::Init() {
     std::vector<Rectangle*> vrec = level->map->getLayerCollitions("Colision suelo");
     
     for(int i=0; i < vrec.size(); i++)
-        this->AddLevelColision(vrec.at(i));
+        AddLevelColision(vrec.at(i));
+    
+    vrec = level->map->getLayerCollitions("Colision plataformas");
+    
+    for(int i=0; i < vrec.size(); i++)
+        AddLevelPlatform(vrec.at(i));
     
 	
 //***************** Entities
@@ -198,9 +203,9 @@ void WorldState::Init() {
     player->SetCurrentAnimation("idle", player->GetSprite());
     player->PlayAnimation();
     
-    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(150.0,325.0),50.0) );
-    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(550.0,325.0),100.0) );
-    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(275.0,600.0),150.0) );
+    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(150.0,325.0),380.0) );
+    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(550.0,325.0),390.0) );
+    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(275.0,600.0),390.0) );
 
 
 //******************* HUD Y  CAMARA

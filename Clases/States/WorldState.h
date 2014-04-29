@@ -48,7 +48,10 @@ public:
 	
 // Level y Map	
     void AddLevelColision(Rectangle* rec){ level->AddColision(rec); }
+    void AddLevelPlatform(Rectangle* rec){ level->AddPlatform(rec); }
+    
     void AddLevelTexture(const std::string tex){ level->AddTextureFile(tex); }
+    
     void AddTrace(Vector* ent){ vPath->push_back(ent); }
    Level*		level;
  

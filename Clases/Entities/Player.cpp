@@ -22,7 +22,7 @@ Player::Player(const sf::Texture& tex, const Vector& size): EntActive(tex), Coli
 	pressA = pressS = pressD = false;
 	canLeft = canRight = true;
 	canJump = false;
-    isShooting = isMoving = isReverse = false;
+    isShooting = isMoving = false;
 }
 
 Player::Player(const sf::Texture& tex, const Vector& size, const Vector& pos, const Vector& vel, const Vector& maxvel): EntActive(tex, pos, vel, maxvel), Colisionable((EntActive*)this), Animable(spriteSheet){
@@ -40,7 +40,7 @@ Player::Player(const sf::Texture& tex, const Vector& size, const Vector& pos, co
 	pressA = pressS = pressD = false;
 	canLeft = canRight = true;
 	canJump = false;
-    isShooting = isMoving = isReverse = false;
+    isShooting = isMoving = false;
 }
 
 
@@ -152,6 +152,10 @@ void Player::Shot(float x, float y){
                 // Reproducimos sonido
         SoundPlayer::Instance()->Play("shot");
         
+        
+        
+          
+         
         // Calculamos posicion mapeada de la pistola
 		Vector posPistola = Vector();
         posPistola = guns->at(selectedGun)->GetPosition();
@@ -160,16 +164,23 @@ void Player::Shot(float x, float y){
         
         posPistola.Set(aux.x , aux.y);
           
+        /*   DISPARO ANGULADO
         // Calculamos vector "pistola-raton"
 		Vector sp = Vector(x, y); 
 		sp -= posPistola;
         
 		// Normalizamos y multiplicamos por velocidad de la bala
 		Vector norm = sp.GetNormalize();
-		norm *= 800.f;
+		norm *= 800.f;*/
+        
+        // DISPARO RECTO
+        
+        // Disparar hacia la orientación del personaje
+          
+         
 		
         //  Disparamos
-		guns->at(selectedGun)->Shot(norm, guns->at(selectedGun)->GetPosition());
+		guns->at(selectedGun)->Shot(Vector(550.f,0.f), guns->at(selectedGun)->GetPosition());
 		clockReloadGun->Restart();
 	}
 }
@@ -182,9 +193,6 @@ void Player::DoRectangleColisions(const Time& elapsedTime){
 	Colision::Type	type;
 	bool colisionado = false, isInFloor = false, changedNextPos = false;
     
-    std::cout << "Position:  " << StringUtils::ConvertVector(GetPosition()) << std::endl;
-    std::cout << "Rectangle:  " << StringUtils::ConvertVector(GetRectangleColisionAbsolute().GetTopLeft()) << std::endl;
-	
 	for(int i=0; i < world->level->vRectColision->size(); i++){
 		if(CheckColision(*world->level->vRectColision->at(i), elapsedTime)){
             
@@ -194,14 +202,30 @@ void Player::DoRectangleColisions(const Time& elapsedTime){
 			
 			if(type==Colision::Type::BOTTOM)
 				isInFloor = true;
-			
+            
 			colisionado = true;
 		}
 	}
+    
+    for(int i=0; i < world->level->vPlatforms->size(); i++){
+		if(CheckColision(*world->level->vPlatforms->at(i), elapsedTime)){
+			
+			// Comprobamos tipo de colision, y hacemos lo que debamos
+			type = TypeOfColision(*world->level->vPlatforms->at(i), elapsedTime);
+            
+            if(type==Colision::Type::BOTTOM && GetSpeed().GetY() >= 0.f){
+                OnColision(type,*world->level->vPlatforms->at(i), elapsedTime);
+				isInFloor = true;
+                colisionado = true;
+            }
+		}
+	}
+    
 	if(!isInFloor || !colisionado)
 		canJump = false;
 	else if(isInFloor)
 		canJump = true;
+    
 	
 	affectGravity = !canJump;
 }
@@ -238,25 +262,20 @@ void Player::Update(const Time& elapsedTime){
     isPrevReverse = isReverse;
     
 	InputManager* im = InputManager::Instance();
-	
-// Animaciones
-    if(this->InitAnim())
-       this->GetAnimatedSprite()->Update(elapsedTime);
     
     if(im->IsPressedKeyA())
-    {
         isReverse = true;
-        //this->GetSprite()->GetSprite()->setScale(-1.0f, 1.0f);
-    }
 
     if(im->IsPressedKeyD())
-    {
         isReverse = false;
-        //this->GetSprite()->GetSprite()->setScale(1.0f, 1.0f);
-    }
-
+	
+// Animaciones
+  //  if(this->InitAnim())
+    //   this->GetAnimatedSprite()->Update(elapsedTime, isReverse);
     
 
+
+    
     //Cuando caemos ponemos la animacion de salto
     if(!canJump && !im->IsPressedKeyW() && !isShooting)
     {
@@ -295,6 +314,9 @@ void Player::Update(const Time& elapsedTime){
 	if(!im->IsPressedKeyA() && !im->IsPressedKeyD() && canJump)
         MovementIdle();
     
+    
+    if(this->InitAnim())
+       this->GetAnimatedSprite()->Update(elapsedTime, isReverse);
 	
 // COLISIONES
 	ResetCan();

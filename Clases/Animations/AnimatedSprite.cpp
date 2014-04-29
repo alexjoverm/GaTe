@@ -98,7 +98,7 @@ sf::IntRect AnimatedSprite::GetSpriteRect()
     return *rect;
 }
 
-void AnimatedSprite::Update(const Time& deltaTime)
+void AnimatedSprite::Update(const Time& deltaTime, bool reverse)
 {
     //Si la animacion esta pausada y es valida
     if (!m_isPaused && m_animation)
@@ -131,15 +131,23 @@ void AnimatedSprite::Update(const Time& deltaTime)
             //Fijamos el frame actual (sin resetear el tiempo))
             sf::IntRect rectAux = SetFrame(m_currentFrame, false);
             
-            SetRect(rectAux);
+            SetRect(rectAux, reverse);
         }
     }
 }
 
-void AnimatedSprite::SetRect(const sf::IntRect& rectAux)
+void AnimatedSprite::SetRect(const sf::IntRect& rectAux, bool reverse)
 {
-    rect->left = rectAux.left;
-    rect->height = rectAux.height;
-    rect->top = rectAux.top;
-    rect->width = rectAux.width;
+    if(reverse){
+        rect->left = rectAux.left + rectAux.width;
+        rect->height = rectAux.height;
+        rect->top = rectAux.top;
+        rect->width = -rectAux.width;
+    }
+    else{
+        rect->left = rectAux.left;
+        rect->height = rectAux.height;
+        rect->top = rectAux.top;
+        rect->width = rectAux.width;
+    }
 }

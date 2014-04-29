@@ -56,6 +56,14 @@ void Bullet::DoColisions(const Time& elapsedTime, int i){
 			colisionado = true;
 		}
 	}
+    
+    for(int j=0; j < world->level->vPlatforms->size() && !colisionado; j++){
+		if(CheckColision(*world->level->vPlatforms->at(j))){
+			world->DeleteBullet(i);
+            SoundPlayer::Instance()->Play("explosion");
+			colisionado = true;
+		}
+	}
 	
 	// Con Objetos colisionables
 	for(int j=0; j < world->vEntityColisionable->size() && !colisionado; j++){

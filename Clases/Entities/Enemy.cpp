@@ -72,12 +72,28 @@ void Enemy::DoRectangleColisions(const Time& elapsedTime){
 			type = TypeOfColision(*world->level->vRectColision->at(i), elapsedTime);
 			OnColision(type,*world->level->vRectColision->at(i), elapsedTime);
 			
-			if(type==Colision::Type::BOTTOM)
+			if(type==Colision::Type::BOTTOM && GetSpeed().GetY() >= 0.f)
 				isInFloor = true;
 			
 			colisionado = true;
 		}
 	}
+    
+    for(int i=0; i < world->level->vPlatforms->size(); i++){
+		if(CheckColision(*world->level->vPlatforms->at(i), elapsedTime)){
+			
+			// Comprobamos tipo de colision, y hacemos lo que debamos
+			type = TypeOfColision(*world->level->vPlatforms->at(i), elapsedTime);
+            
+            if(type==Colision::Type::BOTTOM){
+                OnColision(type,*world->level->vPlatforms->at(i), elapsedTime);
+				isInFloor = true;
+                colisionado = true;
+            }
+		}
+	}
+    
+    
 	if(!isInFloor || !colisionado)
 		canJump = false;
 	else if(isInFloor)
@@ -169,7 +185,7 @@ void Enemy::Draw(RenderWindow& window){
 
 void Enemy::Update(const Time& elapsedTime)
 {
-    if(this->InitAnim()) this->GetAnimatedSprite()->Update(elapsedTime);
+    if(this->InitAnim()) this->GetAnimatedSprite()->Update(elapsedTime, isReverse);
     
     if(this->GetSpeed().GetX() > 1) 
     {
