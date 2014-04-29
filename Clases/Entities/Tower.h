@@ -27,6 +27,10 @@ public:
 	virtual void Update(const Time& elapsedTime);
 	
 	virtual void Shot();
+    
+    virtual void SetPosition(const Vector& v);
+    
+    void SetRangeColor(sf::Color c){ range_area.setFillColor(c); }
 	
 	void SetTimes(float lifeT, float reloadT){ lifeTime->SetSeconds(lifeT); reloadTime->SetSeconds(reloadT);}
 	

@@ -8,7 +8,7 @@
 #include "Game.h"
 
 Game::Game() {
-    timeUpdate = new Time(1.f/50.f);
+    timeUpdate = new Time(1.f/30.f);
     window = RenderWindow::Instance();
     window->SetFrameLimit(60);
 	window->SetVerticalSyncEnabled(true);
@@ -26,6 +26,7 @@ Game::~Game() {
 void Game::Run(){
 	
 	Clock clock = Clock();
+    
 	Time timeSinceLastUpdate = Time();  //Tiempo desde el ultimo cambio de frame
 	Time timeElapsed = Time();
 	float interpolation;
@@ -57,7 +58,7 @@ void Game::Update(const Time& timeElapsed){
 
 void Game::Render(float interp){
     // Si es el de Pausa, renderizamos también el de WorldState
-    if(stateManager->GetCurrentState()->id == States::ID::PauseState)
+    if(stateManager->GetCurrentState()->id == States::ID::PauseState || stateManager->GetCurrentState()->id == States::ID::TowerSelectionState)
         stateManager->GetState(States::ID::WorldState)->Render(interp);
     
     stateManager->GetCurrentState()->Render(interp);

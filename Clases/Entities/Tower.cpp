@@ -9,6 +9,7 @@
 #include "../States/WorldState.h"
 #include "Player.h"
 #include "../Otros/StringUtils.h"
+#include "../Managers/StateManager.h"
 #include <iostream>
 
 Tower::Tower(const sf::Texture& tex,const Vector pos, const float ran): EntPassive(tex) {
@@ -55,6 +56,18 @@ Tower::~Tower() {
     delete vEnemies; vEnemies=NULL;
 }
 
+
+void Tower::SetPosition(const Vector& v)
+{ 
+    spriteSheet->SetPosition(v); 
+    range_area.setPosition(
+        spriteSheet->GetPosition().GetX() + spriteSheet->getGlobalBounds().GetWidth()/2,
+        spriteSheet->GetPosition().GetY() + spriteSheet->getGlobalBounds().GetHeight()/2
+    );
+}
+
+
+
 void Tower::Shot(){
 	
     if(!vEnemies->empty() && vEnemies->front() != NULL){
@@ -100,6 +113,8 @@ bool Tower::OnRange(float x, float y){
     }else{
         return false;}
 }
+
+
 
 
 int Tower::SearchEnemy(Enemy* toSearch){
@@ -164,7 +179,7 @@ void Tower::CheckEnemies (){
 
  void Tower::Draw(RenderWindow& window){
      
-    if(WorldState::Instance()->showTowerRange){
+    if(WorldState::Instance()->showTowerRange || StateManager::Instance()->currentState == States::ID::TowerSelectionState){
         window.renderWindow->draw(range_area);
     }
      
@@ -176,6 +191,5 @@ void Tower::CheckEnemies (){
 void Tower::Update(const Time& elapsedTime){
     CheckEnemies();
     Shot();
-        
 }
 

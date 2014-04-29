@@ -13,6 +13,8 @@
 #include "../States/SettingsState.h"
 #include "../States/CreditsState.h"
 #include "../States/TutorialState.h"
+#include "../States/NewTowerState.h"
+
 
 State* StateFactory::CreateState(States::ID id){
     
@@ -31,11 +33,12 @@ State* StateFactory::CreateState(States::ID id){
         return new CreditsState();
     else if(id == States::ID::TutorialState)
         return new TutorialState();
+    else if(id == States::ID::TowerSelectionState)
+        return new NewTowerState();
     /*
     else if(id == States::ID::PauseState)
         return new PauseState();
     
-    else if(id == States::ID::TowerSelectionState)
-        return new CreditsState();
+    
     */ 
 }

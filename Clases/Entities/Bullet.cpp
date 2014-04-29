@@ -26,6 +26,10 @@ Bullet::~Bullet() {
 	timeElapsed = NULL;
 }
 
+void Bullet::Draw(RenderWindow& window){
+	renderState->Draw(window, *this->spriteSheet);
+}
+
 void Bullet::Draw(RenderWindow& window, float inter){
 	renderState->Draw(window, physicsState->GetPreviousPosition(), physicsState->GetPosition(), inter, *this->spriteSheet);
 }

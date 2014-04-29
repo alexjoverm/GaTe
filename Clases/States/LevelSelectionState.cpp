@@ -91,6 +91,8 @@ void LevelSelectionState::Init() {
         
 	// Inicializamos
     fondo= new SpriteSheet(resourceManager->GetTexture("texMenuLevelSelection"));
+    
+    requestStateChange = std::make_pair(States::ID::LoadingState,false);
 }
 
 
@@ -99,7 +101,7 @@ void LevelSelectionState::Clean(){
     resourceManager->CleanResources();
     delete fondo; fondo=NULL;
     
-  /*
+  
     delete txtlevelOne; txtlevelOne=NULL;
     delete txtlevelTwo; txtlevelTwo=NULL;
     delete txtlevelThree; txtlevelThree=NULL;
@@ -109,7 +111,7 @@ void LevelSelectionState::Clean(){
     delete levelTwoButton; levelTwoButton=NULL;
     delete levelThreeButton; levelThreeButton=NULL;
     
-   */ 
+   
     vNonRealEvents->clear();
     vRealEvents->clear();
     musicPlayer->Stop();
@@ -123,13 +125,9 @@ void LevelSelectionState::Update(const Time& timeElapsed)
 {
 	InputManager::Instance()->Update();
     
-    if(InputManager::Instance()->IsClickedKeyR())
-        StateManager::Instance()->SetCurrentState(States::ID::LoadingState);
-    
     SoundPlayer::Instance()->RemoveStoppedSounds();
     
-    if(returnButton->IsClicked())
-       StateManager::Instance()->SetCurrentState(States::ID::MenuState);
+    
     
     //Boton Level 1
     if(levelOneButton->IsHover()){
@@ -137,9 +135,6 @@ void LevelSelectionState::Update(const Time& timeElapsed)
     }else{
         levelOneButton->SetFrame(0);
     }
-    
-    if(levelOneButton->IsClicked())
-        StateManager::Instance()->SetCurrentState(States::ID::LoadingState);
         
     
     //Boton Level 2
@@ -155,6 +150,16 @@ void LevelSelectionState::Update(const Time& timeElapsed)
     }else{
         levelThreeButton->SetFrame(0);
     }
+    
+    
+    if(returnButton->IsClicked())
+        requestStateChange = std::make_pair(States::ID::MenuState, true);
+    
+    if(levelOneButton->IsClicked())
+        requestStateChange = std::make_pair(States::ID::LoadingState, true);
+    
+    if(requestStateChange.second)
+       StateManager::Instance()->SetCurrentState(requestStateChange.first);
 }
 
 

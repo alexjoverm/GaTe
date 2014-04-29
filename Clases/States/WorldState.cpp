@@ -114,7 +114,7 @@ void WorldState::LoadResources()
         for(int i = 0; i < level->vTextures->size(); i++)	// Del nivel
             resourceManager->AddTexture("texLevel" + StringUtils::ConvertInt(i) , level->vTextures->at(i));
         
-        level->LoadMap("mapa1.tmx");
+        level->LoadMap("mapa2.tmx");
 
         resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
         resourceManager->AddTexture("texGun", "Recursos/pistola.png");
@@ -363,22 +363,36 @@ void WorldState::Render(float interp)
     for(int i = 0; i < vEntityStatic->size(); i++)
 		vEntityStatic->at(i)->Draw(*window);
     
-    for(int i = 0; i < vEntityActive->size(); i++)
-		vEntityActive->at(i)->Draw(*window, interp);
-    
     for(int i = 0; i < vTowers->size(); i++)
 		vTowers->at(i)->Draw(*window);
     
+    // Sin INTERPOLACION
+    if(StateManager::Instance()->currentState == States::ID::PauseState || StateManager::Instance()->currentState == States::ID::TowerSelectionState)
+    {
+        for(int i = 0; i < vEntityActive->size(); i++)
+            vEntityActive->at(i)->Draw(*window); 
 
-    for(int i = 0; i < vEnemies->size(); i++)
-		vEnemies->at(i)->Draw(*window, interp);
-    
-    for(int i = 0; i < vBullets->size(); i++)
-		vBullets->at(i)->Draw(*window, interp);
-    
+        for(int i = 0; i < vEnemies->size(); i++)
+            vEnemies->at(i)->Draw(*window);
 
-    
-    player->Draw(*window, interp);
+        for(int i = 0; i < vBullets->size(); i++)
+            vBullets->at(i)->Draw(*window);
+
+        player->Draw(*window);
+    }
+    else //Con interpolacion
+    {
+        for(int i = 0; i < vEntityActive->size(); i++)
+            vEntityActive->at(i)->Draw(*window, interp); 
+
+        for(int i = 0; i < vEnemies->size(); i++)
+            vEnemies->at(i)->Draw(*window, interp);
+
+        for(int i = 0; i < vBullets->size(); i++)
+            vBullets->at(i)->Draw(*window, interp);
+
+        player->Draw(*window, interp);
+    }
     
     cam->Update();
     
@@ -389,8 +403,10 @@ void WorldState::Render(float interp)
     if(cam->minimapActive)
         level->renderMinimap();
 	
-    cam->SetCurrentView(Views::Type::Fixed);
-	window->Display();
+    if(!inputManager->IsPressedKeySpace()){
+        cam->SetCurrentView(Views::Type::Fixed);
+        window->Display();
+    }
     
     
     if(inputManager->IsClickedKeyT())

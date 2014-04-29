@@ -227,6 +227,12 @@ void Player::Draw(RenderWindow& window, float inter){
 }
 
 
+void Player::Draw(RenderWindow& window){
+	renderState->Draw(window, *this->spriteSheet);
+	GetSelectedGun()->Draw(window);
+}
+
+
 void Player::Update(const Time& elapsedTime){
     
     isPrevReverse = isReverse;

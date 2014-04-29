@@ -85,6 +85,8 @@ public:
 	
     bool      showTowerRange;
 	
+    // HUD
+    HUD*     hud;
     
 private:
 	
@@ -102,8 +104,7 @@ private:
     MusicPlayer*         musicPlayer;
     SoundPlayer*         soundPlayer;
     
-    // HUD
-    HUD*     hud;
+    
     bool     firstUpdate;
     
     // Camera

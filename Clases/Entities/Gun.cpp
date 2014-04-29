@@ -47,6 +47,9 @@ void Gun::Shot(const Vector& speed, const Vector& pos){
 	w->AddBullet(aux);
 }
 
+void Gun::Draw(RenderWindow& window){
+	renderState->Draw(window, *this->spriteSheet);
+}
 
 void Gun::Draw(RenderWindow& window, float inter){
 	renderState->Draw(window, physicsState->GetPreviousPosition(), physicsState->GetPosition(), inter, *this->spriteSheet);

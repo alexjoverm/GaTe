@@ -21,6 +21,7 @@ public:
 	EntActive(const EntActive& orig);
 	virtual ~EntActive();
 	
+    virtual void Draw(RenderWindow& window);
 	virtual void Draw(RenderWindow& window, float inter); ///< Realiza un Draw Interpolado
 	virtual void Update(const Time& elapsedTime); ///< Realizará un Update de la física, además el propio en las clases hijas
 	

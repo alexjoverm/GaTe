@@ -25,6 +25,7 @@ public:
 	virtual const std::string GetClassName() { return "Player"; }
 	
 	// Bucle de ciclo de vida
+    virtual void Draw(RenderWindow& window);
 	virtual void Draw(RenderWindow& window, float inter);
 	virtual void Update(const Time& elapsedTime);
 	

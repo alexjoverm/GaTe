@@ -17,8 +17,10 @@ public:
 	RenderState(const RenderState& orig);
 	virtual ~RenderState();
 	
+    void Draw(RenderWindow &window, SpriteSheet& sp);
 	void Draw(RenderWindow &window, const Vector& posPrev, const Vector& posNew, float interpolation, SpriteSheet& sp);
-	Vector& GetRenderPosition() const { return *posRender; }
+	
+    Vector& GetRenderPosition() const { return *posRender; }
 
 private:
 	Vector*		posRender;

@@ -19,7 +19,7 @@ public:
     
         // Inicialización y Liberación
 	void Init();
-        void Clean();
+    void Clean();
     
         // 3 bucles principales
 	void Update(const Time& timeElapsed);
@@ -33,8 +33,10 @@ private:
     void LoadResources();
         
     bool        rightPlace;
-    Vector      posPlace;
+    
+    Vector*      posPlace;
     Tower*      tower;
+    sf::RectangleShape*  overlay;
         
 };
 

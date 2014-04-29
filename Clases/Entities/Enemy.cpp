@@ -160,6 +160,13 @@ void Enemy::Draw(RenderWindow& window, float inter){
     life->Draw(window, inter);
 }
 
+
+void Enemy::Draw(RenderWindow& window){
+	renderState->Draw(window, *this->spriteSheet);
+    life->Draw(window, 0.f);
+}
+
+
 void Enemy::Update(const Time& elapsedTime)
 {
     if(this->InitAnim()) this->GetAnimatedSprite()->Update(elapsedTime);

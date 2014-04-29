@@ -65,6 +65,8 @@ private:
     sf::Text*    txtlevelOne;
     sf::Text*    txtlevelTwo;
     sf::Text*    txtlevelThree;
+    
+    std::pair<States::ID , bool> requestStateChange;
 
     //Players
     MusicPlayer* musicPlayer;

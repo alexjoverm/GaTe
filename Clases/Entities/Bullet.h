@@ -20,6 +20,7 @@ public:
 	Bullet(const Bullet& orig);
 	virtual ~Bullet();
 	
+    virtual void Draw(RenderWindow& window);
 	virtual void Draw(RenderWindow& window, float inter);
 	virtual void Update(const Time& elapsedTime);
 	

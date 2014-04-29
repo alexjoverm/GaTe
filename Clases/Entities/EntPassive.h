@@ -21,7 +21,7 @@ public:
 	virtual void Draw(RenderWindow& window); ///< Realiza un Draw simple
 	virtual void Update(const Time& elapsedTime); ///< De momento no hará nada el update
 	
-	void SetPosition(const Vector& v){ spriteSheet->SetPosition(v); }
+	virtual void SetPosition(const Vector& v){ spriteSheet->SetPosition(v); }
 	virtual Vector& GetPosition() const{ return spriteSheet->GetPosition(); }
 	void Move(Vector v){ spriteSheet->Move(v); }
 
