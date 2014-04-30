@@ -363,8 +363,32 @@ void WorldState::Render(float interp)
 	
     cam->SetCurrentView(Views::Type::Standard);
     
+    
+    
+    
+    
     level->renderMap();
 	
+    
+    Rectangle aux = vEnemies->at(0)->GetRectangleColisionAbsolute();
+    
+    sf::RectangleShape rec = sf::RectangleShape();
+    rec.setPosition(aux.GetTopLeft().GetX(), aux.GetTopLeft().GetY());
+    rec.setSize(sf::Vector2f(aux.GetWidth(), aux.GetHeight()));
+    rec.setFillColor(sf::Color::Blue);
+    
+    window->Draw(rec);
+    
+    sf::CircleShape cir;
+        
+    for(int i=0; i<vPath->size(); i++){
+        cir = sf::CircleShape();
+        cir.setPosition(vPath->at(i)->GetX(), vPath->at(i)->GetY());
+        cir.setRadius(3.f);
+        cir.setFillColor(sf::Color::Black);
+        window->renderWindow->draw(cir);
+    }
+    
 	// Renderizamos entidades	
     for(int i = 0; i < vEntityStatic->size(); i++)
 		vEntityStatic->at(i)->Draw(*window);
@@ -409,7 +433,7 @@ void WorldState::Render(float interp)
     if(cam->minimapActive)
         level->renderMinimap();
 	
-    if(!inputManager->IsPressedKeySpace()){
+    if(inputManager->IsReleasedKeySpace()){
         cam->SetCurrentView(Views::Type::Fixed);
         window->Display();
     }

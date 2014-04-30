@@ -307,11 +307,13 @@ void Player::Update(const Time& elapsedTime){
 	else if(im->IsPressedKeyD())
         MovementRight();
     
-    if(im->IsReleasedKeyA() || im->IsReleasedKeyD())
+    if(im->IsReleasedKeyA() && im->IsReleasedKeyD()){
         SetSpeed(0.f, GetSpeed().GetY());
-	
-	if(!im->IsPressedKeyA() && !im->IsPressedKeyD() && canJump)
-        MovementIdle();
+        
+        if(canJump)
+           MovementIdle(); 
+    }
+        
     
      if(this->InitAnim())
        this->GetAnimatedSprite()->Update(Time(0.f), isReverse);

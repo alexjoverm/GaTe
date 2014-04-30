@@ -10,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include "../Otros/Vector.h"
 
+
 class InputManager {
 public:
 	static InputManager* Instance(); // Método que habrá que llamar para crear el objeto
@@ -31,56 +32,64 @@ public:
     
     
 // Getters
-    bool IsClickedKeyA(){ return (keyA && !lastKeyA); }
-    bool IsPressedKeyA(){ return keyA; }
-    bool IsReleasedKeyA(){ return (!keyA && lastKeyA); }
+
+    bool IsClickedKeyA(){ return (keyA == 3 || keyA==2 && lastKeyA==1); }
+    bool IsPressedKeyA(){ return (keyA >= 2); }
+    bool IsReleasedKeyA(){ return (keyA == 1); }
     
-    bool IsClickedKeyS(){ return (keyS && !lastKeyS); }
-    bool IsPressedKeyS(){ return keyS; }
-    bool IsReleasedKeyS(){ return (!keyS && lastKeyS); }
+    bool IsClickedKeyS(){ return (keyS == 3 || keyS==2 && lastKeyS==1); }
+    bool IsPressedKeyS(){ return (keyS >= 2); }
+    bool IsReleasedKeyS(){ return (keyS == 1); }
     
-    bool IsClickedKeyD(){ return (keyD && !lastKeyD); }
-    bool IsPressedKeyD(){ return keyD; }
-    bool IsReleasedKeyD(){ return (!keyD && lastKeyD); }
+    bool IsClickedKeyD(){ return (keyD == 3 || keyD==2 && lastKeyD==1); }
+    bool IsPressedKeyD(){ return (keyD >= 2); }
+    bool IsReleasedKeyD(){ return (keyD == 1); }
     
-    bool IsClickedKeyW(){ return (keyW && !lastKeyW); }
-    bool IsPressedKeyW(){ return keyW; }
-    bool IsReleasedKeyW(){ return (!keyW && lastKeyW); }
+    bool IsClickedKeyW(){ return (keyW == 3 || keyW==2 && lastKeyW==1); }
+    bool IsPressedKeyW(){ return (keyW >= 2); }
+    bool IsReleasedKeyW(){ return (keyW == 1); }
     
-    bool IsClickedKeyM(){ return (keyM && !lastKeyM); }
-    bool IsPressedKeyM(){ return keyM; }
-    bool IsReleasedKeyM(){ return (!keyM && lastKeyM); }
+    bool IsClickedKeyM(){ return (keyM == 3 || keyM==2 && lastKeyM==1); }
+    bool IsPressedKeyM(){ return (keyM >= 2); }
+    bool IsReleasedKeyM(){ return (keyM == 1); }
     
-    bool IsClickedKeyR(){ return (keyR && !lastKeyR); }
-    bool IsPressedKeyR(){ return keyR; }
-    bool IsReleasedKeyR(){ return (!keyR && lastKeyR); }
+    bool IsClickedKeyR(){ return (keyR == 3 || keyR==2 && lastKeyR==1); }
+    bool IsPressedKeyR(){ return (keyR >= 2); }
+    bool IsReleasedKeyR(){ return (keyR == 1); }
     
-    bool IsClickedKeyT(){ return (keyT && !lastKeyT); }
-    bool IsPressedKeyT(){ return keyT; }
-    bool IsTeleasedKeyT(){ return (!keyT && lastKeyT); }
+    bool IsClickedKeyT(){ return (keyT == 3 || keyT==2 && lastKeyT==1); }
+    bool IsPressedKeyT(){ return (keyT >= 2); }
+    bool IsTeleasedKeyT(){ return (keyT == 1); }
     
-    bool IsClickedKeySpace(){ return (keySpace && !lastKeySpace); }
-    bool IsPressedKeySpace(){ return keySpace; }
-    bool IsReleasedKeySpace(){ return (!keySpace && lastKeySpace); }
+    bool IsClickedKeySpace(){ return (keySpace == 3 || keySpace==2 && lastKeySpace==1); }
+    bool IsPressedKeySpace(){ return (keySpace >= 2); }
+    bool IsReleasedKeySpace(){ return (keySpace == 1); }
     
-    bool IsClickedMouseLeft(){ return (mouseLeft && !lastMouseLeft); }
-    bool IsPressedMouseLeft(){ return mouseLeft; }
-    bool IsReleasedMouseLeft(){ return (!mouseLeft && lastMouseLeft); }
+    bool IsClickedMouseLeft(){ return (mouseLeft == 3 || mouseLeft==2 && lastMouseLeft==1); }
+    bool IsPressedMouseLeft(){ return (mouseLeft >= 2); }
+    bool IsReleasedMouseLeft(){ return (mouseLeft == 1); }
     
-    bool IsClickedMouseRight(){ return (mouseRight && !lastMouseRight); }
-    bool IsPressedMouseRight(){ return mouseRight; }
-    bool IsReleasedMouseRight(){ return (!mouseRight && lastMouseRight); }
+    bool IsClickedMouseRight(){ return (mouseRight == 3 || mouseRight==2 && lastMouseRight==1); }
+    bool IsPressedMouseRight(){ return (mouseRight >= 2); }
+    bool IsReleasedMouseRight(){ return (mouseRight == 1); }
 	
     
 private:
 	static InputManager* instance;
     
-    	// Booleanas a modo de "Propiedades"
-	bool	keyW, keyA, keyS, keyD, keyM, keyT, keyR, keySpace ;
-    bool	lastKeyW, lastKeyA, lastKeyS, lastKeyD, lastKeyM, lastKeyT, lastKeyR, lastKeySpace;  //Para comprobar pulsacion por click
-	
-    bool	mouseLeft, mouseRight;
-    bool    lastMouseLeft, lastMouseRight;
+    // Variables BYTE para comprobar pulsaciones, mediante técnica binaria
+    
+        // keyX == 0 : no hay evento para esa tecla
+        // keyX == 1 : ha habido un evento de release
+        // keyX == 2 : ha habido un evento de press
+        // keyX == 3 : ha habido un evento de release y uno de press == CLICK
+    
+	unsigned short int keyW=1, keyA=1, keyS=1, keyD=1, keyM=1, keyT=1, keyR=1, keySpace=1;
+    unsigned short int mouseLeft=1, mouseRight=1;
+    
+    unsigned short int lastKeyW=1, lastKeyA=1, lastKeyS=1, lastKeyD=1, lastKeyM=1, lastKeyT=1, lastKeyR=1, lastKeySpace=1;
+	unsigned short int lastMouseLeft=1, lastMouseRight=1;
+    
     float   mousePosX, mousePosY;
 
 	std::vector< std::pair<sf::Keyboard::Key , bool>>	*vKeyboard;

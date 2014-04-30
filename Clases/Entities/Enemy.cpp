@@ -141,7 +141,7 @@ void Enemy::routeMove(){
     
     if(!intersects)
     {
-        if(auxRoute->GetX() < GetPosition().GetX())
+        if(auxRoute->GetX() < GetPosition().GetX() + GetRectangleColisionAbsolute().GetWidth()/2 )
             changeX = -1;
         else
             changeX = 1;

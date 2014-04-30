@@ -25,8 +25,6 @@ InputManager::InputManager() {
 	vKeyboard	= new std::vector<std::pair<sf::Keyboard::Key , bool>>();
 	vMouse		= new std::vector<std::pair<sf::Mouse::Button , bool>>();
 	
-	keyW = keyA = keyS = keyD = keyM = keySpace = mouseLeft = mouseRight = false;	
-    keyR = keyT = false;
 }
 
 InputManager::InputManager(const InputManager& orig) {
@@ -55,6 +53,10 @@ void InputManager::AddMouseKey(sf::Mouse::Button key,    bool pressed){
 // Actualiza las teclas pulsadas
 void InputManager::Update()
 {
+    unsigned short int auxkeyW=0, auxkeyA=0, auxkeyS=0, auxkeyD=0, auxkeyM=0, auxkeyT=0, auxkeyR=0, auxkeySpace=0;
+    unsigned short int auxmouseLeft=0, auxmouseRight=0;
+    
+    
     lastKeyW = keyW;
     lastKeyA = keyA;
     lastKeyS = keyS;
@@ -64,58 +66,98 @@ void InputManager::Update()
     lastKeyT = keyT;
     lastKeyM = keyM;
     lastKeySpace = keySpace;
-        
-        
+    
 	// Teclado
 	for (int i=0; i < vKeyboard->size(); i++)
 	{
-		switch(vKeyboard->at(i).first)
-		{
-			case sf::Keyboard::W:
-				keyW = vKeyboard->at(i).second;	break;
+        switch(vKeyboard->at(i).first)
+        {
+            case sf::Keyboard::W:
+                auxkeyW |= (vKeyboard->at(i).second ? 2 : 1);
+                break;
 
-			case sf::Keyboard::A:
-				keyA = vKeyboard->at(i).second;	break;
+            case sf::Keyboard::A:
+                auxkeyA |= (vKeyboard->at(i).second ? 2 : 1);
+                break;
 
-			case sf::Keyboard::S:
-				keyS = vKeyboard->at(i).second;	break;
+            case sf::Keyboard::S:
+                auxkeyS |= (vKeyboard->at(i).second ? 2 : 1);
+                break;
 
-			case sf::Keyboard::D:
-				keyD = vKeyboard->at(i).second;	break;
-            
+            case sf::Keyboard::D:
+                auxkeyD |= (vKeyboard->at(i).second ? 2 : 1);
+                break;
+
             case sf::Keyboard::R:
-				keyR = vKeyboard->at(i).second;	break;
-                
+                auxkeyR |= (vKeyboard->at(i).second ? 2 : 1);
+                break;
+
             case sf::Keyboard::T:
-				keyT = vKeyboard->at(i).second;	break;
-                
+                auxkeyT |= (vKeyboard->at(i).second ? 2 : 1);
+                break;
+
             case sf::Keyboard::M:
-				keyM = vKeyboard->at(i).second;	break;
-                
+                auxkeyM |= (vKeyboard->at(i).second ? 2 : 1);
+                break;
+
             case sf::Keyboard::Space:
-				keySpace = vKeyboard->at(i).second;	break;
-                
-		}
+                auxkeySpace |= (vKeyboard->at(i).second ? 2 : 1);
+                break;
+        }
 	}
 	
 	vKeyboard->clear();
 	
+    // Si ha habido evento, actualizamos variables
+    keyW = (auxkeyW == 0 ? keyW : auxkeyW);
+    keyA = (auxkeyA == 0 ? keyA : auxkeyA);
+    keyS = (auxkeyS == 0 ? keyS : auxkeyS);
+    keyD = (auxkeyD == 0 ? keyD : auxkeyD);
+    keyM = (auxkeyM == 0 ? keyM : auxkeyM);
+    keyT = (auxkeyT == 0 ? keyT : auxkeyT);
+    keyR = (auxkeyR == 0 ? keyR : auxkeyR);
+    keySpace = (auxkeySpace == 0 ? keySpace : auxkeySpace);
+    
+    // Si el anterior ha sido un click, reiniciamos la variable para que no se quede congelada
+    keyW = (lastKeyW == 3 && auxkeyW == 0 ? 1 : keyW);
+    keyA = (lastKeyA == 3 && auxkeyA == 0 ? 1 : keyA);
+    keyS = (lastKeyS == 3 && auxkeyS == 0 ? 1 : keyS);
+    keyD = (lastKeyD == 3 && auxkeyD == 0 ? 1 : keyD);
+    keyM = (lastKeyM == 3 && auxkeyM == 0 ? 1 : keyM);
+    keyT = (lastKeyT == 3 && auxkeyT == 0 ? 1 : keyT);
+    keyR = (lastKeyR == 3 && auxkeyR == 0 ? 1 : keyR);
+    keySpace = (lastKeySpace == 3 && auxkeySpace == 0 ? 1 : keySpace);
+    
     lastMouseLeft = mouseLeft;
     lastMouseRight = mouseRight;
     
 	// Raton
 	for (int i=0; i < vMouse->size(); i++)
 	{
-		switch(vMouse->at(i).first)
-		{
-			case sf::Mouse::Left:
-				mouseLeft = vMouse->at(i).second;	break;
-			case sf::Mouse::Right:
-				mouseRight = vMouse->at(i).second;	break;
-		}
+        switch(vMouse->at(i).first)
+        {
+            case sf::Mouse::Left:
+                auxmouseLeft |= (vMouse->at(i).second ? 2 : 1);
+                break;
+                
+            case sf::Mouse::Right:
+                auxmouseRight |= (vMouse->at(i).second ? 2 : 1);
+                break;
+        }
 	}
+    
+    std::cout << "Antes: " << lastKeyM << std::endl;
 	
 	vMouse->clear();
+    
+    mouseLeft = (auxmouseLeft == 0 ? mouseLeft : auxmouseLeft);
+    mouseRight = (auxmouseRight == 0 ? mouseRight : auxmouseRight);
+    
+    mouseLeft = (lastMouseLeft == 3 && auxmouseLeft == 0 ? 1 : mouseLeft);
+    mouseRight = (lastMouseRight == 3 && auxmouseRight == 0 ? 1 : keyR);
+    
+    std::cout << "Despues: " << keyM << std::endl;
+    
 }
 
 
