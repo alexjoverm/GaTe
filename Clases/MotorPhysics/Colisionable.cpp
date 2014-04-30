@@ -181,9 +181,9 @@ Colision::Type Colisionable::TypeOfColision(const Rectangle& rec, const Time& el
 		if(colisions.at(0) == Colision::Type::LEFT  &&  colisions.at(1) == Colision::Type::BOTTOM){
 			posAux = rectPrev.GetBottomRight();
             
-			if(posAux.GetX() > rec.GetTopLeft().GetX() && posAux.GetY() < rec.GetTopLeft().GetY() + 1.3f)
+			if(posAux.GetX() > rec.GetTopLeft().GetX() && posAux.GetY() < rec.GetTopLeft().GetY() + 3.f)
                 return Colision::Type::BOTTOM;
-            else if( !entity->affectGravity && posAux.GetY() < rec.GetTopLeft().GetY() + 8.f)
+            else if( !entity->affectGravity && posAux.GetY() < rec.GetTopLeft().GetY() + 25.f)
 				return Colision::Type::BOTTOM;
 			else 
                 return Colision::Type::LEFT;
@@ -193,9 +193,9 @@ Colision::Type Colisionable::TypeOfColision(const Rectangle& rec, const Time& el
 		if(colisions.at(0) == Colision::Type::RIGHT  &&  colisions.at(1) == Colision::Type::BOTTOM){
 			posAux = rectPrev.GetBottomLeft();
 			
-			if(posAux.GetX() < rec.GetTopRight().GetX() && posAux.GetY() < rec.GetTopLeft().GetY() + 1.3f)
+			if(posAux.GetX() < rec.GetTopRight().GetX() && posAux.GetY() < rec.GetTopLeft().GetY() + 3.f)
                 return Colision::Type::BOTTOM;
-            else if( !entity->affectGravity && posAux.GetY() < rec.GetTopLeft().GetY() + 8.f)
+            else if( !entity->affectGravity && posAux.GetY() < rec.GetTopLeft().GetY() + 25.f)
 				return Colision::Type::BOTTOM;
 			else 
                 return Colision::Type::RIGHT;

@@ -270,8 +270,8 @@ void Player::Update(const Time& elapsedTime){
         isReverse = false;
 	
 // Animaciones
-  //  if(this->InitAnim())
-    //   this->GetAnimatedSprite()->Update(elapsedTime, isReverse);
+    if(this->InitAnim())
+       this->GetAnimatedSprite()->Update(elapsedTime, isReverse);
     
 
 
@@ -295,7 +295,6 @@ void Player::Update(const Time& elapsedTime){
     this->spriteSheet->GetSprite()->setTextureRect(this->GetAnimatedSprite()->GetSpriteRect());
 
 // Movimientos
-    if(im->IsClickedMouseLeft()) isShooting = true;
     if(im->IsPressedMouseLeft()) isShooting = true;
     else isShooting = false;
     if(im->IsPressedKeyW())
@@ -314,9 +313,9 @@ void Player::Update(const Time& elapsedTime){
 	if(!im->IsPressedKeyA() && !im->IsPressedKeyD() && canJump)
         MovementIdle();
     
+     if(this->InitAnim())
+       this->GetAnimatedSprite()->Update(Time(0.f), isReverse);
     
-    if(this->InitAnim())
-       this->GetAnimatedSprite()->Update(elapsedTime, isReverse);
 	
 // COLISIONES
 	ResetCan();

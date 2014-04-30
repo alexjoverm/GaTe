@@ -171,7 +171,7 @@ void WorldState::Init() {
     
 	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),Vector(108.0f, 108.0f), Vector(1650.0f,220.0f), Vector(0.f, 0.f), Vector(500.f, 500.f) );
     enemy->SetSpeed(220.f, 0.f);
-    enemy->SetRectangleColision(0, 0, 84, 95);
+    enemy->SetRectangleColision(10, 8, 100, 95);
     enemy->InitLifebar();
     
     enemy->AddAnimation(new Animation("andarEnemigo", enemy->GetSprite(), 3, 14, 0.05, false, true));

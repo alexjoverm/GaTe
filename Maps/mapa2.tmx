@@ -61,12 +61,12 @@
    <polyline points="0,0 2047,-1 2047,351 447,351 639,639 1311,639 1151,927 80,926 -1,1023 2047,1023"/>
   </object>
  </objectgroup>
- <objectgroup name="Colision suelo" width="64" height="32" opacity="0.93">
+ <objectgroup name="Colision suelo" width="64" height="32" opacity="0.71">
   <object x="1573" y="397" width="483" height="49"/>
   <object x="962" y="396" width="441" height="52"/>
   <object x="516" y="396" width="245" height="51"/>
   <object x="-3" y="395" width="250" height="51"/>
-  <object x="-4" y="683" width="832" height="53"/>
+  <object x="-3" y="684" width="832" height="53"/>
   <object x="1548" y="777" width="368" height="53"/>
   <object x="1" y="969" width="2048" height="56"/>
   <object x="747" y="202" width="364" height="51"/>
