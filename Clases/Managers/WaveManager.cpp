@@ -41,7 +41,7 @@ void WaveManager::Update(const Time& tiElapsed)
     if(state != Wave::State::Finished)
     {
         // Si no quedan enemigos, se pasa al estado de cargar
-        if(WorldState::Instance()->vEnemies->empty())
+        if(WorldState::Instance()->vEnemies->empty() && state == Wave::State::Waiting)
             state = Wave::State::Loading;
 
         // Se cuenta el tiempo, excepto cuando se está en espera

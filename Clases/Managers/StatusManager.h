@@ -47,7 +47,7 @@ namespace Parameters{
         gunCadencyLevel, gunCadencyInitValue, gunCadencyMinValue,
         
         bulletDamageLevel, bulletDamageInitValue, bulletDamageIncrement,    // BULLET
-        
+        bulletLifetimeLevel, bulletLifetimeInitValue, bulletLifetimeIncrement,
         
         
         enemyLifeDenom, enemySpeedDenom, enemyAttackDenom,   // ENEMY
@@ -97,6 +97,10 @@ public:
     void SaveStatus();
     void LoadStatus();
     void ResetParameters();
+    void GoBackMap(){ map.clear(); map = copyMap; }
+    void DoCopyMap(){ copyMap.clear(); copyMap = map; }
+    
+    
     
     std::string  GetValue(Parameters::ID key){ return map.find(key)->second; }
     void         SetValue(Parameters::ID key, std::string value){ map.find(key)->second = value; }
@@ -111,12 +115,17 @@ public:
     void         DecrementFloat(Parameters::ID key, float value);
     
     
+    
+    int         GetImprovePrice(Parameters::ID key){ return GetInt(Parameters::priceImproveInit) + GetInt(Parameters::priceImproveIncrement) * GetInt(key); }
+    
+    
     float       GetWorldLife();
     
     float       GetGunDamage();
     float       GetGunCadency();
     
     float       GetBulletDamage();
+    float       GetBulletLifetime();
     
     float       GetPlayerSpeed();
     float       GetPlayerLife();
@@ -157,6 +166,7 @@ private:
     std::ofstream* streamOut;
     
     std::map<Parameters::ID, std::string> map;
+    std::map<Parameters::ID, std::string> copyMap;
     
     //Funciones
     bool FileExists(const std::string filename);

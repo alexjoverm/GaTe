@@ -53,6 +53,9 @@ public:
 	float forceJump = 650.f;
 	bool canLeft, canRight, canJump;
     bool isShooting, isMoving;
+    
+     //Skills
+    bool angularShoot, doubleJump;
 	
 private:
 	Clock	*clockReloadGun;

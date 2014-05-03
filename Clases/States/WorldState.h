@@ -103,6 +103,9 @@ public:
     // HUD
     HUD*     hud;
     
+    std::string         mapName;
+    
+    
 private:
 	
   // Singleton

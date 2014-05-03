@@ -15,7 +15,7 @@
 
 class Lifebar {
 public:
-    Lifebar(float x, float y, float width, float height,  int borde);
+    Lifebar(float x, float y, float width, float height,  int borde, bool colorChang=true);
     Lifebar(const Lifebar& orig);
     virtual ~Lifebar();
     
@@ -39,6 +39,7 @@ private:
     
     sf::RectangleShape* borde;
     sf::RectangleShape* lifebar;
+    bool colorChange;
     
     Time* tiempo;
 };

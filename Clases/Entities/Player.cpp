@@ -29,6 +29,10 @@ Player::Player(const sf::Texture& tex, const Vector& size): EntActive(tex), Coli
     
     factorSpeed = StatusManager::Instance()->GetPlayerSpeed();
     factorSpeedIni = factorSpeed;
+    
+    angularShoot = StatusManager::Instance()->GetInt(Parameters::habilityAngularShot);
+    doubleJump =  StatusManager::Instance()->GetInt(Parameters::habilityDobleJump);
+    
 }
 
 Player::Player(const sf::Texture& tex, const Vector& size, const Vector& pos, const Vector& vel, const Vector& maxvel): EntActive(tex, pos, vel, maxvel), Colisionable((EntActive*)this), Animable(spriteSheet){
@@ -169,33 +173,38 @@ void Player::Shot(float x, float y){
 		Vector posPistola = Vector();
         posPistola = guns->at(selectedGun)->CalculateAbsolutePosition(this, isReverse);
       
+        Bullet* bAux ;
         
-        /*   DISPARO ANGULADO
-        sf::Vector2i aux = RenderWindow::Instance()->renderWindow->mapCoordsToPixel(sf::Vector2f(posPistola.GetX(), posPistola.GetY()) 
-            , WorldState::Instance()->GetCamera()->standard);
-        
-        std::cout << "PosPis:  " << StringUtils::ConvertVector(posPistola) << std::endl;
-        
-        posPistola.Set(aux.x , aux.y);
-          
-        
-        // Calculamos vector "pistola-raton"
-		Vector sp = Vector(x, y); 
-		sp -= posPistola;
-        
-		// Normalizamos y multiplicamos por velocidad de la bala
-		Vector norm = sp.GetNormalize();
-		norm *= 800.f;*/
+        /*   DISPARO ANGULADO */
+        if(angularShoot){
+            sf::Vector2i aux = RenderWindow::Instance()->renderWindow->mapCoordsToPixel(sf::Vector2f(posPistola.GetX(), posPistola.GetY()) 
+                , WorldState::Instance()->GetCamera()->standard);
+
+            std::cout << "PosPis:  " << StringUtils::ConvertVector(posPistola) << std::endl;
+
+            posPistola.Set(aux.x , aux.y);
+
+
+            // Calculamos vector "pistola-raton"
+                    Vector sp = Vector(x, y); 
+                    sp -= posPistola;
+
+                    // Normalizamos y multiplicamos por velocidad de la bala
+                    Vector norm = sp.GetNormalize();
+                    norm *= guns->at(selectedGun)->bulletSpeed;
+                    
+             //  Disparamos
+             bAux = new Bullet(ResourceManager::Instance()->GetTexture("texBullet"), posPistola, norm);
+        }
         
         // DISPARO RECTO
-        
         // Disparar hacia la orientación del personaje
-          
-         
-		float speedBull = (isReverse ? -guns->at(selectedGun)->bulletSpeed : guns->at(selectedGun)->bulletSpeed  );
+        else{
+            float speedBull = (isReverse ? -guns->at(selectedGun)->bulletSpeed : guns->at(selectedGun)->bulletSpeed  );
+            //  Disparamos
+            bAux = new Bullet(ResourceManager::Instance()->GetTexture("texBullet"), posPistola, Vector(speedBull,0.f));
+        }
         
-        //  Disparamos
-        Bullet* bAux = new Bullet(ResourceManager::Instance()->GetTexture("texBullet"), posPistola, Vector(speedBull,0.f));
         bAux->damage = guns->at(selectedGun)->damage + StatusManager::Instance()->GetBulletDamage();
 
         WorldState::Instance()->AddBullet(bAux);

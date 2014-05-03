@@ -94,10 +94,10 @@ void TemporalChange::AddChange(){
                     }
                 break;
         case Changes::State::DoubleJump :
-                            //WorldState::Instance()->player->SetDoubleJump(true);
+                            WorldState::Instance()->player->doubleJump = true;
                 break;
         case Changes::State::AngleShoot :
-                            //WorldState::Instance()->player->SetAngleShot(true);
+                            WorldState::Instance()->player->angularShoot = true;
                 break;
         case Changes::State::Slow :
                     if(enemy == NULL){
@@ -134,10 +134,10 @@ void TemporalChange::RemoveChange(){
                     }
                 break;
         case Changes::State::DoubleJump :
-                            //WorldState::Instance()->player->SetDoubleJump(StatusManager::Instance().GetDoubeJump());
+                            WorldState::Instance()->player->doubleJump = StatusManager::Instance()->GetInt(Parameters::habilityDobleJump);
                 break;
         case Changes::State::AngleShoot :
-                            //WorldState::Instance()->player->SetAngleShot(StatusManager::Instance().GetAngleShot());
+                            WorldState::Instance()->player->angularShoot = StatusManager::Instance()->GetInt(Parameters::habilityAngularShot) ;
                 break;
         case Changes::State::Slow :
                     if(enemy == NULL){

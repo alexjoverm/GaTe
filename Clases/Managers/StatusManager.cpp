@@ -92,6 +92,8 @@ void StatusManager::ResetParameters()
     map.insert(std::make_pair(Parameters::habilityDobleJump, "0"));
     
  //******************* ECONOMIA
+    map.insert(std::make_pair(Parameters::credit, "5000"));         // Credito disponible
+    
     map.insert(std::make_pair(Parameters::priceImproveInit, "20"));       // Mejoras
     map.insert(std::make_pair(Parameters::priceImproveIncrement, "10"));
     
@@ -114,8 +116,7 @@ void StatusManager::ResetParameters()
  //******************* VARIABLES
     
     // GLOBALES
-    map.insert(std::make_pair(Parameters::credit, "50"));         // Credito disponible
-    map.insert(std::make_pair(Parameters::countingLevels, "1"));     // Nivel por el que se va
+    map.insert(std::make_pair(Parameters::countingLevels, "2"));     // Nivel por el que se va
     map.insert(std::make_pair(Parameters::countingWaves, "1"));      // Oleada por la que se va
     map.insert(std::make_pair(Parameters::maxLevelImproves, "20"));
     map.insert(std::make_pair(Parameters::maxLevelWaves, "20"));
@@ -133,7 +134,7 @@ void StatusManager::ResetParameters()
     // GUN
     map.insert(std::make_pair(Parameters::gunDamageLevel, "1"));    
     map.insert(std::make_pair(Parameters::gunDamageInitValue, "18.0"));
-    map.insert(std::make_pair(Parameters::gunDamageIncrement, "5.0"));
+    map.insert(std::make_pair(Parameters::gunDamageIncrement, "8.0"));
     
     map.insert(std::make_pair(Parameters::gunCadencyLevel, "1"));    
     map.insert(std::make_pair(Parameters::gunCadencyInitValue, "1.0"));
@@ -142,16 +143,20 @@ void StatusManager::ResetParameters()
     // BULLET
     map.insert(std::make_pair(Parameters::bulletDamageLevel, "1"));    
     map.insert(std::make_pair(Parameters::bulletDamageInitValue, "12.0"));
-    map.insert(std::make_pair(Parameters::bulletDamageIncrement, "5.0"));
+    map.insert(std::make_pair(Parameters::bulletDamageIncrement, "7.0"));
     
+    map.insert(std::make_pair(Parameters::bulletLifetimeLevel, "1"));    
+    map.insert(std::make_pair(Parameters::bulletLifetimeInitValue, "0.5"));
+    map.insert(std::make_pair(Parameters::bulletLifetimeIncrement, "0.06"));
     
     // PLAYER
     map.insert(std::make_pair(Parameters::playerLifeLevel, "1"));    
     map.insert(std::make_pair(Parameters::playerLifeInitValue, "150.0"));
     map.insert(std::make_pair(Parameters::playerLifeIncrement, "15.0"));
+    
     map.insert(std::make_pair(Parameters::playerSpeedLevel, "1"));
     map.insert(std::make_pair(Parameters::playerSpeedInitValue, "370.0"));
-    map.insert(std::make_pair(Parameters::playerSpeedIncrement, "4.0"));
+    map.insert(std::make_pair(Parameters::playerSpeedIncrement, "15.0"));
     
     
     
@@ -260,13 +265,16 @@ float StatusManager::GetGunDamage(){
     return GetFloat(Parameters::gunDamageInitValue) + (GetInt(Parameters::gunDamageLevel) * GetFloat(Parameters::gunDamageIncrement));
 }
 float StatusManager::GetGunCadency(){
-    float cad = GetFloat(Parameters::gunCadencyInitValue) + (GetInt(Parameters::gunCadencyLevel) * GetFloat(Parameters::gunCadencyInitValue) / GetFloat(Parameters::maxLevelImproves));
+    float cad = GetFloat(Parameters::gunCadencyInitValue) - (GetInt(Parameters::gunCadencyLevel) * GetFloat(Parameters::gunCadencyInitValue) / GetFloat(Parameters::maxLevelImproves));
     return (cad < GetFloat(Parameters::gunCadencyMinValue) ? GetFloat(Parameters::gunCadencyMinValue) : cad);
 }
 
 
 float StatusManager::GetBulletDamage(){
     return GetFloat(Parameters::bulletDamageInitValue) + GetInt(Parameters::bulletDamageLevel) * GetFloat(Parameters::bulletDamageIncrement);
+}
+float StatusManager::GetBulletLifetime(){
+    return GetFloat(Parameters::bulletLifetimeInitValue) + GetInt(Parameters::bulletLifetimeLevel) * GetFloat(Parameters::bulletLifetimeIncrement);
 }
 
 
@@ -282,7 +290,7 @@ float StatusManager::GetTowerOneDamage(){
     return GetFloat(Parameters::towerOneDamageInitValue) + GetInt(Parameters::towerOneDamageLevel) * GetFloat(Parameters::towerOneDamageIncrement);
 }
 float StatusManager::GetTowerOneCadency(){
-    float cad = GetFloat(Parameters::towerOneCadencyInitValue) + (GetInt(Parameters::towerOneCadencyLevel) * GetFloat(Parameters::towerOneCadencyInitValue) / GetFloat(Parameters::maxLevelImproves));
+    float cad = GetFloat(Parameters::towerOneCadencyInitValue) - (GetInt(Parameters::towerOneCadencyLevel) * GetFloat(Parameters::towerOneCadencyInitValue) / GetFloat(Parameters::maxLevelImproves));
     return (cad < GetFloat(Parameters::towerOneCadencyMinValue) ? GetFloat(Parameters::towerOneCadencyMinValue) : cad);
 }
 float StatusManager::GetTowerOneRange(){
@@ -294,7 +302,7 @@ float StatusManager::GetTowerTwoDamage(){
     return GetFloat(Parameters::towerTwoDamageInitValue) + GetInt(Parameters::towerTwoDamageLevel) * GetFloat(Parameters::towerTwoDamageIncrement);
 }
 float StatusManager::GetTowerTwoCadency(){
-    float cad = GetFloat(Parameters::towerTwoCadencyInitValue) + (GetInt(Parameters::towerTwoCadencyLevel) * GetFloat(Parameters::towerTwoCadencyInitValue) / GetFloat(Parameters::maxLevelImproves));
+    float cad = GetFloat(Parameters::towerTwoCadencyInitValue) - (GetInt(Parameters::towerTwoCadencyLevel) * GetFloat(Parameters::towerTwoCadencyInitValue) / GetFloat(Parameters::maxLevelImproves));
     return (cad < GetFloat(Parameters::towerTwoCadencyMinValue) ? GetFloat(Parameters::towerTwoCadencyMinValue) : cad);
 }
 float StatusManager::GetTowerTwoRange(){
@@ -305,7 +313,7 @@ float StatusManager::GetTowerThreeDamage(){
     return GetFloat(Parameters::towerThreeDamageInitValue) + GetInt(Parameters::towerThreeDamageLevel) * GetFloat(Parameters::towerThreeDamageIncrement);
 }
 float StatusManager::GetTowerThreeCadency(){
-    float cad = GetFloat(Parameters::towerThreeCadencyInitValue) + (GetInt(Parameters::towerThreeCadencyLevel) * GetFloat(Parameters::towerThreeCadencyInitValue) / GetFloat(Parameters::maxLevelImproves));
+    float cad = GetFloat(Parameters::towerThreeCadencyInitValue) - (GetInt(Parameters::towerThreeCadencyLevel) * GetFloat(Parameters::towerThreeCadencyInitValue) / GetFloat(Parameters::maxLevelImproves));
     return (cad < GetFloat(Parameters::towerThreeCadencyMinValue) ? GetFloat(Parameters::towerThreeCadencyMinValue) : cad);
 }
 float StatusManager::GetTowerThreeRange(){

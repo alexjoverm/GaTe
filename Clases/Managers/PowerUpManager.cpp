@@ -13,7 +13,7 @@
 PowerUpManager::PowerUpManager() {
     srand(std::time(NULL));
     
-    respawnTime = rand()%10+20; 
+    respawnTime = rand()%5+0; 
     time = 0.f;
 
 }
@@ -29,7 +29,7 @@ void PowerUpManager::Update(const Time& timeElapsed){
         if(time > respawnTime){
             AddPowerUp();
             time = 0.f;
-            respawnTime = rand()%15 + 30;
+            respawnTime = rand()%5 + 0;
 
         }
 
@@ -39,8 +39,8 @@ void PowerUpManager::Update(const Time& timeElapsed){
 void PowerUpManager::AddPowerUp(){
     
     //tipo de momento hay 5 de 0-4
-    int typePower = (int)(std::rand()%4)  ;
-    
+    //int typePower = (int)(std::rand()%4)  ;
+    int typePower = 4;
     //posicion
     Vector *pos = WorldState::Instance()->level->map->GetRandomPowerUpPos();
     //Velocidades

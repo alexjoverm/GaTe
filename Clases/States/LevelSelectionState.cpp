@@ -8,6 +8,8 @@
 #include "LevelSelectionState.h"
 #include "../Otros/StringUtils.h"
 #include "../Managers/StateManager.h"
+#include "../Managers/StatusManager.h"
+#include "WorldState.h"
 #include <iostream>
 
 LevelSelectionState::LevelSelectionState() {
@@ -44,6 +46,7 @@ void LevelSelectionState::LoadResources(){
 		// Texturas
 		resourceManager->AddTexture("texMenuLevelSelection", "Recursos/SeleccionNivel.jpg");
                 resourceManager->AddTexture("texReturn", "Recursos/return.png");
+        resourceManager->AddTexture("texImproves", "Recursos/improvesButton.png");
                 resourceManager->AddTexture("texEsferas1", "Recursos/esferas1.png");
                 resourceManager->AddTexture("texEsferas2", "Recursos/esferas2.png");
                 resourceManager->AddTexture("texEsferas3", "Recursos/esferas3.png");
@@ -67,6 +70,7 @@ void LevelSelectionState::Init() {
     musicPlayer->Play();
     
     returnButton   = new ImageButton(15.f, 15.f, 1, resourceManager->GetTexture("texReturn"));
+    improvesButton   = new ImageButton(440.f, 650.f, 2, resourceManager->GetTexture("texImproves"));
     levelOneButton   = new ImageButton(230.f, 290.f, 2, resourceManager->GetTexture("texEsferas1"));
     levelTwoButton   = new ImageButton(580.f, 445.f, 2, resourceManager->GetTexture("texEsferas2"));
     levelThreeButton   = new ImageButton(525.f, 120.f, 2, resourceManager->GetTexture("texEsferas3"));
@@ -101,6 +105,7 @@ void LevelSelectionState::Clean(){
     resourceManager->CleanResources();
     delete fondo; fondo=NULL;
     
+    delete improvesButton; improvesButton= NULL;
   
     delete txtlevelOne; txtlevelOne=NULL;
     delete txtlevelTwo; txtlevelTwo=NULL;
@@ -114,7 +119,6 @@ void LevelSelectionState::Clean(){
    
     vNonRealEvents->clear();
     vRealEvents->clear();
-    musicPlayer->Stop();
 }
 
 
@@ -138,15 +142,15 @@ void LevelSelectionState::Update(const Time& timeElapsed)
         
     
     //Boton Level 2
-    if(levelTwoButton->IsHover()){
-        levelTwoButton->SetFrame(0);
+    if(levelTwoButton->IsHover() && StatusManager::Instance()->GetInt(Parameters::countingLevels)>1){
+        levelTwoButton->SetFrame(1);
     }else{
         levelTwoButton->SetFrame(0);
     }
     
     //Boton Level 3
-    if(levelThreeButton->IsHover()){
-        levelThreeButton->SetFrame(0);
+    if(levelThreeButton->IsHover()&& StatusManager::Instance()->GetInt(Parameters::countingLevels)>2){
+        levelThreeButton->SetFrame(1);
     }else{
         levelThreeButton->SetFrame(0);
     }
@@ -155,8 +159,23 @@ void LevelSelectionState::Update(const Time& timeElapsed)
     if(returnButton->IsClicked())
         requestStateChange = std::make_pair(States::ID::MenuState, true);
     
-    if(levelOneButton->IsClicked())
+    else if(improvesButton->IsClicked())
+        requestStateChange = std::make_pair(States::ID::ShopState, true);
+    
+    else if(levelOneButton->IsClicked()){
         requestStateChange = std::make_pair(States::ID::LoadingState, true);
+        WorldState::Instance()->mapName = "mapa1.tmx";
+    }
+    else if(levelTwoButton->IsClicked() && StatusManager::Instance()->GetInt(Parameters::countingLevels)>1){
+        requestStateChange = std::make_pair(States::ID::LoadingState, true);
+        WorldState::Instance()->mapName = "mapa2.tmx";
+    }
+    else if(levelThreeButton->IsClicked() && StatusManager::Instance()->GetInt(Parameters::countingLevels)>2){
+        requestStateChange = std::make_pair(States::ID::LoadingState, true);
+        WorldState::Instance()->mapName = "mapa3.tmx";
+    }
+    
+    
     
     if(requestStateChange.second)
        StateManager::Instance()->SetCurrentState(requestStateChange.first);
@@ -177,6 +196,7 @@ void LevelSelectionState::Render(float interp)
         levelOneButton->Draw(*window);
         levelTwoButton->Draw(*window);
         levelThreeButton->Draw(*window);
+        improvesButton->Draw(*window);
         
         window->Draw(*txtlevelOne);
      window->Draw(*txtlevelThree);

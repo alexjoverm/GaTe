@@ -49,6 +49,8 @@ void StateManager::CreateStates()
     mapStates->insert(std::make_pair(States::ID::TutorialState , StateFactory::CreateState(States::ID::TutorialState)));
     //mapStates->insert(std::make_pair(States::ID::PauseState , StateFactory::CreateState(States::ID::PauseState)));
     mapStates->insert(std::make_pair(States::ID::LoadingState , StateFactory::CreateState(States::ID::LoadingState)));
+    mapStates->insert(std::make_pair(States::ID::ShopState , StateFactory::CreateState(States::ID::ShopState)));
+
 }
 
 State* StateManager::GetCurrentState() const

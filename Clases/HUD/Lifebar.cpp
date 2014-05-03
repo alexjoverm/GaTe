@@ -8,13 +8,13 @@
 #include "Lifebar.h"
 #include <iostream>
 
-Lifebar::Lifebar(float x, float y, float width, float height,  int brd) {
+Lifebar::Lifebar(float x, float y, float width, float height,  int brd, bool colorChang) {
     vmax = 120.f;
     valor =vmax;
     
     lifebar = new sf::RectangleShape();
     lifebar->setSize(sf::Vector2f(width, height));
-    lifebar->setFillColor(sf::Color::Green);
+    lifebar->setFillColor(sf::Color::White);
     lifebar->setPosition(x, y);
     
     borde = new sf::RectangleShape();
@@ -23,6 +23,8 @@ Lifebar::Lifebar(float x, float y, float width, float height,  int brd) {
     borde->setOutlineThickness(brd);
     borde->setOutlineColor(sf::Color::Black);
     borde->setPosition(lifebar->getPosition());
+    
+    colorChange = colorChang;
 }
 
 Lifebar::Lifebar(const Lifebar& orig) {
@@ -47,14 +49,16 @@ void Lifebar::Update(const Time& elapsedTime)
     lifebar->setSize(sf::Vector2f((borde->getSize().x) * (valor/vmax), lifebar->getSize().y));
 
     //Cambio de color
-    if(valor/vmax<=0.3f)
-        lifebar->setFillColor(sf::Color::Red);
-    
-    else if(valor/vmax<=0.7f)
-        lifebar->setFillColor(sf::Color::Yellow);
-    
-    else 
-        lifebar->setFillColor(sf::Color::Green);
+    if(colorChange){
+        if(valor/vmax<=0.3f)
+            lifebar->setFillColor(sf::Color::Red);
+
+        else if(valor/vmax<=0.7f)
+            lifebar->setFillColor(sf::Color::Yellow);
+
+        else 
+            lifebar->setFillColor(sf::Color::Green);
+    }
 }
 
 

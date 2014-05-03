@@ -56,6 +56,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/HUD/Button.o \
 	${OBJECTDIR}/Clases/HUD/HUD.o \
 	${OBJECTDIR}/Clases/HUD/ImageButton.o \
+	${OBJECTDIR}/Clases/HUD/Improve.o \
+	${OBJECTDIR}/Clases/HUD/ImproveGroup.o \
 	${OBJECTDIR}/Clases/HUD/Lifebar.o \
 	${OBJECTDIR}/Clases/HUD/Slider.o \
 	${OBJECTDIR}/Clases/Managers/ConfigurationManager.o \
@@ -96,6 +98,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/States/MenuState.o \
 	${OBJECTDIR}/Clases/States/NewTowerState.o \
 	${OBJECTDIR}/Clases/States/SettingsState.o \
+	${OBJECTDIR}/Clases/States/ShopState.o \
 	${OBJECTDIR}/Clases/States/TutorialState.o \
 	${OBJECTDIR}/Clases/States/WorldState.o \
 	${OBJECTDIR}/main.o
@@ -229,6 +232,16 @@ ${OBJECTDIR}/Clases/HUD/ImageButton.o: Clases/HUD/ImageButton.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/HUD/ImageButton.o Clases/HUD/ImageButton.cpp
+
+${OBJECTDIR}/Clases/HUD/Improve.o: Clases/HUD/Improve.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/HUD/Improve.o Clases/HUD/Improve.cpp
+
+${OBJECTDIR}/Clases/HUD/ImproveGroup.o: Clases/HUD/ImproveGroup.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/HUD/ImproveGroup.o Clases/HUD/ImproveGroup.cpp
 
 ${OBJECTDIR}/Clases/HUD/Lifebar.o: Clases/HUD/Lifebar.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
@@ -429,6 +442,11 @@ ${OBJECTDIR}/Clases/States/SettingsState.o: Clases/States/SettingsState.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/States
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/States/SettingsState.o Clases/States/SettingsState.cpp
+
+${OBJECTDIR}/Clases/States/ShopState.o: Clases/States/ShopState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/States
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/States/ShopState.o Clases/States/ShopState.cpp
 
 ${OBJECTDIR}/Clases/States/TutorialState.o: Clases/States/TutorialState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States

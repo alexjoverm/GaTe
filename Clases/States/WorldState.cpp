@@ -135,7 +135,7 @@ void WorldState::LoadResources()
 
 
         
-        level->LoadMap("mapa2.tmx");
+        level->LoadMap(mapName);
 
         // Enemies
         resourceManager->AddTexture("texEnemyOne", "Recursos/enemyOne.png");

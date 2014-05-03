@@ -1,12 +1,12 @@
 /* 
- * File:   LevelSelectionState.h
+ * File:   ShopState.h
  * Author: jc
  *
  * Created on 24 de abril de 2014, 12:05
  */
 
-#ifndef LEVELSELECTIONSTATE_H
-#define	LEVELSELECTIONSTATE_H
+#ifndef SHOPSTATE_H
+#define	SHOPSTATE_H
 
 #include "../Motor2D/Level.h"
 #include "../Motor2D/RenderWindow.h"
@@ -14,15 +14,16 @@
 #include "../Managers/ResourceManager.h"
 #include "../MusicSounds/MusicPlayer.h"
 #include "../HUD/ImageButton.h"
+#include "../HUD/ImproveGroup.h"
 #include "State.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-class LevelSelectionState : public State {
+class ShopState : public State {
 public:
-    LevelSelectionState();
-    LevelSelectionState(const LevelSelectionState& orig);
-    virtual ~LevelSelectionState();
+    ShopState();
+    ShopState(const ShopState& orig);
+    virtual ~ShopState();
 
     // Inicialización y Liberación
     void Init();
@@ -57,17 +58,11 @@ private:
     SpriteSheet* fondo;
 
     ImageButton* returnButton;
-    ImageButton* improvesButton;
+    sf::Text     *creditText;
     
-    ImageButton* levelOneButton;
-    ImageButton* levelTwoButton;
-    ImageButton* levelThreeButton;
     
-    sf::Text*    txtlevelOne;
-    sf::Text*    txtlevelTwo;
-    sf::Text*    txtlevelThree;
+    std::vector<ImproveGroup*>     *vImproves;
     
-    std::pair<States::ID , bool> requestStateChange;
 
     //Players
     MusicPlayer* musicPlayer;

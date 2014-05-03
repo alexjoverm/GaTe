@@ -14,6 +14,7 @@
 #include "../States/CreditsState.h"
 #include "../States/TutorialState.h"
 #include "../States/NewTowerState.h"
+#include "../States/ShopState.h"
 
 
 State* StateFactory::CreateState(States::ID id){
@@ -35,6 +36,8 @@ State* StateFactory::CreateState(States::ID id){
         return new TutorialState();
     else if(id == States::ID::TowerSelectionState)
         return new NewTowerState();
+    else if(id == States::ID::ShopState)
+        return new ShopState();
     /*
     else if(id == States::ID::PauseState)
         return new PauseState();
