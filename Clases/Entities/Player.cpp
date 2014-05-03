@@ -33,6 +33,8 @@ Player::Player(const sf::Texture& tex, const Vector& size): EntActive(tex), Coli
     angularShoot = StatusManager::Instance()->GetInt(Parameters::habilityAngularShot);
     doubleJump =  StatusManager::Instance()->GetInt(Parameters::habilityDobleJump);
     
+    jumps = 0;
+    
 }
 
 Player::Player(const sf::Texture& tex, const Vector& size, const Vector& pos, const Vector& vel, const Vector& maxvel): EntActive(tex, pos, vel, maxvel), Colisionable((EntActive*)this), Animable(spriteSheet){
@@ -55,6 +57,12 @@ Player::Player(const sf::Texture& tex, const Vector& size, const Vector& pos, co
     
     factorSpeed = StatusManager::Instance()->GetPlayerSpeed();
     factorSpeedIni = factorSpeed;
+    
+    angularShoot = StatusManager::Instance()->GetInt(Parameters::habilityAngularShot);
+    doubleJump =  StatusManager::Instance()->GetInt(Parameters::habilityDobleJump);
+    
+    jumps = 0;
+    
 }
 
 
@@ -75,29 +83,30 @@ Player::~Player() {
 
 void Player::Jump(){
 	
-	if(canJump)
-    {
-        if(isShooting)
-        {
-            this->PlayAnimation();
-            this->SetCurrentAnimation("disparoSaltar", this->GetSprite());
-        }
-        else
-        {
-            this->PlayAnimation();
-            this->SetCurrentAnimation("saltar", this->GetSprite());
-        }
-		this->SetSpeed(this->GetSpeed().GetX(), -forceJump);
+	if(canJump) {
+            if(isShooting)
+            {
+                this->PlayAnimation();
+                this->SetCurrentAnimation("disparoSaltar", this->GetSprite());
+            }
+            else
+            {
+                this->PlayAnimation();
+                this->SetCurrentAnimation("saltar", this->GetSprite());
+            }
+                    this->SetSpeed(this->GetSpeed().GetX(), -forceJump);
 
-		canJump=false;
-		affectGravity = !canJump;
+                    if(doubleJump)
+                        jumps++;
+                    else
+                        jumps = 3;       
 	}
 }
 
 void Player::MovementLeft(){
     isMoving = true;
     // Animacion de Andar sólo cuando está en el suelo
-    if(canJump){
+    if(jumps == 0){
         if(isShooting)
         {
             this->PlayAnimation();
@@ -119,7 +128,7 @@ void Player::MovementLeft(){
 
 void Player::MovementRight(){
     isMoving = true;
-    if(canJump){
+    if(jumps == 0){
         if(isShooting)
         {
             this->PlayAnimation();
@@ -159,7 +168,7 @@ void Player::Shot(float x, float y){
     // Si se ha pasado el tiempo de carga de la pistola
 
 	if(clockReloadGun->GetElapsedTime().AsSeconds() >= guns->at(selectedGun)->reloadTime->AsSeconds()){
-            if(canJump && !isMoving)
+            if(jumps == 0 && !isMoving)
             {
                 this->PlayAnimation();
                 this->SetCurrentAnimation("disparoIdle", this->GetSprite());
@@ -177,16 +186,12 @@ void Player::Shot(float x, float y){
         
         /*   DISPARO ANGULADO */
         if(angularShoot){
-            sf::Vector2i aux = RenderWindow::Instance()->renderWindow->mapCoordsToPixel(sf::Vector2f(posPistola.GetX(), posPistola.GetY()) 
-                , WorldState::Instance()->GetCamera()->standard);
-
-            std::cout << "PosPis:  " << StringUtils::ConvertVector(posPistola) << std::endl;
-
-            posPistola.Set(aux.x , aux.y);
+            
+            sf::Vector2f aux = RenderWindow::Instance()->renderWindow->mapPixelToCoords(sf::Vector2i(x, y), WorldState::Instance()->GetCamera()->standard);
 
 
             // Calculamos vector "pistola-raton"
-                    Vector sp = Vector(x, y); 
+                    Vector sp = Vector(aux.x,aux.y); 
                     sp -= posPistola;
 
                     // Normalizamos y multiplicamos por velocidad de la bala
@@ -258,13 +263,20 @@ void Player::DoRectangleColisions(const Time& elapsedTime){
                 }
 	}
     
-	if(!isInFloor || !colisionado)
+        affectGravity = true;
+        
+	if( (!isInFloor || !colisionado) && jumps > 1)
 		canJump = false;
-	else if(isInFloor)
+	else{
+            if(isInFloor){
 		canJump = true;
+                jumps = 0;
+                affectGravity = false;
+            }
+        }
     
+	 
 	
-	affectGravity = !canJump;
 }
 
 
@@ -314,16 +326,16 @@ void Player::Update(const Time& elapsedTime){
 
     
     //Cuando caemos ponemos la animacion de salto
-    if(!canJump && !im->IsPressedKeyW() && !isShooting)
+    if(jumps != 0 && !im->IsPressedKeyW() && !isShooting)
     {
         this->PlayAnimation();
         this->SetCurrentAnimation("saltar", this->GetSprite());
     }
-    if(!canJump && isShooting)
+    if(jumps != 0 && isShooting)
     {
         this->SetCurrentAnimation("disparoSaltar", this->GetSprite());
     }
-    if(canJump && isShooting && isMoving)
+    if(jumps == 0 && isShooting && isMoving)
     {
         this->SetCurrentAnimation("disparoCorrer", this->GetSprite());
     }
@@ -334,7 +346,7 @@ void Player::Update(const Time& elapsedTime){
 // Movimientos
     if(im->IsPressedMouseLeft()) isShooting = true;
     else isShooting = false;
-    if(im->IsPressedKeyW())
+    if(im->IsClickedKeyW())
 		Jump();
 	//else if(im->IsPressedKeyS())
 		// GetDown()
@@ -347,7 +359,7 @@ void Player::Update(const Time& elapsedTime){
     if(im->IsReleasedKeyA() && im->IsReleasedKeyD()){
         SetSpeed(0.f, GetSpeed().GetY());
         
-        if(canJump)
+        if(jumps == 0)
            MovementIdle(); 
     }
         

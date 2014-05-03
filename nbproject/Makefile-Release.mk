@@ -122,11 +122,11 @@ LDLIBSOPTIONS=-L/usr/local/SFML/lib -lsfml-audio -lsfml-graphics -lsfml-network 
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/hito3full
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/hito3
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/hito3full: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/hito3: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/hito3full ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/hito3 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Clases/Animations/Animable.o: Clases/Animations/Animable.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Animations
@@ -469,7 +469,7 @@ ${OBJECTDIR}/main.o: main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/hito3full
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/hito3
 
 # Subprojects
 .clean-subprojects:

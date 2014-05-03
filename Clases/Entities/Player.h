@@ -62,6 +62,7 @@ private:
 	
 	//Controladores
 	bool pressA, pressS, pressD; // No se necesita pressW (pulsacion única)
+        int jumps;
 
 };
 
