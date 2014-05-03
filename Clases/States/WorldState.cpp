@@ -36,6 +36,7 @@ WorldState::WorldState() {
 	
     vBullets = new std::vector<Bullet*>();
     vTowers = new std::vector<Tower*>();
+    vChanges = new std::vector<TemporalChange*>();
     vPowers = new std::vector<PowerUp*>();
     vPath = new std::vector<Vector*>();
     vEnemies = new std::deque<Enemy*>();
@@ -85,6 +86,10 @@ WorldState::~WorldState() {
     while(!vPowers->empty())
 		delete vPowers->back(), vPowers->pop_back();
 	delete vPowers;
+        
+    while(!vChanges->empty())
+		delete vChanges->back(), vChanges->pop_back();
+	delete vChanges;
 	
 	delete vEntityColisionable;
 	delete vBullets;
@@ -124,6 +129,10 @@ void WorldState::LoadResources()
         // Texturas PowerUps
         for(int i = 0 ; i < 6 ; i++)
             resourceManager->AddTexture("texPower" + StringUtils::ConvertInt(i), "Recursos/power"+StringUtils::ConvertInt(i)+".png");
+        // Texturas PowerUps
+        for(int i = 0 ; i < 5 ; i++)
+                resourceManager->AddTexture("miniPower" + StringUtils::ConvertInt(i), "Recursos/power"+StringUtils::ConvertInt(i)+".png");
+
 
         
         level->LoadMap("mapa2.tmx");
@@ -283,6 +292,9 @@ void WorldState::Clean(){
 
     while(!vPowers->empty()) 
 		delete vPowers->back(), vPowers->pop_back();
+        
+    while(!vChanges->empty()) 
+		delete vChanges->back(), vChanges->pop_back();
     
     
     // Los demás vectores sólo los limpiamos, ya que la memoria ya la hemos liberado
@@ -326,6 +338,12 @@ void WorldState::Update(const Time& timeElapsed)
         for(int i = 0; i < vPowers->size(); i++){
             if(vPowers->at(i)->UpdateBool(timeElapsed))
                 DeletePowerUp(i);
+        }
+        
+    // Comprobamos si alguna mejora temporal debe eliminarse
+        for(int i = 0; i < vChanges->size(); i++){
+            if(vChanges->at(i)->UpdateBool(timeElapsed))
+                DeleteTemporalChange(i);
         }
         
         
@@ -488,6 +506,9 @@ void WorldState::Render(float interp)
     cam->SetCurrentView(Views::Type::Fixed);
     hud->Draw(*window);
     
+    for(int i = 0; i < vChanges->size(); i++)
+            vChanges->at(i)->Draw(window); 
+    
     if(cam->minimapActive)
         level->renderMinimap();
 	
@@ -583,4 +604,11 @@ void WorldState::DeletePowerUp(int i)
 { 
     delete vPowers->at(i); vPowers->at(i)=NULL; 
     vPowers->erase(vPowers->begin()+i);    
+}
+
+void WorldState::DeleteTemporalChange(int i)
+{ 
+    vChanges->at(i)->RemoveChange();
+    delete vChanges->at(i); vChanges->at(i)=NULL; 
+    vChanges->erase(vChanges->begin()+i);    
 }

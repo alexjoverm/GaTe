@@ -13,9 +13,9 @@
 PowerUpManager::PowerUpManager() {
     srand(std::time(NULL));
     
-    //respawnTime = rand()%30+20; 
+    respawnTime = rand()%10+20; 
     time = 0.f;
-    respawnTime = rand()%25 + 25; 
+
 }
 
 PowerUpManager::~PowerUpManager() {
@@ -29,7 +29,8 @@ void PowerUpManager::Update(const Time& timeElapsed){
         if(time > respawnTime){
             AddPowerUp();
             time = 0.f;
-            respawnTime = rand()%25 + 25; 
+            respawnTime = rand()%15 + 30;
+
         }
 
 }
@@ -37,8 +38,8 @@ void PowerUpManager::Update(const Time& timeElapsed){
 
 void PowerUpManager::AddPowerUp(){
     
-    //tipo
-    int typePower = (int)(std::rand()%5)  ;
+    //tipo de momento hay 5 de 0-4
+    int typePower = (int)(std::rand()%4)  ;
     
     //posicion
     Vector *pos = WorldState::Instance()->level->map->GetRandomPowerUpPos();
@@ -46,7 +47,6 @@ void PowerUpManager::AddPowerUp(){
     Vector vel = Vector(0.f,0.f);
     Vector maxVel = Vector(0.f,140.f);    
     
-   // std::cout << typePower<<" at "<<pos->GetX()<<","<<pos->GetY()<<std::endl;
     
     PowerUp* aux = new PowerUp( (PowerUps::State)typePower , ResourceManager::Instance()->GetTexture("texPower"+StringUtils::ConvertInt(typePower) ) , *pos , vel , maxVel);
     aux->SetRectangleColision(0,0,aux->GetSprite()->getGlobalBounds().GetWidth(), aux->GetSprite()->getGlobalBounds().GetHeight());
@@ -54,32 +54,3 @@ void PowerUpManager::AddPowerUp(){
     WorldState::Instance()->AddPowerUp( aux );
     
 }
-/*
-void PowerUpManager::Power(PowerUps::State st){
-    
-    switch(st){
-    
-        case PowerUps::State::Damage :
-                // subir el daño del arma
-                break;
-        case PowerUps::State::Speed :
-                // subir la velocidad de movimiento
-                break;
-        case PowerUps::State::Jump :
-                // subir la potencia del salto
-                break;
-        case PowerUps::State::SpeedShot :
-                //bajar la cadencia al arma
-                break;
-        case PowerUps::State::AngleShoot :
-                // Activar disparo angular en jugador
-                break;
-    
-        case PowerUps::State::DoubleJump :
-                //Activar doble saltoen jugador
-                break;
-    
-    }
-    
-    
-}*/

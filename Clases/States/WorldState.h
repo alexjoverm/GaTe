@@ -17,13 +17,14 @@
 #include "../Entities/Bullet.h"
 #include "../Entities/PowerUp.h"
 #include "../Entities/Tower.h"
-#include "../Otros/Clock.h"
 #include "../Managers/InputManager.h"
 #include "../Managers/ResourceManager.h"
 #include "../Managers/WaveManager.h"
 #include "../Managers/PowerUpManager.h"
 #include "../MusicSounds/MusicPlayer.h"
 #include "../HUD/HUD.h"
+#include "../Otros/Clock.h"
+#include "../Otros/TemporalChange.h"
 #include "State.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -68,10 +69,13 @@ public:
     void AddTower(Tower* ent){ vTowers->push_back(ent); }
     void AddEnemy(Enemy* ent){ vEnemies->push_back(ent); }
     void AddPowerUp(PowerUp* ent){ vPowers->push_back(ent); }
-     
+    void AddTemporalChange(TemporalChange* ent){vChanges->push_back(ent);}
+ 
     void DeleteEnemy(int i);
     void DeleteBullet(int i);
     void DeletePowerUp(int i);
+    void DeleteTemporalChange(int i);
+
 
     
     void CleanArrays(Enemy* en);
@@ -88,6 +92,7 @@ public:
     std::vector<Tower*>         *vTowers;
     std::vector<PowerUp*>       *vPowers;
     std::deque<Enemy*>          *vEnemies;
+    std::vector<TemporalChange*>        *vChanges;
 	std::vector<Bullet*>		*vBullets;
 	std::deque<EntPassive*>		*vEntityStatic;
 	std::deque<EntActive*>		*vEntityActive;

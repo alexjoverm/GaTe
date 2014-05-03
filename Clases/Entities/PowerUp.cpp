@@ -13,7 +13,7 @@ PowerUp::PowerUp(PowerUps::State powerType, const sf::Texture& tex, const Vector
     std::srand(time(NULL));
     
     timeAlive = 0;
-    lifeTime = rand()%20 + 10;
+    lifeTime = rand()%5 + 10;
     powerUpType = powerType;
 }
 

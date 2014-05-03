@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux-x86
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=hito2_serrano
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/hito2_serrano
+CND_ARTIFACT_NAME_Debug=hito3full
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/hito3full
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=hito2serrano.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/hito2serrano.tar
+CND_PACKAGE_NAME_Debug=hito3full.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/hito3full.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=hito2_serrano
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/hito2_serrano
+CND_ARTIFACT_NAME_Release=hito3full
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/hito3full
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=hito2serrano.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/hito2serrano.tar
+CND_PACKAGE_NAME_Release=hito3full.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/hito3full.tar
 #
 # include compiler specific variables
 #

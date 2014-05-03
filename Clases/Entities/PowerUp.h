@@ -17,7 +17,7 @@
 
 namespace PowerUps{
     enum State{
-        Damage,Speed,Jump,SpeedShot,DoubleJump,AngleShoot
+        Damage,Speed,SpeedShot,DoubleJump,AngleShoot
     };
 }
 

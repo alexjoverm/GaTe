@@ -239,6 +239,15 @@ void Player::DoRectangleColisions(const Time& elapsedTime){
             }
 		}
 	}
+        
+    for(int i=0; i < world->vPowers->size(); i++){
+		if(CheckColision(world->vPowers->at(i)->GetRectangleColisionAbsolute(), elapsedTime)){
+                    
+                    world->AddTemporalChange(new TemporalChange( Changes::State(world->vPowers->at(i)->GetType()) , 15.f ) );
+                    
+                    world->DeletePowerUp(i);
+                }
+	}
     
 	if(!isInFloor || !colisionado)
 		canJump = false;

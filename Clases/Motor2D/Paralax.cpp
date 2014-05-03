@@ -34,8 +34,11 @@ void Paralax::Render(float interpolation){
     Vector *aux2 = cam->GetMoved();
 
     paralax1.move(aux->GetX()*aux2->GetX(),aux->GetY()*aux2->GetY());
-    paralax2.move(0.75*aux->GetX()*aux2->GetX(),aux->GetY()*aux2->GetY());
-    paralax3.move(0.5*aux->GetX()*aux2->GetX(),aux->GetY()*aux2->GetY());
+    paralax2.move(0.9*aux->GetX()*aux2->GetX(),aux->GetY()*aux2->GetY());
+    paralax3.move(0.7*aux->GetX()*aux2->GetX(),aux->GetY()*aux2->GetY());
+    
+    window->setView( paralax1 );
+    window->draw(map->GetLayer("Fondo"));
     
     window->setView( paralax3 );
     window->draw(map->GetLayer("Paralax3"));
@@ -46,7 +49,5 @@ void Paralax::Render(float interpolation){
     window->setView( paralax1 );
     window->draw(map->GetLayer("Paralax1"));
     
-    
-    //window->setView( *cam->GetCurrentView() );
     
 }
