@@ -47,7 +47,10 @@ MenuState::~MenuState() {
 void MenuState::LoadResources(){
 	try{
 		// Texturas
-		resourceManager->AddTexture("texBackground", "Recursos/fondoMenu.jpg");
+		resourceManager->AddTexture("texBackground", "Recursos/Screens/fondoMenu.jpg");
+        resourceManager->AddTexture("texDialogBack", "Recursos/Screens/fondoVentana.jpeg");
+        resourceManager->AddTexture("texDialogYes", "Recursos/PowerUps/power1.png");
+        resourceManager->AddTexture("texDialogNo", "Recursos/PowerUps/power2.png");
 		
 		// Fuente
 		resourceManager->AddFont("Urban", "Recursos/Urban_Stone.otf");
@@ -66,6 +69,9 @@ void MenuState::LoadResources(){
 
 
 void MenuState::Init() {
+    releaseMouse = true;
+    dialogVisible = false;
+    
 	LoadResources(); // Cargamos recursos
     
     if(!ConfigurationManager::Instance()->loaded)
@@ -78,6 +84,20 @@ void MenuState::Init() {
 	
 	// Inicializamos fuentes
 	background = new SpriteSheet(resourceManager->GetTexture("texBackground"));
+    
+    
+    // Dialog
+    backgroundDialog = new SpriteSheet(resourceManager->GetTexture("texDialogBack"));
+    
+    Vector posDialog = Vector(
+        RenderWindow::Instance()->width/2 - backgroundDialog->getGlobalBounds().GetWidth()/2,
+        RenderWindow::Instance()->height/2 - backgroundDialog->getGlobalBounds().GetHeight()/2
+    );
+    backgroundDialog->SetPosition(posDialog);
+    
+    
+    dialogNo = new ImageButton(posDialog.GetX()+50.f, posDialog.GetY()+100.f, 1, resourceManager->GetTexture("texDialogNo"));
+    dialogYes = new ImageButton(posDialog.GetX()+200.f, posDialog.GetY()+100.f ,1,resourceManager->GetTexture("texDialogYes"));
     
     for(int i=0; i<6; i++)         //  x   ,  y,            contenido
         vButtons->push_back(new Button(512.f, 380.f + 50.f*i, ""));
@@ -102,6 +122,10 @@ void MenuState::Clean(){
     resourceManager->CleanResources();
     
     delete background; background=NULL;
+    delete backgroundDialog; backgroundDialog=NULL;
+    
+    delete dialogNo; dialogNo=NULL;
+    delete dialogYes; dialogYes=NULL;
     
     while(!vButtons->empty()) 
 		delete vButtons->back(), vButtons->pop_back();
@@ -118,8 +142,22 @@ void MenuState::Update(const Time& timeElapsed)
 {
     InputManager::Instance()->Update();
     
+    if(InputManager::Instance()->IsReleasedMouseLeft())
+        releaseMouse=false;
+    
     for(int i=0; i<vButtons->size(); i++)
         vButtons->at(i)->Update(timeElapsed);
+    
+    if(dialogVisible){
+        if(dialogNo->IsClicked())
+            dialogVisible=false;
+        else if(dialogYes->IsClicked()){
+            StatusManager::Instance()->ResetParameters();
+            requestStateChange = std::make_pair(States::ID::LevelSelectionState, true);  // Nueva Partida
+        }  
+    }
+    
+       
     
     if(requestStateChange.second)
        StateManager::Instance()->SetCurrentState(requestStateChange.first);
@@ -140,6 +178,12 @@ void MenuState::Render(float interp)
 	window->Draw(*background);
     for(int i=0; i<vButtons->size(); i++)
         vButtons->at(i)->Draw(interp);
+    
+    if(dialogVisible){
+        window->Draw(*backgroundDialog);
+        dialogNo->Draw(*window);
+        dialogYes->Draw(*window);
+    }
     
 	window->Display();
     
@@ -166,28 +210,27 @@ void MenuState::ProcessRealEvent(){
 	
 	//sf::Event ev;
 	
-    if(inputManager->IsPressedMouseLeft())
+    if(inputManager->IsPressedMouseLeft() && !releaseMouse)
     {
         Vector posMouse = inputManager->GetMousePosition();
         
-        if(vButtons->at(0)->IsPressed(posMouse.GetX(), posMouse.GetY())){
-           StatusManager::Instance()->ResetParameters();
-           requestStateChange = std::make_pair(States::ID::LevelSelectionState, true);  // Nueva Partida
-        }
-        if(vButtons->at(1)->IsPressed(posMouse.GetX(), posMouse.GetY()))
-           requestStateChange = std::make_pair(States::ID::LevelSelectionState, true);  // Continuar
-        if(vButtons->at(2)->IsPressed(posMouse.GetX(), posMouse.GetY()))
-           requestStateChange = std::make_pair(States::ID::TutorialState, true);  // Tutorial
-        if(vButtons->at(3)->IsPressed(posMouse.GetX(), posMouse.GetY()))
-           requestStateChange = std::make_pair(States::ID::SettingsState, true);  // Opciones
-        if(vButtons->at(4)->IsPressed(posMouse.GetX(), posMouse.GetY()))
-           requestStateChange = std::make_pair(States::ID::CreditsState, true);  // Acerca De
-        if(vButtons->at(5)->IsPressed(posMouse.GetX(), posMouse.GetY())){
-            ConfigurationManager::Instance()->SaveConfigurations();                 // Salir
-            StatusManager::Instance()->SaveStatus();
-            window->Close(); 
-        }
-                                                                       
+        if(!dialogVisible){
+            if(vButtons->at(0)->IsPressed(posMouse.GetX(), posMouse.GetY()))
+                dialogVisible=true;   
+            else if(vButtons->at(1)->IsPressed(posMouse.GetX(), posMouse.GetY()))
+               requestStateChange = std::make_pair(States::ID::LevelSelectionState, true);  // Continuar
+            else if(vButtons->at(2)->IsPressed(posMouse.GetX(), posMouse.GetY()))
+               requestStateChange = std::make_pair(States::ID::TutorialState, true);  // Tutorial
+            else if(vButtons->at(3)->IsPressed(posMouse.GetX(), posMouse.GetY()))
+               requestStateChange = std::make_pair(States::ID::SettingsState, true);  // Opciones
+            else if(vButtons->at(4)->IsPressed(posMouse.GetX(), posMouse.GetY()))
+               requestStateChange = std::make_pair(States::ID::CreditsState, true);  // Acerca De
+            else if(vButtons->at(5)->IsPressed(posMouse.GetX(), posMouse.GetY())){
+                ConfigurationManager::Instance()->SaveConfigurations();                 // Salir
+                StatusManager::Instance()->SaveStatus();
+                window->Close(); 
+            }
+        }                                                   
     }
     
 	

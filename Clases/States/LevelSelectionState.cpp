@@ -44,12 +44,12 @@ LevelSelectionState::~LevelSelectionState() {
 void LevelSelectionState::LoadResources(){
 	try{
 		// Texturas
-		resourceManager->AddTexture("texMenuLevelSelection", "Recursos/SeleccionNivel.jpg");
-                resourceManager->AddTexture("texReturn", "Recursos/return.png");
-        resourceManager->AddTexture("texImproves", "Recursos/improvesButton.png");
-                resourceManager->AddTexture("texEsferas1", "Recursos/esferas1.png");
-                resourceManager->AddTexture("texEsferas2", "Recursos/esferas2.png");
-                resourceManager->AddTexture("texEsferas3", "Recursos/esferas3.png");
+		resourceManager->AddTexture("texMenuLevelSelection", "Recursos/Screens/SeleccionNivel.jpg");
+                resourceManager->AddTexture("texReturn", "Recursos/Buttons/return.png");
+        resourceManager->AddTexture("texImproves", "Recursos/Buttons/improvesButton.png");
+                resourceManager->AddTexture("texEsferas1", "Recursos/Buttons/esferas1.png");
+                resourceManager->AddTexture("texEsferas2", "Recursos/Buttons/esferas2.png");
+                resourceManager->AddTexture("texEsferas3", "Recursos/Buttons/esferas3.png");
 		
 		// Fuente
 		resourceManager->AddFont("Urban", "Recursos/Urban_Stone.otf");

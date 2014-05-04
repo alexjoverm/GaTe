@@ -11,6 +11,7 @@
 #include <SFML/System/String.hpp>
 #include "../Motor2D/RenderWindow.h"
 #include "../Otros/Vector.h"
+#include "../Managers/InputManager.h"
 #include "../Otros/Time.h"
 
 
@@ -37,7 +38,7 @@ public:
     void SetBorderColor(sf::Color color);
     void SetBorderThickness(int borde);
     
-    bool IsPressed(float x, float y){ return texto->getGlobalBounds().contains(sf::Vector2f(x,y)); }
+    bool IsPressed(float x, float y){ return (texto->getGlobalBounds().contains(sf::Vector2f(x,y)) && InputManager::Instance()->IsPressedMouseLeft()); }
     void Center();
     
     

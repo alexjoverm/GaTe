@@ -55,10 +55,14 @@ private:
     std::vector<sf::Event> *vNonRealEvents;
     std::vector<sf::Event> *vRealEvents;
 
-    SpriteSheet* fondo;
+    SpriteSheet* fondo, *fondo2;
 
-    ImageButton* returnButton;
+    ImageButton* returnButton, *buttonImproves, *buttonHabilities;
     sf::Text     *creditText;
+    
+    
+    ImageButton  *habTower2, *habTower3, *habDobleJump, *habAngularShot;
+    sf::Text     *towersText, *habText;
     
     
     std::vector<ImproveGroup*>     *vImproves;

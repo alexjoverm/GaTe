@@ -61,6 +61,10 @@ public:
     bool IsPressedKeyT(){ return (keyT >= 2); }
     bool IsTeleasedKeyT(){ return (keyT == 1); }
     
+    bool IsClickedKeyP(){ return (keyP == 3 || keyP==2 && lastKeyP==1); }
+    bool IsPressedKeyP(){ return (keyP >= 2); }
+    bool IsReleasedKeyP(){ return (keyP == 1); }
+    
     bool IsClickedKeySpace(){ return (keySpace == 3 || keySpace==2 && lastKeySpace==1); }
     bool IsPressedKeySpace(){ return (keySpace >= 2); }
     bool IsReleasedKeySpace(){ return (keySpace == 1); }
@@ -84,10 +88,10 @@ private:
         // keyX == 2 : ha habido un evento de press
         // keyX == 3 : ha habido un evento de release y uno de press == CLICK
     
-	unsigned short int keyW=1, keyA=1, keyS=1, keyD=1, keyM=1, keyT=1, keyR=1, keySpace=1;
+	unsigned short int keyW=1, keyA=1, keyS=1, keyD=1, keyM=1, keyT=1, keyR=1, keyP=1, keySpace=1;
     unsigned short int mouseLeft=1, mouseRight=1;
     
-    unsigned short int lastKeyW=1, lastKeyA=1, lastKeyS=1, lastKeyD=1, lastKeyM=1, lastKeyT=1, lastKeyR=1, lastKeySpace=1;
+    unsigned short int lastKeyW=1, lastKeyA=1, lastKeyS=1, lastKeyD=1, lastKeyM=1, lastKeyT=1, lastKeyR=1, lastKeyP=1, lastKeySpace=1;
 	unsigned short int lastMouseLeft=1, lastMouseRight=1;
     
     float   mousePosX, mousePosY;

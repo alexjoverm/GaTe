@@ -43,8 +43,8 @@ TutorialState::~TutorialState() {
 void TutorialState::LoadResources(){
 	try{
 		// Texturas
-		resourceManager->AddTexture("texTutorial", "Recursos/fondoTutorial.jpg");
-        resourceManager->AddTexture("texReturn", "Recursos/return.png");
+		resourceManager->AddTexture("texTutorial", "Recursos/Screens/fondoTutorial.jpg");
+        resourceManager->AddTexture("texReturn", "Recursos/Buttons/return.png");
 		
 		// Fuente
 		resourceManager->AddFont("OpenSans", "Recursos/OpenSans-Regular.ttf");

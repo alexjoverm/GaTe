@@ -40,10 +40,9 @@ LoadingState::~LoadingState() {
 void LoadingState::LoadResources(){
 	try{
 		// Texturas
-		resourceManager->AddTexture("texBackground", "Recursos/loading.jpg");
+		resourceManager->AddTexture("texBackground", "Recursos/Screens/loading.jpg");
 		
 		// Fuente
-		resourceManager->AddFont("Urban", "Recursos/Urban_Stone.otf");
 	}
 	catch (std::runtime_error& e)	{
 		std::cout << "Exception: " << e.what() << std::endl;
@@ -53,6 +52,7 @@ void LoadingState::LoadResources(){
 
 
 void LoadingState::Init() {
+    resourceManager->CleanResources();
 	LoadResources(); // Cargamos recursos
 	
 	// Inicializamos fuentes
@@ -70,7 +70,6 @@ void LoadingState::Init() {
 
 void LoadingState::Clean(){
     // liberamos recursos
-    resourceManager->EraseFont("Urban");
     resourceManager->EraseTexture("texBackground");
     
     delete background; background=NULL;

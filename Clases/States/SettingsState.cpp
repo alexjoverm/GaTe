@@ -54,9 +54,9 @@ SettingsState::~SettingsState() {
 void SettingsState::LoadResources(){
 	try{
 		// Texturas
-		resourceManager->AddTexture("texBackground", "Recursos/fondoMenu.jpg");
-		resourceManager->AddTexture("texSwitch", "Recursos/switcher.png");
-        resourceManager->AddTexture("texReturn", "Recursos/return.png");
+		resourceManager->AddTexture("texBackground", "Recursos/Screens/fondoMenu.jpg");
+		resourceManager->AddTexture("texSwitch", "Recursos/Buttons/switcher.png");
+        resourceManager->AddTexture("texReturn", "Recursos/Buttons/return.png");
         
 		// Fuente
 		resourceManager->AddFont("Urban", "Recursos/Urban_Stone.otf");

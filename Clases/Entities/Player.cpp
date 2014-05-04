@@ -43,11 +43,11 @@ Player::Player(const sf::Texture& tex, const Vector& size, const Vector& pos, co
 	clockReloadGun = new Clock();
 	clockReloadGun->Restart();
 	
-        //Fjamos el tamaño del o los tiles
-        this->SetSizeTile((int)size.GetX(), (int)size.GetY());
-        //Calculamos el numero de filas y columnas del spriteSheet
-        this->GetSprite()->SetNumRowsColumns();
-        
+    //Fjamos el tamaño del o los tiles
+    this->SetSizeTile((int)size.GetX(), (int)size.GetY());
+    //Calculamos el numero de filas y columnas del spriteSheet
+    this->GetSprite()->SetNumRowsColumns();
+ 
 	// Controladores
 	pressA = pressS = pressD = false;
 	canLeft = canRight = true;
@@ -226,7 +226,34 @@ void Player::DoRectangleColisions(const Time& elapsedTime){
 	Colision::Type	type;
 	bool colisionado = false, isInFloor = false, changedNextPos = false;
     
-	for(int i=0; i < world->level->vRectColision->size(); i++){
+    for(int i=0; i < world->level->vPlatforms->size(); i++){
+		if(CheckColision(*world->level->vPlatforms->at(i), elapsedTime)){
+			
+			// Comprobamos tipo de colision, y hacemos lo que debamos
+			type = TypeOfColision(*world->level->vPlatforms->at(i), elapsedTime);
+            
+            if(type==Colision::Type::BOTTOM && GetSpeed().GetY() >= 0.f){
+                
+                if(platformToIgnore < 0)
+                    OnColision(type,*world->level->vPlatforms->at(i), elapsedTime);
+                else if(i != platformToIgnore)
+                    OnColision(type,*world->level->vPlatforms->at(i), elapsedTime);
+                
+                isInFloor = true;
+                colisionado = true;
+                
+                if(InputManager::Instance()->IsClickedKeyS())
+                    platformToIgnore=i;
+                
+            }
+		}
+	}
+        
+        if(!colisionado)
+        platformToIgnore = -1;
+    
+    
+        for(int i=0; i < world->level->vRectColision->size(); i++){
 		if(CheckColision(*world->level->vRectColision->at(i), elapsedTime)){
             
 			// Comprobamos tipo de colision, y hacemos lo que debamos
@@ -239,20 +266,7 @@ void Player::DoRectangleColisions(const Time& elapsedTime){
 			colisionado = true;
 		}
 	}
-    
-    for(int i=0; i < world->level->vPlatforms->size(); i++){
-		if(CheckColision(*world->level->vPlatforms->at(i), elapsedTime)){
-			
-			// Comprobamos tipo de colision, y hacemos lo que debamos
-			type = TypeOfColision(*world->level->vPlatforms->at(i), elapsedTime);
-            
-            if(type==Colision::Type::BOTTOM && GetSpeed().GetY() >= 0.f){
-                OnColision(type,*world->level->vPlatforms->at(i), elapsedTime);
-				isInFloor = true;
-                colisionado = true;
-            }
-		}
-	}
+        
         
     for(int i=0; i < world->vPowers->size(); i++){
 		if(CheckColision(world->vPowers->at(i)->GetRectangleColisionAbsolute(), elapsedTime)){
@@ -265,15 +279,19 @@ void Player::DoRectangleColisions(const Time& elapsedTime){
     
         affectGravity = true;
         
-	if( (!isInFloor || !colisionado) && jumps > 1)
+	if( (!isInFloor || !colisionado ) && jumps > 1)
 		canJump = false;
 	else{
             if(isInFloor){
 		canJump = true;
                 jumps = 0;
-                affectGravity = false;
+                if(platformToIgnore < 0){
+                        affectGravity = false;
+                }
             }
         }
+        
+        
     
 	 
 	
@@ -348,8 +366,6 @@ void Player::Update(const Time& elapsedTime){
     else isShooting = false;
     if(im->IsClickedKeyW())
 		Jump();
-	//else if(im->IsPressedKeyS())
-		// GetDown()
 	
 	if(im->IsPressedKeyA())
         MovementLeft();

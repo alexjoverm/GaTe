@@ -105,6 +105,7 @@ public:
     
     std::string         mapName;
     
+    short int           estado; //  0: PAUSA,  1: MUERTO,  2: GANADO
     
 private:
 	
@@ -132,6 +133,9 @@ private:
     Paralax*             paralax;
     
     bool     firstUpdate;
+    
+    bool     releaseMouse = true;    
+    std::pair<States::ID , bool> requestStateChange;
     
     // Camera
     Camera*  cam;

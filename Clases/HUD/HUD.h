@@ -25,6 +25,7 @@ public:
     virtual void Update(const Time& elapsedTime);
     
     float GetHeight() const{ return menuHUD->getLocalBounds().GetHeight(); }
+    float GetLife() const { return barravida->valor; }
     
     //Textos
     void SetLevelText(const std::string text) { nivel->setString(text); }

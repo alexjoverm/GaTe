@@ -54,7 +54,7 @@ void InputManager::AddMouseKey(sf::Mouse::Button key,    bool pressed){
 // Actualiza las teclas pulsadas
 void InputManager::Update()
 {
-    unsigned short int auxkeyW=0, auxkeyA=0, auxkeyS=0, auxkeyD=0, auxkeyM=0, auxkeyT=0, auxkeyR=0, auxkeySpace=0;
+    unsigned short int auxkeyW=0, auxkeyA=0, auxkeyS=0, auxkeyD=0, auxkeyM=0, auxkeyT=0, auxkeyR=0, auxkeyP=0, auxkeySpace=0;
     unsigned short int auxmouseLeft=0, auxmouseRight=0;
     
     
@@ -66,6 +66,7 @@ void InputManager::Update()
     lastKeyR = keyR;
     lastKeyT = keyT;
     lastKeyM = keyM;
+    lastKeyP = keyP;
     lastKeySpace = keySpace;
     
 	// Teclado
@@ -100,6 +101,10 @@ void InputManager::Update()
             case sf::Keyboard::M:
                 auxkeyM |= (vKeyboard->at(i).second ? 2 : 1);
                 break;
+                
+            case sf::Keyboard::P:
+                auxkeyP |= (vKeyboard->at(i).second ? 2 : 1);
+                break;
 
             case sf::Keyboard::Space:
                 auxkeySpace |= (vKeyboard->at(i).second ? 2 : 1);
@@ -117,6 +122,7 @@ void InputManager::Update()
     keyM = (auxkeyM == 0 ? keyM : auxkeyM);
     keyT = (auxkeyT == 0 ? keyT : auxkeyT);
     keyR = (auxkeyR == 0 ? keyR : auxkeyR);
+    keyP = (auxkeyP == 0 ? keyP : auxkeyP);
     keySpace = (auxkeySpace == 0 ? keySpace : auxkeySpace);
     
     // Si el anterior ha sido un click, reiniciamos la variable para que no se quede congelada
@@ -127,6 +133,7 @@ void InputManager::Update()
     keyM = (lastKeyM == 3 && auxkeyM == 0 ? 1 : keyM);
     keyT = (lastKeyT == 3 && auxkeyT == 0 ? 1 : keyT);
     keyR = (lastKeyR == 3 && auxkeyR == 0 ? 1 : keyR);
+    keyP = (lastKeyP == 3 && auxkeyP == 0 ? 1 : keyP);
     keySpace = (lastKeySpace == 3 && auxkeySpace == 0 ? 1 : keySpace);
     
     lastMouseLeft = mouseLeft;

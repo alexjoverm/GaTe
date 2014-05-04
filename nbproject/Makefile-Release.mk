@@ -97,6 +97,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/States/LoadingState.o \
 	${OBJECTDIR}/Clases/States/MenuState.o \
 	${OBJECTDIR}/Clases/States/NewTowerState.o \
+	${OBJECTDIR}/Clases/States/PauseState.o \
 	${OBJECTDIR}/Clases/States/SettingsState.o \
 	${OBJECTDIR}/Clases/States/ShopState.o \
 	${OBJECTDIR}/Clases/States/TutorialState.o \
@@ -437,6 +438,11 @@ ${OBJECTDIR}/Clases/States/NewTowerState.o: Clases/States/NewTowerState.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/States
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/States/NewTowerState.o Clases/States/NewTowerState.cpp
+
+${OBJECTDIR}/Clases/States/PauseState.o: Clases/States/PauseState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/States
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/States/PauseState.o Clases/States/PauseState.cpp
 
 ${OBJECTDIR}/Clases/States/SettingsState.o: Clases/States/SettingsState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States

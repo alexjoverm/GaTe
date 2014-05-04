@@ -43,8 +43,8 @@ CreditsState::~CreditsState() {
 void CreditsState::LoadResources(){
 	try{
 		// Texturas
-		resourceManager->AddTexture("texCredits", "Recursos/Creditos.jpg");
-        resourceManager->AddTexture("texReturn", "Recursos/return.png");
+		resourceManager->AddTexture("texCredits", "Recursos/Screens/Creditos.jpg");
+        resourceManager->AddTexture("texReturn", "Recursos/Buttons/return.png");
 		
 		// Fuente
 		resourceManager->AddFont("OpenSans", "Recursos/OpenSans-Regular.ttf");

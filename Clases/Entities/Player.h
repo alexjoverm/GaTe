@@ -64,6 +64,8 @@ private:
 	bool pressA, pressS, pressD; // No se necesita pressW (pulsacion única)
         int jumps;
 
+        short int platformToIgnore = -1;
+        
 };
 
 #endif	/* PLAYER_H */

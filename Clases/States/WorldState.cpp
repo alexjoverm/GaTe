@@ -128,41 +128,47 @@ void WorldState::LoadResources()
         
         // Texturas PowerUps
         for(int i = 0 ; i < 6 ; i++)
-            resourceManager->AddTexture("texPower" + StringUtils::ConvertInt(i), "Recursos/power"+StringUtils::ConvertInt(i)+".png");
+            resourceManager->AddTexture("texPower" + StringUtils::ConvertInt(i), "Recursos/PowerUps/power"+StringUtils::ConvertInt(i)+".png");
         // Texturas PowerUps
         for(int i = 0 ; i < 5 ; i++)
-                resourceManager->AddTexture("miniPower" + StringUtils::ConvertInt(i), "Recursos/power"+StringUtils::ConvertInt(i)+".png");
+                resourceManager->AddTexture("miniPower" + StringUtils::ConvertInt(i), "Recursos/PowerUps/activePower"+StringUtils::ConvertInt(i)+".png");
 
 
         
         level->LoadMap(mapName);
 
         // Enemies
-        resourceManager->AddTexture("texEnemyOne", "Recursos/enemyOne.png");
-        resourceManager->AddTexture("texEnemyTwo", "Recursos/enemyTwo.png");
-        resourceManager->AddTexture("texEnemyThree", "Recursos/enemyThree.png");
+        resourceManager->AddTexture("texEnemyOne", "Recursos/Sprites/enemyOne.png");
+        resourceManager->AddTexture("texEnemyTwo", "Recursos/Sprites/enemyTwo.png");
+        resourceManager->AddTexture("texEnemyThree", "Recursos/Sprites/enemyThree.png");
         
         // Towers
-        resourceManager->AddTexture("texTowerOne", "Recursos/towerOne.png");
-        resourceManager->AddTexture("texTowerTwo", "Recursos/towerTwo.png");
-        resourceManager->AddTexture("texTowerThree", "Recursos/towerThree.png");
+        resourceManager->AddTexture("texTowerOne", "Recursos/Sprites/towerOne1.png");
+        resourceManager->AddTexture("texTowerTwo", "Recursos/Sprites/towerTwo.png");
+        resourceManager->AddTexture("texTowerThree", "Recursos/Sprites/towerThree.png");
         
         resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
         
-        resourceManager->AddTexture("texPj", "Recursos/pj_final_200_148.png");
+        resourceManager->AddTexture("texPj", "Recursos/Sprites/pj_final_200_148.png");
         
         
         
-        resourceManager->AddTexture("texCoins", "Recursos/dolar.png");
-        resourceManager->AddTexture("texClock", "Recursos/time.png");
-        resourceManager->AddTexture("texSounds", "Recursos/sounds.png");
-        resourceManager->AddTexture("texMusic", "Recursos/music.png");
+        resourceManager->AddTexture("texCoins", "Recursos/Icons/dolar.png");
+        resourceManager->AddTexture("texClock", "Recursos/Icons/time.png");
+        resourceManager->AddTexture("texSounds", "Recursos/Icons/sounds.png");
+        resourceManager->AddTexture("texMusic", "Recursos/Icons/music.png");
+        
+        resourceManager->AddTexture("texPausaContinuar", "Recursos/Icons/ContinuarIcon.png");
+        resourceManager->AddTexture("texPausaSeleccion", "Recursos/Icons/SeleccionNivelIcon.png");
+        resourceManager->AddTexture("texPausaMenu", "Recursos/Icons/MenuIcon.png");
+        resourceManager->AddTexture("texPausaBackground", "Recursos/Screens/pausa.png");
 
         //Texturas del HUD
         resourceManager->AddTexture("texHUD", "Recursos/hud.png");
 
         // Fuente
         resourceManager->AddFont("OpenSans", "Recursos/OpenSans-Regular.ttf");
+        resourceManager->AddFont("Urban", "Recursos/Urban_Stone.otf");
         
         musicPlayer->Load(Music::ID::Level1Theme);
         soundPlayer->LoadGameSounds();
@@ -178,10 +184,14 @@ void WorldState::LoadResources()
 
 void WorldState::Init() {
 	
+    StatusManager::Instance()->DoCopyMap();
+    
+    
 //**************** Inicializaciones
 	firstUpdate=false;
     
     
+        requestStateChange = std::make_pair(States::ID::LoadingState,false);
     
 //**************** Mapa y Level
     
@@ -327,6 +337,7 @@ void WorldState::Update(const Time& timeElapsed)
         waveManager->Update(timeElapsed);
         
         powerUpManager->Update(timeElapsed);
+        requestStateChange = std::make_pair(States::ID::LoadingState,false);
 
         
         
@@ -411,10 +422,35 @@ void WorldState::Update(const Time& timeElapsed)
         
         if(inputManager->IsClickedKeyM())
             cam->minimapActive = !cam->minimapActive;
+        
+        if(inputManager->IsClickedKeyT())
+            requestStateChange = std::make_pair(States::ID::MenuState, true);
+        
+        
+        if(inputManager->IsClickedKeyP())
+        {
+            releaseMouse=false;
+            estado = 0;
+            requestStateChange = std::make_pair(States::ID::PauseState, true);
+        }
 
         if(inputManager->IsPressedKeySpace())
-            StateManager::Instance()->SetCurrentState(States::ID::TowerSelectionState);
-    
+            requestStateChange = std::make_pair(States::ID::TowerSelectionState, true);        
+        
+        if(hud->GetLife() <= 0.f){  // HAS PERDIDO
+            estado = 1;
+            requestStateChange = std::make_pair(States::ID::PauseState, true);
+        }
+        
+        if(waveManager->state == Wave::Finished && vEnemies->size()==0){  // HAS GANADO
+            estado = 2;
+            StatusManager::Instance()->IncrementInt(Parameters::countingLevels, 1);
+            requestStateChange = std::make_pair(States::ID::PauseState, true);
+        }
+        
+        
+        if(requestStateChange.second)
+            StateManager::Instance()->SetCurrentState(requestStateChange.first);
 
 	}
 	   
@@ -512,14 +548,11 @@ void WorldState::Render(float interp)
     if(cam->minimapActive)
         level->renderMinimap();
 	
-    if(inputManager->IsReleasedKeySpace()){
+    if(StateManager::Instance()->currentState == States::WorldState){
         cam->SetCurrentView(Views::Type::Fixed);
         window->Display();
     }
     
-    
-    if(inputManager->IsClickedKeyT())
-        StateManager::Instance()->SetCurrentState(States::ID::MenuState);
     
     firstUpdate=true; 
 }
@@ -544,12 +577,15 @@ void WorldState::ProcessRealEvent(){
 	
 	//sf::Event ev;
 	
-	if(inputManager->IsPressedMouseLeft())
+    if(inputManager->IsPressedMouseLeft() && releaseMouse)
     {
         // Disparar
         if(inputManager->GetMousePosition().GetY() > hud->GetHeight())
             player->Shot(inputManager->GetMousePosition().GetX(), inputManager->GetMousePosition().GetY());
     }
+        
+        if(inputManager->IsReleasedMouseLeft())
+                releaseMouse = true;
 	
 	//vRealEvents->clear();
 }

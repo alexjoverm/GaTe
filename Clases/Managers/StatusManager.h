@@ -22,6 +22,7 @@ namespace Parameters{
         
    //******** ECONOMIA     
    
+        priceHabilityDobleJump, priceHabilityAngularShot,
         priceImproveInit, priceImproveIncrement,  // Globales
         
         priceBuyTowerTwo, priceBuyTowerThree,           // Towers

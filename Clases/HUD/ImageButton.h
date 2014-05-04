@@ -13,7 +13,7 @@
 
 namespace ButtonType{
     enum Type{
-        DualClick, DualHover, Three
+        Single, DualClick, DualHover, Three
     };
 }
 

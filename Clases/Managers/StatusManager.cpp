@@ -91,14 +91,17 @@ void StatusManager::ResetParameters()
     map.insert(std::make_pair(Parameters::habilityAngularShot, "0"));
     map.insert(std::make_pair(Parameters::habilityDobleJump, "0"));
     
+    map.insert(std::make_pair(Parameters::priceHabilityAngularShot, "400"));
+    map.insert(std::make_pair(Parameters::priceHabilityDobleJump, "400"));
+    
  //******************* ECONOMIA
-    map.insert(std::make_pair(Parameters::credit, "5000"));         // Credito disponible
+    map.insert(std::make_pair(Parameters::credit, "150"));         // Credito disponible
     
     map.insert(std::make_pair(Parameters::priceImproveInit, "20"));       // Mejoras
     map.insert(std::make_pair(Parameters::priceImproveIncrement, "10"));
     
-    map.insert(std::make_pair(Parameters::priceBuyTowerTwo, "100"));      // Torretas (comprar)
-    map.insert(std::make_pair(Parameters::priceBuyTowerThree, "200"));
+    map.insert(std::make_pair(Parameters::priceBuyTowerTwo, "300"));      // Torretas (comprar)
+    map.insert(std::make_pair(Parameters::priceBuyTowerThree, "600"));
     
     map.insert(std::make_pair(Parameters::pricePutTowerOne, "50"));       // Torretas (poner)
     map.insert(std::make_pair(Parameters::pricePutTowerTwo, "75"));
@@ -116,10 +119,10 @@ void StatusManager::ResetParameters()
  //******************* VARIABLES
     
     // GLOBALES
-    map.insert(std::make_pair(Parameters::countingLevels, "2"));     // Nivel por el que se va
+    map.insert(std::make_pair(Parameters::countingLevels, "1"));     // Nivel por el que se va
     map.insert(std::make_pair(Parameters::countingWaves, "1"));      // Oleada por la que se va
     map.insert(std::make_pair(Parameters::maxLevelImproves, "20"));
-    map.insert(std::make_pair(Parameters::maxLevelWaves, "20"));
+    map.insert(std::make_pair(Parameters::maxLevelWaves, "50"));
     map.insert(std::make_pair(Parameters::unlockedGuns, "1"));
     map.insert(std::make_pair(Parameters::unlockedBullets, "1"));
     map.insert(std::make_pair(Parameters::unlockedTowers, "1"));
@@ -128,7 +131,7 @@ void StatusManager::ResetParameters()
     // WORLD
     map.insert(std::make_pair(Parameters::worldLifeLevel, "1"));    
     map.insert(std::make_pair(Parameters::worldLifeInitValue, "150.0"));
-    map.insert(std::make_pair(Parameters::worldLifeIncrement, "15.0"));
+    map.insert(std::make_pair(Parameters::worldLifeIncrement, "17.0"));
 
     
     // GUN

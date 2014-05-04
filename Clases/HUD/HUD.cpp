@@ -30,6 +30,7 @@ HUD::HUD(float alto, std::string fuente) {
     barravida->valor = barravida->vmax;
     
     
+    
     soundButton = new ImageButton(950, 13, 2, ResourceManager::Instance()->GetTexture("texSounds"));
     musicButton = new ImageButton(1020, 10, 2, ResourceManager::Instance()->GetTexture("texMusic"));
     
