@@ -16,7 +16,7 @@
 
 class Tower: public EntPassive , public Animable{
 public:
-	Tower(const sf::Texture& tex, const Vector& size, const Vector& pos,const float ran);
+	Tower(const sf::Texture& tex, const Vector& size, const Vector& pos,const float ran , float ybullet);
 	Tower(const Tower& orig);
 	virtual ~Tower();
 	
@@ -57,6 +57,7 @@ public:
     
 private:
     
+        float yBullet;
         
         sf::CircleShape         range_area;
         

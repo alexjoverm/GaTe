@@ -170,9 +170,9 @@ void NewTowerState::Update(const Time& timeElapsed)
         posY = -1.f;
     }
 
-    if(tower1->IsClicked() && tower1->currentFrame != 2){
+    if(tower1->IsClicked()){
         selectedTower = 1;
-        tower1->currentFrame = 0;
+        tower1->SetFrame(0);
         if(StatusManager::Instance()->GetInt(Parameters::ID::unlockedTowers) < 2 )
             tower2->SetFrame(2);
         else
@@ -184,9 +184,11 @@ void NewTowerState::Update(const Time& timeElapsed)
             tower3->SetFrame(1);
     }
     if(tower2->IsClicked() && tower2->currentFrame != 2){
+        
         selectedTower = 2;
-        tower1->currentFrame = 1;
-        tower2->currentFrame = 0;
+        std::cout << selectedTower << "   " << std::endl;
+        tower1->SetFrame(1);
+        tower2->SetFrame(0);
         if(StatusManager::Instance()->GetInt(Parameters::ID::unlockedTowers) < 3 )
             tower3->SetFrame(2);
         else
@@ -195,13 +197,13 @@ void NewTowerState::Update(const Time& timeElapsed)
     if(tower3->IsClicked() && tower3->currentFrame != 2){
         selectedTower = 3;
         
-        tower1->currentFrame = 0;
+        tower1->SetFrame(0);
         if(StatusManager::Instance()->GetInt(Parameters::ID::unlockedTowers) < 2 )
             tower2->SetFrame(2);
         else
             tower2->SetFrame(1);
         
-        tower3->currentFrame = 0;
+        tower3->SetFrame(0);
     }
 
     if(inputManager->IsClickedMouseLeft() && rightPlace)

@@ -80,7 +80,24 @@ Enemy* EntityFactory::CreateEnemyThree(const Vector& pos, const Vector& vel, con
 
 
 Tower* EntityFactory::CreateTowerOne(const Vector& pos){
-    Tower* to = new Tower(ResourceManager::Instance()->GetTexture("texTowerOne"), Vector(96.f,122.4f), pos, 0.f);
+    
+    Tower* to;
+    
+    if(StatusManager::Instance()->GetInt(Parameters::ID::towerOneDamageLevel) >= 40 &&
+       StatusManager::Instance()->GetInt(Parameters::ID::towerOneCadencyLevel) >= 40 &&
+       StatusManager::Instance()->GetInt(Parameters::ID::towerOneRangeLevel) >= 40)
+        to = new Tower(ResourceManager::Instance()->GetTexture("texTowerOne3"), Vector(96.f,122.4f), pos, 0.f, ResourceManager::Instance()->GetTexture("texTowerOne3").getSize().x/2);
+    else
+        if(StatusManager::Instance()->GetInt(Parameters::ID::towerOneDamageLevel) >= 20 &&
+       StatusManager::Instance()->GetInt(Parameters::ID::towerOneCadencyLevel) >= 20 &&
+       StatusManager::Instance()->GetInt(Parameters::ID::towerOneRangeLevel) >= 20)
+             to = new Tower(ResourceManager::Instance()->GetTexture("texTowerOne2"), Vector(96.f,122.4f), pos, 0.f, ResourceManager::Instance()->GetTexture("texTowerOne2").getSize().x/2);
+
+        else
+             to = new Tower(ResourceManager::Instance()->GetTexture("texTowerOne1"), Vector(96.f,122.4f), pos, 0.f, ResourceManager::Instance()->GetTexture("texTowerOne1").getSize().x/2);
+
+    
+    
     to->SetRange(StatusManager::Instance()->GetTowerOneRange());
     to->damage = StatusManager::Instance()->GetTowerOneDamage();
     to->reloadTime->SetSeconds(StatusManager::Instance()->GetTowerOneCadency());
@@ -88,7 +105,20 @@ Tower* EntityFactory::CreateTowerOne(const Vector& pos){
 }
 
 Tower* EntityFactory::CreateTowerTwo(const Vector& pos){
-    Tower* to = new Tower(ResourceManager::Instance()->GetTexture("texTowerTwo"), Vector(96.f,122.4f), pos, 0.f);
+    Tower* to ; 
+    
+    if(StatusManager::Instance()->GetInt(Parameters::ID::towerTwoDamageLevel) >= 40 &&
+       StatusManager::Instance()->GetInt(Parameters::ID::towerTwoCadencyLevel) >= 40 &&
+       StatusManager::Instance()->GetInt(Parameters::ID::towerTwoRangeLevel) >= 40)
+        to = new Tower(ResourceManager::Instance()->GetTexture("texTowerTwo3"), Vector(96.f,122.4f), pos, 0.f, 0);
+    else
+        if(StatusManager::Instance()->GetInt(Parameters::ID::towerTwoDamageLevel) >= 20 &&
+       StatusManager::Instance()->GetInt(Parameters::ID::towerTwoCadencyLevel) >= 20 &&
+       StatusManager::Instance()->GetInt(Parameters::ID::towerTwoRangeLevel) >= 20)
+             to = new Tower(ResourceManager::Instance()->GetTexture("texTowerTwo2"), Vector(96.f,122.4f), pos, 0.f, 0);
+        else
+            to = new Tower(ResourceManager::Instance()->GetTexture("texTowerTwo1"), Vector(96.f,122.4f), pos, 0.f, 0);
+    
     to->SetRange(StatusManager::Instance()->GetTowerTwoRange());
     to->damage = StatusManager::Instance()->GetTowerTwoDamage();
     to->reloadTime->SetSeconds(StatusManager::Instance()->GetTowerTwoCadency());
@@ -96,7 +126,21 @@ Tower* EntityFactory::CreateTowerTwo(const Vector& pos){
 }
 
 Tower* EntityFactory::CreateTowerThree(const Vector& pos){
-    Tower* to = new Tower(ResourceManager::Instance()->GetTexture("texTowerThree"), Vector(96.f,122.4f), pos, 0.f);
+    Tower* to; 
+    
+    if(StatusManager::Instance()->GetInt(Parameters::ID::towerThreeDamageLevel) >= 40 &&
+       StatusManager::Instance()->GetInt(Parameters::ID::towerThreeCadencyLevel) >= 40 &&
+       StatusManager::Instance()->GetInt(Parameters::ID::towerThreeRangeLevel) >= 40)
+        to = new Tower(ResourceManager::Instance()->GetTexture("texTowerThree"), Vector(96.f,122.4f), pos, 0.f, 0);
+    else
+        if(StatusManager::Instance()->GetInt(Parameters::ID::towerThreeDamageLevel) >= 20 &&
+       StatusManager::Instance()->GetInt(Parameters::ID::towerThreeCadencyLevel) >= 20 &&
+       StatusManager::Instance()->GetInt(Parameters::ID::towerThreeRangeLevel) >= 20)
+             to = new Tower(ResourceManager::Instance()->GetTexture("texTowerThree"), Vector(96.f,122.4f), pos, 0.f, 0);
+    
+        else
+            to = new Tower(ResourceManager::Instance()->GetTexture("texTowerThree"), Vector(96.f,122.4f), pos, 0.f, 0);
+    
     to->SetRange(StatusManager::Instance()->GetTowerThreeRange());
     to->damage = StatusManager::Instance()->GetTowerThreeDamage();
     to->reloadTime->SetSeconds(StatusManager::Instance()->GetTowerThreeCadency());
