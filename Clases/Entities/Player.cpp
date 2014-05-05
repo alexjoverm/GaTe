@@ -180,7 +180,11 @@ void Player::Shot(float x, float y){
          
 		
         //  Disparamos
-		guns->at(selectedGun)->Shot(Vector(550.f,0.f), guns->at(selectedGun)->GetPosition());
+        if(!isReverse)
+            guns->at(selectedGun)->Shot(Vector(550.f,0.f), guns->at(selectedGun)->GetPosition());
+        else
+            guns->at(selectedGun)->Shot(Vector(-550.f,0.f), guns->at(selectedGun)->GetPosition());
+        
 		clockReloadGun->Restart();
 	}
 }
@@ -247,13 +251,13 @@ void Player::OnColision(Colision::Type type, const Rectangle& rec, const Time& e
 
 void Player::Draw(RenderWindow& window, float inter){
 	renderState->Draw(window, physicsState->GetPreviousPosition(), physicsState->GetPosition(), inter, *this->spriteSheet);
-	GetSelectedGun()->Draw(window, inter);
+	//GetSelectedGun()->Draw(window, inter);
 }
 
 
 void Player::Draw(RenderWindow& window){
 	renderState->Draw(window, *this->spriteSheet);
-	GetSelectedGun()->Draw(window);
+	//GetSelectedGun()->Draw(window);
 }
 
 

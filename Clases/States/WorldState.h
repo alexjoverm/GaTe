@@ -18,6 +18,7 @@
 #include "../Entities/EntActive.h"
 #include "../Managers/InputManager.h"
 #include "../Managers/ResourceManager.h"
+#include "../Managers/WaveManager.h"
 #include "../MusicSounds/MusicPlayer.h"
 #include "../HUD/HUD.h"
 #include "State.h"
@@ -102,6 +103,10 @@ private:
 	//Eventos
 	std::vector<sf::Event>		*vNonRealEvents;
 	std::vector<sf::Event>		*vRealEvents;
+    
+    
+    // WaveManager
+    WaveManager*    waveManager;
     
     //Players
     MusicPlayer*         musicPlayer;

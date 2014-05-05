@@ -145,8 +145,6 @@ void InputManager::Update()
                 break;
         }
 	}
-    
-    std::cout << "Antes: " << lastKeyM << std::endl;
 	
 	vMouse->clear();
     
@@ -155,8 +153,6 @@ void InputManager::Update()
     
     mouseLeft = (lastMouseLeft == 3 && auxmouseLeft == 0 ? 1 : mouseLeft);
     mouseRight = (lastMouseRight == 3 && auxmouseRight == 0 ? 1 : keyR);
-    
-    std::cout << "Despues: " << keyM << std::endl;
     
 }
 

@@ -166,21 +166,31 @@ void WorldState::Init() {
     for(int i=0; i < vrec.size(); i++)
         AddLevelPlatform(vrec.at(i));
     
+    
+ //***************** WaveManager
+    waveManager = new WaveManager();
+    waveManager->Init(0.7f, 3.f);
+    
+    std::vector<int> vec = std::vector<int>();   // Racha de 3
+    for(int i=0; i<3; i++)
+        vec.push_back(1);
+    
+    waveManager->AddWave(vec);
+    
+    vec = std::vector<int>();                   // Racha de 7
+    for(int i=0; i<7; i++)
+        vec.push_back(1);
+    
+    waveManager->AddWave(vec);
+    
+    vec = std::vector<int>();                   // // Racha de 12
+    for(int i=0; i<12; i++)
+        vec.push_back(1);
+    
+    waveManager->AddWave(vec);
+    
 	
 //***************** Entities
-    
-	Enemy* enemy = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),Vector(108.0f, 108.0f), Vector(1650.0f,220.0f), Vector(0.f, 0.f), Vector(500.f, 500.f) );
-    enemy->SetSpeed(220.f, 0.f);
-    enemy->SetRectangleColision(10, 8, 100, 95);
-    enemy->InitLifebar();
-    
-    enemy->AddAnimation(new Animation("andarEnemigo", enemy->GetSprite(), 3, 14, 0.05, false, true));
-    enemy->AddAnimation(new Animation("andar2Enemigo", enemy->GetSprite(), 15, 26, 0.05, false, true));
-    enemy->SetCurrentAnimation("andarEnemigo", enemy->GetSprite());
-    enemy->PlayAnimation();
-	
-	AddColisionableEntity(enemy);// Añadimos al array de colisionables
-	AddEnemy(enemy);		// Añadimos al array de elementos activos, para que se pinte
     
 	// Inicializamos Player
 	player = new Player(resourceManager->GetTexture("texPj"), Vector(200, 148), Vector(1700.f, 220.f));
@@ -204,8 +214,8 @@ void WorldState::Init() {
     player->PlayAnimation();
     
     vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(150.0,325.0),380.0) );
-    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(550.0,325.0),390.0) );
-    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(275.0,600.0),390.0) );
+    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(550.0,325.0),290.0) );
+    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(275.0,615.0),390.0) );
 
 
 //******************* HUD Y  CAMARA
@@ -235,6 +245,8 @@ void WorldState::Clean(){
     resourceManager->CleanGameSounds();
     
 //************* Variables
+    delete waveManager; waveManager = NULL;
+    
 	delete player;  player = NULL;
 	delete level;   level = NULL;
     
@@ -286,8 +298,12 @@ void WorldState::Update(const Time& timeElapsed)
 {
     if(firstUpdate)
     {
+     // MANAGERS
         InputManager::Instance()->Update();
+        waveManager->Update(timeElapsed);
 
+        
+        
      // BULLETS, hacemos las colisiones aquí
         for(int i = 0; i < vBullets->size(); i++)
             vBullets->at(i)->DoColisions(timeElapsed, i);
@@ -363,13 +379,9 @@ void WorldState::Render(float interp)
 	
     cam->SetCurrentView(Views::Type::Standard);
     
-    
-    
-    
-    
     level->renderMap();
 	
-    
+    /*
     Rectangle aux = vEnemies->at(0)->GetRectangleColisionAbsolute();
     
     sf::RectangleShape rec = sf::RectangleShape();
@@ -379,7 +391,6 @@ void WorldState::Render(float interp)
     
     window->Draw(rec);
     
-    sf::CircleShape cir;
         
     for(int i=0; i<vPath->size(); i++){
         cir = sf::CircleShape();
@@ -388,6 +399,7 @@ void WorldState::Render(float interp)
         cir.setFillColor(sf::Color::Black);
         window->renderWindow->draw(cir);
     }
+     */
     
 	// Renderizamos entidades	
     for(int i = 0; i < vEntityStatic->size(); i++)

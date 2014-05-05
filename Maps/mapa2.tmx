@@ -58,10 +58,10 @@
  </layer>
  <objectgroup name="Camino" width="64" height="32">
   <object x="1" y="1">
-   <polyline points="0,0 2047,-1 2047,351 487,370 687,645 1268,645 1060,933 80,926 -1,1023 2047,1023"/>
+   <polyline points="0,0 2047,-1 1881,263 487,370 687,645 1268,645 1060,933 80,926 -1,1023 2047,1023"/>
   </object>
  </objectgroup>
- <objectgroup name="Colision suelo" width="64" height="32" opacity="0.69">
+ <objectgroup name="Colision suelo" width="64" height="32" opacity="0.68">
   <object x="1573" y="397" width="483" height="49"/>
   <object x="962" y="396" width="441" height="52"/>
   <object x="516" y="396" width="245" height="51"/>
