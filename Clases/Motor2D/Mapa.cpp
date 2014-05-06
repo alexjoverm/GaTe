@@ -177,7 +177,7 @@ void Mapa::LoadPath(){
     
     std::vector<sf::Vector2f> aux = tmx::MapObject(layer.objects.at(0)).PolyPoints();
 
-    for (int i = 2 ; i < tmx::MapObject(layer.objects.at(0)).PolyPoints().size()-2 ; i++ ){
+    for (int i = 1 ; i < tmx::MapObject(layer.objects.at(0)).PolyPoints().size()-1 ; i++ ){
         WorldState::Instance()->AddTrace(new Vector(
                         sf::Vector2f(tmx::MapObject(layer.objects.at(0)).PolyPoints().at(i)).x,
                         sf::Vector2f(tmx::MapObject(layer.objects.at(0)).PolyPoints().at(i)).y
