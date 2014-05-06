@@ -60,6 +60,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/Managers/InputManager.o \
 	${OBJECTDIR}/Clases/Managers/ResourceManager.o \
 	${OBJECTDIR}/Clases/Managers/StateManager.o \
+	${OBJECTDIR}/Clases/Managers/StatusManager.o \
 	${OBJECTDIR}/Clases/Managers/WaveManager.o \
 	${OBJECTDIR}/Clases/Motor2D/Camera.o \
 	${OBJECTDIR}/Clases/Motor2D/Level.o \
@@ -243,6 +244,11 @@ ${OBJECTDIR}/Clases/Managers/StateManager.o: Clases/Managers/StateManager.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Managers/StateManager.o Clases/Managers/StateManager.cpp
+
+${OBJECTDIR}/Clases/Managers/StatusManager.o: Clases/Managers/StatusManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Managers/StatusManager.o Clases/Managers/StatusManager.cpp
 
 ${OBJECTDIR}/Clases/Managers/WaveManager.o: Clases/Managers/WaveManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Managers

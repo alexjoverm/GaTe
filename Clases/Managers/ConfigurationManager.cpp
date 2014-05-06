@@ -12,7 +12,7 @@
 #include "../Otros/StringUtils.h"
 
 
-std::string separator(":");
+std::string separador("|");
 const std::string fileConfiguration = "user_conf.dat";
 
 
@@ -43,8 +43,8 @@ void ConfigurationManager::SaveConfigurations()
 {
     OpenOut(fileConfiguration);
     
-    *streamOut << "music" << separator << (float)(MusicPlayer::Instance()->GetVolume()) << "\n";
-    *streamOut << "sound" << separator << (int)(SoundPlayer::Instance()->active) << "\n";
+    *streamOut << "music" << separador << (float)(MusicPlayer::Instance()->GetVolume()) << "\n";
+    *streamOut << "sound" << separador << (int)(SoundPlayer::Instance()->active) << "\n";
     
     CloseOut();
 }
@@ -63,7 +63,7 @@ void ConfigurationManager::LoadConfigurations()
       // Introducimos en un Map las configuraciones, que luego cargaremos
         while(getline(*streamIn,line))
         {
-            position = line.find(separator);
+            position = line.find(separador);
             if (position != std::string::npos)
             {
                 key   = line.substr(0, position);

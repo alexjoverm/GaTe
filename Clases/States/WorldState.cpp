@@ -7,6 +7,7 @@
 
 #include "WorldState.h"
 #include "../Managers/StateManager.h"
+#include "../Managers/StatusManager.h"
 #include "../Otros/StringUtils.h"
 #include <iostream>
 
@@ -227,6 +228,8 @@ void WorldState::Init() {
     else
         hud->SetFrameSoundButton(0);
     
+    hud->SetCreditText(StatusManager::Instance()->GetValue("credit") + " $");
+    
     musicPlayer->Play();
 }
 
@@ -341,6 +344,8 @@ void WorldState::Update(const Time& timeElapsed)
 
     //*************** HUD **
         hud->Update(timeElapsed);
+        
+        hud->SetCreditText(StatusManager::Instance()->GetValue("credit") + " $");
         
         if(waveManager->state == Wave::State::Loading)
         {
@@ -509,4 +514,20 @@ void WorldState::CleanArrays(Enemy* en)
                 vTowers->at(i)->vEnemies->erase(vTowers->at(i)->vEnemies->begin()+j);
                 break;
             }
+}
+
+
+void WorldState::DeleteEnemy(int i)
+{ 
+    delete vEnemies->at(i); vEnemies->at(i)=NULL; 
+    vEnemies->erase(vEnemies->begin()+i);
+    
+    float cred = StringUtils::ParseFloat(StatusManager::Instance()->GetValue("credit")) + 5.f;
+    StatusManager::Instance()->SetValue("credit", StringUtils::ConvertFloat(cred));
+} 
+
+void WorldState::DeleteBullet(int i)
+{ 
+    delete vBullets->at(i); vBullets->at(i)=NULL; 
+    vBullets->erase(vBullets->begin()+i); 
 }

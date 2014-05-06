@@ -9,6 +9,7 @@
 #include "../States/WorldState.h"
 #include "StateManager.h"
 #include "ConfigurationManager.h"
+#include "StatusManager.h"
 
 InputManager* InputManager::instance = 0;
 
@@ -172,6 +173,7 @@ void InputManager::Process(sf::Event event)
 
 		case sf::Event::Closed:
             ConfigurationManager::Instance()->SaveConfigurations();
+            StatusManager::Instance()->SaveStatus();
 			RenderWindow::Instance()->Close();
 			break;
 

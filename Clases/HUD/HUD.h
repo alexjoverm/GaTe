@@ -30,6 +30,7 @@ public:
     void SetLevelText(const std::string text) { nivel->setString(text); }
     void SetWaveText(const std::string text) { wave->setString(text); }
     void SetTimeText(const std::string text) { tiempo->setString(text); }
+    void SetCreditText(const std::string text){ credito->setString(text); }
     
     //Lifebar
     void SubstractLife(float value){ barravida->Restar(value); }

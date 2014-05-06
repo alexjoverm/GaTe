@@ -8,6 +8,7 @@
 #include "NewTowerState.h"
 #include "../Otros/StringUtils.h"
 #include "../Managers/StateManager.h"
+#include "../Managers/StatusManager.h"
 #include "WorldState.h"
 #include <iostream>
 
@@ -29,19 +30,28 @@ NewTowerState::~NewTowerState() {
 
 void NewTowerState::AddTower(){
 
-    Vector posAux = Vector();
-    posAux = tower->GetPosition();
+    float cred = StringUtils::ParseFloat(StatusManager::Instance()->GetValue("credit"));
     
-    tower->SetPosition( Vector(tower->GetPosition().GetX(), posY-tower->GetSprite()->getGlobalBounds().GetHeight()) );
-    tower->SetColor(sf::Color(255,255,255,255));
-    
-    WorldState::Instance()->AddTower(tower);
-    
-    tower = NULL;
-    tower = new Tower(resourceManager->GetTexture("texTower"), Vector(96.f,122.4f), Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y) ,200.0 );
-    
-    tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
+    if(cred - 10.f >= 0.f)
+    {
+        Vector posAux = Vector();
+        posAux = tower->GetPosition();
 
+        tower->SetPosition( Vector(tower->GetPosition().GetX(), posY-tower->GetSprite()->getGlobalBounds().GetHeight()) );
+        tower->SetColor(sf::Color(255,255,255,255));
+
+        WorldState::Instance()->AddTower(tower);
+
+        tower = NULL;
+        tower = new Tower(resourceManager->GetTexture("texTower"), Vector(96.f,122.4f), Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y) ,200.0 );
+
+        tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
+
+        cred -= 10.f;
+        if(cred < 0.f) cred = 0.f;
+        StatusManager::Instance()->SetValue("credit", StringUtils::ConvertFloat(cred));
+        WorldState::Instance()->hud->SetCreditText(StringUtils::ConvertFloat(cred) + " $");
+    }
 }
 
 // Cargamos las texturas del nivel, y las fuentes generales

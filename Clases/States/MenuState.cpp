@@ -8,6 +8,7 @@
 #include "MenuState.h"
 #include "../Otros/StringUtils.h"
 #include "../Managers/StateManager.h"
+#include "../Managers/StatusManager.h"
 #include "../Managers/ConfigurationManager.h"
 #include <iostream>
 
@@ -69,6 +70,9 @@ void MenuState::Init() {
     
     if(!ConfigurationManager::Instance()->loaded)
         ConfigurationManager::Instance()->LoadConfigurations();
+    
+    if(!StatusManager::Instance()->loaded)
+        StatusManager::Instance()->LoadStatus();
     
     musicPlayer->Play();
 	
