@@ -519,11 +519,16 @@ void WorldState::CleanArrays(Enemy* en)
 
 void WorldState::DeleteEnemy(int i)
 { 
+    if(vEnemies->at(i)->die)
+    {
+        float cred = StringUtils::ParseFloat(StatusManager::Instance()->GetValue("credit")) + 5.f;
+        StatusManager::Instance()->SetValue("credit", StringUtils::ConvertFloat(cred));
+    }
+    
     delete vEnemies->at(i); vEnemies->at(i)=NULL; 
     vEnemies->erase(vEnemies->begin()+i);
     
-    float cred = StringUtils::ParseFloat(StatusManager::Instance()->GetValue("credit")) + 5.f;
-    StatusManager::Instance()->SetValue("credit", StringUtils::ConvertFloat(cred));
+    
 } 
 
 void WorldState::DeleteBullet(int i)

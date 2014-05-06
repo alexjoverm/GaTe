@@ -40,7 +40,7 @@ public:
         Music::ID      currentTheme;
         bool           isPlaying;   
         
-        bool Activate(){ SetVolume(ultVol); }
+        bool Activate(){ SetVolume((ultVol <= 4.f ? 60.f : ultVol)); }
         bool DeActivate(){ ultVol = GetVolume(); SetVolume(0.f); }
         
         float ultVol;
