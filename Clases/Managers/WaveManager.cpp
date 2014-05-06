@@ -65,11 +65,11 @@ void WaveManager::Update(const Time& tiElapsed)
         }
     }
     
-    
+    /*
     if(state == Wave::State::Running)    std::cout << "State: Running" << std::endl;
     else if(state == Wave::State::Waiting)    std::cout << "State: Waiting" << std::endl;
     else if(state == Wave::State::Loading)    std::cout << "State: Loading" << std::endl;
-    else if(state == Wave::State::Finished)    std::cout << "State: Finished" << std::endl;
+    else if(state == Wave::State::Finished)    std::cout << "State: Finished" << std::endl; */
 }
 
 

@@ -194,10 +194,7 @@ void WorldState::Init() {
     
 	// Inicializamos Player
 	player = new Player(resourceManager->GetTexture("texPj"), Vector(200, 148), Vector(1700.f, 220.f));
-	player->AddGun(new Gun(resourceManager->GetTexture("texGun"), Vector(300.f, 300.f)));
-	player->GetSelectedGun()->SetRelativePos(80.f, 50.f);
-    player->GetSelectedGun()->SetLifeTime(1.f);
-	player->GetSelectedGun()->SetReloadTime(0.25f);
+	player->AddGun(new Gun(0.95f, 0.27f));
     player->SetRectangleColision(70, 25, 70, 120);
     //player->SetColor(sf::Color(255,255,255, 105));
     
@@ -378,23 +375,23 @@ void WorldState::Render(float interp)
     level->renderMap();
 	
     /*
-    Rectangle aux = vEnemies->at(0)->GetRectangleColisionAbsolute();
-    
-    sf::RectangleShape rec = sf::RectangleShape();
-    rec.setPosition(aux.GetTopLeft().GetX(), aux.GetTopLeft().GetY());
-    rec.setSize(sf::Vector2f(aux.GetWidth(), aux.GetHeight()));
-    rec.setFillColor(sf::Color::Blue);
-    
-    window->Draw(rec);
-    
-        
-    for(int i=0; i<vPath->size(); i++){
-        cir = sf::CircleShape();
-        cir.setPosition(vPath->at(i)->GetX(), vPath->at(i)->GetY());
-        cir.setRadius(3.f);
-        cir.setFillColor(sf::Color::Black);
-        window->renderWindow->draw(cir);
-    }
+        Rectangle aux = vEnemies->at(0)->GetRectangleColisionAbsolute();
+
+        sf::RectangleShape rec = sf::RectangleShape();
+        rec.setPosition(aux.GetTopLeft().GetX(), aux.GetTopLeft().GetY());
+        rec.setSize(sf::Vector2f(aux.GetWidth(), aux.GetHeight()));
+        rec.setFillColor(sf::Color::Blue);
+
+        window->Draw(rec);
+
+
+        for(int i=0; i<vPath->size(); i++){
+            cir = sf::CircleShape();
+            cir.setPosition(vPath->at(i)->GetX(), vPath->at(i)->GetY());
+            cir.setRadius(3.f);
+            cir.setFillColor(sf::Color::Black);
+            window->renderWindow->draw(cir);
+        }
      */
     
 	// Renderizamos entidades	

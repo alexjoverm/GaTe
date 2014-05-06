@@ -38,7 +38,7 @@ void NewTowerState::AddTower(){
     WorldState::Instance()->AddTower(tower);
     
     tower = NULL;
-    tower = new Tower(resourceManager->GetTexture("texTower"), Vector(96.f,122.4f), Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y) ,100.0 );
+    tower = new Tower(resourceManager->GetTexture("texTower"), Vector(96.f,122.4f), Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y) ,500.0 );
     
     tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
 
@@ -70,7 +70,7 @@ void NewTowerState::Init() {
     overlay->setPosition(pos);
     overlay->setSize(size);
     
-    tower = new Tower(resourceManager->GetTexture("texTower"), Vector(96.f,122.4f), Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y) ,100.0 );
+    tower = new Tower(resourceManager->GetTexture("texTower"), Vector(96.f,122.4f), Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y) ,500.0 );
     tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
 }
 

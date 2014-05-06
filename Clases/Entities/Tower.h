@@ -48,16 +48,18 @@ public:
 	
 	
     std::deque<Enemy*>      *vEnemies;
+    
+    
 private:
     
         float                   range;
-        
         sf::CircleShape         range_area;
+        
+        Vector                  *bulletPos;
         
         std::deque<Enemy*>      *vGlobalEnemies;
         
-	Time                    *lifeTime, *reloadTime;
-        
+        Time                    *lifeTime, *reloadTime;
         Clock                   *clockReloadTower;
         
         //Colores

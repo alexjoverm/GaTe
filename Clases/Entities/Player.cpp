@@ -143,7 +143,7 @@ void Player::MovementIdle(){
 
 void Player::Shot(float x, float y){
     // Si se ha pasado el tiempo de carga de la pistola
-	if(clockReloadGun->GetElapsedTime().AsSeconds() >= guns->at(selectedGun)->GetReloadTime().AsSeconds()){
+	if(clockReloadGun->GetElapsedTime().AsSeconds() >= guns->at(selectedGun)->reloadTime->AsSeconds()){
             if(canJump && !isMoving)
             {
                 this->PlayAnimation();
@@ -153,18 +153,21 @@ void Player::Shot(float x, float y){
         SoundPlayer::Instance()->Play("shot");
         
         
-        
-          
          
         // Calculamos posicion mapeada de la pistola
 		Vector posPistola = Vector();
-        posPistola = guns->at(selectedGun)->GetPosition();
+        posPistola = guns->at(selectedGun)->CalculateAbsolutePosition(this, isReverse);
+      
+        
+        /*   DISPARO ANGULADO
         sf::Vector2i aux = RenderWindow::Instance()->renderWindow->mapCoordsToPixel(sf::Vector2f(posPistola.GetX(), posPistola.GetY()) 
             , WorldState::Instance()->GetCamera()->standard);
         
+        std::cout << "PosPis:  " << StringUtils::ConvertVector(posPistola) << std::endl;
+        
         posPistola.Set(aux.x , aux.y);
           
-        /*   DISPARO ANGULADO
+        
         // Calculamos vector "pistola-raton"
 		Vector sp = Vector(x, y); 
 		sp -= posPistola;
@@ -178,12 +181,11 @@ void Player::Shot(float x, float y){
         // Disparar hacia la orientación del personaje
           
          
-		
+		float speedBull = (isReverse ? -guns->at(selectedGun)->bulletSpeed : guns->at(selectedGun)->bulletSpeed  );
+        
         //  Disparamos
-        if(!isReverse)
-            guns->at(selectedGun)->Shot(Vector(550.f,0.f), guns->at(selectedGun)->GetPosition());
-        else
-            guns->at(selectedGun)->Shot(Vector(-550.f,0.f), guns->at(selectedGun)->GetPosition());
+        Bullet* bAux = new Bullet(ResourceManager::Instance()->GetTexture("texBullet"), posPistola, Vector(speedBull,0.f));
+        WorldState::Instance()->AddBullet(bAux);
         
 		clockReloadGun->Restart();
 	}
@@ -331,6 +333,4 @@ void Player::Update(const Time& elapsedTime){
 	
 // UPDATE 
     physicsState->Update(elapsedTime, affectGravity);
-    
-    GetSelectedGun()->Update((EntActive*)this);
 }

@@ -34,6 +34,8 @@ Tower::Tower(const sf::Texture& tex, const Vector& size, const Vector& pos, cons
     clockReloadTower = new Clock();
     clockReloadTower->Restart();
     
+    bulletPos = new Vector(pos.GetX() + size.GetX()/2, pos.GetY() + size.GetY()/2);
+    
     vEnemies = new std::deque<Enemy*>();
     
     SetSizeTile((int) size.GetX(), (int) size.GetY());
@@ -61,6 +63,8 @@ Tower::~Tower() {
     
     delete clockReloadTower;
     clockReloadTower = NULL;
+    
+    delete bulletPos; bulletPos = NULL;
     
     vEnemies->clear();
     delete vEnemies; vEnemies=NULL;
@@ -96,11 +100,11 @@ void Tower::Shot(){
             posEnem.SetY(posEnem.GetY() + rect.GetHeight()/2);
             
             // Dirección del vector, normalizado y multiplicado por velocidad
-            posEnem -= this->GetPosition();
+            posEnem -= *bulletPos;
             posEnem = posEnem.GetNormalize();
             posEnem *= 800.f;
 
-            Bullet* aux = new Bullet(ResourceManager::Instance()->GetTexture("texBullet"), this->GetPosition(), posEnem);
+            Bullet* aux = new Bullet(ResourceManager::Instance()->GetTexture("texBullet"), *bulletPos, posEnem);
 
             
             w->AddBullet(aux);
@@ -199,17 +203,20 @@ void Tower::CheckEnemies (){
         if ( vEnemies->at(0)->GetRectangleColisionAbsolute().GetBottomRight().GetX() > this->spriteSheet->getGlobalBounds().GetTopRight().GetX() ) {
             this->PlayAnimation();
             this->SetCurrentAnimation("right", this->GetSprite());
+            bulletPos->Set(this->GetSprite()->getGlobalBounds().GetTopRight().GetX(), this->GetPosition().GetY() + this->GetSprite()->getGlobalBounds().GetHeight()/2);
         }
         else{
             // Enemigo a la izquierda de la torreta
             if ( vEnemies->at(0)->GetRectangleColisionAbsolute().GetBottomLeft().GetX() < this->spriteSheet->getGlobalBounds().GetBottomLeft().GetX()){
                 this->PlayAnimation();
                 this->SetCurrentAnimation("left", this->GetSprite());
+                bulletPos->Set(this->GetSprite()->getGlobalBounds().GetTopLeft().GetX(), this->GetPosition().GetY() + this->GetSprite()->getGlobalBounds().GetHeight()/2);
             }
             else{
             // Modo idle o enemigo en medio de la torreta
               this->PlayAnimation();
               this->SetCurrentAnimation("idle", this->GetSprite());
+              bulletPos->Set(this->GetPosition().GetX() + this->GetSprite()->getGlobalBounds().GetWidth()/2, this->GetPosition().GetY() + this->GetSprite()->getGlobalBounds().GetHeight()/2);
             }
         }
     }
@@ -217,6 +224,7 @@ void Tower::CheckEnemies (){
         // Modo idle o enemigo en medio de la torreta
         this->PlayAnimation();
         this->SetCurrentAnimation("idle", this->GetSprite());
+        bulletPos->Set(this->GetPosition().GetX() + this->GetSprite()->getGlobalBounds().GetWidth()/2, this->GetPosition().GetY() + this->GetSprite()->getGlobalBounds().GetHeight()/2);
     }
      
     window.Draw(*(this->spriteSheet));

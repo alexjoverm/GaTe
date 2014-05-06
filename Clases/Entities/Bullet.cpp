@@ -85,7 +85,7 @@ void Bullet::DoColisions(const Time& elapsedTime, int i){
 	
 	// Si se acaba su tiempo de vida, destruimos la bala
 	if(!colisionado){
-		if(GetTimeElapsed().AsSeconds() >= world->player->GetSelectedGun()->GetLifeTime().AsSeconds()){
+		if(GetTimeElapsed().AsSeconds() >= world->player->GetSelectedGun()->lifeTime->AsSeconds()){
 			delete world->vBullets->at(i);
 			world->vBullets->erase(world->vBullets->begin()+i);
 		}

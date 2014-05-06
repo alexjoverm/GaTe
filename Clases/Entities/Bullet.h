@@ -13,6 +13,13 @@
 #include "../MotorPhysics/Colisionable.h"
 #include "../MusicSounds/SoundPlayer.h"
 
+namespace Bullets{
+    enum Type{
+        Normal, Fire, SpeedDown
+    };
+}
+
+
 class Bullet: public EntActive, public Colisionable {
 public:
 	Bullet(const sf::Texture& tex);
@@ -33,6 +40,7 @@ public:
 	
 	bool		affectGravity=false;
 	float		damage = 20.f;
+    float       reloadTime=1.f;
 	
 private:
 	Time*		timeElapsed;

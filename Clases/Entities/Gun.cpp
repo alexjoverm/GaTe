@@ -6,25 +6,14 @@
  */
 
 #include "Gun.h"
-#include "../States/WorldState.h"
-#include "Player.h"
-#include "../Otros/StringUtils.h"
 #include <iostream>
 
-Gun::Gun(const sf::Texture& tex): EntActive(tex) {
-	lifeTime = new Time();
-	reloadTime = new Time();
-	relativePos = new Vector(0.75f, 0.5f);
-}
-
-Gun::Gun(const sf::Texture& tex, const Vector& pos, const Vector& vel, const Vector& maxvel): EntActive(tex, pos, vel, maxvel){
-	lifeTime = new Time();
-	reloadTime = new Time();
-	relativePos = new Vector(0.75f, 0.5f);
-}
-
-
-Gun::Gun(const Gun& orig): EntActive(orig) {
+Gun::Gun(float x, float y, float lifeTimeSeconds, float reloadTimeSeconds, float bullSpeed) {
+	lifeTime = new Time(lifeTimeSeconds);
+	reloadTime = new Time(reloadTimeSeconds);
+	relativePos = new Vector(x, y);
+    bulletSpeed = bullSpeed;
+    typeBullet = Bullets::Type::Normal;
 }
 
 Gun::~Gun() {
@@ -39,30 +28,15 @@ Gun::~Gun() {
 }
 
 
-void Gun::Shot(const Vector& speed, const Vector& pos){
-	WorldState* w = WorldState::Instance();
-	Bullet* aux = new Bullet(ResourceManager::Instance()->GetTexture("texBullet"), pos, speed);
-    aux->SetPosition(aux->GetPosition().GetX()+aux->GetSprite()->getGlobalBounds().GetWidth(), 
-                     aux->GetPosition().GetY()-aux->GetSprite()->getGlobalBounds().GetHeight()*0.4);
-	w->AddBullet(aux);
-}
-
-void Gun::Draw(RenderWindow& window){
-	renderState->Draw(window, *this->spriteSheet);
-}
-
-void Gun::Draw(RenderWindow& window, float inter){
-	renderState->Draw(window, physicsState->GetPreviousPosition(), physicsState->GetPosition(), inter, *this->spriteSheet);
-}
-
-
-void Gun::Update(const Time& elapsedTime){
-	//physicsState->Update(elapsedTime, false);
-}
-
-void Gun::Update(EntActive* ent){
-	// Hacemos cambios en las posiciones
-	physicsState->SetPreviousPosition(ent->GetPreviousPosition().GetX() + relativePos->GetX(), ent->GetPreviousPosition().GetY() + relativePos->GetY());
-	physicsState->SetNextPosition(ent->GetPosition().GetX() + relativePos->GetX(), ent->GetPosition().GetY() + relativePos->GetY());
-
+Vector  Gun::CalculateAbsolutePosition(Entity* en, bool reverse)
+{
+    Rectangle rec = en->GetSprite()->getGlobalBounds();
+    Vector pos = rec.GetTopLeft();
+    
+    if(!reverse)
+        pos += Vector(rec.GetWidth()*relativePos->GetX(), rec.GetHeight()*relativePos->GetY());
+    else
+        pos += Vector(rec.GetWidth()*(1-relativePos->GetX()), rec.GetHeight()*relativePos->GetY());
+    
+    return pos;
 }
