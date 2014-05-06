@@ -78,7 +78,6 @@ void CreditsState::Clean(){
     
     vNonRealEvents->clear();
     vRealEvents->clear();
-    musicPlayer->Stop();
 }
 
 

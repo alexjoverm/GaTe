@@ -14,9 +14,9 @@
 #include "../Otros/Time.h"
 #include "../Otros/Clock.h"
 
-class Tower: public EntPassive {
+class Tower: public EntPassive , public Animable{
 public:
-	Tower(const sf::Texture& tex, const Vector pos,const float ran);
+	Tower(const sf::Texture& tex, const Vector& size, const Vector& pos,const float ran);
 	Tower(const Tower& orig);
 	virtual ~Tower();
 	

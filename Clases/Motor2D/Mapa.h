@@ -22,27 +22,29 @@ public:
     Mapa(sf::RenderWindow* win, std::string fileName,const Mapa& orig);
     virtual ~Mapa();
 
-    tmx::MapLoader*                     getMap();
-    tmx::MapLayer                       getLayer(std::string layerName);
-    std::vector<tmx::MapObject>         getLayerObjects(std::string layerName);
-    std::vector<Rectangle*>             getLayerCollitions(std::string layerName);
+    tmx::MapLoader*                     GetMap();
+    tmx::MapLayer                       GetLayer(std::string layerName);
+    std::vector<tmx::MapObject>         GetLayerObjects(std::string layerName);
+    std::vector<Rectangle*>             GetLayerCollitions(std::string layerName);
     
-    void                                init();
+    void                                Init();
     
+    void                                Render();
+    void                                RenderMiniMap();
     
-    void                                render();
-    void                                renderMiniMap();  
+    void                                LoadPath();
+    void                                LoadAnimations();
     
-    Vector*                              getMapSize(){ return new Vector(map.GetMapSize().x,map.GetMapSize().y);}
-    
+    Vector*                             GetMapSize(){ return new Vector(map.GetMapSize().x,map.GetMapSize().y);}
+    std::string                         GetMetadata(std::string dataName);
+    std::string                         GetLayerData(std::string layerName , std::string dataName);
+    std::string                         GetObjectData(std::string layerName ,int objectNumber , std::string dataName);
     
 private:
     
     
-    sf::RenderWindow*           window;
-    
-    tmx::MapLoader              map;
-    
+    sf::RenderWindow*                   window;
+    tmx::MapLoader                      map;    
     
 };
 

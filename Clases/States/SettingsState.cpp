@@ -95,6 +95,9 @@ void SettingsState::Init() {
     music        = new ImageButton(posButtonsX, posY + marginTop, 2, resourceManager->GetTexture("texSwitch"));
     returnButton   = new ImageButton(15.f, 15.f, 1, resourceManager->GetTexture("texReturn"));
     
+    slider = new Slider(posButtonsX, posY + marginTop*2, 200.f, 20.f);
+    slider->SetValue(musicPlayer->GetVolume());
+    
     
     if(musicPlayer->GetVolume()==0.f)
         SetFrameMusicButton(1);
@@ -119,6 +122,8 @@ void SettingsState::Clean(){
     delete music; music=NULL;
     delete returnButton; returnButton=NULL;
     
+    delete slider; slider=NULL;
+    
     
     while(!vTexts->empty()) 
 		delete vTexts->back(), vTexts->pop_back();
@@ -139,12 +144,19 @@ void SettingsState::Update(const Time& timeElapsed)
         ToogleMusicButton();
     if(soundEffects->IsClicked())
         ToogleSoundButton();
-    if(returnButton->IsClicked())
-       StateManager::Instance()->SetCurrentState(States::ID::MenuState);
-    
-    std::cout << "volume: " << musicPlayer->GetVolume() << std::endl;
+
+    if(musicPlayer->GetVolume() != slider->valor){
+        musicPlayer->SetVolume(slider->valor);
+        if(slider->valor == 0.f)
+            SetFrameMusicButton(1);
+        else
+            SetFrameMusicButton(0);
+    }
     
     SoundPlayer::Instance()->RemoveStoppedSounds();
+    
+    if(returnButton->IsClicked())
+       StateManager::Instance()->SetCurrentState(States::ID::MenuState);
 }
 
 
@@ -164,6 +176,8 @@ void SettingsState::Render(float interp)
     soundEffects->Draw(*window);
     returnButton->Draw(*window);
     
+    slider->Draw(*window);
+    
     // Texts
     for(int i=0; i < vTexts->size(); i++)
         window->Draw(*vTexts->at(i));
@@ -181,10 +195,14 @@ void SettingsState::ToogleSoundButton(){
 }
 
 void SettingsState::ToogleMusicButton(){
-    if(music->currentFrame==0)
+    if(music->currentFrame==0){
         SetFrameMusicButton(1);
-    else
+        slider->valor = 0.f;
+    }
+    else{
         SetFrameMusicButton(0);
+        slider->valor = musicPlayer->ultVol;
+    }
 }
 
 

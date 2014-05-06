@@ -156,12 +156,12 @@ void WorldState::Init() {
     
 //**************** Mapa y Level
     
-    std::vector<Rectangle*> vrec = level->map->getLayerCollitions("Colision suelo");
+    std::vector<Rectangle*> vrec = level->map->GetLayerCollitions("Colision suelo");
     
     for(int i=0; i < vrec.size(); i++)
         AddLevelColision(vrec.at(i));
     
-    vrec = level->map->getLayerCollitions("Colision plataformas");
+    vrec = level->map->GetLayerCollitions("Colision plataformas");
     
     for(int i=0; i < vrec.size(); i++)
         AddLevelPlatform(vrec.at(i));
@@ -213,10 +213,6 @@ void WorldState::Init() {
     player->SetCurrentAnimation("idle", player->GetSprite());
     player->PlayAnimation();
     
-    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(150.0,325.0),380.0) );
-    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(550.0,325.0),290.0) );
-    vTowers->push_back(new Tower(resourceManager->GetTexture("texTower"),Vector(275.0,615.0),390.0) );
-
 
 //******************* HUD Y  CAMARA
     // Camera

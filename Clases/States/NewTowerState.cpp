@@ -38,8 +38,10 @@ void NewTowerState::AddTower(){
     WorldState::Instance()->AddTower(tower);
     
     tower = NULL;
-    tower = new Tower(resourceManager->GetTexture("texTower"), Vector(posAux.GetX(), posAux.GetY()) ,50.0 );
+    tower = new Tower(resourceManager->GetTexture("texTower"), Vector(96.f,122.4f), Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y) ,100.0 );
     
+    tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
+
 }
 
 // Cargamos las texturas del nivel, y las fuentes generales
@@ -68,8 +70,8 @@ void NewTowerState::Init() {
     overlay->setPosition(pos);
     overlay->setSize(size);
     
-    tower = new Tower(resourceManager->GetTexture("texTower"), Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y) ,50.0 );
-
+    tower = new Tower(resourceManager->GetTexture("texTower"), Vector(96.f,122.4f), Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y) ,100.0 );
+    tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
 }
 
 

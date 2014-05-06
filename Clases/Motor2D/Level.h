@@ -30,10 +30,10 @@ public:
     
     void LoadMap(std::string mapName);
 
-    void renderMap() { map->render(); }
-    void renderMinimap() { map->renderMiniMap(); }
+    void renderMap() { map->Render(); }
+    void renderMinimap() { map->RenderMiniMap(); }
 
-    Vector*   getMapSize() { return map->getMapSize(); }; 
+    Vector*   getMapSize() { return map->GetMapSize(); }; 
 	
 //Variables public para que sean accesibles
 public:

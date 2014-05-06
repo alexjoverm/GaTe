@@ -52,5 +52,5 @@ Level::~Level() {
 
 void Level::LoadMap(std::string mapName){
     map = new Mapa(WorldState::Instance()->window->renderWindow, mapName);
-    map->init();
+    map->Init();
 }

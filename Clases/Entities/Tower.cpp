@@ -12,7 +12,7 @@
 #include "../Managers/StateManager.h"
 #include <iostream>
 
-Tower::Tower(const sf::Texture& tex,const Vector pos, const float ran): EntPassive(tex) {
+Tower::Tower(const sf::Texture& tex, const Vector& size, const Vector& pos, const float ran): EntPassive(tex) , Animable(spriteSheet) {
     
     this->SetPosition(pos);
     
@@ -24,8 +24,8 @@ Tower::Tower(const sf::Texture& tex,const Vector pos, const float ran): EntPassi
     range_area.setRadius(range);
     range_area.setFillColor(green);
     range_area.setOrigin(range_area.getLocalBounds().width/2 , range_area.getLocalBounds().height/2);
-    range_area.setPosition(pos.GetX()+this->spriteSheet->GetTexture()->getSize().x/2,pos.GetY()+this->spriteSheet->GetTexture()->getSize().y/2);
-    
+    range_area.setPosition(pos.GetX()+size.GetX()/2, pos.GetY()+size.GetY()/2);
+        
     lifeTime = new Time();
     reloadTime = new Time();
     
@@ -35,10 +35,20 @@ Tower::Tower(const sf::Texture& tex,const Vector pos, const float ran): EntPassi
     clockReloadTower->Restart();
     
     vEnemies = new std::deque<Enemy*>();
+    
+    SetSizeTile((int) size.GetX(), (int) size.GetY());
+    GetSprite()->SetNumRowsColumns();
+    
+    AddAnimation(new Animation("idle", GetSprite(), 3, 3, 0.05f, false, true));
+    AddAnimation(new Animation("left", GetSprite(), 2, 2, 0.05f, false, true));
+    AddAnimation(new Animation("right", GetSprite(), 4, 4, 0.05f, false, true));
 
+    SetCurrentAnimation("idle", GetSprite());
+    PlayAnimation();
+    
 }
 
-Tower::Tower(const Tower& orig): EntPassive(orig) {
+Tower::Tower(const Tower& orig): EntPassive(orig) , Animable(spriteSheet) {
 }
 
 Tower::~Tower() {
@@ -182,6 +192,32 @@ void Tower::CheckEnemies (){
     if(WorldState::Instance()->showTowerRange || StateManager::Instance()->currentState == States::ID::TowerSelectionState){
         window.renderWindow->draw(range_area);
     }
+    
+    if(!vEnemies->empty()){
+        
+        // Enemigo a la  derecha de la torreta
+        if ( vEnemies->at(0)->GetRectangleColisionAbsolute().GetBottomRight().GetX() > this->spriteSheet->getGlobalBounds().GetTopRight().GetX() ) {
+            this->PlayAnimation();
+            this->SetCurrentAnimation("right", this->GetSprite());
+        }
+        else{
+            // Enemigo a la izquierda de la torreta
+            if ( vEnemies->at(0)->GetRectangleColisionAbsolute().GetBottomLeft().GetX() < this->spriteSheet->getGlobalBounds().GetBottomLeft().GetX()){
+                this->PlayAnimation();
+                this->SetCurrentAnimation("left", this->GetSprite());
+            }
+            else{
+            // Modo idle o enemigo en medio de la torreta
+              this->PlayAnimation();
+              this->SetCurrentAnimation("idle", this->GetSprite());
+            }
+        }
+    }
+    else{
+        // Modo idle o enemigo en medio de la torreta
+        this->PlayAnimation();
+        this->SetCurrentAnimation("idle", this->GetSprite());
+    }
      
     window.Draw(*(this->spriteSheet));
 }
@@ -191,5 +227,10 @@ void Tower::CheckEnemies (){
 void Tower::Update(const Time& elapsedTime){
     CheckEnemies();
     Shot();
+    
+    if(this->InitAnim())
+       this->GetAnimatedSprite()->Update(elapsedTime, false);
+    
+    this->spriteSheet->GetSprite()->setTextureRect(this->GetAnimatedSprite()->GetSpriteRect());
 }
 

@@ -15,6 +15,7 @@
 #include "../Otros/Time.h"
 #include "../MusicSounds/MusicPlayer.h"
 #include "../MusicSounds/SoundPlayer.h"
+#include "../HUD/Slider.h"
 #include "State.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -64,6 +65,7 @@ private:
     std::vector<sf::Text*>   *vTexts;
     
     ImageButton         *soundEffects, *music, *returnButton; //*shotAng;
+    Slider              *slider;
     
     //Players
     MusicPlayer*         musicPlayer;

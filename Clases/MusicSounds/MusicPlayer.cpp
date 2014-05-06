@@ -25,7 +25,10 @@ MusicPlayer::MusicPlayer()
     mFilenames->insert(std::make_pair(Music::MenuTheme , "Recursos/Music/MenuTheme.ogg"));
     mFilenames->insert(std::make_pair(Music::Level1Theme , "Recursos/Music/Deeper.ogg"));
     
-    mMusic->setVolume(90.f);
+    
+    ultVol = 0.f;
+    
+    mMusic->setVolume(ultVol);
     currentTheme = Music::MenuTheme;
     isPlaying = false;
 }
@@ -64,6 +67,11 @@ void MusicPlayer::SetVolume(float volume)
 {
     if(volume < 0.f || volume > 100.f)
         throw std::string("Debes introducir un valor entre 0 y 100");
+    
+    std::cout << "Vol: " << mMusic->getVolume() << std::endl;
+    
+    if(volume != 0.f)
+        ultVol = volume;
     
     mMusic->setVolume(volume);
 }

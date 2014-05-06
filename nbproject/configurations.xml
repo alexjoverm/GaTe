@@ -76,6 +76,8 @@
         <itemPath>Clases/Animations/SpriteSheet.h</itemPath>
       </logicalFolder>
       <logicalFolder name="Entities" displayName="Entities" projectFiles="true">
+        <itemPath>Clases/Entities/AnimatedObject.cpp</itemPath>
+        <itemPath>Clases/Entities/AnimatedObject.h</itemPath>
         <itemPath>Clases/Entities/Bullet.cpp</itemPath>
         <itemPath>Clases/Entities/Bullet.h</itemPath>
         <itemPath>Clases/Entities/Enemy.cpp</itemPath>
@@ -106,6 +108,8 @@
         <itemPath>Clases/HUD/ImageButton.h</itemPath>
         <itemPath>Clases/HUD/Lifebar.cpp</itemPath>
         <itemPath>Clases/HUD/Lifebar.h</itemPath>
+        <itemPath>Clases/HUD/Slider.cpp</itemPath>
+        <itemPath>Clases/HUD/Slider.h</itemPath>
       </logicalFolder>
       <logicalFolder name="Managers" displayName="Managers" projectFiles="true">
         <itemPath>Clases/Managers/ConfigurationManager.cpp</itemPath>
@@ -290,6 +294,10 @@
       </item>
       <item path="Clases/Animations/SpriteSheet.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Clases/Entities/AnimatedObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/AnimatedObject.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Clases/Entities/Bullet.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Entities/Bullet.h" ex="false" tool="3" flavor2="0">
@@ -345,6 +353,10 @@
       <item path="Clases/HUD/Lifebar.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/HUD/Lifebar.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/HUD/Slider.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/HUD/Slider.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/Managers/ConfigurationManager.cpp"
             ex="false"
@@ -717,6 +729,10 @@
       </item>
       <item path="Clases/Animations/SpriteSheet.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Clases/Entities/AnimatedObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/AnimatedObject.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Clases/Entities/Bullet.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Entities/Bullet.h" ex="false" tool="3" flavor2="0">
@@ -772,6 +788,10 @@
       <item path="Clases/HUD/Lifebar.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/HUD/Lifebar.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/HUD/Slider.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/HUD/Slider.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/Managers/ConfigurationManager.cpp"
             ex="false"

@@ -78,7 +78,6 @@ void TutorialState::Clean(){
     
     vNonRealEvents->clear();
     vRealEvents->clear();
-    musicPlayer->Stop();
 }
 
 

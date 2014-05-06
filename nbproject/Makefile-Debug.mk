@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/Animations/Animation.o \
 	${OBJECTDIR}/Clases/Animations/SpriteParticleSystem.o \
 	${OBJECTDIR}/Clases/Animations/SpriteSheet.o \
+	${OBJECTDIR}/Clases/Entities/AnimatedObject.o \
 	${OBJECTDIR}/Clases/Entities/Bullet.o \
 	${OBJECTDIR}/Clases/Entities/Enemy.o \
 	${OBJECTDIR}/Clases/Entities/EntActive.o \
@@ -54,6 +55,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/HUD/HUD.o \
 	${OBJECTDIR}/Clases/HUD/ImageButton.o \
 	${OBJECTDIR}/Clases/HUD/Lifebar.o \
+	${OBJECTDIR}/Clases/HUD/Slider.o \
 	${OBJECTDIR}/Clases/Managers/ConfigurationManager.o \
 	${OBJECTDIR}/Clases/Managers/InputManager.o \
 	${OBJECTDIR}/Clases/Managers/ResourceManager.o \
@@ -142,6 +144,11 @@ ${OBJECTDIR}/Clases/Animations/SpriteSheet.o: Clases/Animations/SpriteSheet.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Animations/SpriteSheet.o Clases/Animations/SpriteSheet.cpp
 
+${OBJECTDIR}/Clases/Entities/AnimatedObject.o: Clases/Entities/AnimatedObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/AnimatedObject.o Clases/Entities/AnimatedObject.cpp
+
 ${OBJECTDIR}/Clases/Entities/Bullet.o: Clases/Entities/Bullet.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
 	${RM} $@.d
@@ -211,6 +218,11 @@ ${OBJECTDIR}/Clases/HUD/Lifebar.o: Clases/HUD/Lifebar.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/HUD/Lifebar.o Clases/HUD/Lifebar.cpp
+
+${OBJECTDIR}/Clases/HUD/Slider.o: Clases/HUD/Slider.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/HUD/Slider.o Clases/HUD/Slider.cpp
 
 ${OBJECTDIR}/Clases/Managers/ConfigurationManager.o: Clases/Managers/ConfigurationManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Managers

@@ -212,15 +212,15 @@ void Camera::Move(float velX, float velY, float posCharX, float posCharY){
      
      // Se comprueba el eje X
      if(posCharX!=-1){
-         if( right && posCharX >= standard.getCenter().x 
-          || left && posCharX <= standard.getCenter().x)
+         if( right && posCharX >= (standard.getCenter().x-pl->GetRectangleColisionAbsolute().GetWidth()) 
+          || left && posCharX <= standard.getCenter().x-pl->GetRectangleColisionAbsolute().GetWidth()/2)
                 centerx = 1;
      }
      
      // Se comprueba el eje Y
      if(posCharY!=-1){
-         if( bottom && posCharY > standard.getCenter().y-15 
-          || top && posCharY < standard.getCenter().y+15)
+         if( bottom && posCharY > standard.getCenter().y 
+          || top && posCharY < standard.getCenter().y)
                 centery = 1;
      }
       

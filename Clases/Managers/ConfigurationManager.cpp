@@ -43,7 +43,7 @@ void ConfigurationManager::SaveConfigurations()
 {
     OpenOut(fileConfiguration);
     
-    *streamOut << "music" << separator << (int)(MusicPlayer::Instance()->GetVolume()) << "\n";
+    *streamOut << "music" << separator << (float)(MusicPlayer::Instance()->GetVolume()) << "\n";
     *streamOut << "sound" << separator << (int)(SoundPlayer::Instance()->active) << "\n";
     
     CloseOut();
