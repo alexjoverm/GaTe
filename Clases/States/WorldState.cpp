@@ -108,7 +108,7 @@ void WorldState::LoadResources()
         
         //sf::Lock lock(mMutex);
         level = new Level();
-        AddLevelTexture("Recursos/robot.png");
+        AddLevelTexture("Recursos/enemy1.png");
 
         // Texturas
         for(int i = 0; i < level->vTextures->size(); i++)	// Del nivel
@@ -169,7 +169,7 @@ void WorldState::Init() {
     
  //***************** WaveManager
     waveManager = new WaveManager();
-    waveManager->Init(0.7f, 3.f);
+    waveManager->Init(0.7f, 4.49f);
     
     std::vector<int> vec = std::vector<int>();   // Racha de 3
     for(int i=0; i<3; i++)
@@ -341,6 +341,18 @@ void WorldState::Update(const Time& timeElapsed)
 
     //*************** HUD **
         hud->Update(timeElapsed);
+        
+        if(waveManager->state == Wave::State::Loading)
+        {
+            int tiempo = waveManager->GetTimeLeft();
+            std::string tiempoAux = std::string((tiempo < 10 ? "0"+StringUtils::ConvertInt(tiempo) : StringUtils::ConvertInt(tiempo)));
+
+            hud->SetTimeText(tiempoAux);
+
+            hud->SetWaveText(std::string("Oleada: " + StringUtils::ConvertInt(waveManager->GetCurrentWave()) 
+                                            + " / " + StringUtils::ConvertInt(waveManager->GetTotalWaves())));
+        }
+        
         soundPlayer->RemoveStoppedSounds();
         
         
@@ -354,6 +366,7 @@ void WorldState::Update(const Time& timeElapsed)
         if(inputManager->IsPressedKeySpace())
             StateManager::Instance()->SetCurrentState(States::ID::TowerSelectionState);
     
+
 	}
 	   
 }

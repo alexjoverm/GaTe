@@ -188,10 +188,9 @@ void Enemy::Update(const Time& elapsedTime)
     if(this->InitAnim()) this->GetAnimatedSprite()->Update(elapsedTime, isReverse);
     
     if(this->GetSpeed().GetX() > 1) 
-    {
-        this->SetCurrentAnimation("andar2Enemigo", this->GetSprite());
-    }
-    else this->SetCurrentAnimation("andarEnemigo", this->GetSprite());
+        isReverse=true;
+    else
+        isReverse=false;
     
     this->spriteSheet->GetSprite()->setTextureRect(this->GetAnimatedSprite()->GetSpriteRect());
     

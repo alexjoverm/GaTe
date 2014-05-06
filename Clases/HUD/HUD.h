@@ -26,6 +26,11 @@ public:
     
     float GetHeight() const{ return menuHUD->getLocalBounds().GetHeight(); }
     
+    //Textos
+    void SetLevelText(const std::string text) { nivel->setString(text); }
+    void SetWaveText(const std::string text) { wave->setString(text); }
+    void SetTimeText(const std::string text) { tiempo->setString(text); }
+    
     //Lifebar
     void SubstractLife(float value){ barravida->Restar(value); }
     
@@ -45,6 +50,10 @@ private:
     SpriteSheet*        clock;
     
     sf::Text*           nivel;
+    sf::Text*           wave;
+    sf::Text*           tiempo;
+    sf::Text*           credito;
+    
     Lifebar*            barravida;
     ImageButton*        soundButton;
     ImageButton*        musicButton;

@@ -48,8 +48,14 @@ void WaveManager::Update(const Time& tiElapsed)
 
         if(state == Wave::State::Loading) // Estado de espera a comenzar a insertar la oleada 
         {
+            if(!cambiado){
+                waveCounter++;
+                cambiado = true;
+            }
+            
             if(timeElapsed->AsSeconds() >= timeInBetweenWaves->AsSeconds())
             {
+                cambiado = false;
                 timeElapsed->SetSeconds(0.f);
                 state = Wave::State::Running;
                 InsertEnemy();
@@ -79,19 +85,18 @@ void WaveManager::InsertEnemy()
     Enemy* foe;
     
     
-    if(vEnemies.at(waveCounter).at(enemyCounter) == 1) // Enemigo tipo 1
+    if(vEnemies.at(waveCounter-1).at(enemyCounter) == 1) // Enemigo tipo 1
     {
         foe = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),
-                        Vector(108.0f, 108.0f), *w->vPath->at(0),
+                        Vector(140.0f, 103.8f), *w->vPath->at(0),
                         Vector(0.f, 0.f), Vector(500.f, 500.f) 
                     );
         
         foe->SetSpeed(220.f, 0.f);
-        foe->SetRectangleColision(10, 8, 100, 95);
+        foe->SetRectangleColision(15, 8, 105, 95);
         foe->InitLifebar();
 
-        foe->AddAnimation(new Animation("andarEnemigo", foe->GetSprite(), 3, 14, 0.05, false, true));
-        foe->AddAnimation(new Animation("andar2Enemigo", foe->GetSprite(), 15, 26, 0.05, false, true));
+        foe->AddAnimation(new Animation("andarEnemigo", foe->GetSprite(), 1, 13, 0.05, false, true));
         foe->SetCurrentAnimation("andarEnemigo", foe->GetSprite());
         foe->PlayAnimation();
 
@@ -103,9 +108,9 @@ void WaveManager::InsertEnemy()
     // Actualizamos contadores y comprobamos la situación
     enemyCounter++; 
     
-    if(enemyCounter == vEnemies.at(waveCounter).size()){ // Fin de Racha
+    if(enemyCounter == vEnemies.at(waveCounter-1).size()){ // Fin de Racha
         state = Wave::State::Waiting;
-        waveCounter++;
+        
         enemyCounter=0;
         
         if(waveCounter == vEnemies.size()) // Fin de Vector de Rachas

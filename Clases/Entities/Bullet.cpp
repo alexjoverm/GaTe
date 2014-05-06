@@ -58,7 +58,12 @@ void Bullet::DoColisions(const Time& elapsedTime, int i){
 	}
     
     for(int j=0; j < world->level->vPlatforms->size() && !colisionado; j++){
-		if(CheckColision(*world->level->vPlatforms->at(j))){
+        
+        Rectangle rectAux = Rectangle(0,0,0,0);
+        rectAux = *world->level->vPlatforms->at(j);
+        rectAux.SetHeight(rectAux.GetHeight()/2);
+        
+		if(CheckColision(rectAux)){
 			world->DeleteBullet(i);
             SoundPlayer::Instance()->Play("explosion");
 			colisionado = true;

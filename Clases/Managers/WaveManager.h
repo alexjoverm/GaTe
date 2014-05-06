@@ -9,6 +9,7 @@
 #define	WAVEMANAGER_H
 
 #include "../Otros/Time.h"
+#include "../MotorPhysics/Maths.h"
 
 namespace Wave{
     enum State{
@@ -32,11 +33,20 @@ public:
     void LoadWave(){ state = Wave::State::Loading; }
     
     
+    int  GetCurrentWave() { return waveCounter; }
+    int  GetTotalWaves()  { return vEnemies.size(); }
+    
+    int  GetTimeLeft()    { return Maths::Round(timeInBetweenWaves->AsSeconds() - timeElapsed->AsSeconds(), 0); }
+    
+    Wave::State    state;
+    
 private:
     
     Time    *timeElapsed, *timeInBetweenEnemies, *timeInBetweenWaves;
     int     waveCounter, enemyCounter;
-    Wave::State    state;
+    
+    bool cambiado = false;
+    
     
     std::vector< std::vector<int> > vEnemies;
     

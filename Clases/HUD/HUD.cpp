@@ -18,15 +18,13 @@ HUD::HUD(float alto, std::string fuente) {
     coins = new SpriteSheet(ResourceManager::Instance()->GetTexture("texCoins"));
     clock = new SpriteSheet(ResourceManager::Instance()->GetTexture("texClock"));
     
-    coins->SetPosition(Vector(770, 15));
-    clock->SetPosition(Vector(250, 10));
+    coins->SetPosition(Vector(770, 13));
+    clock->SetPosition(Vector(290, 10));
     
     
     /*sf::IntRect rect(0, 0, 47, 50);
     coins->GetSprite()->setTextureRect(rect);  */
     
-    
-    nivel   = new sf::Text();
     barravida = new Lifebar( 450.f, 30.f, 280.f, 20.f, 5.f);
     
     
@@ -36,10 +34,29 @@ HUD::HUD(float alto, std::string fuente) {
     
     menuHUD->SetPosition(Vector(0.f,0.f));
      
-    nivel->setString("Nivel: 1            Oleada: 1");
+    nivel   = new sf::Text();
+    nivel->setString("Nivel: 1");
     nivel->setFont(ResourceManager::Instance()->GetFont(fuente));
-    nivel->setPosition(30.f, 30.f);
-    nivel->setCharacterSize(16);
+    nivel->setPosition(20.f, 25.f);
+    nivel->setCharacterSize(21);
+    
+    wave   = new sf::Text();
+    wave->setString("Oleada: 1");
+    wave->setFont(ResourceManager::Instance()->GetFont(fuente));
+    wave->setPosition(125.f, 25.f);
+    wave->setCharacterSize(21);
+    
+    tiempo   = new sf::Text();
+    tiempo->setString("00");
+    tiempo->setFont(ResourceManager::Instance()->GetFont(fuente));
+    tiempo->setPosition(350.f, 25.f);
+    tiempo->setCharacterSize(21);
+    
+    credito   = new sf::Text();
+    credito->setString("0 $");
+    credito->setFont(ResourceManager::Instance()->GetFont(fuente));
+    credito->setPosition(830.f, 23.f);
+    credito->setCharacterSize(22);
     
 }
 
@@ -47,13 +64,16 @@ HUD::HUD(const HUD& orig) {
 }
 
 HUD::~HUD() {
-    delete menuHUD;
-    delete nivel; 
-    delete barravida;
-    delete soundButton;
-    delete musicButton;
-    delete coins;
-    delete clock;
+    delete menuHUD; menuHUD = NULL;
+    delete nivel; nivel = NULL;
+    delete barravida; barravida = NULL;
+    delete soundButton; soundButton = NULL;
+    delete musicButton; musicButton = NULL;
+    delete coins; coins = NULL;
+    delete clock; clock = NULL;
+    delete wave; wave = NULL;
+    delete tiempo; tiempo = NULL;
+    delete credito; credito = NULL;
 }
 
 
@@ -61,6 +81,9 @@ HUD::~HUD() {
     
     window.Draw(*menuHUD);
     window.Draw(*nivel);
+    window.Draw(*wave);
+    window.Draw(*tiempo);
+    window.Draw(*credito);
     barravida->Draw(window, 0.f);
     soundButton->Draw(window);
     musicButton->Draw(window);
