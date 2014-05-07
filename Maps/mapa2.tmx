@@ -45,7 +45,7 @@
  </layer>
  <layer name="Plataformas" width="64" height="32">
   <data encoding="base64" compression="zlib">
-   eJzt1jEKwCAMBVC9/42rpcZB6FQoDRThPfhLhizyiaUAAADkOCIt0iNn5JrD+n1fxi7g2eqbrsH/9HFP93+QtwN4x+0DyDMAg/kVsQ==
+   eJzt1rsKgDAMBdD6/3/sAxsRoZOLHa5wDtylQyiEhLQGAAAwx1rZKnvlqJzX4/K93oxawLtn3sxahrEfegK39D013kGpfwRIlb7jAf6kA8dzGaU=
   </data>
  </layer>
  <layer name="Portales" width="64" height="32">
@@ -54,8 +54,8 @@
   </data>
  </layer>
  <objectgroup name="Camino" width="64" height="32">
-  <object x="1" y="1">
-   <polyline points="0,0 2047,-1 1855,223 487,370 687,645 1268,645 1060,933 80,926 -1,1023 2047,1023"/>
+  <object x="8" y="2">
+   <polyline points="0,0 1836,224 468,368 1314,674 58,924 2038,1022"/>
   </object>
  </objectgroup>
  <objectgroup name="Colision suelo" width="64" height="32" opacity="0.68">
@@ -77,9 +77,10 @@
   <object x="256" y="526" width="128" height="32"/>
   <object x="764" y="396" width="198" height="52"/>
   <object x="1403" y="397" width="170" height="50"/>
-  <object x="1410" y="622" width="122" height="35"/>
+  <object x="1602" y="654" width="122" height="35"/>
   <object x="830" y="684" width="165" height="53"/>
   <object x="1377" y="847" width="127" height="33"/>
+  <object x="1409" y="561" width="159" height="39"/>
  </objectgroup>
  <objectgroup name="Metadatos" width="64" height="32" visible="0">
   <properties>

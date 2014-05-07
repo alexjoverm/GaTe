@@ -7,7 +7,7 @@
 
 #include "StatusManager.h"
 #include <string>
-#include "../Otros/StringUtils.h"
+
 
 
 std::string separator("|");
@@ -78,7 +78,9 @@ void StatusManager::LoadStatus()
     // Si no existe el fichero, lo predefinimos
     else
     {
-        mapConf.insert(std::make_pair("credit", "50"));
+        mapConf.insert(std::make_pair("credit", "50"));     // Credito disponible
+        mapConf.insert(std::make_pair("levelGun", "1"));    // Nivel de la pistola
+        mapConf.insert(std::make_pair("level", "1"));       // Nivel por el que se va
     }
 }
 

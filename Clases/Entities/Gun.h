@@ -25,6 +25,8 @@ public:
     Time            *lifeTime, *reloadTime;
 	Vector          *relativePos; // Debe ser un valor entre 0 y 1
     float           bulletSpeed;
+    int             levelGun;
+    
     Bullets::Type   typeBullet;
 };
 

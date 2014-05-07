@@ -7,13 +7,20 @@
 
 #include "Gun.h"
 #include <iostream>
+#include "../Otros/StringUtils.h"
+#include "../Managers/StatusManager.h"
 
 Gun::Gun(float x, float y, float lifeTimeSeconds, float reloadTimeSeconds, float bullSpeed) {
-	lifeTime = new Time(lifeTimeSeconds);
+	
+    levelGun = StringUtils::ParseInt(StatusManager::Instance()->GetValue("levelGun"));
+    
+    lifeTime = new Time(lifeTimeSeconds);
 	reloadTime = new Time(reloadTimeSeconds);
 	relativePos = new Vector(x, y);
     bulletSpeed = bullSpeed;
+    
     typeBullet = Bullets::Type::Normal;
+    
 }
 
 Gun::~Gun() {

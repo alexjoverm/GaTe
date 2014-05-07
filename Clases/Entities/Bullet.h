@@ -40,7 +40,6 @@ public:
 	
 	bool		affectGravity=false;
 	float		damage = 20.f;
-    float       reloadTime=1.f;
 	
 private:
 	Time*		timeElapsed;

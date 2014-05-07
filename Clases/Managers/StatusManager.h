@@ -10,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <iostream>
+#include "../Otros/StringUtils.h"
 
 class StatusManager {
 public:
@@ -26,6 +27,7 @@ public:
     
     std::string  GetValue(std::string key){ return mapConf.find(key)->second; }
     void         SetValue(std::string key, std::string value){ mapConf.find(key)->second = value; }
+    float        GetFloat(std::string key){ return StringUtils::ParseFloat(mapConf.find(key)->second); }
     
     
     bool loaded = false;
