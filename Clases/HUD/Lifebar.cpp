@@ -89,3 +89,9 @@ void Lifebar::SetPosition(float x, float y){
 }
 
 
+
+void Lifebar::SetLife(float life)
+ {
+     vmax = life;
+     valor =vmax;
+ }

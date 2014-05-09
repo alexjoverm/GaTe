@@ -49,6 +49,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/Entities/Gun.o \
 	${OBJECTDIR}/Clases/Entities/Player.o \
 	${OBJECTDIR}/Clases/Entities/Tower.o \
+	${OBJECTDIR}/Clases/Factories/EntityFactory.o \
 	${OBJECTDIR}/Clases/Factories/StateFactory.o \
 	${OBJECTDIR}/Clases/Game.o \
 	${OBJECTDIR}/Clases/HUD/Button.o \
@@ -189,6 +190,11 @@ ${OBJECTDIR}/Clases/Entities/Tower.o: Clases/Entities/Tower.cpp
 	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/Tower.o Clases/Entities/Tower.cpp
+
+${OBJECTDIR}/Clases/Factories/EntityFactory.o: Clases/Factories/EntityFactory.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/Factories
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Factories/EntityFactory.o Clases/Factories/EntityFactory.cpp
 
 ${OBJECTDIR}/Clases/Factories/StateFactory.o: Clases/Factories/StateFactory.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Factories

@@ -48,14 +48,6 @@ Enemy::~Enemy() {
 }
 
 
-void Enemy::Jump(){
-	if(canJump)
-	{
-		this->SetSpeed(this->GetSpeed().GetX(), -forceJump);
-		canJump=false;
-	}
-}
-
 
 // ******* COLISIONES
 
@@ -185,6 +177,7 @@ void Enemy::Draw(RenderWindow& window){
 
 void Enemy::Update(const Time& elapsedTime)
 {
+    std::cout << "Speed: " << factorSpeed << std::endl;
     if(this->InitAnim()) this->GetAnimatedSprite()->Update(elapsedTime, isReverse);
     
     if(this->GetSpeed().GetX() > 1) 

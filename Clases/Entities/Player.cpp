@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "../Otros/StringUtils.h"
 #include "../States/WorldState.h"
+#include "../Managers/StatusManager.h"
 
 Player::Player(const sf::Texture& tex, const Vector& size): EntActive(tex), Colisionable((EntActive*)this), Animable(spriteSheet){
 	selectedGun = 0;
@@ -15,14 +16,19 @@ Player::Player(const sf::Texture& tex, const Vector& size): EntActive(tex), Coli
 	clockReloadGun = new Clock();
 	clockReloadGun->Restart();
         
-        this->SetSizeTile((int)size.GetX(), (int)size.GetY());
-        this->GetSprite()->SetNumRowsColumns();
+    this->SetSizeTile((int)size.GetX(), (int)size.GetY());
+    this->GetSprite()->SetNumRowsColumns();
 	
 	// Controladores
 	pressA = pressS = pressD = false;
 	canLeft = canRight = true;
 	canJump = false;
     isShooting = isMoving = false;
+    
+    AddGun(new Gun(0.95f, 0.27f));
+    
+    factorSpeed = StatusManager::Instance()->GetPlayerSpeed();
+    factorSpeedIni = factorSpeed;
 }
 
 Player::Player(const sf::Texture& tex, const Vector& size, const Vector& pos, const Vector& vel, const Vector& maxvel): EntActive(tex, pos, vel, maxvel), Colisionable((EntActive*)this), Animable(spriteSheet){
@@ -41,6 +47,10 @@ Player::Player(const sf::Texture& tex, const Vector& size, const Vector& pos, co
 	canLeft = canRight = true;
 	canJump = false;
     isShooting = isMoving = false;
+    AddGun(new Gun(0.95f, 0.27f));
+    
+    factorSpeed = StatusManager::Instance()->GetPlayerSpeed();
+    factorSpeedIni = factorSpeed;
 }
 
 
@@ -143,6 +153,7 @@ void Player::MovementIdle(){
 
 void Player::Shot(float x, float y){
     // Si se ha pasado el tiempo de carga de la pistola
+
 	if(clockReloadGun->GetElapsedTime().AsSeconds() >= guns->at(selectedGun)->reloadTime->AsSeconds()){
             if(canJump && !isMoving)
             {
@@ -185,8 +196,8 @@ void Player::Shot(float x, float y){
         
         //  Disparamos
         Bullet* bAux = new Bullet(ResourceManager::Instance()->GetTexture("texBullet"), posPistola, Vector(speedBull,0.f));
-        
-        bAux->damage += guns->at(selectedGun)->levelGun*15;
+        bAux->damage = StatusManager::Instance()->GetGunDamage() + StatusManager::Instance()->GetBulletDamage();
+
         WorldState::Instance()->AddBullet(bAux);
         
 		clockReloadGun->Restart();

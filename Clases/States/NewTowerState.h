@@ -34,6 +34,7 @@ private:
     void AddTower();
         
     bool        rightPlace;
+    int         selectedTower=1;
     
     Vector*      posPlace;
     Tower*      tower;

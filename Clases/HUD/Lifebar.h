@@ -30,7 +30,7 @@ public:
     void SetPercent(float percent);
     
     void SetPosition(float x, float y);
-    
+    void SetLife(float life);
      
     float vmax;  
     float valor;    

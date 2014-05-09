@@ -118,8 +118,7 @@ void WorldState::LoadResources()
         level->LoadMap("mapa2.tmx");
 
         resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
-        resourceManager->AddTexture("texGun", "Recursos/pistola.png");
-        
+        resourceManager->AddTexture("texRobot", "Recursos/robot.png");
         resourceManager->AddTexture("texTower", "Recursos/tower.png");
         resourceManager->AddTexture("texPj", "Recursos/pj_final_200_148.png");
         
@@ -180,7 +179,13 @@ void WorldState::Init() {
     
     vec = std::vector<int>();                   // Racha de 7
     for(int i=0; i<7; i++)
-        vec.push_back(1);
+    {
+        if(i%2 == 0)
+            vec.push_back(1);
+        else
+            vec.push_back(2);
+    }
+        
     
     waveManager->AddWave(vec);
     
@@ -195,7 +200,6 @@ void WorldState::Init() {
     
 	// Inicializamos Player
 	player = new Player(resourceManager->GetTexture("texPj"), Vector(200, 148), Vector(1700.f, 220.f));
-	player->AddGun(new Gun(0.95f, 0.27f));
     player->SetRectangleColision(70, 25, 70, 120);
     //player->SetColor(sf::Color(255,255,255, 105));
     
@@ -228,7 +232,7 @@ void WorldState::Init() {
     else
         hud->SetFrameSoundButton(0);
     
-    hud->SetCreditText(StatusManager::Instance()->GetValue("credit") + " $");
+    hud->SetCreditText(StatusManager::Instance()->GetValue(Parameters::credit) + " $");
     
     musicPlayer->Play();
 }
@@ -345,7 +349,7 @@ void WorldState::Update(const Time& timeElapsed)
     //*************** HUD **
         hud->Update(timeElapsed);
         
-        hud->SetCreditText(StatusManager::Instance()->GetValue("credit") + " $");
+        hud->SetCreditText(StatusManager::Instance()->GetValue(Parameters::credit) + " $");
         
         if(waveManager->state == Wave::State::Loading)
         {
@@ -521,8 +525,8 @@ void WorldState::DeleteEnemy(int i)
 { 
     if(vEnemies->at(i)->die)
     {
-        float cred = StringUtils::ParseFloat(StatusManager::Instance()->GetValue("credit")) + 5.f;
-        StatusManager::Instance()->SetValue("credit", StringUtils::ConvertFloat(cred));
+        float cred = StringUtils::ParseFloat(StatusManager::Instance()->GetValue(Parameters::credit)) + 5.f;
+        StatusManager::Instance()->SetValue(Parameters::credit, StringUtils::ConvertFloat(cred));
     }
     
     delete vEnemies->at(i); vEnemies->at(i)=NULL; 

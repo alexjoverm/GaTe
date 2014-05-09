@@ -16,7 +16,7 @@
 
 class Gun {
 public:
-	Gun(float x, float y, float lifeTimeSeconds=1.f, float reloadTimeSeconds=0.25f, float bullSpeed=800.f);
+	Gun(float x, float y, float lifeTimeSeconds=0.9f, float bullSpeed=800.f);
 	virtual ~Gun();
 	
 	
@@ -24,9 +24,9 @@ public:
 	
     Time            *lifeTime, *reloadTime;
 	Vector          *relativePos; // Debe ser un valor entre 0 y 1
-    float           bulletSpeed;
-    int             levelGun;
     
+    float           damage;
+    float           bulletSpeed;
     Bullets::Type   typeBullet;
 };
 

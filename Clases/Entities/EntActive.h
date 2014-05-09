@@ -64,8 +64,10 @@ public:
  // Render
     Vector& GetRenderPosition() const{ return renderState->GetRenderPosition(); }
     
-	float	factorSpeed = 400.f;
-	float	factorSpeedIni = factorSpeed;
+	float	factorSpeed;
+	float	factorSpeedIni;
+    
+    
 	float	factorGravity = 1300.f;
 	bool	affectGravity = true;
     

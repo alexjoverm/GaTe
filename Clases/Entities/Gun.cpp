@@ -10,17 +10,15 @@
 #include "../Otros/StringUtils.h"
 #include "../Managers/StatusManager.h"
 
-Gun::Gun(float x, float y, float lifeTimeSeconds, float reloadTimeSeconds, float bullSpeed) {
+Gun::Gun(float x, float y, float lifeTimeSeconds, float bullSpeed) {
 	
-    levelGun = StringUtils::ParseInt(StatusManager::Instance()->GetValue("levelGun"));
-    
     lifeTime = new Time(lifeTimeSeconds);
-	reloadTime = new Time(reloadTimeSeconds);
 	relativePos = new Vector(x, y);
     bulletSpeed = bullSpeed;
     
     typeBullet = Bullets::Type::Normal;
-    
+    reloadTime = new Time(StatusManager::Instance()->GetGunCadency());
+    damage = StatusManager::Instance()->GetGunDamage();
 }
 
 Gun::~Gun() {

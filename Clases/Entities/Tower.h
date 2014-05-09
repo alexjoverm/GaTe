@@ -30,6 +30,7 @@ public:
     
     virtual void SetPosition(const Vector& v);
     
+    void SetRange(float r);
     void SetRangeColor(sf::Color c){ range_area.setFillColor(c); }
 	
 	void SetTimes(float lifeT, float reloadT){ lifeTime->SetSeconds(lifeT); reloadTime->SetSeconds(reloadT);}
@@ -50,16 +51,20 @@ public:
     std::deque<Enemy*>      *vEnemies;
     
     
+    // PARAMETROS
+    float    range, damage;
+    Time*   reloadTime;
+    
 private:
     
-        float                   range;
+        
         sf::CircleShape         range_area;
         
         Vector                  *bulletPos;
         
         std::deque<Enemy*>      *vGlobalEnemies;
         
-        Time                    *lifeTime, *reloadTime;
+        Time                    *lifeTime;
         Clock                   *clockReloadTower;
         
         //Colores

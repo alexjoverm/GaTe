@@ -39,7 +39,10 @@ public:
 	void OnColision(Colision::Type type, const Rectangle& rec, const Time& elapsedTime){};
 	
 	bool		affectGravity=false;
-	float		damage = 20.f;
+    
+    
+    // PARAMETROS
+	float		damage;
 	
 private:
 	Time*		timeElapsed;

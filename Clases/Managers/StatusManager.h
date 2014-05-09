@@ -12,6 +12,50 @@
 #include <iostream>
 #include "../Otros/StringUtils.h"
 
+
+
+namespace Parameters{
+    enum ID{
+        credit, maxLevelImproves, maxLevelWaves,                // GLOBAL
+        unlockedGuns, unlockedBullets,
+        countingLevels, countingWaves,
+        //currentGun, currentBullet,
+        
+        gunDamageLevel, gunDamageInitValue, gunDamageIncrement,             // GUN
+        gunCadencyLevel, gunCadencyInitValue, gunCadencyMinValue,
+        
+        bulletDamageLevel, bulletDamageInitValue, bulletDamageIncrement,    // BULLET
+        
+        
+        
+        enemyLifeDenom, enemySpeedDenom, enemyAttackDenom,   // ENEMY
+        
+        enemyOneLifeLevel, enemyOneLifeInitValue,           // ENEMY ONE
+        enemyOneSpeedLevel, enemyOneSpeedInitValue,
+        enemyOneAttackLevel, enemyOneAttackInitValue,
+        
+        enemyTwoLifeLevel, enemyTwoLifeInitValue,           // ENEMY TWO
+        enemyTwoSpeedLevel, enemyTwoSpeedInitValue,
+        enemyTwoAttackLevel, enemyTwoAttackInitValue,
+        
+        
+        
+        towerOneDamageLevel, towerOneDamageInitValue, towerOneDamageIncrement,      // TOWER ONE
+        towerOneCadencyLevel, towerOneCadencyInitValue, towerOneCadencyMinValue,
+        towerOneRangeLevel, towerOneRangeInitValue, towerOneRangeIncrement,
+        
+        towerTwoDamageLevel, towerTwoDamageInitValue, towerTwoDamageIncrement,      // TOWER TWO
+        towerTwoCadencyLevel, towerTwoCadencyInitValue, towerTwoCadencyMinValue,
+        towerTwoRangeLevel, towerTwoRangeInitValue, towerTwoRangeIncrement,
+        
+        
+        
+        playerLifeLevel, playerLifeInitValue, playerLifeIncrement,    // PLAYER
+        playerSpeedLevel, playerSpeedInitValue, playerSpeedIncrement,
+    };
+}
+
+
 class StatusManager {
 public:
 	static StatusManager* Instance(); // Método que habrá que llamar para crear el objeto
@@ -24,10 +68,45 @@ protected:
 public:
     void SaveStatus();
     void LoadStatus();
+    void ResetParameters();
     
-    std::string  GetValue(std::string key){ return mapConf.find(key)->second; }
-    void         SetValue(std::string key, std::string value){ mapConf.find(key)->second = value; }
-    float        GetFloat(std::string key){ return StringUtils::ParseFloat(mapConf.find(key)->second); }
+    std::string  GetValue(Parameters::ID key){ return map.find(key)->second; }
+    void         SetValue(Parameters::ID key, std::string value){ map.find(key)->second = value; }
+    
+    float        GetFloat(Parameters::ID key){ return StringUtils::ParseFloat(map.find(key)->second); }
+    int          GetInt(Parameters::ID key){ return StringUtils::ParseInt(map.find(key)->second); }
+    
+    void         IncrementInt(Parameters::ID key, int value);
+    void         IncrementFloat(Parameters::ID key, float value);
+    
+    void         DecrementInt(Parameters::ID key, int value);
+    void         DecrementFloat(Parameters::ID key, float value);
+    
+    
+    float       GetGunDamage();
+    float       GetGunCadency();
+    
+    float       GetBulletDamage();
+    
+    float       GetPlayerSpeed();
+    float       GetPlayerLife();
+    
+    float       GetTowerOneDamage();
+    float       GetTowerOneCadency();
+    float       GetTowerOneRange();
+    
+    float       GetTowerTwoDamage();
+    float       GetTowerTwoCadency();
+    float       GetTowerTwoRange();
+    
+    float       GetEnemyOneLife();
+    float       GetEnemyOneSpeed();
+    float       GetEnemyOneAttack();
+    
+    float       GetEnemyTwoLife();
+    float       GetEnemyTwoSpeed();
+    float       GetEnemyTwoAttack();
+    
     
     
     bool loaded = false;
@@ -38,7 +117,7 @@ private:
     std::ifstream* streamIn;
     std::ofstream* streamOut;
     
-    std::map<std::string, std::string> mapConf;
+    std::map<Parameters::ID, std::string> map;
     
     //Funciones
     bool FileExists(const std::string filename);

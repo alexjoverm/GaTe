@@ -7,6 +7,8 @@
 
 #include "WaveManager.h"
 #include "../States/WorldState.h"
+#include "../Factories/EntityFactory.h"
+#include "StatusManager.h"
 
 WaveManager::WaveManager() 
 {
@@ -50,6 +52,7 @@ void WaveManager::Update(const Time& tiElapsed)
         {
             if(!cambiado){
                 waveCounter++;
+                StatusManager::Instance()->IncrementInt(Parameters::countingWaves, 1);
                 cambiado = true;
             }
             
@@ -87,12 +90,27 @@ void WaveManager::InsertEnemy()
     
     if(vEnemies.at(waveCounter-1).at(enemyCounter) == 1) // Enemigo tipo 1
     {
+        /*
         foe = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),
                         Vector(140.0f, 103.8f), *w->vPath->at(0),
                         Vector(0.f, 0.f), Vector(500.f, 500.f) 
-                    );
+                    );*/
+        foe= EntityFactory::CreateEnemyOne(*w->vPath->at(0));
         
-        foe->SetSpeed(220.f, 0.f);
+        
+
+        w->AddColisionableEntity(foe);// Añadimos al array de colisionables
+        w->AddEnemy(foe);		// Añadimos al array de elementos activos, para que se pinte
+    }
+    if(vEnemies.at(waveCounter-1).at(enemyCounter) == 2) // Enemigo tipo 1
+    {
+        /*
+        foe = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),
+                        Vector(140.0f, 103.8f), *w->vPath->at(0),
+                        Vector(0.f, 0.f), Vector(500.f, 500.f) 
+                    );*/
+        foe= EntityFactory::CreateEnemyTwo(*w->vPath->at(0));
+        
         foe->SetRectangleColision(15, 8, 105, 95);
         foe->InitLifebar();
 

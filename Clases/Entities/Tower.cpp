@@ -10,21 +10,13 @@
 #include "Player.h"
 #include "../Otros/StringUtils.h"
 #include "../Managers/StateManager.h"
+#include "../Managers/StatusManager.h"
 #include <iostream>
 
 Tower::Tower(const sf::Texture& tex, const Vector& size, const Vector& pos, const float ran): EntPassive(tex) , Animable(spriteSheet) {
     
     this->SetPosition(pos);
     
-    if(ran > 0)         
-        range = ran;
-    else
-        range = 50.0;
-    
-    range_area.setRadius(range);
-    range_area.setFillColor(green);
-    range_area.setOrigin(range_area.getLocalBounds().width/2 , range_area.getLocalBounds().height/2);
-    range_area.setPosition(pos.GetX()+size.GetX()/2, pos.GetY()+size.GetY()/2);
         
     lifeTime = new Time();
     reloadTime = new Time();
@@ -71,6 +63,15 @@ Tower::~Tower() {
 }
 
 
+void Tower::SetRange(float r){
+    range = r;
+    range_area.setRadius(range);
+    range_area.setFillColor(green);
+    range_area.setOrigin(range_area.getLocalBounds().width/2 , range_area.getLocalBounds().height/2);
+    range_area.setPosition(GetPosition().GetX()+GetSprite()->GetSizeTile().GetX()/2, GetPosition().GetY()+GetSprite()->GetSizeTile().GetY()/2);
+}
+
+
 void Tower::SetPosition(const Vector& v)
 { 
     spriteSheet->SetPosition(v); 
@@ -105,6 +106,7 @@ void Tower::Shot(){
             posEnem *= 800.f;
 
             Bullet* aux = new Bullet(ResourceManager::Instance()->GetTexture("texBullet"), *bulletPos, posEnem);
+            aux->damage = this->damage + StatusManager::Instance()->GetBulletDamage();
 
             
             w->AddBullet(aux);

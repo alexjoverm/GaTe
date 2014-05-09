@@ -40,20 +40,22 @@ public:
         
     void routeMove();
 	
-	
-	float forceJump = 500.f;
-    float attack = 10.f;
+    
     
 	bool canLeft, canRight, canJump;
     int route, changeX, changeY;
     bool intersects, prevIntersects, die, win;
-    
-    Lifebar*    life;
-    
     bool isMoving;
+    
+    
+    
+    // PARAMETROS
+    Lifebar*    life;
+    float attack = 10.f;
+    
+    
 	
 private:
-	void Jump();
     
     
     float lifebarAddWi, lifebarAddHe, lifebarHe, lifebarLessY;

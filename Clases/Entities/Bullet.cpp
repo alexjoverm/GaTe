@@ -8,13 +8,16 @@
 #include "Bullet.h"
 #include "../States/WorldState.h"
 #include "../Otros/StringUtils.h"
+#include "../Managers/StatusManager.h"
 
 Bullet::Bullet(const sf::Texture& tex): EntActive(tex), Colisionable((EntActive*)this) {
 	timeElapsed = new Time();
+    damage = StatusManager::Instance()->GetBulletDamage();
 }
 
 Bullet::Bullet(const sf::Texture& tex, const Vector& pos, const Vector& vel, const Vector& maxvel): EntActive(tex, pos, vel, maxvel), Colisionable(this){
 	timeElapsed = new Time();
+    damage = StatusManager::Instance()->GetBulletDamage();
 }
 
 
