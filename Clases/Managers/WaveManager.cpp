@@ -90,36 +90,17 @@ void WaveManager::InsertEnemy()
     
     if(vEnemies.at(waveCounter-1).at(enemyCounter) == 1) // Enemigo tipo 1
     {
-        /*
-        foe = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),
-                        Vector(140.0f, 103.8f), *w->vPath->at(0),
-                        Vector(0.f, 0.f), Vector(500.f, 500.f) 
-                    );*/
         foe= EntityFactory::CreateEnemyOne(*w->vPath->at(0));
         
-        
-
-        w->AddColisionableEntity(foe);// Añadimos al array de colisionables
-        w->AddEnemy(foe);		// Añadimos al array de elementos activos, para que se pinte
+        w->AddColisionableEntity(foe);
+        w->AddEnemy(foe);		
     }
     if(vEnemies.at(waveCounter-1).at(enemyCounter) == 2) // Enemigo tipo 1
     {
-        /*
-        foe = new Enemy(ResourceManager::Instance()->GetTexture("texLevel0"),
-                        Vector(140.0f, 103.8f), *w->vPath->at(0),
-                        Vector(0.f, 0.f), Vector(500.f, 500.f) 
-                    );*/
         foe= EntityFactory::CreateEnemyTwo(*w->vPath->at(0));
-        
-        foe->SetRectangleColision(15, 8, 105, 95);
-        foe->InitLifebar();
 
-        foe->AddAnimation(new Animation("andarEnemigo", foe->GetSprite(), 1, 13, 0.05, false, true));
-        foe->SetCurrentAnimation("andarEnemigo", foe->GetSprite());
-        foe->PlayAnimation();
-
-        w->AddColisionableEntity(foe);// Añadimos al array de colisionables
-        w->AddEnemy(foe);		// Añadimos al array de elementos activos, para que se pinte
+        w->AddColisionableEntity(foe);
+        w->AddEnemy(foe);		
     }
     
     

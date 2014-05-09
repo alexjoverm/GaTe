@@ -170,8 +170,10 @@ void MenuState::ProcessRealEvent(){
     {
         Vector posMouse = inputManager->GetMousePosition();
         
-        if(vButtons->at(0)->IsPressed(posMouse.GetX(), posMouse.GetY()))
+        if(vButtons->at(0)->IsPressed(posMouse.GetX(), posMouse.GetY())){
+           StatusManager::Instance()->ResetParameters();
            requestStateChange = std::make_pair(States::ID::LevelSelectionState, true);  // Nueva Partida
+        }
         if(vButtons->at(1)->IsPressed(posMouse.GetX(), posMouse.GetY()))
            requestStateChange = std::make_pair(States::ID::LevelSelectionState, true);  // Continuar
         if(vButtons->at(2)->IsPressed(posMouse.GetX(), posMouse.GetY()))
@@ -182,6 +184,7 @@ void MenuState::ProcessRealEvent(){
            requestStateChange = std::make_pair(States::ID::CreditsState, true);  // Acerca De
         if(vButtons->at(5)->IsPressed(posMouse.GetX(), posMouse.GetY())){
             ConfigurationManager::Instance()->SaveConfigurations();                 // Salir
+            StatusManager::Instance()->SaveStatus();
             window->Close(); 
         }
                                                                        

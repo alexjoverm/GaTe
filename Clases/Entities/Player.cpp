@@ -196,7 +196,7 @@ void Player::Shot(float x, float y){
         
         //  Disparamos
         Bullet* bAux = new Bullet(ResourceManager::Instance()->GetTexture("texBullet"), posPistola, Vector(speedBull,0.f));
-        bAux->damage = StatusManager::Instance()->GetGunDamage() + StatusManager::Instance()->GetBulletDamage();
+        bAux->damage = guns->at(selectedGun)->damage + StatusManager::Instance()->GetBulletDamage();
 
         WorldState::Instance()->AddBullet(bAux);
         

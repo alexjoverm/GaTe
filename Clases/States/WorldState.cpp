@@ -172,9 +172,19 @@ void WorldState::Init() {
     waveManager->Init(0.7f, 4.49f);
     
     std::vector<int> vec = std::vector<int>();   // Racha de 3
-    for(int i=0; i<3; i++)
+    for(int i=0; i<6; i++)
         vec.push_back(1);
     
+    waveManager->AddWave(vec);
+    
+    vec = std::vector<int>();                   // Racha de 7
+    for(int i=0; i<5; i++)
+    {
+        if(i%2 == 0)
+            vec.push_back(1);
+        else
+            vec.push_back(2);
+    }
     waveManager->AddWave(vec);
     
     vec = std::vector<int>();                   // Racha de 7
@@ -185,13 +195,50 @@ void WorldState::Init() {
         else
             vec.push_back(2);
     }
-        
+    waveManager->AddWave(vec);
+    
+    
+    vec = std::vector<int>();                   // Racha de 7
+    for(int i=0; i<9; i++)
+    {
+        if(i%2 == 0)
+            vec.push_back(1);
+        else
+            vec.push_back(2);
+    }
+    waveManager->AddWave(vec);
+    
+    
+    vec = std::vector<int>();                   // // Racha de 12
+    for(int i=0; i<12; i++)
+    {
+        if(i%2 == 0)
+            vec.push_back(1);
+        else
+            vec.push_back(2);
+    }
     
     waveManager->AddWave(vec);
     
     vec = std::vector<int>();                   // // Racha de 12
-    for(int i=0; i<12; i++)
-        vec.push_back(1);
+    for(int i=0; i<15; i++)
+    {
+        if(i%2 == 0)
+            vec.push_back(1);
+        else
+            vec.push_back(2);
+    }
+    
+    waveManager->AddWave(vec);
+    
+    vec = std::vector<int>();                   // // Racha de 12
+    for(int i=0; i<20; i++)
+    {
+        if(i%2 == 0)
+            vec.push_back(1);
+        else
+            vec.push_back(2);
+    }
     
     waveManager->AddWave(vec);
     

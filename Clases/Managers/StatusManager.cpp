@@ -85,6 +85,8 @@ void StatusManager::LoadStatus()
 
 void StatusManager::ResetParameters()
 {
+    map.clear();
+    
     // Globales
     map.insert(std::make_pair(Parameters::credit, "50"));         // Credito disponible
     map.insert(std::make_pair(Parameters::countingLevels, "1"));     // Nivel por el que se va
@@ -96,7 +98,7 @@ void StatusManager::ResetParameters()
 
     // GUN
     map.insert(std::make_pair(Parameters::gunDamageLevel, "1"));    
-    map.insert(std::make_pair(Parameters::gunDamageInitValue, "10.0"));
+    map.insert(std::make_pair(Parameters::gunDamageInitValue, "15.0"));
     map.insert(std::make_pair(Parameters::gunDamageIncrement, "5.0"));
     
     map.insert(std::make_pair(Parameters::gunCadencyLevel, "1"));    
@@ -122,11 +124,11 @@ void StatusManager::ResetParameters()
     
     // TOWER ONE
     map.insert(std::make_pair(Parameters::towerOneDamageLevel, "1"));    
-    map.insert(std::make_pair(Parameters::towerOneDamageInitValue, "8.0"));
-    map.insert(std::make_pair(Parameters::towerOneDamageIncrement, "4.0"));
+    map.insert(std::make_pair(Parameters::towerOneDamageInitValue, "7.0"));
+    map.insert(std::make_pair(Parameters::towerOneDamageIncrement, "3.5"));
     
     map.insert(std::make_pair(Parameters::towerOneCadencyLevel, "1"));    
-    map.insert(std::make_pair(Parameters::towerOneCadencyInitValue, "1.1"));
+    map.insert(std::make_pair(Parameters::towerOneCadencyInitValue, "1.0"));
     map.insert(std::make_pair(Parameters::towerOneCadencyMinValue, "0.1"));
     
     map.insert(std::make_pair(Parameters::towerOneRangeLevel, "1"));    
@@ -149,13 +151,13 @@ void StatusManager::ResetParameters()
     
 
     // ENEMIES
-    map.insert(std::make_pair(Parameters::enemyLifeDenom, "10.0"));    
+    map.insert(std::make_pair(Parameters::enemyLifeDenom, "8.0"));    
     map.insert(std::make_pair(Parameters::enemySpeedDenom, "50.0"));
     map.insert(std::make_pair(Parameters::enemyAttackDenom, "4.0"));
     
     // ENEMY ONE
     map.insert(std::make_pair(Parameters::enemyOneLifeLevel, "1"));    
-    map.insert(std::make_pair(Parameters::enemyOneLifeInitValue, "100.0"));
+    map.insert(std::make_pair(Parameters::enemyOneLifeInitValue, "120.0"));
     map.insert(std::make_pair(Parameters::enemyOneSpeedLevel, "1"));
     map.insert(std::make_pair(Parameters::enemyOneSpeedInitValue, "200.0"));
     map.insert(std::make_pair(Parameters::enemyOneAttackLevel, "1"));
@@ -163,9 +165,9 @@ void StatusManager::ResetParameters()
     
     // ENEMY TWO
     map.insert(std::make_pair(Parameters::enemyTwoLifeLevel, "1"));    
-    map.insert(std::make_pair(Parameters::enemyTwoLifeInitValue, "160.0"));
+    map.insert(std::make_pair(Parameters::enemyTwoLifeInitValue, "220.0"));
     map.insert(std::make_pair(Parameters::enemyTwoSpeedLevel, "1"));
-    map.insert(std::make_pair(Parameters::enemyTwoSpeedInitValue, "150.0"));
+    map.insert(std::make_pair(Parameters::enemyTwoSpeedInitValue, "100.0"));
     map.insert(std::make_pair(Parameters::enemyTwoAttackLevel, "1"));
     map.insert(std::make_pair(Parameters::enemyTwoAttackInitValue, "15.0"));
 }
