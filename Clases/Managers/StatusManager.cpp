@@ -163,9 +163,9 @@ void StatusManager::ResetParameters()
     
     // ENEMY TWO
     map.insert(std::make_pair(Parameters::enemyTwoLifeLevel, "1"));    
-    map.insert(std::make_pair(Parameters::enemyTwoLifeInitValue, "150.0"));
+    map.insert(std::make_pair(Parameters::enemyTwoLifeInitValue, "160.0"));
     map.insert(std::make_pair(Parameters::enemyTwoSpeedLevel, "1"));
-    map.insert(std::make_pair(Parameters::enemyTwoSpeedInitValue, "160.0"));
+    map.insert(std::make_pair(Parameters::enemyTwoSpeedInitValue, "150.0"));
     map.insert(std::make_pair(Parameters::enemyTwoAttackLevel, "1"));
     map.insert(std::make_pair(Parameters::enemyTwoAttackInitValue, "15.0"));
 }
