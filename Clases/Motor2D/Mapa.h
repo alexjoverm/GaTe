@@ -39,6 +39,8 @@ public:
     std::string                         GetMetadata(std::string dataName);
     std::string                         GetLayerData(std::string layerName , std::string dataName);
     std::string                         GetObjectData(std::string layerName ,int objectNumber , std::string dataName);
+    Vector*                             GetRandomPowerUpPos();
+    std::vector<int>                    GetWave(int wave);
     
 private:
     

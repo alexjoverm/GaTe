@@ -14,9 +14,16 @@ Camera::Camera(sf::RenderWindow* win) {
     
     window = win;
     miniback = new  sf::RectangleShape();
-    prevPosPlayer = new Vector();
     
     mapSize = new Vector();
+    
+    posNext = new Vector();
+    posPrev = new Vector();
+    posRender = new Vector();
+    posRenderPrev = new Vector();
+    
+    pos = new Vector();
+    moved = new Vector();
 }
 
 Camera::Camera(const Camera& orig) {
@@ -24,9 +31,15 @@ Camera::Camera(const Camera& orig) {
 
 Camera::~Camera() {
     delete miniback; miniback=NULL;
-    delete prevPosPlayer; prevPosPlayer=NULL;
-    
     delete mapSize; mapSize=NULL;
+    
+    delete posNext; posNext = NULL;
+    delete posPrev; posPrev = NULL;
+    delete posRender; posRender = NULL;
+    delete posRenderPrev; posRenderPrev = NULL;
+    
+    delete pos; pos = NULL;
+    delete moved; moved = NULL;
     
     delete topRect; topRect=NULL;
     delete bottomRect; bottomRect=NULL;
@@ -39,11 +52,13 @@ void Camera::Init(Player* player){
     
         mapSize = WorldState::Instance()->level->getMapSize();
         
+        float offset = 15.f;
+        
         // Rectangulos de colision borde de mapa
-        topRect = new Rectangle(0,0,mapSize->GetX(),0.01);
-        bottomRect = new Rectangle(0,mapSize->GetY(),mapSize->GetX(),0.01);
-        leftRect = new Rectangle(0,0,0.01,mapSize->GetY());
-        rightRect = new Rectangle(mapSize->GetX(),0,0.01,mapSize->GetY());
+        topRect = new Rectangle(0, offset,mapSize->GetX(),0.01);
+        bottomRect = new Rectangle(0,mapSize->GetY()-offset,mapSize->GetX(),0.01);
+        leftRect = new Rectangle(offset,0,0.01,mapSize->GetY());
+        rightRect = new Rectangle(mapSize->GetX()-offset,0,0.01,mapSize->GetY());
     
         fixed = window->getView();  // Esta nunca cambia
         standard = fixed;          // 'standard' sera la que se muestre siempre
@@ -71,10 +86,8 @@ void Camera::Init(Player* player){
         miniback->setPosition( minimap.getViewport().left*window->getSize().x-3, minimap.getViewport().top*window->getSize().y+15 );
         miniback->setFillColor(sf::Color(255,0,0,100));
     
-        // Asignamos el player
-        pl = player;
         
-        Vector posPlayer = pl->GetRectangleColisionAbsolute().GetTopLeft();
+        Vector posPlayer = player->GetRectangleColisionAbsolute().GetTopLeft();
         
         // Posicion controlada de la view standard
         float posIniXCam = posPlayer.GetX();
@@ -84,7 +97,7 @@ void Camera::Init(Player* player){
         if( ((posPlayer.GetX() + standard.getSize().x / 2) - mapSize->GetX()) > 0 )
             posIniXCam -=  ( (posPlayer.GetX() + standard.getSize().x / 2) - mapSize->GetX() ) ;
         else if( (posPlayer.GetX() - standard.getSize().x / 2) < 0 )
-            posIniXCam += std::abs(posPlayer.GetX() - standard.getSize().x / 2)+pl->GetRectangleColisionAbsolute().GetWidth()/2 ;
+            posIniXCam += std::abs(posPlayer.GetX() - standard.getSize().x / 2) + player->GetRectangleColisionAbsolute().GetWidth()/2 ;
         
         // Reajuste en Y
         if( (posPlayer.GetY() - standard.getSize().y / 2) < 0 )
@@ -92,7 +105,14 @@ void Camera::Init(Player* player){
         else if( (posPlayer.GetY() + standard.getSize().y / 2) > mapSize->GetY() )
             posIniYCam -= std::abs((posPlayer.GetY() + standard.getSize().y / 2) - mapSize->GetY() ) ;
         
+        
+        posPrev->Set(player->GetPreviousPosition().GetX(), player->GetPreviousPosition().GetY());
+        *posNext = *posPrev;
+        *posRender = *posPrev;
+        *posRenderPrev = *posPrev;
+        
         standard.setCenter(posIniXCam , posIniYCam);
+        
         
         
         // Esto es para el eje ARRIBA-DERECHA
@@ -100,15 +120,7 @@ void Camera::Init(Player* player){
         posIniYCam += posIniYCam*proporcion.y;
         
         minimap.setCenter(posIniXCam , posIniYCam);
-        prevPosPlayer->Set(posPlayer);
-        
-}
-
-/*void Camera::InitMove(){
-
-    
-    
-}*/
+}       
 
 
 
@@ -160,20 +172,7 @@ sf::View* Camera::GetView(Views::Type view){
 
 /************ METODOS MOVE**/
 
-void Camera::Move(float numberOfSeconds){
-    
-    this->SetCurrentView(Views::Type::Standard);
-    standard.setCenter(pl->GetRenderPosition().GetX(),pl->GetRenderPosition().GetY());  
-    MoveMinimap(pl->GetSpeed().GetX() * numberOfSeconds , pl->GetSpeed().GetY() * numberOfSeconds , pl->GetRenderPosition().GetX() , pl->GetRenderPosition().GetY());
-}
-
-void Camera::Move(Vector velChar, Vector posChar){
-
-    Move(velChar.GetX(),velChar.GetY(),posChar.GetX(),posChar.GetY());
-    
-}
-
-void Camera::Move(float velX, float velY, float posCharX, float posCharY){
+void Camera::Move(float velX, float velY, float posCharX, float posCharY, Player* pl){
     
     // Variables de direccion de movimiento.
     bool top = 0 , bottom = 0, left = 0, right = 0;
@@ -223,24 +222,18 @@ void Camera::Move(float velX, float velY, float posCharX, float posCharY){
           || top && posCharY < standard.getCenter().y)
                 centery = 1;
      }
-      
+    //Variable que indica si se mueve en x
+    moved->Set(rightx*centerx,righty*centery);
     standard.move(velX*rightx*centerx,velY*righty*centery);
     
     // Actualizamos la vista de la ventana con la resultante ya movida
     window->setView(standard);
     
-    MoveMinimap(velX , velY , posCharX , posCharY);
+    MoveMinimap(velX , velY , posCharX , posCharY, pl);
     
 }
 
-void Camera::MoveMinimap(){
-
-    this->SetCurrentView(Views::Type::Minimap);
-    minimap.setCenter(pl->GetRenderPosition().GetX(),pl->GetRenderPosition().GetY());
-    
-}
-
-void Camera::MoveMinimap(float x, float y, float charx, float chary){
+void Camera::MoveMinimap(float x, float y, float charx, float chary, Player* pl){
 
     this->SetCurrentView(Views::Type::Minimap);
     
@@ -297,15 +290,33 @@ void Camera::MoveMinimap(float x, float y, float charx, float chary){
 }
 
 
-void Camera::Update(){
-
-    //Move(numberOfSeconds);
-    float vX = pl->GetRenderPosition().GetX() - prevPosPlayer->GetX() ;
-    float vY =  pl->GetRenderPosition().GetY() - prevPosPlayer->GetY() ;
-        
-    Move( vX,  vY, pl->GetRenderPosition().GetX() , pl->GetRenderPosition().GetY() ) ;
-    //Move( pl->GetSpeed().GetX() * numberOfSeconds , pl->GetSpeed().GetY() * numberOfSeconds , pl->GetPosition().GetX() , pl->GetPosition().GetY() );
-    
-    prevPosPlayer->Set(pl->GetRenderPosition());
-    
+void Camera::Update(Player* pl)
+{
+    *posPrev = pl->GetPreviousPosition();
+    *posNext = pl->GetPosition();
 }
+
+void Camera::Render(Player* pl)
+{
+    posRender->SetX(posPrev->GetX() );
+    posRender->SetY(posPrev->GetY() );
+    
+    pos->Set(posRender->GetX() - posRenderPrev->GetX() , posRender->GetY() - posRenderPrev->GetY());
+    
+    Move( pos->GetX(),  pos->GetY(), pl->GetRenderPosition().GetX() , pl->GetRenderPosition().GetY(), pl ) ;
+    
+    *posRenderPrev = *posRender;
+}
+
+void Camera::Render(float interp, Player* pl)
+{
+    posRender->SetX(posPrev->GetX() + ((posNext->GetX() - posPrev->GetX()) * interp));
+    posRender->SetY(posPrev->GetY() + ((posNext->GetY() - posPrev->GetY()) * interp));
+    
+    pos->Set(posRender->GetX() - posRenderPrev->GetX() , posRender->GetY() - posRenderPrev->GetY());
+    
+    Move( pos->GetX(),  pos->GetY(), pl->GetRenderPosition().GetX() , pl->GetRenderPosition().GetY(), pl ) ;
+    
+    *posRenderPrev = *posRender;
+}
+

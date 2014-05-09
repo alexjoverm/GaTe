@@ -92,6 +92,8 @@
         <itemPath>Clases/Entities/Gun.h</itemPath>
         <itemPath>Clases/Entities/Player.cpp</itemPath>
         <itemPath>Clases/Entities/Player.h</itemPath>
+        <itemPath>Clases/Entities/PowerUp.cpp</itemPath>
+        <itemPath>Clases/Entities/PowerUp.h</itemPath>
         <itemPath>Clases/Entities/Tower.cpp</itemPath>
         <itemPath>Clases/Entities/Tower.h</itemPath>
       </logicalFolder>
@@ -118,6 +120,8 @@
         <itemPath>Clases/Managers/ConfigurationManager.h</itemPath>
         <itemPath>Clases/Managers/InputManager.cpp</itemPath>
         <itemPath>Clases/Managers/InputManager.h</itemPath>
+        <itemPath>Clases/Managers/PowerUpManager.cpp</itemPath>
+        <itemPath>Clases/Managers/PowerUpManager.h</itemPath>
         <itemPath>Clases/Managers/ResourceManager.cpp</itemPath>
         <itemPath>Clases/Managers/ResourceManager.h</itemPath>
         <itemPath>Clases/Managers/StateManager.cpp</itemPath>
@@ -151,6 +155,8 @@
         <itemPath>Clases/Motor2D/Level.h</itemPath>
         <itemPath>Clases/Motor2D/Mapa.cpp</itemPath>
         <itemPath>Clases/Motor2D/Mapa.h</itemPath>
+        <itemPath>Clases/Motor2D/Paralax.cpp</itemPath>
+        <itemPath>Clases/Motor2D/Paralax.h</itemPath>
         <itemPath>Clases/Motor2D/RenderState.cpp</itemPath>
         <itemPath>Clases/Motor2D/RenderState.h</itemPath>
         <itemPath>Clases/Motor2D/RenderWindow.cpp</itemPath>
@@ -330,6 +336,10 @@
       </item>
       <item path="Clases/Entities/Player.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Clases/Entities/PowerUp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/PowerUp.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Clases/Entities/Tower.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Entities/Tower.h" ex="false" tool="3" flavor2="0">
@@ -379,6 +389,10 @@
       <item path="Clases/Managers/InputManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Managers/InputManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Managers/PowerUpManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Managers/PowerUpManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/Managers/ResourceManager.cpp"
             ex="false"
@@ -482,6 +496,10 @@
       <item path="Clases/Motor2D/Mapa.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Motor2D/Mapa.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Paralax.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Paralax.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/Motor2D/RenderState.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -773,6 +791,10 @@
       </item>
       <item path="Clases/Entities/Player.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Clases/Entities/PowerUp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Entities/PowerUp.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Clases/Entities/Tower.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Entities/Tower.h" ex="false" tool="3" flavor2="0">
@@ -822,6 +844,10 @@
       <item path="Clases/Managers/InputManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Managers/InputManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Managers/PowerUpManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Managers/PowerUpManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/Managers/ResourceManager.cpp"
             ex="false"
@@ -925,6 +951,10 @@
       <item path="Clases/Motor2D/Mapa.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Clases/Motor2D/Mapa.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Paralax.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Clases/Motor2D/Paralax.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Clases/Motor2D/RenderState.cpp" ex="false" tool="1" flavor2="0">
       </item>

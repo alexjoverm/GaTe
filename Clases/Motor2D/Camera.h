@@ -27,21 +27,23 @@ public:
     virtual ~Camera();
     
     void Init(Player* player);
-    //void InitMove();
+
+    void Move(float velX, float velY, float posCharX, float posCharY, Player* player);
+    void MoveMinimap(float x , float y , float charx , float chary, Player* player);
     
-    void Move(float numberOfSeconds);
-    void Move(Vector velChar, Vector posChar);
-    void Move(float velX, float velY, float posCharX, float posCharY);
-    void MoveMinimap();
-    void MoveMinimap(float x , float y , float charx , float chary);
-    
-    void Update();
+    void Update(Player* pl);
+    void Render(Player* pl);
+    void Render(float interp, Player* pl);
     
     void SetCurrentView(Views::Type view);
     sf::View* GetCurrentView();
     sf::View* GetView(Views::Type view);
     
-    void SetToPlayer(Player* player){pl = player;}
+    Vector* GetMoved(){ return moved;}
+    
+    Vector* GetVelCam(){ return pos; }
+
+    sf::RenderWindow* GetRenderWindow(){ return window; }
     
     sf::RectangleShape* GetMiniback(){return miniback;}
     
@@ -52,9 +54,7 @@ public:
     sf::View                    minimap;
     
 private:
-
-    Player*                     pl;
-    Vector*                     prevPosPlayer;
+    Vector                     *posPrev, *posNext, *posRender, *posRenderPrev,*moved, *pos;
     
     Views::Type                 currentView;
     sf::RenderWindow*           window;

@@ -41,7 +41,7 @@ Enemy* EntityFactory::CreateEnemyTwo(const Vector& pos, const Vector& vel, const
     enemigo->life->vmax = StatusManager::Instance()->GetEnemyTwoLife();
     enemigo->life->valor = enemigo->life->vmax;
     
-    enemigo->AddAnimation(new Animation("andarEnemigo", enemigo->GetSprite(), 1, 13, 0.05, false, true));
+    enemigo->AddAnimation(new Animation("andarEnemigo", enemigo->GetSprite(), 3, 14, 0.05, false, true));
     enemigo->SetCurrentAnimation("andarEnemigo", enemigo->GetSprite());
     enemigo->PlayAnimation();
     

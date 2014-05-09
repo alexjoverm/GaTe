@@ -8,17 +8,20 @@
 #ifndef WORLDSTATE_H
 #define	WORLDSTATE_H
 
-#include "../Motor2D/Level.h"
-#include "../Entities/Player.h"
-#include "../Motor2D/Camera.h"
-#include "../Entities/Bullet.h"
-#include "../Entities/Tower.h"
 #include "../Motor2D/RenderWindow.h"
-#include "../Otros/Clock.h"
+#include "../Motor2D/Level.h"
+#include "../Motor2D/Camera.h"
+#include "../Motor2D/Paralax.h"
 #include "../Entities/EntActive.h"
+#include "../Entities/Player.h"
+#include "../Entities/Bullet.h"
+#include "../Entities/PowerUp.h"
+#include "../Entities/Tower.h"
+#include "../Otros/Clock.h"
 #include "../Managers/InputManager.h"
 #include "../Managers/ResourceManager.h"
 #include "../Managers/WaveManager.h"
+#include "../Managers/PowerUpManager.h"
 #include "../MusicSounds/MusicPlayer.h"
 #include "../HUD/HUD.h"
 #include "State.h"
@@ -64,9 +67,12 @@ public:
     
     void AddTower(Tower* ent){ vTowers->push_back(ent); }
     void AddEnemy(Enemy* ent){ vEnemies->push_back(ent); }
-        
+    void AddPowerUp(PowerUp* ent){ vPowers->push_back(ent); }
+     
     void DeleteEnemy(int i);
     void DeleteBullet(int i);
+    void DeletePowerUp(int i);
+
     
     void CleanArrays(Enemy* en);
     
@@ -80,6 +86,7 @@ public:
 	
     std::vector<Vector*>		*vPath;
     std::vector<Tower*>         *vTowers;
+    std::vector<PowerUp*>       *vPowers;
     std::deque<Enemy*>          *vEnemies;
 	std::vector<Bullet*>		*vBullets;
 	std::deque<EntPassive*>		*vEntityStatic;
@@ -103,6 +110,8 @@ private:
 	std::vector<sf::Event>		*vNonRealEvents;
 	std::vector<sf::Event>		*vRealEvents;
     
+    // PowerUp Manager
+    PowerUpManager*      powerUpManager;
     
     // WaveManager
     WaveManager*    waveManager;
@@ -111,6 +120,8 @@ private:
     MusicPlayer*         musicPlayer;
     SoundPlayer*         soundPlayer;
     
+    // Paralax
+    Paralax*             paralax;
     
     bool     firstUpdate;
     

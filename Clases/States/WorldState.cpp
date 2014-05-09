@@ -36,6 +36,7 @@ WorldState::WorldState() {
 	
     vBullets = new std::vector<Bullet*>();
     vTowers = new std::vector<Tower*>();
+    vPowers = new std::vector<PowerUp*>();
     vPath = new std::vector<Vector*>();
     vEnemies = new std::deque<Enemy*>();
 	
@@ -80,6 +81,10 @@ WorldState::~WorldState() {
     while(!vEnemies->empty()) 
 		delete vEnemies->back(), vEnemies->pop_back();
 	delete vEnemies;
+        
+    while(!vPowers->empty())
+		delete vPowers->back(), vPowers->pop_back();
+	delete vPowers;
 	
 	delete vEntityColisionable;
 	delete vBullets;
@@ -96,6 +101,7 @@ WorldState::~WorldState() {
 	level = NULL;
 	vBullets = NULL;
     delete cam; cam = NULL;
+    delete paralax; paralax = NULL;
 }
 
 
@@ -114,6 +120,11 @@ void WorldState::LoadResources()
         // Texturas
         for(int i = 0; i < level->vTextures->size(); i++)	// Del nivel
             resourceManager->AddTexture("texLevel" + StringUtils::ConvertInt(i) , level->vTextures->at(i));
+        
+        // Texturas PowerUps
+        for(int i = 0 ; i < 6 ; i++)
+                resourceManager->AddTexture("texPower" + StringUtils::ConvertInt(i), "Recursos/power"+StringUtils::ConvertInt(i)+".png");
+
         
         level->LoadMap("mapa2.tmx");
 
@@ -166,82 +177,21 @@ void WorldState::Init() {
     for(int i=0; i < vrec.size(); i++)
         AddLevelPlatform(vrec.at(i));
     
+        
+ //**************** PowerUpManager
+    powerUpManager = new PowerUpManager();
     
  //***************** WaveManager
     waveManager = new WaveManager();
-    waveManager->Init(0.7f, 4.49f);
+    waveManager->Init(
+    StringUtils::ParseFloat( level->map->GetMetadata("RespawnNPC") ),
+    StringUtils::ParseFloat( level->map->GetMetadata("RespawnOleada") )
+    );
     
-    std::vector<int> vec = std::vector<int>();   // Racha de 3
-    for(int i=0; i<6; i++)
-        vec.push_back(1);
-    
-    waveManager->AddWave(vec);
-    
-    vec = std::vector<int>();                   // Racha de 7
-    for(int i=0; i<5; i++)
-    {
-        if(i%2 == 0)
-            vec.push_back(1);
-        else
-            vec.push_back(2);
-    }
-    waveManager->AddWave(vec);
-    
-    vec = std::vector<int>();                   // Racha de 7
-    for(int i=0; i<7; i++)
-    {
-        if(i%2 == 0)
-            vec.push_back(1);
-        else
-            vec.push_back(2);
-    }
-    waveManager->AddWave(vec);
-    
-    
-    vec = std::vector<int>();                   // Racha de 7
-    for(int i=0; i<9; i++)
-    {
-        if(i%2 == 0)
-            vec.push_back(1);
-        else
-            vec.push_back(2);
-    }
-    waveManager->AddWave(vec);
-    
-    
-    vec = std::vector<int>();                   // // Racha de 12
-    for(int i=0; i<12; i++)
-    {
-        if(i%2 == 0)
-            vec.push_back(1);
-        else
-            vec.push_back(2);
-    }
-    
-    waveManager->AddWave(vec);
-    
-    vec = std::vector<int>();                   // // Racha de 12
-    for(int i=0; i<15; i++)
-    {
-        if(i%2 == 0)
-            vec.push_back(1);
-        else
-            vec.push_back(2);
-    }
-    
-    waveManager->AddWave(vec);
-    
-    vec = std::vector<int>();                   // // Racha de 12
-    for(int i=0; i<20; i++)
-    {
-        if(i%2 == 0)
-            vec.push_back(1);
-        else
-            vec.push_back(2);
-    }
-    
-    waveManager->AddWave(vec);
-    
+    int waves = StringUtils::ParseInt( level->map->GetMetadata("NumOleadas") );
+            
+    for(int i = 0 ; i < waves ; i++)
+        waveManager->AddWave( level->map->GetWave(i) );  
 	
 //***************** Entities
     
@@ -282,6 +232,7 @@ void WorldState::Init() {
     hud->SetCreditText(StatusManager::Instance()->GetValue(Parameters::credit) + " $");
     
     musicPlayer->Play();
+    paralax = new Paralax(cam, level->map);
 }
 
 
@@ -293,6 +244,7 @@ void WorldState::Clean(){
     
 //************* Variables
     delete waveManager; waveManager = NULL;
+    delete powerUpManager; powerUpManager = NULL;
     
 	delete player;  player = NULL;
 	delete level;   level = NULL;
@@ -320,6 +272,9 @@ void WorldState::Clean(){
     while(!vEnemies->empty()) 
 		delete vEnemies->back(), vEnemies->pop_back();
 
+    while(!vPowers->empty()) 
+		delete vPowers->back(), vPowers->pop_back();
+    
     
     // Los demás vectores sólo los limpiamos, ya que la memoria ya la hemos liberado
     // al liberar los vectores anteriores
@@ -335,6 +290,7 @@ void WorldState::Clean(){
     musicPlayer->Stop();
   
     delete cam; cam = NULL;
+    delete paralax; paralax = NULL;
 }
 
 
@@ -348,16 +304,25 @@ void WorldState::Update(const Time& timeElapsed)
      // MANAGERS
         InputManager::Instance()->Update();
         waveManager->Update(timeElapsed);
+        powerUpManager->Update(timeElapsed);
 
         
         
      // BULLETS, hacemos las colisiones aquí
         for(int i = 0; i < vBullets->size(); i++)
             vBullets->at(i)->DoColisions(timeElapsed, i);
-
+        
+     // Comprobamos si powerUps se tienen que eliminar
+        for(int i = 0; i < vPowers->size(); i++){
+            if(vPowers->at(i)->UpdateBool(timeElapsed))
+                DeletePowerUp(i);
+        }
+        
+        
     //******************************** UPDATE
         // Player
         player->Update(timeElapsed);
+        cam->Update(player);
 
         // EntActive
         for(int i = 0; i < vEntityActive->size(); i++)
@@ -439,6 +404,7 @@ void WorldState::Render(float interp)
     
 	window->Clear(sf::Color(255,255,255, 255)); // rgba
 	
+    paralax->Render(interp);
     cam->SetCurrentView(Views::Type::Standard);
     
     level->renderMap();
@@ -478,11 +444,15 @@ void WorldState::Render(float interp)
 
         for(int i = 0; i < vEnemies->size(); i++)
             vEnemies->at(i)->Draw(*window);
+        
+        for(int i = 0; i < vPowers->size(); i++)
+            vPowers->at(i)->Draw(*window);
 
         for(int i = 0; i < vBullets->size(); i++)
             vBullets->at(i)->Draw(*window);
 
         player->Draw(*window);
+        cam->Render(player);
     }
     else //Con interpolacion
     {
@@ -491,14 +461,18 @@ void WorldState::Render(float interp)
 
         for(int i = 0; i < vEnemies->size(); i++)
             vEnemies->at(i)->Draw(*window, interp);
-
+        
+        for(int i = 0; i < vPowers->size(); i++)
+            vPowers->at(i)->Draw(*window,interp);
+        
         for(int i = 0; i < vBullets->size(); i++)
             vBullets->at(i)->Draw(*window, interp);
 
         player->Draw(*window, interp);
+        cam->Render(interp,player);
     }
     
-    cam->Update();
+    
     
  // HUD
     cam->SetCurrentView(Views::Type::Fixed);
@@ -586,4 +560,10 @@ void WorldState::DeleteBullet(int i)
 { 
     delete vBullets->at(i); vBullets->at(i)=NULL; 
     vBullets->erase(vBullets->begin()+i); 
+}
+
+void WorldState::DeletePowerUp(int i)
+{ 
+    delete vPowers->at(i); vPowers->at(i)=NULL; 
+    vPowers->erase(vPowers->begin()+i);    
 }

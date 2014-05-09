@@ -48,6 +48,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/Entities/Entity.o \
 	${OBJECTDIR}/Clases/Entities/Gun.o \
 	${OBJECTDIR}/Clases/Entities/Player.o \
+	${OBJECTDIR}/Clases/Entities/PowerUp.o \
 	${OBJECTDIR}/Clases/Entities/Tower.o \
 	${OBJECTDIR}/Clases/Factories/EntityFactory.o \
 	${OBJECTDIR}/Clases/Factories/StateFactory.o \
@@ -59,6 +60,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/HUD/Slider.o \
 	${OBJECTDIR}/Clases/Managers/ConfigurationManager.o \
 	${OBJECTDIR}/Clases/Managers/InputManager.o \
+	${OBJECTDIR}/Clases/Managers/PowerUpManager.o \
 	${OBJECTDIR}/Clases/Managers/ResourceManager.o \
 	${OBJECTDIR}/Clases/Managers/StateManager.o \
 	${OBJECTDIR}/Clases/Managers/StatusManager.o \
@@ -73,6 +75,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Clases/Motor2D/MapLoader/QuadTreeNode.o \
 	${OBJECTDIR}/Clases/Motor2D/MapLoader/pugixml.o \
 	${OBJECTDIR}/Clases/Motor2D/Mapa.o \
+	${OBJECTDIR}/Clases/Motor2D/Paralax.o \
 	${OBJECTDIR}/Clases/Motor2D/RenderState.o \
 	${OBJECTDIR}/Clases/Motor2D/RenderWindow.o \
 	${OBJECTDIR}/Clases/MotorPhysics/Colisionable.o \
@@ -123,303 +126,318 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/hito2: ${OBJECTFILES}
 
 ${OBJECTDIR}/Clases/Animations/Animable.o: Clases/Animations/Animable.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Animations
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Animations/Animable.o Clases/Animations/Animable.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Animations/Animable.o Clases/Animations/Animable.cpp
 
 ${OBJECTDIR}/Clases/Animations/AnimatedSprite.o: Clases/Animations/AnimatedSprite.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Animations
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Animations/AnimatedSprite.o Clases/Animations/AnimatedSprite.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Animations/AnimatedSprite.o Clases/Animations/AnimatedSprite.cpp
 
 ${OBJECTDIR}/Clases/Animations/Animation.o: Clases/Animations/Animation.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Animations
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Animations/Animation.o Clases/Animations/Animation.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Animations/Animation.o Clases/Animations/Animation.cpp
 
 ${OBJECTDIR}/Clases/Animations/SpriteParticleSystem.o: Clases/Animations/SpriteParticleSystem.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Animations
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Animations/SpriteParticleSystem.o Clases/Animations/SpriteParticleSystem.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Animations/SpriteParticleSystem.o Clases/Animations/SpriteParticleSystem.cpp
 
 ${OBJECTDIR}/Clases/Animations/SpriteSheet.o: Clases/Animations/SpriteSheet.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Animations
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Animations/SpriteSheet.o Clases/Animations/SpriteSheet.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Animations/SpriteSheet.o Clases/Animations/SpriteSheet.cpp
 
 ${OBJECTDIR}/Clases/Entities/AnimatedObject.o: Clases/Entities/AnimatedObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/AnimatedObject.o Clases/Entities/AnimatedObject.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Entities/AnimatedObject.o Clases/Entities/AnimatedObject.cpp
 
 ${OBJECTDIR}/Clases/Entities/Bullet.o: Clases/Entities/Bullet.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/Bullet.o Clases/Entities/Bullet.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Entities/Bullet.o Clases/Entities/Bullet.cpp
 
 ${OBJECTDIR}/Clases/Entities/Enemy.o: Clases/Entities/Enemy.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/Enemy.o Clases/Entities/Enemy.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Entities/Enemy.o Clases/Entities/Enemy.cpp
 
 ${OBJECTDIR}/Clases/Entities/EntActive.o: Clases/Entities/EntActive.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/EntActive.o Clases/Entities/EntActive.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Entities/EntActive.o Clases/Entities/EntActive.cpp
 
 ${OBJECTDIR}/Clases/Entities/EntPassive.o: Clases/Entities/EntPassive.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/EntPassive.o Clases/Entities/EntPassive.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Entities/EntPassive.o Clases/Entities/EntPassive.cpp
 
 ${OBJECTDIR}/Clases/Entities/Entity.o: Clases/Entities/Entity.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/Entity.o Clases/Entities/Entity.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Entities/Entity.o Clases/Entities/Entity.cpp
 
 ${OBJECTDIR}/Clases/Entities/Gun.o: Clases/Entities/Gun.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/Gun.o Clases/Entities/Gun.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Entities/Gun.o Clases/Entities/Gun.cpp
 
 ${OBJECTDIR}/Clases/Entities/Player.o: Clases/Entities/Player.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/Player.o Clases/Entities/Player.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Entities/Player.o Clases/Entities/Player.cpp
+
+${OBJECTDIR}/Clases/Entities/PowerUp.o: Clases/Entities/PowerUp.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Entities/PowerUp.o Clases/Entities/PowerUp.cpp
 
 ${OBJECTDIR}/Clases/Entities/Tower.o: Clases/Entities/Tower.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Entities
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Entities/Tower.o Clases/Entities/Tower.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Entities/Tower.o Clases/Entities/Tower.cpp
 
 ${OBJECTDIR}/Clases/Factories/EntityFactory.o: Clases/Factories/EntityFactory.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Factories
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Factories/EntityFactory.o Clases/Factories/EntityFactory.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Factories/EntityFactory.o Clases/Factories/EntityFactory.cpp
 
 ${OBJECTDIR}/Clases/Factories/StateFactory.o: Clases/Factories/StateFactory.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Factories
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Factories/StateFactory.o Clases/Factories/StateFactory.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Factories/StateFactory.o Clases/Factories/StateFactory.cpp
 
 ${OBJECTDIR}/Clases/Game.o: Clases/Game.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Game.o Clases/Game.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Game.o Clases/Game.cpp
 
 ${OBJECTDIR}/Clases/HUD/Button.o: Clases/HUD/Button.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/HUD/Button.o Clases/HUD/Button.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/HUD/Button.o Clases/HUD/Button.cpp
 
 ${OBJECTDIR}/Clases/HUD/HUD.o: Clases/HUD/HUD.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/HUD/HUD.o Clases/HUD/HUD.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/HUD/HUD.o Clases/HUD/HUD.cpp
 
 ${OBJECTDIR}/Clases/HUD/ImageButton.o: Clases/HUD/ImageButton.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/HUD/ImageButton.o Clases/HUD/ImageButton.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/HUD/ImageButton.o Clases/HUD/ImageButton.cpp
 
 ${OBJECTDIR}/Clases/HUD/Lifebar.o: Clases/HUD/Lifebar.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/HUD/Lifebar.o Clases/HUD/Lifebar.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/HUD/Lifebar.o Clases/HUD/Lifebar.cpp
 
 ${OBJECTDIR}/Clases/HUD/Slider.o: Clases/HUD/Slider.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/HUD
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/HUD/Slider.o Clases/HUD/Slider.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/HUD/Slider.o Clases/HUD/Slider.cpp
 
 ${OBJECTDIR}/Clases/Managers/ConfigurationManager.o: Clases/Managers/ConfigurationManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Managers/ConfigurationManager.o Clases/Managers/ConfigurationManager.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Managers/ConfigurationManager.o Clases/Managers/ConfigurationManager.cpp
 
 ${OBJECTDIR}/Clases/Managers/InputManager.o: Clases/Managers/InputManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Managers/InputManager.o Clases/Managers/InputManager.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Managers/InputManager.o Clases/Managers/InputManager.cpp
+
+${OBJECTDIR}/Clases/Managers/PowerUpManager.o: Clases/Managers/PowerUpManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Managers/PowerUpManager.o Clases/Managers/PowerUpManager.cpp
 
 ${OBJECTDIR}/Clases/Managers/ResourceManager.o: Clases/Managers/ResourceManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Managers/ResourceManager.o Clases/Managers/ResourceManager.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Managers/ResourceManager.o Clases/Managers/ResourceManager.cpp
 
 ${OBJECTDIR}/Clases/Managers/StateManager.o: Clases/Managers/StateManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Managers/StateManager.o Clases/Managers/StateManager.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Managers/StateManager.o Clases/Managers/StateManager.cpp
 
 ${OBJECTDIR}/Clases/Managers/StatusManager.o: Clases/Managers/StatusManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Managers/StatusManager.o Clases/Managers/StatusManager.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Managers/StatusManager.o Clases/Managers/StatusManager.cpp
 
 ${OBJECTDIR}/Clases/Managers/WaveManager.o: Clases/Managers/WaveManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Managers
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Managers/WaveManager.o Clases/Managers/WaveManager.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Managers/WaveManager.o Clases/Managers/WaveManager.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/Camera.o: Clases/Motor2D/Camera.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/Camera.o Clases/Motor2D/Camera.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Motor2D/Camera.o Clases/Motor2D/Camera.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/Level.o: Clases/Motor2D/Level.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/Level.o Clases/Motor2D/Level.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Motor2D/Level.o Clases/Motor2D/Level.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/MapLoader/DebugShape.o: Clases/Motor2D/MapLoader/DebugShape.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D/MapLoader
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/DebugShape.o Clases/Motor2D/MapLoader/DebugShape.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/DebugShape.o Clases/Motor2D/MapLoader/DebugShape.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/MapLoader/MapLayer.o: Clases/Motor2D/MapLoader/MapLayer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D/MapLoader
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/MapLayer.o Clases/Motor2D/MapLoader/MapLayer.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/MapLayer.o Clases/Motor2D/MapLoader/MapLayer.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/MapLoader/MapLoaderPrivate.o: Clases/Motor2D/MapLoader/MapLoaderPrivate.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D/MapLoader
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/MapLoaderPrivate.o Clases/Motor2D/MapLoader/MapLoaderPrivate.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/MapLoaderPrivate.o Clases/Motor2D/MapLoader/MapLoaderPrivate.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/MapLoader/MapLoaderPublic.o: Clases/Motor2D/MapLoader/MapLoaderPublic.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D/MapLoader
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/MapLoaderPublic.o Clases/Motor2D/MapLoader/MapLoaderPublic.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/MapLoaderPublic.o Clases/Motor2D/MapLoader/MapLoaderPublic.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/MapLoader/MapObject.o: Clases/Motor2D/MapLoader/MapObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D/MapLoader
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/MapObject.o Clases/Motor2D/MapLoader/MapObject.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/MapObject.o Clases/Motor2D/MapLoader/MapObject.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/MapLoader/QuadTreeNode.o: Clases/Motor2D/MapLoader/QuadTreeNode.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D/MapLoader
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/QuadTreeNode.o Clases/Motor2D/MapLoader/QuadTreeNode.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/QuadTreeNode.o Clases/Motor2D/MapLoader/QuadTreeNode.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/MapLoader/pugixml.o: Clases/Motor2D/MapLoader/pugixml.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D/MapLoader
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/pugixml.o Clases/Motor2D/MapLoader/pugixml.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Motor2D/MapLoader/pugixml.o Clases/Motor2D/MapLoader/pugixml.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/Mapa.o: Clases/Motor2D/Mapa.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/Mapa.o Clases/Motor2D/Mapa.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Motor2D/Mapa.o Clases/Motor2D/Mapa.cpp
+
+${OBJECTDIR}/Clases/Motor2D/Paralax.o: Clases/Motor2D/Paralax.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Motor2D/Paralax.o Clases/Motor2D/Paralax.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/RenderState.o: Clases/Motor2D/RenderState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/RenderState.o Clases/Motor2D/RenderState.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Motor2D/RenderState.o Clases/Motor2D/RenderState.cpp
 
 ${OBJECTDIR}/Clases/Motor2D/RenderWindow.o: Clases/Motor2D/RenderWindow.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Motor2D
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Motor2D/RenderWindow.o Clases/Motor2D/RenderWindow.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Motor2D/RenderWindow.o Clases/Motor2D/RenderWindow.cpp
 
 ${OBJECTDIR}/Clases/MotorPhysics/Colisionable.o: Clases/MotorPhysics/Colisionable.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/MotorPhysics
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/MotorPhysics/Colisionable.o Clases/MotorPhysics/Colisionable.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/MotorPhysics/Colisionable.o Clases/MotorPhysics/Colisionable.cpp
 
 ${OBJECTDIR}/Clases/MotorPhysics/Maths.o: Clases/MotorPhysics/Maths.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/MotorPhysics
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/MotorPhysics/Maths.o Clases/MotorPhysics/Maths.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/MotorPhysics/Maths.o Clases/MotorPhysics/Maths.cpp
 
 ${OBJECTDIR}/Clases/MotorPhysics/PhysicsState.o: Clases/MotorPhysics/PhysicsState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/MotorPhysics
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/MotorPhysics/PhysicsState.o Clases/MotorPhysics/PhysicsState.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/MotorPhysics/PhysicsState.o Clases/MotorPhysics/PhysicsState.cpp
 
 ${OBJECTDIR}/Clases/MusicSounds/MusicPlayer.o: Clases/MusicSounds/MusicPlayer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/MusicSounds
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/MusicSounds/MusicPlayer.o Clases/MusicSounds/MusicPlayer.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/MusicSounds/MusicPlayer.o Clases/MusicSounds/MusicPlayer.cpp
 
 ${OBJECTDIR}/Clases/MusicSounds/SoundPlayer.o: Clases/MusicSounds/SoundPlayer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/MusicSounds
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/MusicSounds/SoundPlayer.o Clases/MusicSounds/SoundPlayer.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/MusicSounds/SoundPlayer.o Clases/MusicSounds/SoundPlayer.cpp
 
 ${OBJECTDIR}/Clases/Otros/Clock.o: Clases/Otros/Clock.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Otros
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Otros/Clock.o Clases/Otros/Clock.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Otros/Clock.o Clases/Otros/Clock.cpp
 
 ${OBJECTDIR}/Clases/Otros/LoadingTask.o: Clases/Otros/LoadingTask.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Otros
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Otros/LoadingTask.o Clases/Otros/LoadingTask.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Otros/LoadingTask.o Clases/Otros/LoadingTask.cpp
 
 ${OBJECTDIR}/Clases/Otros/Rectangle.o: Clases/Otros/Rectangle.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Otros
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Otros/Rectangle.o Clases/Otros/Rectangle.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Otros/Rectangle.o Clases/Otros/Rectangle.cpp
 
 ${OBJECTDIR}/Clases/Otros/StringUtils.o: Clases/Otros/StringUtils.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Otros
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Otros/StringUtils.o Clases/Otros/StringUtils.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Otros/StringUtils.o Clases/Otros/StringUtils.cpp
 
 ${OBJECTDIR}/Clases/Otros/Time.o: Clases/Otros/Time.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Otros
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Otros/Time.o Clases/Otros/Time.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Otros/Time.o Clases/Otros/Time.cpp
 
 ${OBJECTDIR}/Clases/Otros/Vector.o: Clases/Otros/Vector.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/Otros
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/Otros/Vector.o Clases/Otros/Vector.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/Otros/Vector.o Clases/Otros/Vector.cpp
 
 ${OBJECTDIR}/Clases/States/CreditsState.o: Clases/States/CreditsState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/CreditsState.o Clases/States/CreditsState.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/States/CreditsState.o Clases/States/CreditsState.cpp
 
 ${OBJECTDIR}/Clases/States/LevelSelectionState.o: Clases/States/LevelSelectionState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/LevelSelectionState.o Clases/States/LevelSelectionState.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/States/LevelSelectionState.o Clases/States/LevelSelectionState.cpp
 
 ${OBJECTDIR}/Clases/States/LoadingState.o: Clases/States/LoadingState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/LoadingState.o Clases/States/LoadingState.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/States/LoadingState.o Clases/States/LoadingState.cpp
 
 ${OBJECTDIR}/Clases/States/MenuState.o: Clases/States/MenuState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/MenuState.o Clases/States/MenuState.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/States/MenuState.o Clases/States/MenuState.cpp
 
 ${OBJECTDIR}/Clases/States/NewTowerState.o: Clases/States/NewTowerState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/NewTowerState.o Clases/States/NewTowerState.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/States/NewTowerState.o Clases/States/NewTowerState.cpp
 
 ${OBJECTDIR}/Clases/States/SettingsState.o: Clases/States/SettingsState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/SettingsState.o Clases/States/SettingsState.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/States/SettingsState.o Clases/States/SettingsState.cpp
 
 ${OBJECTDIR}/Clases/States/TutorialState.o: Clases/States/TutorialState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/TutorialState.o Clases/States/TutorialState.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/States/TutorialState.o Clases/States/TutorialState.cpp
 
 ${OBJECTDIR}/Clases/States/WorldState.o: Clases/States/WorldState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Clases/States
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Clases/States/WorldState.o Clases/States/WorldState.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Clases/States/WorldState.o Clases/States/WorldState.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/SFML/include -IIncludes -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

@@ -7,6 +7,7 @@
 
 #include "Mapa.h"
 #include "../States/WorldState.h"
+#include "../Otros/StringUtils.h"
 
 Mapa::Mapa(sf::RenderWindow* win, std::string fileName)
 : map("Maps//")
@@ -115,7 +116,32 @@ std::string Mapa::GetObjectData(std::string layerName ,int objectNumber , std::s
     return "";
 }
 
+Vector* Mapa::GetRandomPowerUpPos(){
+    tmx::MapLayer layer = GetLayer("Metadatos");
+    
+    std::vector<sf::Vector2f> aux = tmx::MapObject(layer.objects.at(0)).PolyPoints();
 
+    int i = ( (int)( rand()% (aux.size()-2 ) )+1 ); 
+    
+        return new Vector(
+                sf::Vector2f(tmx::MapObject(layer.objects.at(0)).PolyPoints().at(i)).x,
+                sf::Vector2f(tmx::MapObject(layer.objects.at(0)).PolyPoints().at(i)).y
+                );
+}
+
+std::vector<int> Mapa::GetWave(int wave){
+
+    std::vector<int> vec = std::vector<int>();
+    std::string aux = GetMetadata("O"+StringUtils::ConvertInt(wave+1));
+    
+    int auxParse = 0;
+    
+    for(int i = 0 ; i < aux.size() ; i+=2 ){
+        auxParse = aux.at(i) - '0';
+        vec.push_back(auxParse) ;
+    }
+    return vec;
+}
 
 
 /************** METODOS INIT (INICIALIZACION)*/
@@ -132,8 +158,9 @@ void Mapa::Init(){
 void Mapa::Render(){
     
     WorldState::Instance()->GetCamera()->SetCurrentView(Views::Type::Standard);
-    window->draw(map);
-    
+    window->draw(GetLayer("Terciaria"));
+    window->draw(GetLayer("Secundaria"));
+    window->draw(GetLayer("Primaria"));
 
 }
 
@@ -161,6 +188,9 @@ void Mapa::RenderMiniMap(){
 
         for(int i = 0; i < WorldState::Instance()->vEnemies->size(); i++)
             window->draw(*WorldState::Instance()->vEnemies->at(i)->GetSprite()->GetSprite());
+            
+        for(int i = 0; i < WorldState::Instance()->vPowers->size(); i++)
+            window->draw(*WorldState::Instance()->vPowers->at(i)->GetSprite()->GetSprite());
 
 
         window->draw(*WorldState::Instance()->player->GetSprite()->GetSprite());
