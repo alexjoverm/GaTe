@@ -62,6 +62,7 @@ void Camera::Init(Player* player){
     
         fixed = window->getView();  // Esta nunca cambia
         standard = fixed;          // 'standard' sera la que se muestre siempre
+        
     
         //** MINI-MAPA (seguirá a la vista 'standard')  *************
     
@@ -86,6 +87,8 @@ void Camera::Init(Player* player){
         miniback->setPosition( minimap.getViewport().left*window->getSize().x-3, minimap.getViewport().top*window->getSize().y+15 );
         miniback->setFillColor(sf::Color(255,0,0,100));
     
+        
+        
         
         Vector posPlayer = player->GetRectangleColisionAbsolute().GetTopLeft();
         

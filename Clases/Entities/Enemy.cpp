@@ -177,8 +177,8 @@ void Enemy::Draw(RenderWindow& window){
 
 void Enemy::Update(const Time& elapsedTime)
 {
-    std::cout << "Speed: " << factorSpeed << std::endl;
-    std::cout << "Life: " << life->valor << std::endl;
+    //std::cout << "Speed: " << factorSpeed << std::endl;
+    //std::cout << "Life: " << life->valor << std::endl;
     if(this->InitAnim()) this->GetAnimatedSprite()->Update(elapsedTime, isReverse);
     
     if(this->GetSpeed().GetX() > 1) 

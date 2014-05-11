@@ -47,6 +47,6 @@ void Paralax::Render(float interpolation){
     window->draw(map->GetLayer("Paralax1"));
     
     
-    window->setView( *cam->GetCurrentView() );
+    //window->setView( *cam->GetCurrentView() );
     
 }

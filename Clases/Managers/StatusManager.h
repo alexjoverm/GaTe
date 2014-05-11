@@ -19,6 +19,7 @@ namespace Parameters{
         credit, maxLevelImproves, maxLevelWaves,                // GLOBAL
         unlockedGuns, unlockedBullets,
         countingLevels, countingWaves,
+        worldLifeLevel, worldLifeInitValue, worldLifeIncrement,
         //currentGun, currentBullet,
         
         gunDamageLevel, gunDamageInitValue, gunDamageIncrement,             // GUN
@@ -82,6 +83,8 @@ public:
     void         DecrementInt(Parameters::ID key, int value);
     void         DecrementFloat(Parameters::ID key, float value);
     
+    
+    float       GetWorldLife();
     
     float       GetGunDamage();
     float       GetGunCadency();

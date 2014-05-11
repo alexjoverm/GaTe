@@ -25,8 +25,7 @@ public:
     void SetRespawnTime(float newRespawn){respawnTime = newRespawn;}
     
 private:
-
-    float                       lastRespawnTime;
+    
     float                       respawnTime;
     float                       time;
 };

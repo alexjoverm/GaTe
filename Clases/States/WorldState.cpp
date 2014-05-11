@@ -304,6 +304,7 @@ void WorldState::Update(const Time& timeElapsed)
      // MANAGERS
         InputManager::Instance()->Update();
         waveManager->Update(timeElapsed);
+        
         powerUpManager->Update(timeElapsed);
 
         

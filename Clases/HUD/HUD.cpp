@@ -8,6 +8,7 @@
 #include "HUD.h"
 #include <iostream>
 #include "../States/WorldState.h"
+#include "../Managers/StatusManager.h"
 
 
 
@@ -24,8 +25,9 @@ HUD::HUD(float alto, std::string fuente) {
     
     /*sf::IntRect rect(0, 0, 47, 50);
     coins->GetSprite()->setTextureRect(rect);  */
-    
     barravida = new Lifebar( 450.f, 30.f, 280.f, 20.f, 5.f);
+    barravida->vmax = StatusManager::Instance()->GetWorldLife();
+    barravida->valor = barravida->vmax;
     
     
     soundButton = new ImageButton(950, 13, 2, ResourceManager::Instance()->GetTexture("texSounds"));

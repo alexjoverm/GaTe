@@ -95,10 +95,17 @@ void StatusManager::ResetParameters()
     map.insert(std::make_pair(Parameters::maxLevelWaves, "20"));
     map.insert(std::make_pair(Parameters::unlockedGuns, "1"));
     map.insert(std::make_pair(Parameters::unlockedBullets, "1"));
+    
+    
+    // WORLD
+    map.insert(std::make_pair(Parameters::worldLifeLevel, "1"));    
+    map.insert(std::make_pair(Parameters::worldLifeInitValue, "150.0"));
+    map.insert(std::make_pair(Parameters::worldLifeIncrement, "15.0"));
 
+    
     // GUN
     map.insert(std::make_pair(Parameters::gunDamageLevel, "1"));    
-    map.insert(std::make_pair(Parameters::gunDamageInitValue, "15.0"));
+    map.insert(std::make_pair(Parameters::gunDamageInitValue, "18.0"));
     map.insert(std::make_pair(Parameters::gunDamageIncrement, "5.0"));
     
     map.insert(std::make_pair(Parameters::gunCadencyLevel, "1"));    
@@ -107,7 +114,7 @@ void StatusManager::ResetParameters()
     
     // BULLET
     map.insert(std::make_pair(Parameters::bulletDamageLevel, "1"));    
-    map.insert(std::make_pair(Parameters::bulletDamageInitValue, "10.0"));
+    map.insert(std::make_pair(Parameters::bulletDamageInitValue, "12.0"));
     map.insert(std::make_pair(Parameters::bulletDamageIncrement, "5.0"));
     
     
@@ -124,8 +131,8 @@ void StatusManager::ResetParameters()
     
     // TOWER ONE
     map.insert(std::make_pair(Parameters::towerOneDamageLevel, "1"));    
-    map.insert(std::make_pair(Parameters::towerOneDamageInitValue, "7.0"));
-    map.insert(std::make_pair(Parameters::towerOneDamageIncrement, "3.5"));
+    map.insert(std::make_pair(Parameters::towerOneDamageInitValue, "8.0"));
+    map.insert(std::make_pair(Parameters::towerOneDamageIncrement, "4.0"));
     
     map.insert(std::make_pair(Parameters::towerOneCadencyLevel, "1"));    
     map.insert(std::make_pair(Parameters::towerOneCadencyInitValue, "1.0"));
@@ -137,8 +144,8 @@ void StatusManager::ResetParameters()
     
      // TOWER TWO
     map.insert(std::make_pair(Parameters::towerOneDamageLevel, "1"));    
-    map.insert(std::make_pair(Parameters::towerOneDamageInitValue, "15.0"));
-    map.insert(std::make_pair(Parameters::towerOneDamageIncrement, "7.0"));
+    map.insert(std::make_pair(Parameters::towerOneDamageInitValue, "18.0"));
+    map.insert(std::make_pair(Parameters::towerOneDamageIncrement, "8.0"));
     
     map.insert(std::make_pair(Parameters::towerOneCadencyLevel, "1"));    
     map.insert(std::make_pair(Parameters::towerOneCadencyInitValue, "1.9"));
@@ -157,15 +164,15 @@ void StatusManager::ResetParameters()
     
     // ENEMY ONE
     map.insert(std::make_pair(Parameters::enemyOneLifeLevel, "1"));    
-    map.insert(std::make_pair(Parameters::enemyOneLifeInitValue, "120.0"));
+    map.insert(std::make_pair(Parameters::enemyOneLifeInitValue, "100.0"));
     map.insert(std::make_pair(Parameters::enemyOneSpeedLevel, "1"));
-    map.insert(std::make_pair(Parameters::enemyOneSpeedInitValue, "200.0"));
+    map.insert(std::make_pair(Parameters::enemyOneSpeedInitValue, "180.0"));
     map.insert(std::make_pair(Parameters::enemyOneAttackLevel, "1"));
     map.insert(std::make_pair(Parameters::enemyOneAttackInitValue, "10.0"));
     
     // ENEMY TWO
     map.insert(std::make_pair(Parameters::enemyTwoLifeLevel, "1"));    
-    map.insert(std::make_pair(Parameters::enemyTwoLifeInitValue, "220.0"));
+    map.insert(std::make_pair(Parameters::enemyTwoLifeInitValue, "200.0"));
     map.insert(std::make_pair(Parameters::enemyTwoSpeedLevel, "1"));
     map.insert(std::make_pair(Parameters::enemyTwoSpeedInitValue, "100.0"));
     map.insert(std::make_pair(Parameters::enemyTwoAttackLevel, "1"));
@@ -197,6 +204,11 @@ void StatusManager::DecrementFloat(Parameters::ID key, float value){
 
 
 /*****************   CALCULADORES  ****************/
+
+float StatusManager::GetWorldLife(){
+    return GetFloat(Parameters::worldLifeInitValue) + GetInt(Parameters::worldLifeLevel) * GetFloat(Parameters::worldLifeIncrement);
+}
+
 
 float StatusManager::GetGunDamage(){
     return GetFloat(Parameters::gunDamageInitValue) + (GetInt(Parameters::gunDamageLevel) * GetFloat(Parameters::gunDamageIncrement));

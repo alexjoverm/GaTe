@@ -13,9 +13,9 @@
 PowerUpManager::PowerUpManager() {
     srand(std::time(NULL));
     
-    lastRespawnTime = 0.f;
-    //respawnTime = rand()%30+25; 
-    respawnTime = rand()%5; 
+    //respawnTime = rand()%30+20; 
+    time = 0.f;
+    respawnTime = rand()%25 + 25; 
 }
 
 PowerUpManager::~PowerUpManager() {
@@ -26,9 +26,10 @@ void PowerUpManager::Update(const Time& timeElapsed){
    //Parte de creacion de objetos powerUps
         time +=  timeElapsed.AsSeconds();
         // Agregamos
-        if(time - lastRespawnTime >= respawnTime){
+        if(time > respawnTime){
             AddPowerUp();
-            lastRespawnTime = time;
+            time = 0.f;
+            respawnTime = rand()%25 + 25; 
         }
 
 }
@@ -43,11 +44,14 @@ void PowerUpManager::AddPowerUp(){
     Vector *pos = WorldState::Instance()->level->map->GetRandomPowerUpPos();
     //Velocidades
     Vector vel = Vector(0.f,0.f);
-    Vector maxVel = Vector(0.f,100.f);    
+    Vector maxVel = Vector(0.f,140.f);    
     
-    std::cout << typePower<<" at "<<pos->GetX()<<","<<pos->GetY()<<std::endl;
+   // std::cout << typePower<<" at "<<pos->GetX()<<","<<pos->GetY()<<std::endl;
     
-    WorldState::Instance()->AddPowerUp(new PowerUp( (PowerUps::State)typePower , ResourceManager::Instance()->GetTexture("texPower"+StringUtils::ConvertInt(typePower) ) , *pos , vel , maxVel) );
+    PowerUp* aux = new PowerUp( (PowerUps::State)typePower , ResourceManager::Instance()->GetTexture("texPower"+StringUtils::ConvertInt(typePower) ) , *pos , vel , maxVel);
+    aux->SetRectangleColision(0,0,aux->GetSprite()->getGlobalBounds().GetWidth(), aux->GetSprite()->getGlobalBounds().GetHeight());
+    
+    WorldState::Instance()->AddPowerUp( aux );
     
 }
 /*

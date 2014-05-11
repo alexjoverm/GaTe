@@ -29,10 +29,17 @@ bool PowerUp::UpdateBool(const Time& elapsedTime){
   
   if(timeAlive >= lifeTime)
       return true;
-      
-      return false;
+  
+    ResetLimits();
+	DoRectangleColisions(elapsedTime);
+	
+    // Movimiento en el path
+	physicsState->Update(elapsedTime, affectGravity); // Si puede saltar, no se le aplica gravedad (por eso se pone negado)
+
+    return false;
 
 }
+
 
 // On colision hay que llamar a un metodo del manager para que lo elimine y aplique al jugador el efectoClases/Managers/../Entities/PowerUp.h:23:7: nota:   porque las siguientes funciones virtual son pure dentro de ‘PowerUp’:
 
