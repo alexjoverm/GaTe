@@ -89,19 +89,15 @@ void WaveManager::InsertEnemy()
     
     
     if(vEnemies.at(waveCounter-1).at(enemyCounter) == 1) // Enemigo tipo 1
-    {
         foe= EntityFactory::CreateEnemyOne(*w->vPath->at(0));
-        
-        w->AddColisionableEntity(foe);
-        w->AddEnemy(foe);		
-    }
-    if(vEnemies.at(waveCounter-1).at(enemyCounter) == 2) // Enemigo tipo 1
-    {
+    else if(vEnemies.at(waveCounter-1).at(enemyCounter) == 2) // Tipo 2
         foe= EntityFactory::CreateEnemyTwo(*w->vPath->at(0));
-
-        w->AddColisionableEntity(foe);
-        w->AddEnemy(foe);		
-    }
+    else
+        foe= EntityFactory::CreateEnemyThree(*w->vPath->at(0));
+        
+    w->AddColisionableEntity(foe);
+    w->AddEnemy(foe);		
+    
     
     
     // Actualizamos contadores y comprobamos la situación

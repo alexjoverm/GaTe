@@ -20,6 +20,7 @@ public:
 
     static Tower* CreateTowerOne(const Vector& pos);
     static Tower* CreateTowerTwo(const Vector& pos);
+    static Tower* CreateTowerThree(const Vector& pos);
 };
 
 #endif	/* ENTITYFACTORY_H */

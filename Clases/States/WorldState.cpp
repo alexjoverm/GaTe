@@ -115,7 +115,7 @@ void WorldState::LoadResources()
         
         //sf::Lock lock(mMutex);
         level = new Level();
-        AddLevelTexture("Recursos/enemy1.png");
+        //AddLevelTexture("Recursos/enemy1.png");
 
         // Texturas
         for(int i = 0; i < level->vTextures->size(); i++)	// Del nivel
@@ -123,14 +123,23 @@ void WorldState::LoadResources()
         
         // Texturas PowerUps
         for(int i = 0 ; i < 6 ; i++)
-                resourceManager->AddTexture("texPower" + StringUtils::ConvertInt(i), "Recursos/power"+StringUtils::ConvertInt(i)+".png");
+            resourceManager->AddTexture("texPower" + StringUtils::ConvertInt(i), "Recursos/power"+StringUtils::ConvertInt(i)+".png");
 
         
         level->LoadMap("mapa2.tmx");
 
+        // Enemies
+        resourceManager->AddTexture("texEnemyOne", "Recursos/enemyOne.png");
+        resourceManager->AddTexture("texEnemyTwo", "Recursos/enemyTwo.png");
+        resourceManager->AddTexture("texEnemyThree", "Recursos/enemyThree.png");
+        
+        // Towers
+        resourceManager->AddTexture("texTowerOne", "Recursos/towerOne.png");
+        resourceManager->AddTexture("texTowerTwo", "Recursos/towerTwo.png");
+        resourceManager->AddTexture("texTowerThree", "Recursos/towerThree.png");
+        
         resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
-        resourceManager->AddTexture("texRobot", "Recursos/robot.png");
-        resourceManager->AddTexture("texTower", "Recursos/tower.png");
+        
         resourceManager->AddTexture("texPj", "Recursos/pj_final_200_148.png");
         
         
@@ -547,8 +556,15 @@ void WorldState::DeleteEnemy(int i)
 { 
     if(vEnemies->at(i)->die)
     {
-        float cred = StringUtils::ParseFloat(StatusManager::Instance()->GetValue(Parameters::credit)) + 5.f;
-        StatusManager::Instance()->SetValue(Parameters::credit, StringUtils::ConvertFloat(cred));
+        float cred;
+        if(vEnemies->at(i)->type == 1)
+            cred = StatusManager::Instance()->GetEnemyOnePrice();
+        else if(vEnemies->at(i)->type == 2)
+            cred = StatusManager::Instance()->GetEnemyTwoPrice();
+        else 
+            cred = StatusManager::Instance()->GetEnemyThreePrice();
+        
+        StatusManager::Instance()->IncrementInt(Parameters::credit, (int)cred);
     }
     
     delete vEnemies->at(i); vEnemies->at(i)=NULL; 

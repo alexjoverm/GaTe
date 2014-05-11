@@ -18,7 +18,7 @@
 class Player: public EntActive, public Colisionable, public Animable {
 public:
 	Player(const sf::Texture& tex, const Vector& size);
-	Player(const sf::Texture& tex, const Vector& size, const Vector& pos, const Vector& vel=Vector(0.f, 0.f), const Vector& maxvel=Vector(550.f, 550.f));
+	Player(const sf::Texture& tex, const Vector& size, const Vector& pos, const Vector& vel=Vector(0.f, 0.f), const Vector& maxvel=Vector(750.f, 550.f));
 	Player(const Player& orig);
 	virtual ~Player();
 	

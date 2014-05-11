@@ -51,8 +51,9 @@ public:
     
     // PARAMETROS
     Lifebar*    life;
-    float attack = 10.f;
-    
+    float attack;
+    float price;
+    int   type;
     
 	
 private:

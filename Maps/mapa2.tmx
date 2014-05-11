@@ -80,13 +80,13 @@
  <objectgroup name="Metadatos" width="64" height="32">
   <properties>
    <property name="NumOleadas" value="7"/>
-   <property name="O1" value="1,1,1,1,1,1,1"/>
-   <property name="O2" value="1,2,1,2,1,2"/>
-   <property name="O3" value="1,2,1,2,1,2,1,2"/>
-   <property name="O4" value="1,2,1,2,1,2,1,2,1,2"/>
-   <property name="O5" value="1,2,1,2,1,2,1,2,1,2,1,2,1"/>
-   <property name="O6" value="1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2"/>
-   <property name="O7" value="1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1"/>
+   <property name="O1" value="1,1,1,1,1,1"/>
+   <property name="O2" value="1,1,1,1,2,2"/>
+   <property name="O3" value="1,2,1,1,2,1"/>
+   <property name="O4" value="1,1,1,2,1,1,2,1,2"/>
+   <property name="O5" value="1,2,1,1,2,2,1,1,2"/>
+   <property name="O6" value="2,1,1,2,2,1,2,1,1,2,1,2"/>
+   <property name="O7" value="1,1,2,2,2,2,1,2,2,2,2,2"/>
    <property name="RespawnNPC" value="0.7"/>
    <property name="RespawnOleada" value="5"/>
    <property name="VidaPortal" value="100"/>

@@ -16,8 +16,29 @@
 
 namespace Parameters{
     enum ID{
+   //******** HABILIDADES
+        
+        habilityDobleJump, habilityAngularShot,  // serán 0 o 1
+        
+   //******** ECONOMIA     
+   
+        priceImproveInit, priceImproveIncrement,  // Globales
+        
+        priceBuyTowerTwo, priceBuyTowerThree,           // Towers
+        pricePutTowerOne, pricePutTowerTwo, pricePutTowerThree,
+        
+        priceBuyBulletTwo, priceBuyBulletThree,         // Bullet
+        
+        priceLeaveEnemyDenom,
+        priceLeaveEnemyOne, priceLeaveEnemyTwo, priceLeaveEnemyThree, // Enemy
+        
+        
+        
+                
+   //******** MEJORAS
+                
         credit, maxLevelImproves, maxLevelWaves,                // GLOBAL
-        unlockedGuns, unlockedBullets,
+        unlockedGuns, unlockedBullets, unlockedTowers,
         countingLevels, countingWaves,
         worldLifeLevel, worldLifeInitValue, worldLifeIncrement,
         //currentGun, currentBullet,
@@ -39,6 +60,9 @@ namespace Parameters{
         enemyTwoSpeedLevel, enemyTwoSpeedInitValue,
         enemyTwoAttackLevel, enemyTwoAttackInitValue,
         
+        enemyThreeLifeLevel, enemyThreeLifeInitValue,           // ENEMY THREE
+        enemyThreeSpeedLevel, enemyThreeSpeedInitValue,
+        enemyThreeAttackLevel, enemyThreeAttackInitValue,
         
         
         towerOneDamageLevel, towerOneDamageInitValue, towerOneDamageIncrement,      // TOWER ONE
@@ -49,6 +73,9 @@ namespace Parameters{
         towerTwoCadencyLevel, towerTwoCadencyInitValue, towerTwoCadencyMinValue,
         towerTwoRangeLevel, towerTwoRangeInitValue, towerTwoRangeIncrement,
         
+        towerThreeDamageLevel, towerThreeDamageInitValue, towerThreeDamageIncrement,      // TOWER THREE
+        towerThreeCadencyLevel, towerThreeCadencyInitValue, towerThreeCadencyMinValue,
+        towerThreeRangeLevel, towerThreeRangeInitValue, towerThreeRangeIncrement,
         
         
         playerLifeLevel, playerLifeInitValue, playerLifeIncrement,    // PLAYER
@@ -102,15 +129,24 @@ public:
     float       GetTowerTwoCadency();
     float       GetTowerTwoRange();
     
+    float       GetTowerThreeDamage();
+    float       GetTowerThreeCadency();
+    float       GetTowerThreeRange();
+    
     float       GetEnemyOneLife();
     float       GetEnemyOneSpeed();
     float       GetEnemyOneAttack();
+    float       GetEnemyOnePrice();
     
     float       GetEnemyTwoLife();
     float       GetEnemyTwoSpeed();
     float       GetEnemyTwoAttack();
+    float       GetEnemyTwoPrice();
     
-    
+    float       GetEnemyThreeLife();
+    float       GetEnemyThreeSpeed();
+    float       GetEnemyThreeAttack();
+    float       GetEnemyThreePrice();
     
     bool loaded = false;
     

@@ -33,7 +33,14 @@ void NewTowerState::AddTower(){
 
     float cred = StringUtils::ParseFloat(StatusManager::Instance()->GetValue(Parameters::credit));
     
-    if(cred - 10.f >= 0.f)
+    if(selectedTower==1)
+        cred -= StatusManager::Instance()->GetFloat(Parameters::pricePutTowerOne);
+    else if(selectedTower==2)
+        cred -= StatusManager::Instance()->GetFloat(Parameters::pricePutTowerTwo);
+    else
+        cred -= StatusManager::Instance()->GetFloat(Parameters::pricePutTowerThree);
+    
+    if(cred>= 0.f)
     {
         Vector posAux = Vector();
         posAux = tower->GetPosition();
@@ -47,13 +54,13 @@ void NewTowerState::AddTower(){
             tower = EntityFactory::CreateTowerOne(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
         else if(selectedTower==2)
             tower = EntityFactory::CreateTowerTwo(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
-        
+        else
+            tower = EntityFactory::CreateTowerThree(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
         
         tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
 
-        cred -= 10.f;
-        if(cred < 0.f) cred = 0.f;
-        StatusManager::Instance()->SetValue(Parameters::credit, StringUtils::ConvertFloat(cred));
+        
+        StatusManager::Instance()->SetValue(Parameters::credit, StringUtils::ConvertInt((int)cred));
         WorldState::Instance()->hud->SetCreditText(StringUtils::ConvertFloat(cred) + " $");
     }
 }
@@ -88,7 +95,9 @@ void NewTowerState::Init() {
         tower = EntityFactory::CreateTowerOne(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
     else if(selectedTower==2)
         tower = EntityFactory::CreateTowerTwo(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
-        
+    else
+        tower = EntityFactory::CreateTowerThree(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
+           
     tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
 }
 
