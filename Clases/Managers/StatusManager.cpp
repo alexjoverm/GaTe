@@ -119,7 +119,7 @@ void StatusManager::ResetParameters()
  //******************* VARIABLES
     
     // GLOBALES
-    map.insert(std::make_pair(Parameters::countingLevels, "1"));     // Nivel por el que se va
+    map.insert(std::make_pair(Parameters::countingLevels, "3"));     // Nivel por el que se va
     map.insert(std::make_pair(Parameters::countingWaves, "1"));      // Oleada por la que se va
     map.insert(std::make_pair(Parameters::maxLevelImproves, "20"));
     map.insert(std::make_pair(Parameters::maxLevelWaves, "50"));

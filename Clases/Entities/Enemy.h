@@ -54,6 +54,7 @@ public:
     float attack;
     float price;
     int   type;
+    bool alternativeRoute;
     
 	
 private:

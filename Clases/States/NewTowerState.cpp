@@ -108,6 +108,7 @@ void NewTowerState::Init() {
         else
             tower3->SetFrame(1);
     
+    
     if(selectedTower==1)
         tower = EntityFactory::CreateTowerOne(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
     else if(selectedTower==2)
@@ -182,6 +183,9 @@ void NewTowerState::Update(const Time& timeElapsed)
             tower3->SetFrame(2);
         else
             tower3->SetFrame(1);
+        
+        tower = EntityFactory::CreateTowerOne(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
+        tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
     }
     if(tower2->IsClicked() && tower2->currentFrame != 2){
         
@@ -193,20 +197,26 @@ void NewTowerState::Update(const Time& timeElapsed)
             tower3->SetFrame(2);
         else
             tower3->SetFrame(1);
+        
+        tower = EntityFactory::CreateTowerTwo(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
+        tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
     }
     if(tower3->IsClicked() && tower3->currentFrame != 2){
         selectedTower = 3;
         
-        tower1->SetFrame(0);
+        tower1->SetFrame(1);
         if(StatusManager::Instance()->GetInt(Parameters::ID::unlockedTowers) < 2 )
             tower2->SetFrame(2);
         else
             tower2->SetFrame(1);
         
         tower3->SetFrame(0);
+        
+        tower = EntityFactory::CreateTowerThree(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
+        tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
     }
 
-    if(inputManager->IsClickedMouseLeft() && rightPlace)
+    if(inputManager->IsClickedMouseLeft() && rightPlace && !tower1->IsHover() && !tower2->IsHover() && !tower3->IsHover())
         AddTower();
 
     
@@ -237,8 +247,8 @@ void NewTowerState::Render(float interp)
         aux.y -= tower->GetSprite()->getGlobalBounds().GetHeight()/2;
     
         tower->SetPosition(Vector(aux.x, aux.y));
-        
-        tower->Draw(*window);
+        if(!tower1->IsHover() && !tower2->IsHover() && !tower3->IsHover())
+                tower->Draw(*window);
         
         
         

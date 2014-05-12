@@ -86,22 +86,43 @@ void WaveManager::InsertEnemy()
 {
     WorldState* w = WorldState::Instance();
     Enemy* foe;
+    Enemy* foe2;
     
+    // Si hay dos rutas duplicamos los enemigos en cada ruta
     
-    if(vEnemies.at(waveCounter-1).at(enemyCounter) == 1) // Enemigo tipo 1
+    if(vEnemies.at(waveCounter-1).at(enemyCounter) == 1){ // Enemigo tipo 1
         foe= EntityFactory::CreateEnemyOne(*w->vPath->at(0));
-    else if(vEnemies.at(waveCounter-1).at(enemyCounter) == 2) // Tipo 2
+        if(WorldState::Instance()->doublePath){
+            foe2= EntityFactory::CreateEnemyOne(*w->vPathAux->at(0));
+            foe2->alternativeRoute = true;
+        }
+    }
+    else if(vEnemies.at(waveCounter-1).at(enemyCounter) == 2){ // Tipo 2
         foe= EntityFactory::CreateEnemyTwo(*w->vPath->at(0));
-    else
+        if(WorldState::Instance()->doublePath){
+            foe2= EntityFactory::CreateEnemyTwo(*w->vPathAux->at(0));
+            foe2->alternativeRoute = true;
+        }
+    }
+    else{
         foe= EntityFactory::CreateEnemyThree(*w->vPath->at(0));
+        if(WorldState::Instance()->doublePath){
+            foe2= EntityFactory::CreateEnemyThree(*w->vPathAux->at(0));
+            foe2->alternativeRoute = true;
+        }
+    }
         
     w->AddColisionableEntity(foe);
-    w->AddEnemy(foe);		
+    w->AddEnemy(foe);	
     
+    if(WorldState::Instance()->doublePath){
+        w->AddColisionableEntity(foe2);
+        w->AddEnemy(foe2);
+    }
     
     
     // Actualizamos contadores y comprobamos la situación
-    enemyCounter++; 
+    enemyCounter++;     
     
     if(enemyCounter == vEnemies.at(waveCounter-1).size()){ // Fin de Racha
         state = Wave::State::Waiting;

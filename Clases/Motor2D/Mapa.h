@@ -40,6 +40,7 @@ public:
     std::string                         GetLayerData(std::string layerName , std::string dataName);
     std::string                         GetObjectData(std::string layerName ,int objectNumber , std::string dataName);
     Vector*                             GetRandomPowerUpPos();
+    Vector                              GetPlayerPosition();
     std::vector<int>                    GetWave(int wave);
     
 private:

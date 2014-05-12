@@ -129,6 +129,21 @@ Vector* Mapa::GetRandomPowerUpPos(){
                 );
 }
 
+Vector Mapa::GetPlayerPosition(){
+
+    std::string str = GetMetadata("PuntoInicio");
+    
+    unsigned pos = str.find(",");
+    
+    float x = StringUtils::ParseFloat(str.substr(0,pos));
+    float y = StringUtils::ParseFloat(str.substr(pos+1));
+    std::cout << str <<std::endl;
+    std::cout << str.substr(0,pos-1) <<std::endl;
+    std::cout << str.substr(pos) <<std::endl;
+    std::cout << x <<" , " << y << std::endl;
+    return Vector(x,y);
+}
+
 std::vector<int> Mapa::GetWave(int wave){
 
     std::vector<int> vec = std::vector<int>();
@@ -215,5 +230,16 @@ void Mapa::LoadPath(){
         );
     }
     
+    if(layer.objects.size() > 1){
+        WorldState::Instance()->doublePath = true;
+        
+        for (int i = 1 ; i < tmx::MapObject(layer.objects.at(1)).PolyPoints().size()-1 ; i++ ){
+        WorldState::Instance()->AddTraceAux(new Vector(
+                        sf::Vector2f(tmx::MapObject(layer.objects.at(1)).PolyPoints().at(i)).x,
+                        sf::Vector2f(tmx::MapObject(layer.objects.at(1)).PolyPoints().at(i)).y
+                ) 
+        );
+        }   
+    }
 }
 

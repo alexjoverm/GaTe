@@ -21,7 +21,7 @@ Enemy::Enemy(const sf::Texture& tex, const Vector& size): EntActive(tex), Colisi
     this->SetSizeTile((int)size.GetX(), (int)size.GetY());
     this->GetSprite()->SetNumRowsColumns();
     
-    isMoving = isReverse = false;
+    isMoving = isReverse = alternativeRoute = false;
 }
 
 Enemy::Enemy(const sf::Texture& tex, const Vector& size, const Vector& pos, const Vector& vel, const Vector& maxvel): EntActive(tex, pos, vel, maxvel), Colisionable(this), Animable(spriteSheet){
@@ -37,7 +37,7 @@ Enemy::Enemy(const sf::Texture& tex, const Vector& size, const Vector& pos, cons
     this->SetSizeTile((int)size.GetX(), (int)size.GetY());
     this->GetSprite()->SetNumRowsColumns();
     
-    isMoving = isReverse = false;
+    isMoving = isReverse = alternativeRoute = false;
 }
 
 Enemy::Enemy(const Enemy& orig): EntActive(orig), Colisionable((EntActive*)this), Animable(spriteSheet) {
@@ -120,9 +120,17 @@ void Enemy::routeMove(){
     if(this->GetSpeed().GetY() > 0)
         top = false;
     
+    int pathSize;
+    Vector* auxRoute;
     
-    Vector* auxRoute = WorldState::Instance()->vPath->at(route);
-    
+    if(alternativeRoute){
+        pathSize = WorldState::Instance()->vPathAux->size() - 1;
+        auxRoute = WorldState::Instance()->vPathAux->at(route);
+    }    
+    else{
+        pathSize = WorldState::Instance()->vPath->size() - 1;
+        auxRoute = WorldState::Instance()->vPath->at(route);
+    }
     prevIntersects = intersects;
     
     if(GetRectangleColisionAbsolute().IsInside(*auxRoute))
@@ -153,7 +161,7 @@ void Enemy::routeMove(){
     
     
     if(intersects)
-        if(route >= WorldState::Instance()->vPath->size() - 1)
+        if(route >= pathSize)
             win=true;
         
 }

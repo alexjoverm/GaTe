@@ -66,8 +66,8 @@ void Camera::Init(Player* player){
     
         //** MINI-MAPA (seguirá a la vista 'standard')  *************
     
-        unsigned int sizex = mapSize->GetX()/6;
-        unsigned int sizey = mapSize->GetY()/3;
+        unsigned int sizex = 375;
+        unsigned int sizey = 280;
         minimap = sf::View(sf::FloatRect(standard.getCenter().x,standard.getCenter().y,static_cast<float>(sizex),static_cast<float>(window->getSize().y*sizey/window->getSize().x)));
     
         //Calculamos proporcion entre MiniMap y Pantalla. Asi podremos definir el tamaño con porcentajes
@@ -83,8 +83,8 @@ void Camera::Init(Player* player){
         minimap.zoom(5.0f); //Zoom funciona a la inversa
     
         //Dibujamos un rectangulo alrededor del minimapa
-        miniback->setSize( sf::Vector2f( static_cast<float>(sizex)+6,static_cast<float>(window->getSize().y*sizey/window->getSize().x)-15 ) );
-        miniback->setPosition( minimap.getViewport().left*window->getSize().x-3, minimap.getViewport().top*window->getSize().y+15 );
+        miniback->setSize( sf::Vector2f( static_cast<float>(sizex)+10,static_cast<float>(window->getSize().y*sizey/window->getSize().x)+10 ) );
+        miniback->setPosition( minimap.getViewport().left*window->getSize().x-5, minimap.getViewport().top*window->getSize().y-5 );
         miniback->setFillColor(sf::Color(255,0,0,100));
     
         
@@ -116,11 +116,21 @@ void Camera::Init(Player* player){
         
         standard.setCenter(posIniXCam , posIniYCam);
         
+        // Posicion controlada de la view standard
+        posIniXCam = posPlayer.GetX();
+        posIniYCam = posPlayer.GetY();
         
+        // Reajuste en X
+        if( ((posPlayer.GetX() + minimap.getSize().x / 2) - mapSize->GetX()) > 0 )
+            posIniXCam -=  ( (posPlayer.GetX() + minimap.getSize().x / 2) - mapSize->GetX() ) ;
+        else if( (posPlayer.GetX() - minimap.getSize().x / 2) < 0 )
+            posIniXCam += std::abs(posPlayer.GetX() - minimap.getSize().x / 2) + player->GetRectangleColisionAbsolute().GetWidth()/2 ;
         
-        // Esto es para el eje ARRIBA-DERECHA
-        posIniXCam -= posIniXCam*proporcion.x;
-        posIniYCam += posIniYCam*proporcion.y;
+        // Reajuste en Y
+        if( (posPlayer.GetY() - minimap.getSize().y / 2) < 0 )
+            posIniYCam +=  std::abs( posPlayer.GetY() - minimap.getSize().y / 2 ) ;
+        else if( (posPlayer.GetY() + minimap.getSize().y / 2) > mapSize->GetY() )
+            posIniYCam -= std::abs((posPlayer.GetY() + minimap.getSize().y / 2) - mapSize->GetY() ) ;
         
         minimap.setCenter(posIniXCam , posIniYCam);
 }       

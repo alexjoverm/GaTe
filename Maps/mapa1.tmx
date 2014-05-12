@@ -27,8 +27,8 @@
  <tileset firstgid="7433" name="Paralax1" tilewidth="32" tileheight="32">
   <image source="capa1.png" width="2048" height="1020"/>
  </tileset>
- <tileset firstgid="9417" name="Paralax4" tilewidth="32" tileheight="32">
-  <image source="capa3.png" width="2048" height="1020"/>
+ <tileset firstgid="9417" name="plataformas" tilewidth="32" tileheight="32">
+  <image source="plataformas.png" width="608" height="352"/>
  </tileset>
  <layer name="Fondo" width="64" height="32">
   <data encoding="base64" compression="zlib">
@@ -37,7 +37,7 @@
  </layer>
  <layer name="Paralax3" width="64" height="32">
   <data encoding="base64" compression="zlib">
-   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
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAgHcDIAAAAQ==
   </data>
  </layer>
  <layer name="Paralax2" width="64" height="32">
@@ -62,7 +62,7 @@
  </layer>
  <layer name="Primaria" width="64" height="32">
   <data encoding="base64" compression="zlib">
-   eJztmIkKwjAQRBvP//9F7/u+qhWdIIUQYohNJeLOg0ehsEtCyTJplhFCCCH10oN9OIBDOIJjOIFTOINzuIDLGmt/hRVcww3cwh3cwwM8whM8wwvMa6wlJIS2Sr2CtHSE77+r4ueqPaft+iu8wQLe4UMXqbD57lpP2S+0l9nT9Yydq/acDq0Pme+h6/H1Mnu6noT4KM9bedZIWszvwW9CyIuqc0rnC1f2iHnnyy1F9j63pLjT6nzhyh4x76rmFt5pyaf8w3+iGCT9J/pGFlXC81ND+P6bwvffEr5/6TwB7U3vdg==
+   eJztmOlOAjEURjso8CR9CheQxQVlcwPRUd//EVyix5BJyMCMs5ES+p3k/Jvb9KbpzdcxRgghhKiWI2vMMZ7gKbawjZd4hQO8xhsc2upqd4UR+xrjBKd4i3f4jC8Y4iu+4butrlaILNQD1ztwS8Pz/pv0f87suCgxV+NzOl7/wTef+IXf+PNXFCTP9zPspOwnWi/PWl3sYd+u9/uEixJzNT6ns9Ynzfd7fMi5n//WesQZzjf0K0Qa0X2L7ppwy+p56EyEWFJ0TmXJCIMCuSItByXlFhdv2iwZISyQK4rkFr1pRV724T9RGXz6T7SNLBp4np9qnvd/4Hn/h5737zu/d1aBBw==
   </data>
  </layer>
  <objectgroup name="Camino" width="64" height="32" visible="0">
@@ -97,22 +97,19 @@
  <objectgroup name="Metadatos" width="64" height="32">
   <properties>
    <property name="NumOleadas" value="7"/>
-   <property name="O1" value="1,1,1,1,1,1,1"/>
-   <property name="O2" value="1,2,1,2,1,2"/>
-   <property name="O3" value="1,2,1,2,1,2,1,2"/>
+   <property name="O1" value="1,1,1,1,1,1"/>
+   <property name="O2" value="1,1,2,1,1,2"/>
+   <property name="O3" value="1,1,2,2,1,2,1,2"/>
    <property name="O4" value="1,2,1,2,1,2,1,2,1,2"/>
-   <property name="O5" value="1,2,1,2,1,2,1,2,1,2,1,2,1"/>
+   <property name="O5" value="1,2,2,2,1,1,1,2,2,1"/>
    <property name="O6" value="1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2"/>
-   <property name="O7" value="1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1"/>
+   <property name="O7" value="1,2,2,2,2,1,1,2,2,1,1,2,2,2,1,1"/>
+   <property name="PuntoInicio" value="93,870"/>
    <property name="RespawnNPC" value="0.7"/>
    <property name="RespawnOleada" value="5"/>
-   <property name="VidaPortal" value="100"/>
   </properties>
   <object x="0" y="2">
    <polyline points="0,0 378,268 906,102 1410,106 1848,290 106,526 674,548 1422,678 1936,550 1122,798 426,806 2046,1016"/>
-  </object>
-  <object x="2012" y="-400">
-   <polyline points="0,0"/>
   </object>
  </objectgroup>
 </map>

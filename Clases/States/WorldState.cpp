@@ -39,6 +39,7 @@ WorldState::WorldState() {
     vChanges = new std::vector<TemporalChange*>();
     vPowers = new std::vector<PowerUp*>();
     vPath = new std::vector<Vector*>();
+    vPathAux = new std::vector<Vector*>();
     vEnemies = new std::deque<Enemy*>();
 	
 	// Eventos
@@ -74,6 +75,10 @@ WorldState::~WorldState() {
     while(!vPath->empty()) 
 		delete vPath->back(), vPath->pop_back();
 	delete vPath;
+        
+    while(!vPathAux->empty()) 
+		delete vPathAux->back(), vPathAux->pop_back();
+	delete vPathAux;
     
     while(!vTowers->empty()) 
 		delete vTowers->back(), vTowers->pop_back();
@@ -119,6 +124,7 @@ void WorldState::LoadResources()
 	try{
         
         //sf::Lock lock(mMutex);
+        doublePath =  false;
         level = new Level();
         //AddLevelTexture("Recursos/enemy1.png");
 
@@ -135,7 +141,7 @@ void WorldState::LoadResources()
 
         //Texturas Seleccion Torretas 
         for(int i = 1 ; i <= 3 ; i++)
-                resourceManager->AddTexture("texButtonTower" + StringUtils::ConvertInt(i), "Recursos/Buttons/SiNo.png");        
+                resourceManager->AddTexture("texButtonTower" + StringUtils::ConvertInt(i), "Recursos/Buttons/botonTorreta"+ StringUtils::ConvertInt(i)+".png");        
         
         level->LoadMap(mapName);
 
@@ -200,7 +206,6 @@ void WorldState::Init() {
 //**************** Inicializaciones
 	firstUpdate=false;
     
-    
         requestStateChange = std::make_pair(States::ID::LoadingState,false);
     
 //**************** Mapa y Level
@@ -234,7 +239,7 @@ void WorldState::Init() {
 //***************** Entities
     
 	// Inicializamos Player
-	player = new Player(resourceManager->GetTexture("texPj"), Vector(200, 148), Vector(1700.f, 220.f));
+	player = new Player(resourceManager->GetTexture("texPj"), Vector(200, 148), level->map->GetPlayerPosition());
     player->SetRectangleColision(70, 25, 70, 120);
     //player->SetColor(sf::Color(255,255,255, 105));
     
@@ -303,6 +308,9 @@ void WorldState::Clean(){
     
     while(!vPath->empty()) 
 		delete vPath->back(), vPath->pop_back();
+    
+    while(!vPathAux->empty()) 
+		delete vPathAux->back(), vPathAux->pop_back();
     
     while(!vTowers->empty()) 
 		delete vTowers->back(), vTowers->pop_back();
@@ -482,26 +490,6 @@ void WorldState::Render(float interp)
     cam->SetCurrentView(Views::Type::Standard);
     
     level->renderMap();
-	
-    /*
-        Rectangle aux = vEnemies->at(0)->GetRectangleColisionAbsolute();
-
-        sf::RectangleShape rec = sf::RectangleShape();
-        rec.setPosition(aux.GetTopLeft().GetX(), aux.GetTopLeft().GetY());
-        rec.setSize(sf::Vector2f(aux.GetWidth(), aux.GetHeight()));
-        rec.setFillColor(sf::Color::Blue);
-
-        window->Draw(rec);
-
-
-        for(int i=0; i<vPath->size(); i++){
-            cir = sf::CircleShape();
-            cir.setPosition(vPath->at(i)->GetX(), vPath->at(i)->GetY());
-            cir.setRadius(3.f);
-            cir.setFillColor(sf::Color::Black);
-            window->renderWindow->draw(cir);
-        }
-     */
     
 	// Renderizamos entidades	
     for(int i = 0; i < vEntityStatic->size(); i++)

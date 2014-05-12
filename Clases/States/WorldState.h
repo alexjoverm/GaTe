@@ -58,6 +58,7 @@ public:
     void AddLevelTexture(const std::string tex){ level->AddTextureFile(tex); }
     
     void AddTrace(Vector* ent){ vPath->push_back(ent); }
+    void AddTraceAux(Vector* ent){ vPathAux->push_back(ent); }
    Level*		level;
  
 // Entities
@@ -89,6 +90,7 @@ public:
 	Player*		player;
 	
     std::vector<Vector*>		*vPath;
+    std::vector<Vector*>		*vPathAux;
     std::vector<Tower*>         *vTowers;
     std::vector<PowerUp*>       *vPowers;
     std::deque<Enemy*>          *vEnemies;
@@ -98,7 +100,8 @@ public:
 	std::deque<EntActive*>		*vEntityActive;
 	std::deque<Colisionable*>	*vEntityColisionable;
 	
-    bool      showTowerRange;
+    bool        showTowerRange;
+    bool        doublePath;
 	
     // HUD
     HUD*     hud;
