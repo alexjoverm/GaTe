@@ -49,8 +49,8 @@ void MenuState::LoadResources(){
 		// Texturas
 		resourceManager->AddTexture("texBackground", "Recursos/Screens/fondoMenu.jpg");
         resourceManager->AddTexture("texDialogBack", "Recursos/Screens/fondoVentana.jpeg");
-        resourceManager->AddTexture("texDialogYes", "Recursos/PowerUps/power1.png");
-        resourceManager->AddTexture("texDialogNo", "Recursos/PowerUps/power2.png");
+        resourceManager->AddTexture("texDialogYes", "Recursos/Buttons/SiNo.png");
+        resourceManager->AddTexture("texDialogNo", "Recursos/Buttons/SiNo.png");
 		
 		// Fuente
 		resourceManager->AddFont("Urban", "Recursos/Urban_Stone.otf");
@@ -96,8 +96,9 @@ void MenuState::Init() {
     backgroundDialog->SetPosition(posDialog);
     
     
-    dialogNo = new ImageButton(posDialog.GetX()+50.f, posDialog.GetY()+100.f, 1, resourceManager->GetTexture("texDialogNo"));
-    dialogYes = new ImageButton(posDialog.GetX()+200.f, posDialog.GetY()+100.f ,1,resourceManager->GetTexture("texDialogYes"));
+    dialogNo = new ImageButton(posDialog.GetX()+50.f, posDialog.GetY()+100.f, 2, resourceManager->GetTexture("texDialogNo"));
+    dialogNo->SetFrame(1);
+    dialogYes = new ImageButton(posDialog.GetX()+200.f, posDialog.GetY()+100.f ,2,resourceManager->GetTexture("texDialogYes"));
     
     for(int i=0; i<6; i++)         //  x   ,  y,            contenido
         vButtons->push_back(new Button(512.f, 380.f + 50.f*i, ""));

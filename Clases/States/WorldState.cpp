@@ -127,13 +127,15 @@ void WorldState::LoadResources()
             resourceManager->AddTexture("texLevel" + StringUtils::ConvertInt(i) , level->vTextures->at(i));
         
         // Texturas PowerUps
-        for(int i = 0 ; i < 6 ; i++)
+        for(int i = 0 ; i < 5 ; i++)
             resourceManager->AddTexture("texPower" + StringUtils::ConvertInt(i), "Recursos/PowerUps/power"+StringUtils::ConvertInt(i)+".png");
         // Texturas PowerUps
         for(int i = 0 ; i < 5 ; i++)
                 resourceManager->AddTexture("miniPower" + StringUtils::ConvertInt(i), "Recursos/PowerUps/activePower"+StringUtils::ConvertInt(i)+".png");
 
-
+        //Texturas Seleccion Torretas 
+        for(int i = 1 ; i <= 3 ; i++)
+                resourceManager->AddTexture("texButtonTower" + StringUtils::ConvertInt(i), "Recursos/Buttons/SiNo.png");        
         
         level->LoadMap(mapName);
 

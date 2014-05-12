@@ -91,6 +91,23 @@ void NewTowerState::Init() {
     overlay->setPosition(pos);
     overlay->setSize(size);
     
+    // 0 = seleccionado, 1 = disponible , 2 = no disponible
+    tower1 = new ImageButton(pos.x+((window->width/2)-150), pos.y, 3, resourceManager->GetTexture("texButtonTower1"));
+    tower1->SetFrame(0);
+    
+    tower2 = new ImageButton(pos.x+ ((window->width/2)-150) + 100.f, pos.y, 3, resourceManager->GetTexture("texButtonTower2"));
+    
+        if(StatusManager::Instance()->GetInt(Parameters::ID::unlockedTowers) < 2 )
+            tower2->SetFrame(2);
+        else
+            tower2->SetFrame(1);
+    
+    tower3 = new ImageButton(pos.x+((window->width/2)-150) + 200.f, pos.y, 3, resourceManager->GetTexture("texButtonTower3"));
+        if(StatusManager::Instance()->GetInt(Parameters::ID::unlockedTowers) < 3 )
+            tower3->SetFrame(2);
+        else
+            tower3->SetFrame(1);
+    
     if(selectedTower==1)
         tower = EntityFactory::CreateTowerOne(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
     else if(selectedTower==2)
@@ -152,7 +169,40 @@ void NewTowerState::Update(const Time& timeElapsed)
         tower->SetRangeColor(sf::Color(255,0,0, 100));
         posY = -1.f;
     }
-    
+
+    if(tower1->IsClicked() && tower1->currentFrame != 2){
+        selectedTower = 1;
+        tower1->currentFrame = 0;
+        if(StatusManager::Instance()->GetInt(Parameters::ID::unlockedTowers) < 2 )
+            tower2->SetFrame(2);
+        else
+            tower2->SetFrame(1);
+        
+        if(StatusManager::Instance()->GetInt(Parameters::ID::unlockedTowers) < 3 )
+            tower3->SetFrame(2);
+        else
+            tower3->SetFrame(1);
+    }
+    if(tower2->IsClicked() && tower2->currentFrame != 2){
+        selectedTower = 2;
+        tower1->currentFrame = 1;
+        tower2->currentFrame = 0;
+        if(StatusManager::Instance()->GetInt(Parameters::ID::unlockedTowers) < 3 )
+            tower3->SetFrame(2);
+        else
+            tower3->SetFrame(1);
+    }
+    if(tower3->IsClicked() && tower3->currentFrame != 2){
+        selectedTower = 3;
+        
+        tower1->currentFrame = 0;
+        if(StatusManager::Instance()->GetInt(Parameters::ID::unlockedTowers) < 2 )
+            tower2->SetFrame(2);
+        else
+            tower2->SetFrame(1);
+        
+        tower3->currentFrame = 0;
+    }
 
     if(inputManager->IsClickedMouseLeft() && rightPlace)
         AddTower();
@@ -188,7 +238,13 @@ void NewTowerState::Render(float interp)
         
         tower->Draw(*window);
         
+        
+        
         WorldState::Instance()->GetCamera()->SetCurrentView(Views::Type::Fixed);
+        
+        tower1->Draw(*window);
+        tower2->Draw(*window);
+        tower3->Draw(*window);
         
  // HUD
 	window->Display();

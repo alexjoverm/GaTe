@@ -10,6 +10,7 @@
 
 #include "State.h"
 #include "../Entities/Tower.h"
+#include "../HUD/ImageButton.h"
 
 class NewTowerState : public State{
 public:
@@ -41,6 +42,8 @@ private:
     sf::RectangleShape*  overlay;
     
     float posY;
+    
+    ImageButton *tower1,*tower2,*tower3;
         
 };
 

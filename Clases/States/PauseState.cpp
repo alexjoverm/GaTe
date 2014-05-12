@@ -67,17 +67,17 @@ void PauseState::Init() {
     
     //for(int i=0; i<6; i++)         //  x   ,  y,            contenido
     
-    float posIniYtexts = bY + 100.f;
+    float posIniYtexts = bY + 150.f;
         
-    vButtons->push_back(new Button(bX  +  80.f, posIniYtexts, ""));
-    vButtons->push_back(new Button(bX  +  80.f, posIniYtexts + 60.f, ""));
-    vButtons->push_back(new Button(bX  +  80.f, posIniYtexts + 120.f, ""));
+    vButtons->push_back(new Button(bX  +  250.f, posIniYtexts, ""));
+    vButtons->push_back(new Button(bX  +  250.f, posIniYtexts + 60.f, ""));
+    vButtons->push_back(new Button(bX  +  250.f, posIniYtexts + 120.f, ""));
 
     if(WorldState::Instance()->estado != 2)
-        continuarS->SetPosition(Vector(bX + 20.f , posIniYtexts - 10.f));
+        continuarS->SetPosition(Vector(bX + 190.f , posIniYtexts - 10.f));
     
-    seleccionS->SetPosition(Vector(bX + 20.f , posIniYtexts + 50.f));
-    menuS->SetPosition(Vector( bX + 20.f , posIniYtexts + 110.f));
+    seleccionS->SetPosition(Vector(bX + 190.f , posIniYtexts + 50.f));
+    menuS->SetPosition(Vector( bX + 190.f , posIniYtexts + 110.f));
     
     if(WorldState::Instance()->estado == 0)  // pausa
         vButtons->at(0)->SetText("Continuar");
