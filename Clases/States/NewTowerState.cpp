@@ -21,12 +21,14 @@ NewTowerState::NewTowerState() {
 	inputManager = InputManager::Instance();
         
     id = States::ID::TowerSelectionState;
+    
 }
 
 NewTowerState::NewTowerState(const NewTowerState& orig) {
 }
 
 NewTowerState::~NewTowerState() {
+    
 }
 
 void NewTowerState::AddTower(){
@@ -50,18 +52,32 @@ void NewTowerState::AddTower(){
 
         WorldState::Instance()->AddTower(tower);
 
-        if(selectedTower==1)
+        StatusManager::Instance()->SetValue(Parameters::credit, StringUtils::ConvertInt((int)cred));
+        WorldState::Instance()->hud->SetCreditText(StringUtils::ConvertFloat(cred) + " $");
+        
+         if(selectedTower==1){
             tower = EntityFactory::CreateTowerOne(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
-        else if(selectedTower==2)
+            if(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerOne) > cred)
+                price->setColor(sf::Color(250,0,0,200));
+        }
+        else if(selectedTower==2){
             tower = EntityFactory::CreateTowerTwo(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
-        else
+            if(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerTwo) > cred  )
+                price->setColor(sf::Color(250,0,0,200));
+        }
+        else{
             tower = EntityFactory::CreateTowerThree(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
+            if(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerThree) > cred )
+                price->setColor(sf::Color(250,0,0,200));
+        }
         
         tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
 
         
-        StatusManager::Instance()->SetValue(Parameters::credit, StringUtils::ConvertInt((int)cred));
-        WorldState::Instance()->hud->SetCreditText(StringUtils::ConvertFloat(cred) + " $");
+        
+        
+        
+        
     }
 }
 
@@ -91,6 +107,12 @@ void NewTowerState::Init() {
     overlay->setPosition(pos);
     overlay->setSize(size);
     
+    price = new sf::Text();
+    price->setFont(ResourceManager::Instance()->GetFont("Urban"));
+    price->setCharacterSize(35);
+    price->setStyle(sf::Text::Bold);
+    
+    
     // 0 = seleccionado, 1 = disponible , 2 = no disponible
     tower1 = new ImageButton(pos.x+((window->width/2)-150), pos.y, 3, resourceManager->GetTexture("texButtonTower1"));
     tower1->SetFrame(0);
@@ -109,13 +131,30 @@ void NewTowerState::Init() {
             tower3->SetFrame(1);
     
     
-    if(selectedTower==1)
+    if(selectedTower==1){
         tower = EntityFactory::CreateTowerOne(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
-    else if(selectedTower==2)
+        price->setString(StringUtils::ConvertFloat(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerOne)));
+        if(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerOne) > StringUtils::ParseFloat(StatusManager::Instance()->GetValue(Parameters::credit)) )
+                price->setColor(sf::Color(250,0,0,200));
+        else
+            price->setColor(sf::Color(250,220,60,200));
+    }
+    else if(selectedTower==2){
         tower = EntityFactory::CreateTowerTwo(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
-    else
+        price->setString(StringUtils::ConvertFloat(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerTwo)));
+        if(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerTwo) > StringUtils::ParseFloat(StatusManager::Instance()->GetValue(Parameters::credit)) )
+                price->setColor(sf::Color(250,0,0,200));
+        else
+            price->setColor(sf::Color(250,220,60,200));
+    }
+    else{
         tower = EntityFactory::CreateTowerThree(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
-           
+        price->setString(StringUtils::ConvertFloat(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerThree)));
+        if(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerThree) > StringUtils::ParseFloat(StatusManager::Instance()->GetValue(Parameters::credit)) )
+                price->setColor(sf::Color(250,0,0,200));
+        else
+            price->setColor(sf::Color(250,220,60,200));
+    }       
     tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
 }
 
@@ -125,6 +164,7 @@ void NewTowerState::Clean(){
     delete tower; tower=NULL;
     delete posPlace; posPlace=NULL;
     delete overlay; overlay=NULL;
+    delete price; price = NULL;
 }
 
 
@@ -135,16 +175,15 @@ void NewTowerState::Update(const Time& timeElapsed)
 {
     
     inputManager->Update();
-              
     
     rightPlace = true;
+    
+    
     
     // Que no intersecte con ninguna otra torre y ningún rectángulo de colisión
     for(int i=0; i<WorldState::Instance()->vTowers->size() && rightPlace; i++)
         if(tower->GetSprite()->getGlobalBounds().Intersects(WorldState::Instance()->vTowers->at(i)->GetSprite()->getGlobalBounds()))
-            rightPlace=false;
-        
-    
+            rightPlace=false;          
     posY = -1.f;
     
     // Que esté entre los límites en X de los suelos
@@ -186,6 +225,12 @@ void NewTowerState::Update(const Time& timeElapsed)
         
         tower = EntityFactory::CreateTowerOne(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
         tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
+        
+        price->setString(StringUtils::ConvertFloat(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerOne)));
+        if(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerOne) > StringUtils::ParseFloat(StatusManager::Instance()->GetValue(Parameters::credit)) )
+           price->setColor(sf::Color(250,0,0,200));
+        else
+            price->setColor(sf::Color(250,220,60,200));
     }
     if(tower2->IsClicked() && tower2->currentFrame != 2){
         
@@ -200,6 +245,12 @@ void NewTowerState::Update(const Time& timeElapsed)
         
         tower = EntityFactory::CreateTowerTwo(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
         tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
+        
+        price->setString(StringUtils::ConvertFloat(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerTwo)));
+        if(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerTwo) > StringUtils::ParseFloat(StatusManager::Instance()->GetValue(Parameters::credit)) )
+                price->setColor(sf::Color(250,0,0,200));
+        else
+            price->setColor(sf::Color(250,220,60,200));
     }
     if(tower3->IsClicked() && tower3->currentFrame != 2){
         selectedTower = 3;
@@ -214,6 +265,12 @@ void NewTowerState::Update(const Time& timeElapsed)
         
         tower = EntityFactory::CreateTowerThree(Vector(sf::Mouse::getPosition(*window->renderWindow).x,sf::Mouse::getPosition(*window->renderWindow).y));
         tower->GetSprite()->GetSprite()->setTextureRect(tower->GetAnimatedSprite()->GetSpriteRect());
+        
+        price->setString(StringUtils::ConvertFloat(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerThree)));
+        if(StatusManager::Instance()->GetFloat(Parameters::pricePutTowerThree) > StringUtils::ParseFloat(StatusManager::Instance()->GetValue(Parameters::credit)) )
+                price->setColor(sf::Color(250,0,0,200));
+        else
+            price->setColor(sf::Color(250,220,60,200));
     }
 
     if(inputManager->IsClickedMouseLeft() && rightPlace && !tower1->IsHover() && !tower2->IsHover() && !tower3->IsHover())
@@ -245,11 +302,16 @@ void NewTowerState::Render(float interp)
         
         aux.x -= tower->GetSprite()->getGlobalBounds().GetWidth()/2;
         aux.y -= tower->GetSprite()->getGlobalBounds().GetHeight()/2;
-    
-        tower->SetPosition(Vector(aux.x, aux.y));
-        if(!tower1->IsHover() && !tower2->IsHover() && !tower3->IsHover())
-                tower->Draw(*window);
+            
         
+        tower->SetPosition(Vector(aux.x, aux.y));
+        price->setPosition(aux.x + tower->GetSprite()->getGlobalBounds().GetHeight()/4 , 
+                aux.y+tower->GetSprite()->getGlobalBounds().GetHeight());
+        
+        if(!tower1->IsHover() && !tower2->IsHover() && !tower3->IsHover()){
+                tower->Draw(*window);
+                window->Draw(*price);
+        }
         
         
         WorldState::Instance()->GetCamera()->SetCurrentView(Views::Type::Fixed);

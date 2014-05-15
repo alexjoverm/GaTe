@@ -44,6 +44,7 @@ private:
     float posY;
     
     ImageButton *tower1,*tower2,*tower3;
+    sf::Text    *price;
         
 };
 

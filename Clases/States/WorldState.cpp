@@ -159,9 +159,9 @@ void WorldState::LoadResources()
         resourceManager->AddTexture("texTowerTwo2", "Recursos/Sprites/towerTwo2.png");
         resourceManager->AddTexture("texTowerTwo3", "Recursos/Sprites/towerTwo3.png");
         
-        resourceManager->AddTexture("texTowerThree1", "Recursos/Sprites/towerThree.png");
-        resourceManager->AddTexture("texTowerThree2", "Recursos/Sprites/towerThree.png");
-        resourceManager->AddTexture("texTowerThree3", "Recursos/Sprites/towerThree.png");
+        resourceManager->AddTexture("texTowerThree1", "Recursos/Sprites/towerThree1.png");
+        resourceManager->AddTexture("texTowerThree2", "Recursos/Sprites/towerThree2.png");
+        resourceManager->AddTexture("texTowerThree3", "Recursos/Sprites/towerThree3.png");
         
         resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
         
