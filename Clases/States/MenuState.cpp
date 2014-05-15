@@ -48,7 +48,7 @@ void MenuState::LoadResources(){
 	try{
 		// Texturas
 		resourceManager->AddTexture("texBackground", "Recursos/Screens/fondoMenu.jpg");
-        resourceManager->AddTexture("texDialogBack", "Recursos/Screens/fondoVentana.jpeg");
+        resourceManager->AddTexture("texDialogBack", "Recursos/Screens/fondoVentana.png");
         resourceManager->AddTexture("texDialogYes", "Recursos/Buttons/SiNo.png");
         resourceManager->AddTexture("texDialogNo", "Recursos/Buttons/SiNo.png");
 		

@@ -7,13 +7,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/jmsm30/NetBeansProjects/Hito3/Clases/States/ShopState.cpp</file>
-            <file>file:/home/jmsm30/NetBeansProjects/Hito3/Clases/States/WorldState.cpp</file>
-            <file>file:/home/jmsm30/NetBeansProjects/Hito3/Clases/States/NewTowerState.cpp</file>
-            <file>file:/home/jmsm30/NetBeansProjects/Hito3/Clases/States/NewTowerState.h</file>
-            <file>file:/home/jmsm30/NetBeansProjects/Hito3/Clases/States/MenuState.h</file>
-            <file>file:/home/jmsm30/NetBeansProjects/Hito3/Clases/States/MenuState.cpp</file>
-            <file>file:/home/jmsm30/NetBeansProjects/Hito3/Clases/States/PauseState.cpp</file>
+            <file>file:/home/jc/Escritorio/FDV/hito2/Clases/States/WorldState.cpp</file>
+            <file>file:/home/jc/Escritorio/FDV/hito2/Clases/States/MenuState.cpp</file>
+            <file>file:/home/jc/Escritorio/FDV/hito2/Clases/Entities/Enemy.cpp</file>
+            <file>file:/home/jc/Escritorio/FDV/hito2/Clases/States/ShopState.cpp</file>
+            <file>file:/home/jc/Escritorio/FDV/hito2/Clases/Managers/WaveManager.cpp</file>
         </group>
     </open-files>
 </project-private>

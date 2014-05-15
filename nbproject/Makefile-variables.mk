@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux-x86
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=hito3
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/hito3
+CND_ARTIFACT_NAME_Debug=hito2
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/hito2
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=hito3.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/hito3.tar
+CND_PACKAGE_NAME_Debug=hito2.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/hito2.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=hito3
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/hito3
+CND_ARTIFACT_NAME_Release=hito2
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/hito2
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=hito3.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/hito3.tar
+CND_PACKAGE_NAME_Release=hito2.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/hito2.tar
 #
 # include compiler specific variables
 #

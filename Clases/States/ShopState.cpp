@@ -52,8 +52,8 @@ void ShopState::LoadResources(){
         
         resourceManager->AddTexture("habDobleJump", "Recursos/Buttons/spriteSalto.png");
         resourceManager->AddTexture("habAngularShot", "Recursos/Buttons/spriteDisparoAngulo.png");
-        resourceManager->AddTexture("habTower2", "Recursos/Buttons/spriteSalto.png");
-        resourceManager->AddTexture("habTower3", "Recursos/Buttons/spriteSalto.png");
+        resourceManager->AddTexture("habTower2", "Recursos/Buttons/spriteTorreta2Tienda.png");
+        resourceManager->AddTexture("habTower3", "Recursos/Buttons/spriteTorreta3Tienda.png");
         
         resourceManager->AddTexture("texReturn", "Recursos/Buttons/return.png");
         resourceManager->AddTexture("iconPlus", "Recursos/Icons/iconPlus.png");
@@ -61,8 +61,10 @@ void ShopState::LoadResources(){
         resourceManager->AddTexture("iconGun", "Recursos/Icons/iconGun.png");
         resourceManager->AddTexture("iconBullet", "Recursos/Icons/iconBullet.png");
         resourceManager->AddTexture("iconTower", "Recursos/Icons/iconTower.png");
+        resourceManager->AddTexture("iconTower2", "Recursos/Icons/iconTower2.png");
+        resourceManager->AddTexture("iconTower3", "Recursos/Icons/iconTower3.png");
         resourceManager->AddTexture("iconPortal", "Recursos/Icons/iconPortal.png");
-		resourceManager->AddTexture("buttonHab", "Recursos/Buttons/habilitiesButton.png");
+		resourceManager->AddTexture("buttonHab", "Recursos/Buttons/spriteTxtTienda.png");
         resourceManager->AddTexture("buttonImp", "Recursos/Buttons/improvesButton.png");
         
 		// Fuente
@@ -121,7 +123,7 @@ void ShopState::Init() {
     
     
     buttonImproves = new ImageButton(875.f, 10.f, 2, resourceManager->GetTexture("buttonImp"));
-    buttonHabilities = new ImageButton(600.f, 10.f, 2, resourceManager->GetTexture("buttonHab"));
+    buttonHabilities = new ImageButton(650.f, 10.f, 2, resourceManager->GetTexture("buttonHab"));
     buttonHabilities->SetFrame(1);
     
 //********* IMPROVES
@@ -156,7 +158,7 @@ void ShopState::Init() {
     aux->CreateImprove("Rango", Parameters::towerOneRangeLevel);
     vImproves->push_back(aux);
     
-    aux = new ImproveGroup(Vector(600.f, 340.f), "Torreta 2",  ResourceManager::Instance()->GetTexture("iconTower"));
+    aux = new ImproveGroup(Vector(600.f, 340.f), "Torreta 2",  ResourceManager::Instance()->GetTexture("iconTower2"));
     aux->CreateImprove("Ataque", Parameters::towerTwoDamageLevel);
     aux->CreateImprove("Cadencia", Parameters::towerTwoCadencyLevel);
     aux->CreateImprove("Rango", Parameters::towerTwoRangeLevel);
@@ -166,7 +168,7 @@ void ShopState::Init() {
     
     vImproves->push_back(aux);
     
-    aux = new ImproveGroup(Vector(600.f, 540.f), "Torreta 3",  ResourceManager::Instance()->GetTexture("iconTower"));
+    aux = new ImproveGroup(Vector(600.f, 540.f), "Torreta 3",  ResourceManager::Instance()->GetTexture("iconTower3"));
     aux->CreateImprove("Ataque", Parameters::towerThreeDamageLevel);
     aux->CreateImprove("Cadencia", Parameters::towerThreeCadencyLevel);
     aux->CreateImprove("Rango", Parameters::towerThreeRangeLevel);

@@ -62,7 +62,7 @@
  </layer>
  <layer name="Primaria" width="64" height="32">
   <data encoding="base64" compression="zlib">
-   eJztmOlOAjEURjso8CR9CheQxQVlcwPRUd//EVyix5BJyMCMs5ES+p3k/Jvb9KbpzdcxRgghhKiWI2vMMZ7gKbawjZd4hQO8xhsc2upqd4UR+xrjBKd4i3f4jC8Y4iu+4butrlaILNQD1ztwS8Pz/pv0f87suCgxV+NzOl7/wTef+IXf+PNXFCTP9zPspOwnWi/PWl3sYd+u9/uEixJzNT6ns9Ynzfd7fMi5n//WesQZzjf0K0Qa0X2L7ppwy+p56EyEWFJ0TmXJCIMCuSItByXlFhdv2iwZISyQK4rkFr1pRV724T9RGXz6T7SNLBp4np9qnvd/4Hn/h5737zu/d1aBBw==
+   eJztmFluwjAURZNSykq8CqADc6ETnZhp97+EDoKDUKQqJcEZJFf1PdL5y7P8ZPnqOUEghBBClEvdBEEDm3iOF3iJA7zGIY7wBm9NebV/hTv2dY8POMZHfMIFLnGFa3zDd1NerRA2VEPXO3DLmef91+i/R3b0C+RqPKfj9R9884lf+I2bXVGYnO9X2ErZT7RelrXa2MGu+d3vDOcFcjWe07b1Sfn+jC8Z93NsrVec4PRAv0KkEd236K4Jt/w8D52JEHvy5pTNjDDMMVekzUFJc4uLN63NjLDKMVfkmVv0phVZ+Q//iWw5lHH6T1SM0PP56cTz/iue93/qef++swVsg4EH
   </data>
  </layer>
  <objectgroup name="Camino" width="64" height="32" visible="0">
@@ -70,7 +70,7 @@
    <polyline points="0,0 1836,224 468,368 1314,674 58,924 2038,1022"/>
   </object>
  </objectgroup>
- <objectgroup name="Colision suelo" width="64" height="32" visible="0" opacity="0.68">
+ <objectgroup name="Colision suelo" width="64" height="32" opacity="0.68">
   <object x="1573" y="397" width="483" height="49"/>
   <object x="962" y="396" width="441" height="52"/>
   <object x="516" y="396" width="245" height="51"/>
@@ -85,16 +85,16 @@
   <object x="-45" y="-45" width="2130" height="107"/>
   <object x="998" y="684" width="240" height="49"/>
  </objectgroup>
- <objectgroup name="Colision plataformas" width="64" height="32" visible="0" opacity="0.72">
+ <objectgroup name="Colision plataformas" width="64" height="32" opacity="0.72">
   <object x="256" y="526" width="128" height="32"/>
   <object x="764" y="396" width="198" height="52"/>
   <object x="1403" y="397" width="170" height="50"/>
   <object x="1602" y="654" width="122" height="35"/>
   <object x="830" y="684" width="165" height="53"/>
-  <object x="1377" y="847" width="127" height="33"/>
+  <object x="1377" y="807" width="127" height="33"/>
   <object x="1409" y="561" width="159" height="39"/>
  </objectgroup>
- <objectgroup name="Metadatos" width="64" height="32">
+ <objectgroup name="Metadatos" width="64" height="32" visible="0">
   <properties>
    <property name="NumOleadas" value="7"/>
    <property name="O1" value="1,1,1,1,1,1"/>
