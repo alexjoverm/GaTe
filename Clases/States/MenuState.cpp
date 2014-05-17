@@ -106,7 +106,7 @@ void MenuState::Init() {
     
     vButtons->at(0)->SetText("Nueva Partida");
     vButtons->at(1)->SetText("Continuar");
-    vButtons->at(2)->SetText("Tutorial");
+    vButtons->at(2)->SetText("Controles");
     vButtons->at(3)->SetText("Opciones");
     vButtons->at(4)->SetText("Acerca De");
     vButtons->at(5)->SetText("Salir");

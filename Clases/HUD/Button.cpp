@@ -11,7 +11,7 @@
 Button::Button(float x, float y, std::string contenido, std::string fuente) {
     
     texto = new sf::Text();
-    
+    controlSound =false;
     
     texto->setFont(ResourceManager::Instance()->GetFont(fuente));
     texto->setCharacterSize(28);
@@ -42,8 +42,19 @@ void Button::Draw(float interp){
     sf::Event event;
     sf::Vector2i MousePos=sf::Mouse::getPosition(*RenderWindow::Instance()->renderWindow);
 
+    
+    
+    if(IsPressed(MousePos.x, MousePos.y) && !controlSound){
+            SoundPlayer::Instance()->Play("hover");
+            controlSound = true;
+    }
+    else
+            controlSound =false;
+    
+    
+    
    if(texto->getGlobalBounds().contains(sf::Vector2f((float)MousePos.x, (float)MousePos.y)))
-        texto->setStyle(sf::Text::Bold);
+       texto->setStyle(sf::Text::Bold);
    else
        texto->setStyle(sf::Text::Regular);
 }
@@ -72,3 +83,7 @@ void Button::Center(){
     texto->setOrigin(texto->getGlobalBounds().width/2, texto->getGlobalBounds().height/2);
     texto->setPosition(texto->getPosition().x, texto->getPosition().y);
 }
+
+
+
+   

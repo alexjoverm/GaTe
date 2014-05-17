@@ -68,7 +68,7 @@ void ShopState::LoadResources(){
         resourceManager->AddTexture("buttonImp", "Recursos/Buttons/improvesButton.png");
         
 		// Fuente
-		resourceManager->AddFont("Urban", "Recursos/OpenSans-Regular.ttf");
+		resourceManager->AddFont("Urban", "Recursos/Urban_Stone.otf");
         
         if(!musicPlayer->isPlaying)
             musicPlayer->Load(Music::MenuTheme);
@@ -130,7 +130,7 @@ void ShopState::Init() {
     vImproves = new std::vector<ImproveGroup*>();
     
     // PLAYER
-    ImproveGroup* aux = new ImproveGroup(Vector(80.f, 150.f), "Player",  ResourceManager::Instance()->GetTexture("iconPlayer"));
+    ImproveGroup* aux = new ImproveGroup(Vector(80.f, 150.f), "Jugador",  ResourceManager::Instance()->GetTexture("iconPlayer"));
     aux->CreateImprove("Velocidad", Parameters::playerSpeedLevel);
     vImproves->push_back(aux);
     
@@ -152,13 +152,13 @@ void ShopState::Init() {
     vImproves->push_back(aux);
     
     // TOWERS
-    aux = new ImproveGroup(Vector(600.f, 150.f), "Torreta 1",  ResourceManager::Instance()->GetTexture("iconTower"));
+    aux = new ImproveGroup(Vector(600.f, 150.f), "Shooter",  ResourceManager::Instance()->GetTexture("iconTower"));
     aux->CreateImprove("Ataque", Parameters::towerOneDamageLevel);
     aux->CreateImprove("Cadencia", Parameters::towerOneCadencyLevel);
     aux->CreateImprove("Rango", Parameters::towerOneRangeLevel);
     vImproves->push_back(aux);
     
-    aux = new ImproveGroup(Vector(600.f, 340.f), "Torreta 2",  ResourceManager::Instance()->GetTexture("iconTower2"));
+    aux = new ImproveGroup(Vector(600.f, 340.f), "Delayer",  ResourceManager::Instance()->GetTexture("iconTower2"));
     aux->CreateImprove("Ataque", Parameters::towerTwoDamageLevel);
     aux->CreateImprove("Cadencia", Parameters::towerTwoCadencyLevel);
     aux->CreateImprove("Rango", Parameters::towerTwoRangeLevel);
@@ -168,7 +168,7 @@ void ShopState::Init() {
     
     vImproves->push_back(aux);
     
-    aux = new ImproveGroup(Vector(600.f, 540.f), "Torreta 3",  ResourceManager::Instance()->GetTexture("iconTower3"));
+    aux = new ImproveGroup(Vector(600.f, 540.f), "Destroyer",  ResourceManager::Instance()->GetTexture("iconTower3"));
     aux->CreateImprove("Ataque", Parameters::towerThreeDamageLevel);
     aux->CreateImprove("Cadencia", Parameters::towerThreeCadencyLevel);
     aux->CreateImprove("Rango", Parameters::towerThreeRangeLevel);

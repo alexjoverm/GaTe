@@ -37,14 +37,16 @@ HUD::HUD(float alto, std::string fuente) {
     
     menuHUD->SetPosition(Vector(0.f,0.f));
      
+    
+    
     nivel   = new sf::Text();
-    nivel->setString("Nivel: 1");
+    nivel->setString("Nivel 1");
     nivel->setFont(ResourceManager::Instance()->GetFont(fuente));
     nivel->setPosition(20.f, 25.f);
     nivel->setCharacterSize(21);
     
     wave   = new sf::Text();
-    wave->setString("Oleada: 1");
+    wave->setString("Oleada 1");
     wave->setFont(ResourceManager::Instance()->GetFont(fuente));
     wave->setPosition(125.f, 25.f);
     wave->setCharacterSize(21);
@@ -53,13 +55,19 @@ HUD::HUD(float alto, std::string fuente) {
     tiempo->setString("00");
     tiempo->setFont(ResourceManager::Instance()->GetFont(fuente));
     tiempo->setPosition(350.f, 25.f);
-    tiempo->setCharacterSize(21);
+    tiempo->setCharacterSize(28);
     
     credito   = new sf::Text();
     credito->setString("0 $");
     credito->setFont(ResourceManager::Instance()->GetFont(fuente));
     credito->setPosition(830.f, 23.f);
     credito->setCharacterSize(22);
+    credito->setColor(sf::Color::Yellow);
+    
+    nivel->setFont(ResourceManager::Instance()->GetFont("Urban"));
+    wave->setFont(ResourceManager::Instance()->GetFont("Urban"));
+    tiempo->setFont(ResourceManager::Instance()->GetFont("Urban"));
+    credito->setFont(ResourceManager::Instance()->GetFont("Urban"));
     
 }
 

@@ -95,7 +95,7 @@ void StatusManager::ResetParameters()
     map.insert(std::make_pair(Parameters::priceHabilityDobleJump, "400"));
     
  //******************* ECONOMIA
-    map.insert(std::make_pair(Parameters::credit, "150"));         // Credito disponible
+    map.insert(std::make_pair(Parameters::credit, "100"));         // Credito disponible
     
     map.insert(std::make_pair(Parameters::priceImproveInit, "20"));       // Mejoras
     map.insert(std::make_pair(Parameters::priceImproveIncrement, "10"));
@@ -111,9 +111,9 @@ void StatusManager::ResetParameters()
     map.insert(std::make_pair(Parameters::priceBuyBulletThree, "50"));
     
     map.insert(std::make_pair(Parameters::priceLeaveEnemyDenom, "20"));     // Enemies
-    map.insert(std::make_pair(Parameters::priceLeaveEnemyOne, "10"));
-    map.insert(std::make_pair(Parameters::priceLeaveEnemyTwo, "15"));
-    map.insert(std::make_pair(Parameters::priceLeaveEnemyThree, "20"));
+    map.insert(std::make_pair(Parameters::priceLeaveEnemyOne, "5"));
+    map.insert(std::make_pair(Parameters::priceLeaveEnemyTwo, "10"));
+    map.insert(std::make_pair(Parameters::priceLeaveEnemyThree, "10"));
     
     
  //******************* VARIABLES

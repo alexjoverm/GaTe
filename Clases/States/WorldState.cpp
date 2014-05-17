@@ -418,16 +418,16 @@ void WorldState::Update(const Time& timeElapsed)
     //*************** HUD **
         hud->Update(timeElapsed);
         
-        hud->SetCreditText(StatusManager::Instance()->GetValue(Parameters::credit) + " $");
+        hud->SetCreditText(StatusManager::Instance()->GetValue(Parameters::credit));
         
         if(waveManager->state == Wave::State::Loading)
         {
             int tiempo = waveManager->GetTimeLeft();
-            std::string tiempoAux = std::string((tiempo < 10 ? "0"+StringUtils::ConvertInt(tiempo) : StringUtils::ConvertInt(tiempo)));
+            std::string tiempoAux = std::string((tiempo < 10 ? ""+StringUtils::ConvertInt(tiempo) : StringUtils::ConvertInt(tiempo)));
 
             hud->SetTimeText(tiempoAux);
 
-            hud->SetWaveText(std::string("Oleada: " + StringUtils::ConvertInt(waveManager->GetCurrentWave()) 
+            hud->SetWaveText(std::string("Oleada " + StringUtils::ConvertInt(waveManager->GetCurrentWave()) 
                                             + " / " + StringUtils::ConvertInt(waveManager->GetTotalWaves())));
         }
         

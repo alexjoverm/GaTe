@@ -12,6 +12,7 @@
 #include "../Motor2D/RenderWindow.h"
 #include "../Otros/Vector.h"
 #include "../Managers/InputManager.h"
+#include "../MusicSounds/SoundPlayer.h"
 #include "../Otros/Time.h"
 
 
@@ -44,7 +45,7 @@ public:
     
 private:
     sf::Text*           texto;
-    
+    bool             controlSound;
     
 };
 

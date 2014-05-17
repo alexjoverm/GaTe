@@ -62,15 +62,24 @@ void SoundPlayer::Play(std::string so, sf::Vector2f position)
 
 void SoundPlayer::LoadMenuSounds()
 {
-    // FALTA AÑADIR MENU SOUNDS 
-    
+    rm->AddSoundBuffer("hover",			"Recursos/Sounds/Boton.wav");
+    rm->AddSoundBuffer("click",			"Recursos/Sounds/Arma2.wav");
 	loaded = true;
 }
 
 void SoundPlayer::LoadGameSounds()
 {
-	rm->AddSoundBuffer("shot",			"Recursos/Sounds/disparo_player.wav");
-    rm->AddSoundBuffer("shot_torreta",	"Recursos/Sounds/disparo_torreta.wav");
+    rm->AddSoundBuffer("shot",			"Recursos/Sounds/Arma1.wav");
+    rm->AddSoundBuffer("shot2",			"Recursos/Sounds/Arma2.wav");
+    rm->AddSoundBuffer("shot3",			"Recursos/Sounds/Arma3.wav");
+    
+    
+    rm->AddSoundBuffer("shot_torreta",	"Recursos/Sounds/Torreta1.wav");
+    rm->AddSoundBuffer("shot_torreta2",	"Recursos/Sounds/Torreta2.wav");
+    rm->AddSoundBuffer("shot_torreta3",	"Recursos/Sounds/Torreta3.wav");
+    rm->AddSoundBuffer("shot_torreta4",	"Recursos/Sounds/Torreta4.wav");
+    
+    
     rm->AddSoundBuffer("laser",			"Recursos/Sounds/laser.wav");
     rm->AddSoundBuffer("explosion",		"Recursos/Sounds/explosion.wav");
     rm->AddSoundBuffer("enemyDeath",    "Recursos/Sounds/aliendeath.wav");
