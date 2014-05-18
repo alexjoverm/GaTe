@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=hito3_17mayo
+PROJECTNAME=hito2_alvaroFinal
 
 # Active Configuration
 DEFAULTCONF=Debug
