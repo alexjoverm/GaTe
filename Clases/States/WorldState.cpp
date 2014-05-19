@@ -284,6 +284,7 @@ void WorldState::Clean(){
 //************* Recursos
     resourceManager->CleanResources();
     resourceManager->CleanGameSounds();
+    soundPlayer->loaded=false;
     
 //************* Variables
     delete waveManager; waveManager = NULL;

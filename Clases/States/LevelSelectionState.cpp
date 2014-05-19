@@ -56,6 +56,9 @@ void LevelSelectionState::LoadResources(){
         
         if(!musicPlayer->isPlaying)
             musicPlayer->Load(Music::MenuTheme);
+        
+        if(!SoundPlayer::Instance()->loaded)
+            SoundPlayer::Instance()->LoadMenuSounds();
 	}
 	catch (std::runtime_error& e)	{
 		std::cout << "Exception: " << e.what() << std::endl;

@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=hito2_alvaroFinal
+PROJECTNAME=finalGate
 
 # Active Configuration
 DEFAULTCONF=Debug
