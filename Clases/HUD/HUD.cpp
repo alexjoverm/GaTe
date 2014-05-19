@@ -145,7 +145,7 @@ void HUD::SetFrameSoundButton(int frame){
 
 void HUD::SetFrameMusicButton(int frame){
     if(frame==0)
-        MusicPlayer::Instance()->DeActivate();
+        MusicPlayer::Instance();//->DeActivate();
     else if(frame==1)
         MusicPlayer::Instance()->Activate();
         

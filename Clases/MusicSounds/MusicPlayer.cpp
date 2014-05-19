@@ -26,7 +26,7 @@ MusicPlayer::MusicPlayer()
     mFilenames->insert(std::make_pair(Music::Level1Theme , "Recursos/Music/Deeper.ogg"));
     
     
-    ultVol = 0.f;
+    ultVol = 100.f;
     
     mMusic->setVolume(ultVol);
     currentTheme = Music::MenuTheme;

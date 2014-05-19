@@ -53,6 +53,7 @@ void LoadingState::LoadResources(){
 
 void LoadingState::Init() {
     resourceManager->CleanResources();
+    MusicPlayer::Instance()->Stop();
 	LoadResources(); // Cargamos recursos
 	
 	// Inicializamos fuentes
