@@ -137,10 +137,10 @@ Vector Mapa::GetPlayerPosition(){
     
     float x = StringUtils::ParseFloat(str.substr(0,pos));
     float y = StringUtils::ParseFloat(str.substr(pos+1));
-    std::cout << str <<std::endl;
+    /*std::cout << str <<std::endl;
     std::cout << str.substr(0,pos-1) <<std::endl;
     std::cout << str.substr(pos) <<std::endl;
-    std::cout << x <<" , " << y << std::endl;
+    std::cout << x <<" , " << y << std::endl;*/
     return Vector(x,y);
 }
 

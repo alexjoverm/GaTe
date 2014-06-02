@@ -1,5 +1,6 @@
 
 #include "ResourceHolder.hpp"
+#include <iostream>
 
 
 template <typename Resource, typename Identifier>
@@ -49,6 +50,7 @@ void ResourceHolder<Resource, Identifier>::load(Identifier id, const std::string
 template <typename Resource, typename Identifier>
 Resource& ResourceHolder<Resource, Identifier>::get(Identifier id)
 {
+    std::cout << id << std::endl;
 	auto found = mResourceMap->find(id);  //auto es una variable dinamica
 	assert(found != mResourceMap->end()); //Comprobamos que es correcto
 

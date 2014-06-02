@@ -122,7 +122,7 @@ void WorldState::LoadResources()
 {
 
 	try{
-        
+        std::cout << " LOAD: inicio " << std::endl;
         //sf::Lock lock(mMutex);
         doublePath =  false;
         level = new Level();
@@ -132,6 +132,8 @@ void WorldState::LoadResources()
         for(int i = 0; i < level->vTextures->size(); i++)	// Del nivel
             resourceManager->AddTexture("texLevel" + StringUtils::ConvertInt(i) , level->vTextures->at(i));
         
+        std::cout << " LOAD: tex levels " << std::endl;
+        
         // Texturas PowerUps
         for(int i = 0 ; i < 5 ; i++)
             resourceManager->AddTexture("texPower" + StringUtils::ConvertInt(i), "Recursos/PowerUps/power"+StringUtils::ConvertInt(i)+".png");
@@ -139,16 +141,22 @@ void WorldState::LoadResources()
         for(int i = 0 ; i < 5 ; i++)
                 resourceManager->AddTexture("miniPower" + StringUtils::ConvertInt(i), "Recursos/PowerUps/activePower"+StringUtils::ConvertInt(i)+".png");
 
+        std::cout << " LOAD: powerups " << std::endl;
+        
         //Texturas Seleccion Torretas 
         for(int i = 1 ; i <= 3 ; i++)
                 resourceManager->AddTexture("texButtonTower" + StringUtils::ConvertInt(i), "Recursos/Buttons/botonTorreta"+ StringUtils::ConvertInt(i)+".png");        
         
         level->LoadMap(mapName);
+        
+        std::cout << " LOAD: tower selection " << std::endl;
 
         // Enemies
         resourceManager->AddTexture("texEnemyOne", "Recursos/Sprites/enemyOne.png");
         resourceManager->AddTexture("texEnemyTwo", "Recursos/Sprites/enemyTwo.png");
         resourceManager->AddTexture("texEnemyThree", "Recursos/Sprites/enemyThree.png");
+        
+        std::cout << " LOAD: enemies " << std::endl;
         
         // Towers
         resourceManager->AddTexture("texTowerOne1", "Recursos/Sprites/towerOne1.png");
@@ -163,21 +171,26 @@ void WorldState::LoadResources()
         resourceManager->AddTexture("texTowerThree2", "Recursos/Sprites/towerThree2.png");
         resourceManager->AddTexture("texTowerThree3", "Recursos/Sprites/towerThree3.png");
         
-        resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
+        std::cout << " LOAD: towers " << std::endl;
         
+        resourceManager->AddTexture("texBullet", "Recursos/Bullet.png");
         resourceManager->AddTexture("texPj", "Recursos/Sprites/pj_final_200_148.png");
         
-        
+        std::cout << " LOAD: bullet player " << std::endl;
         
         resourceManager->AddTexture("texCoins", "Recursos/Icons/dolar.png");
         resourceManager->AddTexture("texClock", "Recursos/Icons/time.png");
         resourceManager->AddTexture("texSounds", "Recursos/Icons/sounds.png");
         resourceManager->AddTexture("texMusic", "Recursos/Icons/music.png");
         
+        std::cout << " LOAD: hud " << std::endl;
+        
         resourceManager->AddTexture("texPausaContinuar", "Recursos/Icons/ContinuarIcon.png");
         resourceManager->AddTexture("texPausaSeleccion", "Recursos/Icons/SeleccionNivelIcon.png");
         resourceManager->AddTexture("texPausaMenu", "Recursos/Icons/MenuIcon.png");
         resourceManager->AddTexture("texPausaBackground", "Recursos/Screens/pausa.png");
+        
+        std::cout << " LOAD: hud 2 " << std::endl;
 
         //Texturas del HUD
         resourceManager->AddTexture("texHUD", "Recursos/hud.png");
@@ -187,7 +200,12 @@ void WorldState::LoadResources()
         resourceManager->AddFont("Urban", "Recursos/Urban_Stone.otf");
         
         musicPlayer->Load(Music::ID::Level1Theme);
+        
+        /************************************************   ESTO    */
+        soundPlayer->LoadMenuSounds();
         soundPlayer->LoadGameSounds();
+        
+        std::cout << " LOAD: fonts & music " << std::endl;
         
         
 	}
@@ -199,14 +217,13 @@ void WorldState::LoadResources()
 
 
 void WorldState::Init() {
-	
+	std::cout << " INIT: inicio " << std::endl;
     StatusManager::Instance()->DoCopyMap();
     
     
 //**************** Inicializaciones
 	firstUpdate=false;
-    
-        requestStateChange = std::make_pair(States::ID::LoadingState,false);
+    requestStateChange = std::make_pair(States::ID::LoadingState,false);
     
 //**************** Mapa y Level
     
@@ -219,6 +236,8 @@ void WorldState::Init() {
     
     for(int i=0; i < vrec.size(); i++)
         AddLevelPlatform(vrec.at(i));
+    
+    std::cout << " INIT: map level " << std::endl;
     
         
  //**************** PowerUpManager
@@ -234,7 +253,9 @@ void WorldState::Init() {
     int waves = StringUtils::ParseInt( level->map->GetMetadata("NumOleadas") );
             
     for(int i = 0 ; i < waves ; i++)
-        waveManager->AddWave( level->map->GetWave(i) );  
+        waveManager->AddWave( level->map->GetWave(i) );
+    
+    std::cout << " INIT: powerup waves " << std::endl;
 	
 //***************** Entities
     
@@ -255,6 +276,7 @@ void WorldState::Init() {
     player->SetCurrentAnimation("idle", player->GetSprite());
     player->PlayAnimation();
     
+    std::cout << " INIT: player " << std::endl;
 
 //******************* HUD Y  CAMARA
     // Camera
@@ -267,6 +289,8 @@ void WorldState::Init() {
     else
         hud->SetFrameMusicButton(1);
     
+    std::cout << " INIT: hud half " << std::endl;
+    
     if(soundPlayer->active)
         hud->SetFrameSoundButton(1);
     else
@@ -276,15 +300,21 @@ void WorldState::Init() {
     
     musicPlayer->Play();
     paralax = new Paralax(cam, level->map);
+    
+    std::cout << " INIT: hud full " << std::endl;
 }
 
 
 void WorldState::Clean(){
     
+    std::cout << " CLEAN: inicio " << std::endl;
+    
 //************* Recursos
     resourceManager->CleanResources();
     resourceManager->CleanGameSounds();
     soundPlayer->loaded=false;
+    
+    std::cout << " CLEAN: Resources " << std::endl;
     
 //************* Variables
     delete waveManager; waveManager = NULL;
@@ -292,6 +322,8 @@ void WorldState::Clean(){
     
 	delete player;  player = NULL;
 	delete level;   level = NULL;
+    
+    std::cout << " CLEAN: wave powerup player " << std::endl;
     
     
 //************* Vaciamos Contenedores
@@ -306,6 +338,8 @@ void WorldState::Clean(){
     
     while(!vBullets->empty()) 
 		delete vBullets->back(), vBullets->pop_back();
+    
+    std::cout << " CLEAN: Containers Half " << std::endl;
     
     while(!vPath->empty()) 
 		delete vPath->back(), vPath->pop_back();
@@ -325,6 +359,8 @@ void WorldState::Clean(){
     while(!vChanges->empty()) 
 		delete vChanges->back(), vChanges->pop_back();
     
+    std::cout << " CLEAN: Containers full " << std::endl;
+    
     
     // Los demás vectores sólo los limpiamos, ya que la memoria ya la hemos liberado
     // al liberar los vectores anteriores
@@ -334,6 +370,8 @@ void WorldState::Clean(){
     vNonRealEvents->clear();
     vRealEvents->clear();
     
+    std::cout << " CLEAN: Vectors " << std::endl;
+    
     
  //**************** HUD
     delete hud; hud = NULL;
@@ -341,6 +379,8 @@ void WorldState::Clean(){
   
     delete cam; cam = NULL;
     delete paralax; paralax = NULL;
+    
+    std::cout << " CLEAN: Music & HUD " << std::endl;
 }
 
 

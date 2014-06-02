@@ -34,7 +34,6 @@ void Slider::Draw(RenderWindow& window){
         Vector mousePos = CalculateMousePos();
         SetPositionControl(mousePos.GetX());
         valor = CalculateValue();
-        std::cout << "valor: " << valor << std::endl;
     }
     
     window.Draw(*barra);

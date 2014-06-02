@@ -235,7 +235,7 @@ void NewTowerState::Update(const Time& timeElapsed)
     if(tower2->IsClicked() && tower2->currentFrame != 2){
         
         selectedTower = 2;
-        std::cout << selectedTower << "   " << std::endl;
+        //std::cout << selectedTower << "   " << std::endl;
         tower1->SetFrame(1);
         tower2->SetFrame(0);
         if(StatusManager::Instance()->GetInt(Parameters::ID::unlockedTowers) < 3 )

@@ -53,6 +53,12 @@ void LoadingState::LoadResources(){
 
 void LoadingState::Init() {
     resourceManager->CleanResources();
+    
+    /****************************************************   ESTO    */
+    resourceManager->CleanGameSounds();
+    
+    
+    
     MusicPlayer::Instance()->Stop();
 	LoadResources(); // Cargamos recursos
 	

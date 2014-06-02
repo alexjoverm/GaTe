@@ -91,29 +91,29 @@ void StatusManager::ResetParameters()
     map.insert(std::make_pair(Parameters::habilityAngularShot, "0"));
     map.insert(std::make_pair(Parameters::habilityDobleJump, "0"));
     
-    map.insert(std::make_pair(Parameters::priceHabilityAngularShot, "400"));
-    map.insert(std::make_pair(Parameters::priceHabilityDobleJump, "400"));
+    map.insert(std::make_pair(Parameters::priceHabilityAngularShot, "300"));
+    map.insert(std::make_pair(Parameters::priceHabilityDobleJump, "300"));
     
  //******************* ECONOMIA
-    map.insert(std::make_pair(Parameters::credit, "100"));         // Credito disponible
+    map.insert(std::make_pair(Parameters::credit, "150"));         // Credito disponible
     
-    map.insert(std::make_pair(Parameters::priceImproveInit, "20"));       // Mejoras
+    map.insert(std::make_pair(Parameters::priceImproveInit, "10"));       // Mejoras
     map.insert(std::make_pair(Parameters::priceImproveIncrement, "10"));
     
-    map.insert(std::make_pair(Parameters::priceBuyTowerTwo, "300"));      // Torretas (comprar)
-    map.insert(std::make_pair(Parameters::priceBuyTowerThree, "600"));
+    map.insert(std::make_pair(Parameters::priceBuyTowerTwo, "150"));      // Torretas (comprar)
+    map.insert(std::make_pair(Parameters::priceBuyTowerThree, "250"));
     
-    map.insert(std::make_pair(Parameters::pricePutTowerOne, "50"));       // Torretas (poner)
+    map.insert(std::make_pair(Parameters::pricePutTowerOne, "40"));       // Torretas (poner)
     map.insert(std::make_pair(Parameters::pricePutTowerTwo, "75"));
     map.insert(std::make_pair(Parameters::pricePutTowerThree, "100"));
     
     map.insert(std::make_pair(Parameters::priceBuyBulletTwo, "50"));      // Bullets
     map.insert(std::make_pair(Parameters::priceBuyBulletThree, "50"));
     
-    map.insert(std::make_pair(Parameters::priceLeaveEnemyDenom, "20"));     // Enemies
-    map.insert(std::make_pair(Parameters::priceLeaveEnemyOne, "5"));
-    map.insert(std::make_pair(Parameters::priceLeaveEnemyTwo, "10"));
-    map.insert(std::make_pair(Parameters::priceLeaveEnemyThree, "10"));
+    map.insert(std::make_pair(Parameters::priceLeaveEnemyDenom, "17"));     // Enemies
+    map.insert(std::make_pair(Parameters::priceLeaveEnemyOne, "10"));
+    map.insert(std::make_pair(Parameters::priceLeaveEnemyTwo, "15"));
+    map.insert(std::make_pair(Parameters::priceLeaveEnemyThree, "20"));
     
     
  //******************* VARIABLES
@@ -130,7 +130,7 @@ void StatusManager::ResetParameters()
     
     // WORLD
     map.insert(std::make_pair(Parameters::worldLifeLevel, "1"));    
-    map.insert(std::make_pair(Parameters::worldLifeInitValue, "150.0"));
+    map.insert(std::make_pair(Parameters::worldLifeInitValue, "0.0"));
     map.insert(std::make_pair(Parameters::worldLifeIncrement, "17.0"));
 
     

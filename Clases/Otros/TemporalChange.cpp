@@ -71,7 +71,7 @@ void TemporalChange::Draw(RenderWindow* window){
 
 void TemporalChange::AddChange(){
 
-    std::cout << type;
+    //std::cout << type;
     
     switch(type){
 

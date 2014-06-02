@@ -68,7 +68,7 @@ void MusicPlayer::SetVolume(float volume)
     if(volume < 0.f || volume > 100.f)
         throw std::string("Debes introducir un valor entre 0 y 100");
     
-    std::cout << "Vol: " << mMusic->getVolume() << std::endl;
+    //std::cout << "Vol: " << mMusic->getVolume() << std::endl;
     
     if(volume != 0.f)
         ultVol = volume;
